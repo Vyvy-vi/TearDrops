@@ -411,6 +411,40 @@ This has been uploaded to GitHub for educational and referencial purposes', colo
     await ctx.send(embed=embed)
 
 
+@client.command(pass_context=True)
+async def echo(ctx, *args):
+    '''echos the words'''
+    output = ''
+    for word in args:
+        output += word
+        output += ' '
+    print(ctx.message.author.id)
+    if ctx.message.author.id == 558192816308617227:
+        for i in range(3):
+            await ctx.send(output)
+    else:
+        await ctx.send(output)
+
+
+@client.command(pass_context=True)
+async def say(ctx, *args):
+    """Gives the user's statement a nice richtext quote format"""
+    output = ''
+    for word in args:
+        output += word
+        output += ' '
+    user = ctx.message.author
+    embed = discord.Embed(title=f'{output}', description=f'~{user}', colour=discord.Color.greyple())
+    await ctx.send(embed=embed)
+
+
+@client.command(pass_context=True)
+async def urban(ctx, *args):
+    '''searches urban dictionary for words'''
+    baseurl = "https://www.urbandictionary.com/define.php?term="
+    output = ''
+    for word in args:
+        output += word
 # error_handling
 
 
