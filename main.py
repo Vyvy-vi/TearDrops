@@ -445,9 +445,18 @@ async def urban(ctx, *args):
     output = ''
     for word in args:
         output += word
+
+@client.command(pass_context=True)
+async def define(ctx, *args):
+    '''searches merriam-webster for meanings of words'''
+    baseurl = "https://www.merriam-webster.com/dictionary/"
+    output = ''
+    for word in args:
+        output += word
+        output += '%20'
+    await ctx.send(baseurl + output)
+
 # error_handling
-
-
 @client.event
 async def on_command_error(ctx, error):
     # TODO- Error Handling
