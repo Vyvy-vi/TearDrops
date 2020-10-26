@@ -3,6 +3,6 @@ This is a setup file, where you may add the token for hosting this bot as your o
 If you don't know have a discord token, go to https://discord.com/developers/applications and get your own and assign it below.
 """
 
-TOKEN = "NjI3NzcyOTg1ODcyMjIwMTYx.XZBhJw.x4mq2F6iCmAK3Yy8EtexDyYs0_I"
+TOKEN = "YOUR_TOKEN"
 USER_NAME = "disbot"
 MONGODB_PASS = "14ZrL5tjTyJknv6q"
