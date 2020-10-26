@@ -1,0 +1,6 @@
+discord
+pymongo
+wikipedia
+requests
+aiohttp
+
