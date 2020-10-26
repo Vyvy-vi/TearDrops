@@ -494,6 +494,33 @@ async def russian_roulette(ctx):
         embed = discord.Embed(title='Russian Roulette.🔫', description='You live to fight another day', color=discord.Color.blue())
     await ctx.send(embed=embed)
 
+@client.command(pass_context=True)
+async def wiki(ctx, *args):
+    '''Displays wikipedia info about given arguments'''
+    qu = ' '.join(list(args))
+    searchResults = wikipedia.search(qu)
+    if not searchResults:
+        embed = discord.Embed(title=f'**{qu}**', description='It appears that there is no instance of this in Wikipedia index...', colour=discord.Color.dark_red())
+        embed.set_footer(text='Powered by Wikipedia...')
+        await ctx.send(embed=embed)
+    else:
+        try:
+            page = wikipedia.page(searchResults[0])
+            pg = 0
+        except wikipedia.DisambiguationError as err:
+            page = wikipedia.page(err.options[0])
+            pg = err.options
+        wikiTitle = str(page.title.encode('utf-8'))
+        wikiSummary = str(page.summary.encode('utf-8'))
+        embed = discord.Embed(title=f'**{wikiTitle[1:]}**', description=str(wikiSummary[1:900]) + '...', color=discord.Color.dark_orange(), url=page.url)
+        embed.set_footer(text='Powered by Wikipedia...')
+        if pg != 0:
+            s = pg[1:10] + ['...']
+            s = ','.join(s)
+            embed.add_field(name='Did you mean?:', value=s)
+        embed.set_image(url=page.images[0])
+        await ctx.send(embed=embed)
+
 
 # error_handling
 @client.event
