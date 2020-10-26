@@ -521,6 +521,17 @@ async def wiki(ctx, *args):
         embed.set_image(url=page.images[0])
         await ctx.send(embed=embed)
 
+@client.command(aliases=['meme'])
+async def memes(ctx):
+    """Get the dankest memes Reddit has to offer."""
+    async with aiohttp.ClientSession() as session:
+        url = "https://meme-api.herokuapp.com/gimme"
+        async with session.get(url) as response:
+            response = await response.json()
+        embed = discord.Embed(title=response['title'], url=response['postLink'], color=discord.Color.dark_orange())
+        embed.set_image(url=response['url'])
+        embed.set_footer(text=f"r/{response['subreddit']} | Requested by {ctx.author.name} | Enjoy your dank memes!")
+        await ctx.send(embed=embed)
 
 # error_handling
 @client.event
