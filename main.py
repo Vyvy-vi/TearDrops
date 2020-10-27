@@ -16,7 +16,9 @@ from setup import USER_NAME, MONGODB_PASS
 import wikipedia
 # import requests
 
+# TOKEN is an environment variable 
 TOKEN = os.getenv("DISCORD_BOT_TOKEN")
+
 # Standard modules
 import random
 import time
