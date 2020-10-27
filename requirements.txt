@@ -3,4 +3,4 @@ pymongo
 wikipedia
 requests
 aiohttp
-
+dnspython
