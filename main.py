@@ -1,5 +1,5 @@
 # TODO - transfer, casino, etc commands
-
+import os
 import ssl
 import discord
 from discord.ext import commands, tasks
@@ -9,13 +9,14 @@ from pymongo import MongoClient
 
 
 # modules for database
-from setup import TOKEN, USER_NAME, MONGODB_PASS
+from setup import USER_NAME, MONGODB_PASS
 
 # modules for wiki and wolfram queries
 # import wolframalpha
 import wikipedia
 # import requests
 
+TOKEN = os.getenv(DISCORD_BOT_TOKEN)
 # Standard modules
 import random
 import time
