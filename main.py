@@ -533,6 +533,27 @@ async def memes(ctx):
         embed.set_footer(text=f"r/{response['subreddit']} | Requested by {ctx.author.name} | Enjoy your dank memes!")
         await ctx.send(embed=embed)
 
+@client.command()
+async def automeme(ctx):
+    auto.start(ctx)
+
+
+@tasks.loop(seconds=600)
+async def auto(ctx):
+    '''
+    sends a meme every 10 mins
+    '''
+    async with aiohttp.ClientSession() as session:
+        url = "https://meme-api.herokuapp.com/gimme"
+        async with session.get(url) as response:
+            response = await response.json()
+        embed = discord.Embed(title=response['title'], url=response['postLink'], color=discord.Color.dark_orange())
+        embed.set_image(url=response['url'])
+        embed.set_footer(text=f"r/{response['subreddit']} | Requested by {ctx.author.name} | Enjoy your dank memes!")
+        await ctx.send(embed=embed)
+    # NOTE- There are other methods, that can be utilised instead of just 'playing'
+
+
 # error_handling
 @client.event
 async def on_command_error(ctx, error):
