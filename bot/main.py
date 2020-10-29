@@ -7,27 +7,29 @@ from itertools import cycle
 
 from pymongo import MongoClient
 
-
-# modules for database
-from setup import USER_NAME, MONGODB_PASS
-
 # modules for wiki and wolfram queries
 # import wolframalpha
 import wikipedia
 # import requests
 
-# TOKEN is an environment variable 
-TOKEN = os.getenv("DISCORD_BOT_TOKEN")
-
 # Standard modules
 import random
 import time
 import aiohttp
-MONGO_BOT = os.getenv("MONGO_TEARS")
-MONGO_BOT_PASS = os.getenv("MONGO_TEARS_PASS")
+
+# TOKEN, MONGO URI are env-vars
+
+if os.getenv("DISCORD_BOT_TOKEN"):
+    DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
+    MONGO_TEARS = os.getenv("MONGO_TEARS")
+    MONGO_TEARS_PASS = os.getenv("MONGO_TEARS_PASS")
+    print('fetched Tokens from env-vars')
+else:
+    from setup import DISCORD_BOT_TOKEN, MONGO_TEARS, MONGO_TEARS_PASS
 
 # mongoDB Client
-link = f'mongodb+srv://{MONGO_BOT}:{MONGO_BOT_PASS}@cluster0.ls3h6.mongodb.net/users_db?retryWrites=true&w=majority'
+link = f'mongodb+srv://{MONGO_TEARS}:{MONGO_TEARS_PASS}@cluster0.ls3h6.mongodb.net/users_db?retryWrites=true&w=majority'
+
 DB_CLIENT = MongoClient(link)
 db = DB_CLIENT.get_database('users_db')
 
@@ -569,4 +571,4 @@ async def on_command_error(ctx, error):
         await ctx.send(error)
 
 # Running the BOT:
-client.run(TOKEN)
+client.run(DISCORD_BOT_TOKEN)
