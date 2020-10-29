@@ -23,9 +23,11 @@ TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 import random
 import time
 import aiohttp
+MONGO_BOT = os.getenv("MONGO_TEARS")
+MONGO_BOT_PASS = os.getenv("MONGO_TEARS_PASS")
 
 # mongoDB Client
-link = 'mongodb+srv://disbot:pLPS4gZQl1yMZEF3@cluster0.ls3h6.mongodb.net/users_db?retryWrites=true&w=majority'
+link = f'mongodb+srv://{MONGO_BOT}:{MONGO_BOT_PASS}@cluster0.ls3h6.mongodb.net/users_db?retryWrites=true&w=majority'
 DB_CLIENT = MongoClient(link)
 db = DB_CLIENT.get_database('users_db')
 
