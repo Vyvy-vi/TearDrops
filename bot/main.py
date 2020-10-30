@@ -242,7 +242,7 @@ Saving {ls} tears in your vault of tears.', color=discord.Color.teal())
 
 @client.command()
 async def ping(ctx):
-    """The bots ping command"""
+    """The bot's ping command"""
     phrase = ['I am alive...',
               'I was definitely not sleeping...',
               'I was definitely not laughing...',
@@ -252,6 +252,21 @@ async def ping(ctx):
     ph = random.choice(phrase)
     lsm = round((client.latency) * 100)
     embed = discord.Embed(title='**pong...!**', description=f"_{ph}_ \n**~{lsm} ms taken**......", color=discord.Color.gold())
+    embed.set_footer(text='😭')
+    await ctx.send(embed=embed)
+
+@client.command()
+async def ping(ctx):
+    """The bot's pong command"""
+    phrase = ["I am aliven't...",
+              "I was sleeping...",
+              "I was laughing...",
+              "I am still not here",
+              "You are using a pong command? Why?",
+              "Not at your service."]
+    ph = random.choice(phrase)
+    lsm = round((client.latency) * 100)
+    embed = discord.Embed(title='**PING...!**', description=f"_{ph}_ \n**~{lsm} ms taken**......", color=discord.Color.red())
     embed.set_footer(text='😭')
     await ctx.send(embed=embed)
 
@@ -519,8 +534,7 @@ async def russian_roulette(ctx):
 async def wiki(ctx, *args):
     '''Displays wikipedia info about given arguments'''
     qu = ' '.join(list(args))
-    try:
-        searchResults = wikipedia.search(qu)
+    searchResults = wikipedia.search(qu)
     if not searchResults:
         embed = discord.Embed(title=f'**{qu}**', description='It appears that there is no instance of this in Wikipedia index...', colour=discord.Color.dark_red())
         embed.set_footer(text='Powered by Wikipedia...')
