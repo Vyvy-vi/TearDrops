@@ -302,7 +302,7 @@ async def helps(ctx):
     await ctx.send(embed=embed)
 
 
-@client.command()
+@client.command(aliases= ['daily'])
 async def cry(ctx):
     '''credit gain command for crying'''
     user = ctx.message.author
@@ -360,7 +360,7 @@ async def vault(ctx, member:discord.Member=None):
     await ctx.send(embed=embed)
 
 
-@client.command()
+@client.command(aliases = ['lvl','dep_level'])
 async def level(ctx):
     '''Gives the users level'''
     user = ctx.message.author
@@ -374,7 +374,7 @@ async def level(ctx):
 
 
 
-@client.command(aliases=['share', 'send'])
+@client.command(aliases=['share', 'send', 'cryon'])
 async def transfer(ctx, amount:int, member:discord.Member):
     '''transfer command'''
     user1 = ctx.message.author
@@ -445,7 +445,7 @@ async def echo(ctx, *args):
         await ctx.send(output)
 
 
-@client.command(pass_context=True)
+@client.command(pass_context=True, aliases=['quote'])
 async def say(ctx, *args):
     """Gives the user's statement a nice richtext quote format"""
     output = ''
@@ -475,6 +475,7 @@ async def define(ctx, *args):
         output += '%20'
     await ctx.send(baseurl + output)
 
+@client.command(aliases=['diceroll','roll'])
 async def dice(ctx, amount: int):
     '''dice-guess game'''
     num = amount
@@ -501,7 +502,7 @@ Command Usage-> qq dice <num> (between 1 and 6)', color=discord.Color.dark_red()
         await ctx.send(embed=embed)
 
 
-@client.command(aliases=['russian-roulette', 'gunshot'])
+@client.command(aliases=['russian-roulette', 'gunshot','rr'])
 async def russian_roulette(ctx):
     '''starts fun russian roulette game'''
     global buls
@@ -518,7 +519,8 @@ async def russian_roulette(ctx):
 async def wiki(ctx, *args):
     '''Displays wikipedia info about given arguments'''
     qu = ' '.join(list(args))
-    searchResults = wikipedia.search(qu)
+    try:
+        searchResults = wikipedia.search(qu)
     if not searchResults:
         embed = discord.Embed(title=f'**{qu}**', description='It appears that there is no instance of this in Wikipedia index...', colour=discord.Color.dark_red())
         embed.set_footer(text='Powered by Wikipedia...')
