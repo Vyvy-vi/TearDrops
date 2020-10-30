@@ -256,7 +256,7 @@ async def ping(ctx):
     await ctx.send(embed=embed)
 
 @client.command()
-async def ping(ctx):
+async def pong(ctx):
     """The bot's pong command"""
     phrase = ["I am aliven't...",
               "I was sleeping...",
