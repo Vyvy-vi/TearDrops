@@ -205,7 +205,6 @@ async def add_experience(message, user, exp):
     exp = stats[-1]['experience'] + exp
     new_stats = {"$set": {'experience': exp}}
     server.update_one(stats[-1], new_stats)
-    print(f'Added xp {exp} to {user.id} in {user.guild.name}')
     await level_up(message.author, message.channel)
 
 
@@ -214,7 +213,6 @@ async def level_up(user, channel):
     server = db[str(user.guild.id)]
     stats = list(server.find({'id': user.id}))
     lvl_start = stats[-1]['level']
-    print(lvl_start)
     experience = stats[-1]['experience']
     x = 35
     cnt = 1
@@ -226,7 +224,6 @@ async def level_up(user, channel):
         lvl_end = cnt - 1
     else:
         lvl_end = lvl_start
-    print(lvl_end)
 
     if lvl_start < lvl_end:
         new_stats = {"$set": {'level': lvl_end}}
@@ -348,9 +345,12 @@ Wait for like {round((10800 - time.time()+tim)//3600)} hours or something.", col
 
 
 @client.command(aliases=['vaultoftears', 'tearvault'])
-async def vault(ctx):
+async def vault(ctx, member:discord.Member=None):
     '''Gives the users economy balance'''
-    user = ctx.message.author
+    if not member:
+        user = ctx.message.author
+    else:
+        user = member
     server = db[str(user.guild.id)]
     stats = server.find({'id': user.id})
     trp = list(stats)[-1]['credits']
@@ -404,17 +404,6 @@ async def transfer(ctx, amount:int, member:discord.Member):
         embed.add_field(name=f"Failed to share {amount} tears.\nYou have insufficient tears in TearVault", value="._.")
     await ctx.send(embed=embed)
 
-    docs=db.search(usr['ids'] == user.id)
-    for doc in docs:
-        doc['credits'] -= amount
-    db.write_back(docs)
-    db= TinyDB(path_db)
-    usr= Query()
-    docs2=db.search(usr['ids'] == user2)
-    for doc2 in docs2:
-        doc['credits']+= amount
-    db.write_back(docs2)
-    await ctx.send(f'{amount} tears have been transferred...')
 
 
 """
