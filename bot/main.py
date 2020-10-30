@@ -242,7 +242,7 @@ Saving {ls} tears in your vault of tears.', color=discord.Color.teal())
 
 @client.command()
 async def ping(ctx):
-    """The bots ping command"""
+    """The bot's ping command"""
     phrase = ['I am alive...',
               'I was definitely not sleeping...',
               'I was definitely not laughing...',
@@ -252,6 +252,21 @@ async def ping(ctx):
     ph = random.choice(phrase)
     lsm = round((client.latency) * 100)
     embed = discord.Embed(title='**pong...!**', description=f"_{ph}_ \n**~{lsm} ms taken**......", color=discord.Color.gold())
+    embed.set_footer(text='😭')
+    await ctx.send(embed=embed)
+
+@client.command()
+async def ping(ctx):
+    """The bot's pong command"""
+    phrase = ["I am aliven't...",
+              "I was sleeping...",
+              "I was laughing...",
+              "I am still not here",
+              "You are using a pong command? Why?",
+              "Not at your service."]
+    ph = random.choice(phrase)
+    lsm = round((client.latency) * 100)
+    embed = discord.Embed(title='**PING...!**', description=f"_{ph}_ \n**~{lsm} ms taken**......", color=discord.Color.red())
     embed.set_footer(text='😭')
     await ctx.send(embed=embed)
 
@@ -302,7 +317,7 @@ async def helps(ctx):
     await ctx.send(embed=embed)
 
 
-@client.command()
+@client.command(aliases= ['daily'])
 async def cry(ctx):
     '''credit gain command for crying'''
     user = ctx.message.author
@@ -360,7 +375,7 @@ async def vault(ctx, member:discord.Member=None):
     await ctx.send(embed=embed)
 
 
-@client.command()
+@client.command(aliases = ['lvl','dep_level'])
 async def level(ctx):
     '''Gives the users level'''
     user = ctx.message.author
@@ -374,7 +389,7 @@ async def level(ctx):
 
 
 
-@client.command(aliases=['share', 'send'])
+@client.command(aliases=['share', 'send', 'cryon'])
 async def transfer(ctx, amount:int, member:discord.Member):
     '''transfer command'''
     user1 = ctx.message.author
@@ -445,7 +460,7 @@ async def echo(ctx, *args):
         await ctx.send(output)
 
 
-@client.command(pass_context=True)
+@client.command(pass_context=True, aliases=['quote'])
 async def say(ctx, *args):
     """Gives the user's statement a nice richtext quote format"""
     output = ''
@@ -475,6 +490,7 @@ async def define(ctx, *args):
         output += '%20'
     await ctx.send(baseurl + output)
 
+@client.command(aliases=['diceroll','roll'])
 async def dice(ctx, amount: int):
     '''dice-guess game'''
     num = amount
@@ -501,7 +517,7 @@ Command Usage-> qq dice <num> (between 1 and 6)', color=discord.Color.dark_red()
         await ctx.send(embed=embed)
 
 
-@client.command(aliases=['russian-roulette', 'gunshot'])
+@client.command(aliases=['russian-roulette', 'gunshot','rr'])
 async def russian_roulette(ctx):
     '''starts fun russian roulette game'''
     global buls
