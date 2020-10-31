@@ -1719,7 +1719,7 @@ jk=["I hate it when I go to hug someone really sexy and my face smashes right in
       "Why didn't the vampire attack Taylor Swift? She had bad blood.",
       "Why did the Clydesdale give the pony a glass of water? Because he was a little horse!"]
 
-cfe=["You had an **Expresso**... It was strong and nice."
+cfe=["You had an **Expresso**... It was strong and nice.",
      "You had an **Americano**... An americano is a shot of expresso in hot water.",
      "You had a **Regular Latte**... It was an expresso with steamed milk and a puff of foam floating on top.",
      "You had a **Caffe Mocha**... It was a latte with chocolate flavouring and a cloud of whipped cream.",
