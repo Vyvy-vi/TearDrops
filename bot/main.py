@@ -561,6 +561,7 @@ async def wiki(ctx, *args):
 		await ctx.send(embed=embed)
 
 
+
 @client.command(aliases=['meme'])
 async def memes(ctx):
 	"""Get the dankest memes Reddit has to offer."""
