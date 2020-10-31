@@ -7,6 +7,10 @@ from itertools import cycle
 
 from pymongo import MongoClient
 
+
+# temp->
+from inputs import responses , fortunes , quo , nerd , tech , rost , bk , cmp , blurt , cf , jk , cfe , chill , cl , ur
+
 # modules for wiki and wolfram queries
 # import wolframalpha
 import wikipedia
