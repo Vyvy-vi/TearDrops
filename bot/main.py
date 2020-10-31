@@ -271,49 +271,12 @@ async def pong(ctx):
     await ctx.send(embed=embed)
 
 
-@client.command(aliases=['command', 'commands', 'list'])
-async def cmds(ctx):
-    """
-    lists all the commands in the bot
-    NOTE- To be edited
-    """
-    embed = discord.Embed(title='**COMMANDS**', description="Here's a list of commands along with functions....", color=discord.Color.green())
-    embed.add_field(name='helpme', value='displays the command prefix and a basic list of commands...')
-    embed.add_field(name='ping', value='The default check command for checking if bot is working...', inline=False)
-    embed.add_field(name='cmds', value='Dislays this message containing detailed list of commands with their functions', inline=False)
-    embed.add_field(name='botinfo', value='Displays info on the bot...')
-    embed.add_field(name='say', value="Makes the bot say sentences that you want it to say. Alias- 'talk'. Usage- '_say <sentence/word>'")
-    embed.add_field(name='roast', value="This is the roast command.Go get 'em. Usage- '_roast <@member>'")
-    embed.add_field(name='flirt', value="*wink *wink Wanna hit on someone?. Usage-'_flirt <@member>'")
-    embed.add_field(name='compliment', value="Wanna commend and compliment someone?. Usage- '_compliment <@member>'")
-    embed.add_field(name='geek', value='Prints geeky statements...Aliases= "pimp,techie"')
-    embed.add_field(name='nerdystuff', value='Prints stuff for that one nerd in the chat....')
-    embed.add_field(name='quote', value='Get ready for some of the best quotes ever....')
-    embed.add_field(name='fortune', value='Wanna know the future? Wanna find where you end up?. Aliases="future"')
-    embed.add_field(name='8ball', value='Wanna ask questions from the crystal ball?. Aliases="seer". Usage-"_8ball <Question>"')
-    embed.add_field(name='coffee', value='Just try a nice cup of coffee.............')
-    embed.add_field(name='wannagrabacoffe', value="Wanna ask your e-crush out? Here you go.... Usage-'_wannagrabacoffee <@member>'")
-    embed.add_field(name='book', value='Wanna read a book. Here are some recommendations....')
-    embed.add_field(name='dadjoke', value='Wanna hear some cringey bad jokes?')
-    embed.add_field(name='diceroll', value='Rolls a dice. If you get a number higher than the bot then you win...')
-    embed.add_field(name='guessing_game', value='Bot thinks of a number smaller than 15 and you have to guess that number. If you guess it correct, you win')
-    embed.set_footer(text='I hope that helped......')
-    await ctx.send(embed=embed)
-
-
-@client.command(aliases=['help', 'helpme'])
-async def helps(ctx):
-    """
-    prints the help page
-    NOTE- To be edited.
-    """
-    embed = discord.Embed(title='**Help....**', description="The prefix for the bot is 'qq'. Yah cuz you know _less qq, more pew pew_ ...", colour=discord.Color.purple())
-    embed.set_footer(text='For full list of commands with complete functions do _cmds')
-    embed.add_field(name='Core', value='ping, help, cmds, botinfo')
-    embed.add_field(name='Economy', value='cry, vaultoftears, tear shop', inline=False)
-    embed.add_field(name='Entertainment', value='roast, flirt, compliment, geek, nerdystuff, quote, fortune, 8ball, coffee, wannagrabacoffee, book, dadjoke', inline=False)
-    embed.add_field(name='Utility', value='purge, ban, kick, unban', inline=False)
-    embed.add_field(name='Games', value='diceroll, guessing_game', inline=False)
+@client.command()
+async def help(ctx):
+    '''This command Ofc'''
+    embed = discord.Embed(title='**Help command**', description='All commands of bot ;-; with description', color=discord.Color.dark_orange())
+    for command in client.commands:
+        embed.add_field(name= f'{command}' ,value= f'`{command.short_doc}.`',inline=False)
     await ctx.send(embed=embed)
 
 
