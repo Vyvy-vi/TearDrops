@@ -14,7 +14,7 @@ The bot uses tears as an economy and you can "cry" to get daily credit tears.
 NOTE- It is recommended that you add your own discord token while running the bot.
 
 - [Invite the bot to your server](https://discord.com/api/oauth2/authorize?client_id=627772985872220161&permissions=379968&scope=bot)
-[*NOTE- The bot is still in v0.1 and is being constantly updated and bug fixed. Inviting this, might have unintentional complications. If you really want the bot, open an issue so that we can provide a Beta Version to you that is stable and updated slowly]
+[*NOTE- The bot is still in v0.1 and is being constantly updated and bug fixed. Inviting this, might have unintentional complications. If you really want the bot, open an issue so that we can provide a Beta Version to you that is stable and updated slowly*]
 - To test the bot join this [Support Server](https://discord.gg/jTzGuYx)
   [*NOTE- Bot is not active 24x7 as it is hosted on heroku. To get a sample, join*[TearDropsSupport](https://discord.gg/jTzGuYx) and ping **@Tissue**]
 
