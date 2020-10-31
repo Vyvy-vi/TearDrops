@@ -1,4 +1,7 @@
 # Tear Drops
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![built-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 [![built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://github.com/Vyvy-vi/)
@@ -46,3 +49,28 @@ NOTE- It is recommended that you add your own discord token while running the bo
 - aiohttp
 - pymongo
 - dnspython
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/gamerrio"><img src="https://avatars0.githubusercontent.com/u/21240909?v=4" width="100px;" alt=""/><br /><sub><b>Gamerrio</b></sub></a><br /><a href="#ideas-gamerrio" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://anubhav.codes"><img src="https://avatars0.githubusercontent.com/u/1628340?v=4" width="100px;" alt=""/><br /><sub><b>Anubhav</b></sub></a><br /><a href="https://github.com/Vyvy-vi/TearDrops/commits?author=anubhavcodes" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Vyvy-vi"><img src="https://avatars0.githubusercontent.com/u/62864373?v=4" width="100px;" alt=""/><br /><sub><b>Vyom Jain</b></sub></a><br /><a href="https://github.com/Vyvy-vi/TearDrops/commits?author=Vyvy-vi" title="Code">💻</a> <a href="#projectManagement-Vyvy-vi" title="Project Management">📆</a></td>
+    <td align="center"><a href="https://github.com/AllanRegush"><img src="https://avatars0.githubusercontent.com/u/17693494?v=4" width="100px;" alt=""/><br /><sub><b>Allan Regush</b></sub></a><br /><a href="#ideas-AllanRegush" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/AbstractUmbra"><img src="https://avatars0.githubusercontent.com/u/16031716?v=4" width="100px;" alt=""/><br /><sub><b>Alex Nørgaard</b></sub></a><br /><a href="#ideas-AbstractUmbra" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/RascalTwo"><img src="https://avatars0.githubusercontent.com/u/9403665?v=4" width="100px;" alt=""/><br /><sub><b>Rascal_Two</b></sub></a><br /><a href="https://github.com/Vyvy-vi/TearDrops/issues?q=author%3ARascalTwo" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://mikeysan.hashnode.dev"><img src="https://avatars1.githubusercontent.com/u/13338176?v=4" width="100px;" alt=""/><br /><sub><b>Michael Mba</b></sub></a><br /><a href="#ideas-mikeysan" title="Ideas, Planning, & Feedback">🤔</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
