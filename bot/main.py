@@ -464,7 +464,7 @@ async def echo(ctx, *args):
         await ctx.send(output)
 
 
-@client.command(pass_context=True, aliases=['quote'])
+@client.command(pass_context=True)
 async def say(ctx, *args):
     """Gives the user's statement a nice richtext quote format"""
     output = ''
