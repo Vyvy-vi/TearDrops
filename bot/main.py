@@ -547,7 +547,7 @@ async def wiki(ctx, *args):
             page = wikipedia.page(err.options[0])
             pg = err.options
         wikiTitle = str(page.title.encode('utf-8'))
-        wikiSummary = str(page.summary.encode('utf-8'))
+        wikiSummary = page.summary
         embed = discord.Embed(title=f'**{wikiTitle[1:]}**', description=str(wikiSummary[1:900]) + '...', color=discord.Color.dark_orange(), url=page.url)
         embed.set_footer(text='Powered by Wikipedia...')
         if pg != 0:
