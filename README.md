@@ -16,7 +16,7 @@ NOTE- It is recommended that you add your own discord token while running the bo
 - [Invite the bot to your server](https://discord.com/api/oauth2/authorize?client_id=627772985872220161&permissions=379968&scope=bot)
 [*NOTE- The bot is still in v0.1 and is being constantly updated and bug fixed. Inviting this, might have unintentional complications. If you really want the bot, open an issue so that we can provide a Beta Version to you that is stable and updated slowly*]
 - To test the bot join this [Support Server](https://discord.gg/jTzGuYx)
-  [*NOTE- Bot is not active 24x7 as it is hosted on heroku. To get a sample, join*[TearDropsSupport](https://discord.gg/jTzGuYx) and ping **@Tissue**]
+  [*NOTE- Bot is not active 24x7 as it is hosted on heroku. To get a sample, join* [TearDropsSupport](https://discord.gg/jTzGuYx) and ping **@Tissue**]
 
 ## Hosting the bot on your own machine:
 - NOTE: To replicate this bot, you will need a bot **token**. Go get yours at https://discord.com/developers/ (If you need help with this step, feel free to ask for help in our the py-awesomescripts server).
