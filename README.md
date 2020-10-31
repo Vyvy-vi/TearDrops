@@ -1,6 +1,6 @@
 # Tear Drops
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![built-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
@@ -60,6 +60,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://github.com/gamerrio"><img src="https://avatars0.githubusercontent.com/u/21240909?v=4" width="100px;" alt=""/><br /><sub><b>Gamerrio</b></sub></a><br /><a href="#ideas-gamerrio" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://anubhav.codes"><img src="https://avatars0.githubusercontent.com/u/1628340?v=4" width="100px;" alt=""/><br /><sub><b>Anubhav</b></sub></a><br /><a href="https://github.com/Vyvy-vi/TearDrops/commits?author=anubhavcodes" title="Code">💻</a></td>
   </tr>
 </table>
 
