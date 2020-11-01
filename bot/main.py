@@ -7,6 +7,10 @@ from itertools import cycle
 
 from pymongo import MongoClient
 
+
+# temp->
+from inputs import responses , fortunes , quo , nerd , tech , rost , bk , cmp , blurt , cf , jk , cfe , chill , cl , ur
+
 # modules for wiki and wolfram queries
 # import wolframalpha
 import wikipedia
@@ -423,7 +427,7 @@ async def echo(ctx, *args):
         await ctx.send(output)
 
 
-@client.command(pass_context=True, aliases=['quote'])
+@client.command(pass_context=True)
 async def say(ctx, *args):
     """Gives the user's statement a nice richtext quote format"""
     output = ''
@@ -510,7 +514,7 @@ async def wiki(ctx, *args):
             page = wikipedia.page(err.options[0])
             pg = err.options
         wikiTitle = str(page.title.encode('utf-8'))
-        wikiSummary = str(page.summary.encode('utf-8'))
+        wikiSummary = page.summary
         embed = discord.Embed(title=f'**{wikiTitle[1:]}**', description=str(wikiSummary[1:900]) + '...', color=discord.Color.dark_orange(), url=page.url)
         embed.set_footer(text='Powered by Wikipedia...')
         if pg != 0:
@@ -519,6 +523,7 @@ async def wiki(ctx, *args):
             embed.add_field(name='Did you mean?:', value=s)
         embed.set_image(url=page.images[0])
         await ctx.send(embed=embed)
+
 
 
 @client.command(aliases=['meme'])
@@ -533,6 +538,7 @@ async def memes(ctx):
         embed.set_footer(text=f"r/{response['subreddit']} | Requested by {ctx.author.name} | Enjoy your dank memes!")
         await ctx.send(embed=embed)
 
+# ---> NEEDS FIXING <---
 @client.command()
 async def automeme(ctx):
     '''Triggers the automeme taskloop for the channel context'''
@@ -553,6 +559,59 @@ async def automeme_routine(ctx):
         await ctx.send(embed=embed)
     # NOTE- There are other methods, that can be utilised instead of just 'playing'
 
+@client.command(aliases=["8ball","seer"])
+async def magicball(ctx, * ,question):
+    await ctx.send(f'*Question: {question}\nConjecture: {random.choice(responses)}')
+
+@client.command(aliases=['future'])
+async def fortune(ctx):
+    await ctx.send(random.choice(fortunes))
+
+@client.command(aliases=['phrase','wisdom'])
+async def quote(ctx):
+    await ctx.send(f'`{random.choice(quo)}`')
+
+@client.command(aliases=['joke','pun','badjoke'])
+async def dadjoke(ctx):
+    await ctx.send(random.choice(jk))
+
+@client.command(aliases=['smartstuff'])
+async def nerdystuff(ctx):
+    await ctx.send(f'```{random.choice(nerd)}```')
+
+@client.command(aliases=['techie','hackerman','pimp'])
+async def geek(ctx):
+    await ctx.send(f'`{random.choice(tech)}`')
+
+@client.command(aliases=['shame','destroy'])
+async def roast(ctx, * , link):
+    await ctx.send(f'{link} , {random.choice(rost)}')
+
+@client.command(aliases=['appreciate','commend'])
+async def compliment(ctx , * ,link):
+    await ctx.send(f'{link} , {random.choice(cmp)}')
+
+@client.command()
+async def flirt(ctx, * ,link ):
+    await ctx.send(f'{link} , {random.choice(blurt)}')
+
+@client.command(aliases=['goodread','read'])
+async def book(ctx):
+    await ctx.send(f'`Here is one of my favourite books\n{random.choice(bk)}`')
+
+@client.command(aliases=['ask_out'])
+async def wannagrabacoffee(ctx,*, link):
+    await ctx.send(f'{link} , Someone wants to grab a coffee with you...*wink *wink')
+    await ctx.send(f'This happened....{random.choice(cf)}')
+    await ctx.send(f'*not actually.')
+
+@client.command(aliases=['brew'])
+async def coffee(ctx):
+    op=f'{random.choice(cfe)}'
+    embed= discord.Embed(title='Coffee',description=op,color=discord.Color.red())
+    embed.set_footer(text=f'Caffeiene Level-{random.choice(cl)}.{random.choice(chill)}')
+    embed.set_image(url=random.choice(ur))
+    await ctx.send(embed=embed)
 
 # error_handling
 @client.event

@@ -1,0 +1,79 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "gamerrio",
+      "name": "Gamerrio",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/21240909?v=4",
+      "profile": "https://github.com/gamerrio",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "anubhavcodes",
+      "name": "Anubhav",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1628340?v=4",
+      "profile": "https://anubhav.codes",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Vyvy-vi",
+      "name": "Vyom Jain",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/62864373?v=4",
+      "profile": "https://github.com/Vyvy-vi",
+      "contributions": [
+        "code",
+        "projectManagement"
+      ]
+    },
+    {
+      "login": "AllanRegush",
+      "name": "Allan Regush",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/17693494?v=4",
+      "profile": "https://github.com/AllanRegush",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "AbstractUmbra",
+      "name": "Alex Nørgaard",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/16031716?v=4",
+      "profile": "https://github.com/AbstractUmbra",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "RascalTwo",
+      "name": "Rascal_Two",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/9403665?v=4",
+      "profile": "https://github.com/RascalTwo",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "mikeysan",
+      "name": "Michael Mba",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/13338176?v=4",
+      "profile": "https://mikeysan.hashnode.dev",
+      "contributions": [
+        "ideas"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "TearDrops",
+  "projectOwner": "Vyvy-vi",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
