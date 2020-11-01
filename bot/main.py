@@ -493,7 +493,7 @@ Command Usage-> qq dice <num> (between 1 and 6)', color=discord.Color.dark_red()
 @client.command(pass_context=True)
 async def user(ctx, user: discord.Member):
 	'''gives user info'''
-    embed = discord.Embed(title="{}'s info".format(user.name), description="Here's what I could find.", color=0x00ff00)
+	embed = discord.Embed(title="{}'s info".format(user.name), description="Here's what I could find.", color=0x00ff00)
     embed.add_field(name="Name", value=user.name, inline=True)
     embed.add_field(name="ID", value=user.id, inline=True)
     embed.add_field(name="Status", value=user.status, inline=True)
