@@ -284,7 +284,7 @@ async def help(ctx, command_name=None, *args):
     if command_name is None:
         embed = discord.Embed(title='**Help command**', description='All commands of bot ;-; with description', color=discord.Color.dark_orange())
         for command in client.commands:
-            embed.add_field(name= f'{command}', value=f'`{command.short_doc}.`', inline=False)
+            embed.add_field(name=f'{command}', value=f'`{command.short_doc}.`', inline=False)
         await ctx.send(embed=embed)
     else:
         for command in client.commands:
@@ -336,7 +336,7 @@ Wait for like {round((10800 - time.time()+tim)//3600)} hours or something.", col
 
 
 @client.command(aliases=['vaultoftears', 'tearvault'])
-async def vault(ctx, member:discord.Member=None):
+async def vault(ctx, member: discord.Member = None):
     '''Gives the users economy balance'''
     if not member:
         user = ctx.message.author
@@ -351,7 +351,7 @@ async def vault(ctx, member:discord.Member=None):
     await ctx.send(embed=embed)
 
 
-@client.command(aliases = ['lvl','dep_level'])
+@client.command(aliases=['lvl', 'dep_level'])
 async def level(ctx):
     '''Gives the users level'''
     user = ctx.message.author
@@ -364,37 +364,35 @@ async def level(ctx):
     await ctx.send(embed=embed)
 
 
-
 @client.command(aliases=['share', 'send', 'cryon'])
-async def transfer(ctx, amount:int, member:discord.Member):
+async def transfer(ctx, amount: int, member: discord.Member):
     '''transfer command'''
     user1 = ctx.message.author
     user2 = member
     server = db[str(user1.guild.id)]
-    stat1 = list(server.find({'id':user1.id}))
+    stat1 = list(server.find({'id': user1.id}))
     bal1 = stat1[-1]['credits'] - amount
     if bal1 >= 0:
         new_stat1 = {"$set": {'credits': bal1}}
         server.update_one(stat1[-1], new_stat1)
 
-        stat2 = list(server.find({'id':user2.id}))
+        stat2 = list(server.find({'id': user2.id}))
         bal2 = stat2[-1]['credits'] + amount
         new_stat2 = {"$set": {'credits': bal2}}
-        server.update_one(stat2[-1],new_stat2)
+        server.update_one(stat2[-1], new_stat2)
         embed = discord.Embed(title='**Heart_to_heart**',
-                description=f"You tried to cry tears for {member}",
-                colour=discord.Color.green())
+                              description=f"You tried to cry tears for {member}",
+                              colour=discord.Color.green())
         embed.set_footer(text='Cry, cry, let the emotions flow through you...😭')
         embed.add_field(name=f"You handed out a vial of {amount} tears to {member}", value="._.")
 
     else:
         embed = discord.Embed(title='**Heart_to_heart**',
-                description=f"You tried to cry tears for {member}",
-                colour=discord.Color.green())
+                              description=f"You tried to cry tears for {member}",
+                              colour=discord.Color.green())
         embed.set_footer(text='Cry, cry, let the emotions flow through you...😭')
         embed.add_field(name=f"Failed to share {amount} tears.\nYou have insufficient tears in TearVault", value="._.")
     await ctx.send(embed=embed)
-
 
 
 """
@@ -455,6 +453,8 @@ async def urban(ctx, *args):
     output = ''
     for word in args:
         output += word
+    await ctx.send(baseurl + output)
+
 
 @client.command(pass_context=True)
 async def define(ctx, *args):
@@ -466,7 +466,8 @@ async def define(ctx, *args):
         output += '%20'
     await ctx.send(baseurl + output)
 
-@client.command(aliases=['diceroll','roll'])
+
+@client.command(aliases=['diceroll', 'roll'])
 async def dice(ctx, amount: int):
     '''dice-guess game'''
     num = amount
@@ -506,7 +507,8 @@ async def user(ctx, user: discord.Member):
     embed.set_thumbnail(url=user.avatar_url)
     await ctx.send(embed=embed)
 
-@client.command(aliases=['russian-roulette', 'gunshot','rr'])
+
+@client.command(aliases=['russian-roulette', 'gunshot', 'rr'])
 async def russian_roulette(ctx):
     '''starts fun russian roulette game'''
     global buls
@@ -547,7 +549,6 @@ async def wiki(ctx, *args):
         await ctx.send(embed=embed)
 
 
-
 @client.command(aliases=['meme'])
 async def memes(ctx):
     """Get the dankest memes Reddit has to offer."""
@@ -560,11 +561,13 @@ async def memes(ctx):
         embed.set_footer(text=f"r/{response['subreddit']} | Requested by {ctx.author.name} | Enjoy your dank memes!")
         await ctx.send(embed=embed)
 
+
 # ---> NEEDS FIXING <---
 @client.command()
 async def automeme(ctx):
     '''Triggers the automeme taskloop for the channel context'''
     automeme_routine.start(ctx)
+
 
 @tasks.loop(seconds=600)
 async def automeme_routine(ctx):
@@ -582,61 +585,73 @@ async def automeme_routine(ctx):
     # NOTE- There are other methods, that can be utilised instead of just 'playing'
 
 
-@client.command(aliases=["8ball","seer"])
-async def magicball(ctx, * ,question):
+@client.command(aliases=["8ball", "seer"])
+async def magicball(ctx, *, question):
     embed = discord.Embed(title="8Ball :8ball:", color=discord.Color.magenta())
     embed.add_field(name=f"*Question: {question}*", value=f'Conjecture: {random.choice(responses)}')
     await ctx.send(embed=embed)
+
 
 @client.command(aliases=['future'])
 async def fortune(ctx):
     await ctx.send(random.choice(fortunes))
 
-@client.command(aliases=['phrase','wisdom'])
+
+@client.command(aliases=['phrase', 'wisdom'])
 async def quote(ctx):
     await ctx.send(f'`{random.choice(quo)}`')
 
-@client.command(aliases=['joke','pun','badjoke'])
+
+@client.command(aliases=['joke', 'pun', 'badjoke'])
 async def dadjoke(ctx):
     await ctx.send(random.choice(jk))
+
 
 @client.command(aliases=['smartstuff'])
 async def nerdystuff(ctx):
     await ctx.send(f'```{random.choice(nerd)}```')
 
-@client.command(aliases=['techie','hackerman','pimp'])
+
+@client.command(aliases=['techie', 'hackerman', 'pimp'])
 async def geek(ctx):
     await ctx.send(f'`{random.choice(tech)}`')
 
-@client.command(aliases=['shame','destroy'])
-async def roast(ctx, * , link):
+
+@client.command(aliases=['shame', 'destroy'])
+async def roast(ctx, *, link):
     await ctx.send(f'{link} , {random.choice(rost)}')
 
-@client.command(aliases=['appreciate','commend'])
-async def compliment(ctx , * ,link):
+
+@client.command(aliases=['appreciate', 'commend'])
+async def compliment(ctx, *, link):
     await ctx.send(f'{link} , {random.choice(cmp)}')
 
+
 @client.command()
-async def flirt(ctx, * ,link ):
+async def flirt(ctx, *, link):
     await ctx.send(f'{link} , {random.choice(blurt)}')
 
-@client.command(aliases=['goodread','read'])
+
+@client.command(aliases=['goodread', 'read'])
 async def book(ctx):
     await ctx.send(f'`Here is one of my favourite books\n{random.choice(bk)}`')
 
+
 @client.command(aliases=['ask_out'])
-async def wannagrabacoffee(ctx,*, link):
+async def wannagrabacoffee(ctx, *, link):
     await ctx.send(f'{link} , Someone wants to grab a coffee with you...*wink *wink')
     await ctx.send(f'This happened....{random.choice(cf)}')
-    await ctx.send(f'*not actually.')
+    await ctx.send('*not actually.')
+
 
 @client.command(aliases=['brew'])
 async def coffee(ctx):
-    op=f'{random.choice(cfe)}'
-    embed= discord.Embed(title='Coffee',description=op,color=discord.Color.red())
+    op = f'{random.choice(cfe)}'
+    embed = discord.Embed(title='Coffee', description=op, color=discord.Color.red())
     embed.set_footer(text=f'Caffeiene Level-{random.choice(cl)}.{random.choice(chill)}')
     embed.set_image(url=random.choice(ur))
     await ctx.send(embed=embed)
+
 
 # error_handling
 @client.event
