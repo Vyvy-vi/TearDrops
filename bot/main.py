@@ -276,12 +276,18 @@ async def pong(ctx):
 
 
 @client.command()
-async def help(ctx):
-    '''This command Ofc'''
-    embed = discord.Embed(title='**Help command**', description='All commands of bot ;-; with description', color=discord.Color.dark_orange())
-    for command in client.commands:
-        embed.add_field(name= f'{command}' ,value= f'`{command.short_doc}.`',inline=False)
-    await ctx.send(embed=embed)
+async def help(ctx,command_name=None,*args):
+	'''This command Ofc'''
+	if command_name == None:
+		embed = discord.Embed(title='**Help command**', description='All commands of bot ;-; with description', color=discord.Color.dark_orange())
+		for command in client.commands:
+			embed.add_field(name= f'{command}' ,value= f'`{command.short_doc}.`',inline=False)
+		await ctx.send(embed=embed)
+	else:
+		for command in client.commands:
+			if command_name == command.name:
+				embed = discord.Embed(title=f'**Help command: {command}**', description=f'Description : {command.short_doc} \n {command.brief}', color=discord.Color.dark_orange())
+				await ctx.send(embed=embed)
 
 
 @client.command(aliases= ['daily'])
