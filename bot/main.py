@@ -276,12 +276,18 @@ async def pong(ctx):
 
 
 @client.command()
-async def help(ctx):
+async def help(ctx,command_name=None,*args):
     '''This command Ofc'''
-    embed = discord.Embed(title='**Help command**', description='All commands of bot ;-; with description', color=discord.Color.dark_orange())
-    for command in client.commands:
-        embed.add_field(name= f'{command}' ,value= f'`{command.short_doc}.`',inline=False)
-    await ctx.send(embed=embed)
+    if command_name == None:
+        embed = discord.Embed(title='**Help command**', description='All commands of bot ;-; with description', color=discord.Color.dark_orange())
+        for command in client.commands:
+            embed.add_field(name= f'{command}' ,value= f'`{command.short_doc}.`',inline=False)
+        await ctx.send(embed=embed)
+    else:
+        for command in client.commands:
+            if command_name == command.name:
+                embed = discord.Embed(title=f'**Help command: {command}**', description=f'Description : {command.short_doc} \n {command.brief}', color=discord.Color.dark_orange())
+                await ctx.send(embed=embed)
 
 
 @client.command(aliases= ['daily'])
@@ -484,6 +490,19 @@ Command Usage-> qq dice <num> (between 1 and 6)', color=discord.Color.dark_red()
         await ctx.send(embed=embed)
 
 
+@client.command(pass_context=True)
+async def user(ctx, user: discord.Member):
+	'''gives user info'''
+    embed = discord.Embed(title="{}'s info".format(user.name), description="Here's what I could find.", color=0x00ff00)
+    embed.add_field(name="Name", value=user.name, inline=True)
+    embed.add_field(name="ID", value=user.id, inline=True)
+    embed.add_field(name="Status", value=user.status, inline=True)
+    embed.add_field(name="Highest role", value=user.top_role)
+    embed.add_field(name="Joined", value=user.joined_at)
+    embed.add_field(name='Account Created on', value=user.created_at)
+    embed.set_thumbnail(url=user.avatar_url)
+    await ctx.send(embed=embed)
+
 @client.command(aliases=['russian-roulette', 'gunshot','rr'])
 async def russian_roulette(ctx):
     '''starts fun russian roulette game'''
@@ -559,9 +578,12 @@ async def automeme_routine(ctx):
         await ctx.send(embed=embed)
     # NOTE- There are other methods, that can be utilised instead of just 'playing'
 
+
 @client.command(aliases=["8ball","seer"])
 async def magicball(ctx, * ,question):
-    await ctx.send(f'*Question: {question}\nConjecture: {random.choice(responses)}')
+    embed = discord.Embed(title="8Ball :8ball:", color=discord.Color.magenta())
+    embed.add_field(name=f"*Question: {question}*", value=f'Conjecture: {random.choice(responses)}')
+    await ctx.send(embed=embed)
 
 @client.command(aliases=['future'])
 async def fortune(ctx):
