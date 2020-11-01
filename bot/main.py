@@ -559,9 +559,12 @@ async def automeme_routine(ctx):
         await ctx.send(embed=embed)
     # NOTE- There are other methods, that can be utilised instead of just 'playing'
 
+
 @client.command(aliases=["8ball","seer"])
 async def magicball(ctx, * ,question):
-    await ctx.send(f'*Question: {question}\nConjecture: {random.choice(responses)}')
+    embed = discord.Embed(title="8Ball :8ball:", color=discord.Color.magenta())
+    embed.add_field(name=f"*Question: {question}*", value=f'Conjecture: {random.choice(responses)}')
+    await ctx.send(embed=embed)
 
 @client.command(aliases=['future'])
 async def fortune(ctx):
