@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  db:
+    image: mongo:3.6.20
+  bot:
+    build:
+      context: bot
+    environment:
+      MONGO_CONNECTION_STRING: "mongodb://db:27017"
+      DISCORD_BOT_TOKEN: #will be injected via .env
+    depends_on:
+      - db
+    links:
+      - db
+    volumes:
+      - ./bot:/srv

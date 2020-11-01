@@ -24,19 +24,12 @@ import time
 import aiohttp
 
 # TOKEN, MONGO URI are env-vars
+from utils import get_environment_variable
 
-if os.getenv("DISCORD_BOT_TOKEN"):
-    DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
-    MONGO_TEARS = os.getenv("MONGO_TEARS")
-    MONGO_TEARS_PASS = os.getenv("MONGO_TEARS_PASS")
-    print('fetched Tokens from env-vars')
-else:
-    from setup import DISCORD_BOT_TOKEN, MONGO_TEARS, MONGO_TEARS_PASS
+DISCORD_BOT_TOKEN = get_environment_variable("DISCORD_BOT_TOKEN")
+MONGO_CONNECTION_STRING = get_environment_variable("MONGO_CONNECTION_STRING")
 
-# mongoDB Client
-link = f'mongodb+srv://{MONGO_TEARS}:{MONGO_TEARS_PASS}@cluster0.ls3h6.mongodb.net/users_db?retryWrites=true&w=majority'
-
-DB_CLIENT = MongoClient(link)
+DB_CLIENT = MongoClient(MONGO_CONNECTION_STRING)
 db = DB_CLIENT.get_database('users_db')
 
 print(db.list_collection_names())
