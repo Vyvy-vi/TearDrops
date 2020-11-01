@@ -1,4 +1,6 @@
 # TODO - transfer, casino, etc commands
+
+
 import os
 import ssl
 import discord
@@ -9,7 +11,7 @@ from pymongo import MongoClient
 
 
 # temp->
-from inputs import responses , fortunes , quo , nerd , tech , rost , bk , cmp , blurt , cf , jk , cfe , chill , cl , ur
+from inputs import responses, fortunes, quo, nerd, tech, rost, bk, cmp, blurt, cf, jk, cfe, chill, cl, ur
 
 # modules for wiki and wolfram queries
 # import wolframalpha
@@ -259,6 +261,7 @@ async def ping(ctx):
     embed.set_footer(text='😭')
     await ctx.send(embed=embed)
 
+
 @client.command()
 async def pong(ctx):
     """The bot's pong command"""
@@ -276,12 +279,12 @@ async def pong(ctx):
 
 
 @client.command()
-async def help(ctx,command_name=None,*args):
+async def help(ctx, command_name=None, *args):
     '''This command Ofc'''
-    if command_name == None:
+    if command_name is None:
         embed = discord.Embed(title='**Help command**', description='All commands of bot ;-; with description', color=discord.Color.dark_orange())
         for command in client.commands:
-            embed.add_field(name= f'{command}' ,value= f'`{command.short_doc}.`',inline=False)
+            embed.add_field(name= f'{command}', value=f'`{command.short_doc}.`', inline=False)
         await ctx.send(embed=embed)
     else:
         for command in client.commands:
@@ -290,7 +293,7 @@ async def help(ctx,command_name=None,*args):
                 await ctx.send(embed=embed)
 
 
-@client.command(aliases= ['daily'])
+@client.command(aliases=['daily'])
 async def cry(ctx):
     '''credit gain command for crying'''
     user = ctx.message.author
@@ -492,8 +495,8 @@ Command Usage-> qq dice <num> (between 1 and 6)', color=discord.Color.dark_red()
 
 @client.command(pass_context=True)
 async def user(ctx, user: discord.Member):
-	'''gives user info'''
-	embed = discord.Embed(title="{}'s info".format(user.name), description="Here's what I could find.", color=0x00ff00)
+    '''gives user info'''
+    embed = discord.Embed(title="{}'s info".format(user.name), description="Here's what I could find.", color=0x00ff00)
     embed.add_field(name="Name", value=user.name, inline=True)
     embed.add_field(name="ID", value=user.id, inline=True)
     embed.add_field(name="Status", value=user.status, inline=True)
