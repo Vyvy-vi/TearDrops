@@ -703,10 +703,10 @@ async def wannagrabacoffee(ctx, *, link):
 @client.command(aliases=['brew'])
 async def coffee(ctx):
     op = f'{random.choice(cfe)}'
-    embed = discord.Embed(title='Coffee', description=op,
+    embed = discord.Embed(title='Coffee',
+                          description=op,
                           color=discord.Color.red())
-    embed.set_footer(
-        text=f'Caffeiene Level-{random.choice(cl)}.{random.choice(chill)}')
+    embed.set_footer(text=f'Caffeiene Level-{random.choice(cl)}.{random.choice(chill)}')
     embed.set_image(url=random.choice(ur))
     await ctx.send(embed=embed)
 
