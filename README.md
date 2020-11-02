@@ -26,17 +26,14 @@ NOTE- It is recommended that you add your own discord token while running the bo
 - NOTE: To replicate this bot, you will need a bot **token**. Go get yours at https://discord.com/developers/ (If you need help with this step, feel free to ask for help in our [Support Server](https://discord.gg/jTzGuYx)).
 - Clone this repo using `git clone`
 - cd into the bot folder.
-- For the token's you will have to set them manually. For assistance, contact **@Tissue** at [Support Server](https://discord.gg/jTzGuYx)
-<!--TODO: add Tl,dr for getting the env. tokens-->
-- Install discord.py module:
-  ```
-    python -m pip install discord.py
-  ```
-- Install requirements from requirements.txt
-  ```
-    pip install -r requirements.txt
-  ```
-- Run the bot using: `python bot/main.py`
+- Add the token in a `.env` file in the project root as follows:
+```text
+DISCORD_BOT_TOKEN=<your token>
+```
+- Install [docker and docker-compose](https://docs.docker.com/desktop/) and then run:
+```
+docker-compose up
+```
 - Enjoy! (don't forget to add your own bot into your discord server by generating an invite link from the discord developers application page in [OAuth2 section](https://discord.com/developers/applications/) and choose application and check Oauth2 section)
 - You may do bug-reporting or ask for help in on the SupportServer... or just open an issue on this repo.
 
