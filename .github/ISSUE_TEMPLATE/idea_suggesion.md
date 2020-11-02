@@ -1,6 +1,6 @@
 ---
-name: Idea-Suggestion
-about: For giving suggestions and ideas:
+name: Idea
+about: For giving suggestions and ideas.
 title: "[IDEA]"
 labels: "🚦 status: pending response"
 assignees: Vyvy-vi
@@ -35,6 +35,8 @@ assignees: Vyvy-vi
 <!--F) We want to be assured of all the implications of the Idea-->
 <!--This question is optional, you may decline from providing a source...-->
 
+
+
 4- How much would you rate the current version of the bot?
 <!--honestly?-->
 
@@ -45,6 +47,7 @@ assignees: Vyvy-vi
 - [] It succ(1/5)
 
 - [] Sad, depressing and makes me want to cry
+
 ## Additional information
 
 <!--Add any other context about the idea here.-->
