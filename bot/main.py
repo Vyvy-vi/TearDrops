@@ -104,6 +104,7 @@ async def on_guild_join(guild):
                 col = db[str(guild.id)]
                 col.insert_one(
                     {'server_name': guild.name, 'server_id': guild.id})
+            icon_url = 'https://cdn.discordapp.com/attachments/582605227081990233/627388598181953548/unknown.png'
             embed = discord.Embed(title='**Tear Drops:tm:**', description='A dynamic bot for _crying_, entertainment, economy and _other_ purposes...\n\
 I am here to reek sorrow and depression. Come let\'s cry together 😢\
 The prefix for the bot is _"qq"_, cuz you know _"less qq, more pew pew..."_ \
@@ -112,8 +113,7 @@ The currency credits for the bot are _tears_(hahah obviously). Have fun being sa
 This bot is under MIT License(provided as is, do whatever you want) \
 This has been uploaded to GitHub for educational and referencial purposes', colour=discord.Color.purple(), url='https://github.com/Py-Contributors/awesomeScripts/Tear-Drops_DiscordBot/')
             embed.set_footer(text='I Hope that you enjoyed the bot....😭')
-            embed.set_image(
-                url='https://cdn.discordapp.com/attachments/582605227081990233/627388598181953548/unknown.png')
+            embed.set_image(url=icon_url)
             await channel.send(embed=embed)
         break
     print(f'Entered server {guild.name} : {guild.id}')
