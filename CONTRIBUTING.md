@@ -68,23 +68,59 @@ If you're not on Windows, you should also have GNU make installed, and you can o
         ```
     Each time you open a new command line, you should execute this command first. From here onwards, we will assume you are executing commands from within this activated virtual environment.
  
-**Note:** If you're comfortable with setting up virtual environments yourself and would rather do it manually, just run `pip install -Ur tools/dev-requirements.txt` after setting it up.
+**Note:** If you're comfortable with setting up virtual environments yourself and would rather do it manually, just run `pip install -r bot/requirements.txt` after setting it up.
 
 ### 4.2 To contribute changes
 
-1. Create a new branch on your fork
-2. Make the changes
-3. Create a Pull Request on GitHub with your changes
-      - If you are contributing a behavior change, please keep in mind that behavior changes
-        are conditional on them being appropriate for the project's current goals.
-        If you would like to reduce the risk of putting in effort for something we aren't
-        going to use, open an issue discussing it first.
+> - Make sure you have been assigned the issue to which you are making a PR.
+> - If you make PR before being assigned, It will be labeled `invalid` and closed without merging.
+
+* Fork the repo and clone it on your machine.
+* Add a upstream link to main branch in your cloned repo
+    ```
+    git remote add upstream https://github.com/Py-Contributors/py-contributors-Bot.git
+    ```
+* Keep your cloned repo upto date by pulling from upstream (this will also avoid any merge conflicts while committing new changes)
+    ```
+    git pull upstream master
+    ```
+* Create your feature branch
+    ```
+    git checkout -b <feature-name>
+    ```
+* Commit all the changes
+    ```
+    git commit -am "Meaningful commit message"
+    ```
+* Push the changes for review
+    ```
+    git push origin <branch-name>
+    ```
+* Create a PR from our repo on Github.
+
+##### Some Additional Notes:
+* Code should be properly commented to ensure it's readability.
+* If you've added code that should be tested, add tests as comments.
+* Make sure your code properly formatted.
+* Issue that pull request!
+* use Flake8 for python code
+
 
 ### 4.3 How To Report A Bug
-Submit an issue on GitHub and add as much information as you can about the bug, with screenshots of inputs to the bot and bot response if possible. 
+Submit an issue on GitHub and add as much information as you can about the bug, with screenshots of inputs to the bot and bot response if possible (if the issue is regarding bugs). Try to make issues that are not blank and are in their respective category. 
 
 ### 5.1 Issues
 Any new issues will be looked at and evaluated for validity of a bug or for the usefulness of a suggested feature. If we have questions about your issue we will get back as soon as we can (usually in a day or two) and will try to make a decision within a week.
+**Great Issue suggestions** tend to have:
+
+- A quick summary of the changes.
+- In case of any bug provide steps to reproduce
+  - Be specific!
+  - Give sample code if you can.
+  - What you expected would happen
+  - What actually happens
+  - Notes (possibly including why you think this might be happening, or stuff you tried that didn't work)
+
 
 ### 5.2 Pull Requests
 Pull requests are evaluated by their quality and how effectively they solve their corresponding issue. The process for reviewing pull requests is as follows:
@@ -96,3 +132,5 @@ Pull requests are evaluated by their quality and how effectively they solve thei
     * If your pull request is considered a new feature the project owner will have 1 week to veto or approve your pull request.
 4. If any feedback is given we expect a response within 1 week or we may decide to close the PR.
 5. If your pull request is not vetoed and no core member requests changes then it will be approved and merged into the project.
+
+By contributing, you agree that your contributions will be licensed under its [MIT License](http://choosealicense.com/licenses/mit/)
