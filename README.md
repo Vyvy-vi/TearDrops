@@ -26,11 +26,11 @@ NOTE- It is recommended that you add your own discord token while running the bo
 - NOTE: To replicate this bot, you will need a bot **token**. Go get yours at https://discord.com/developers/ (If you need help with this step, feel free to ask for help in our [Support Server](https://discord.gg/jTzGuYx)).
 - Clone this repo using `git clone`
 - cd into the bot folder.
-- Add the token in a `.env` file in the project root as follows: 
+- Add the token in a `.env` file in the project root as follows:
 ```text
 DISCORD_BOT_TOKEN=<your token>
-``` 
-- Install docker and docker-compose and then run:
+```
+- Install [docker and docker-compose](https://docs.docker.com/desktop/) and then run:
 ```
 docker-compose up
 ```
