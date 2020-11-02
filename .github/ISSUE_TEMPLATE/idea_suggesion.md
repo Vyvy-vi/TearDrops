@@ -1,5 +1,5 @@
 ---
-name: Chore
+name: Idea/Sugegstion
 about: For giving suggestions and ideas:
 title: "[IDEA]"
 labels: "🚦 status: pending response"
