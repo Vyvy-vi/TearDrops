@@ -577,6 +577,16 @@ async def automeme(ctx):
         automeme_loops[channel_id] = loop
         loop.start(ctx)
 
+@client.command()
+async def automeme_cancel(ctx):
+    '''Cancel the Automeme task in the current channel'''
+    channel_id = ctx.channel.id
+    if channel_id not in automeme_loops:
+        await ctx.send('Automeme not running here')
+    else:
+        automeme_loops[channel_id].cancel()
+        del automeme_loops[channel_id]
+        await ctx.send('Automeme canceled here')
 
 async def automeme_routine(ctx):
     '''
