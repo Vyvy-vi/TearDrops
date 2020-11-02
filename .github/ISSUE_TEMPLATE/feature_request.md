@@ -3,7 +3,7 @@ name: Feature request
 about: Suggest an idea for this project
 title: "[FEAT]"
 labels: "🚦 status: pending response"
-assignees: "nhcarrigan"
+assignees: "Vyvy-vi"
 ---
 
 # Feature Request
