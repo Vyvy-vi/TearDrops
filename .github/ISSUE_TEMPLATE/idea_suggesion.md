@@ -1,5 +1,5 @@
 ---
-name: Idea
+name: Idea/Suggestion
 about: For giving suggestions and ideas.
 title: "[IDEA]"
 labels: "🚦 status: pending response"
