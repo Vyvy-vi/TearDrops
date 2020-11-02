@@ -45,6 +45,9 @@ timecheck = 0
 buls = 0
 ssl._create_default_https_context = ssl._create_unverified_context
 
+# Map of channel IDs to tasks.Loop automeme loops
+automeme_loops = {}
+
 # intents (new discord feature to limit bots to certain bucket events)
 intents = discord.Intents.default()
 intents.typing = False
@@ -562,14 +565,19 @@ async def memes(ctx):
         await ctx.send(embed=embed)
 
 
-# ---> NEEDS FIXING <---
 @client.command()
 async def automeme(ctx):
     '''Triggers the automeme taskloop for the channel context'''
-    automeme_routine.start(ctx)
+    channel_id = ctx.channel.id
+    if channel_id in automeme_loops:
+        await ctx.send('Automeme already running here')
+    else:
+        # using decorator instead of tasks.Loop directly to preserve default arguments
+        loop = tasks.loop(seconds=600)(automeme_routine)
+        automeme_loops[channel_id] = loop
+        loop.start(ctx)
 
 
-@tasks.loop(seconds=600)
 async def automeme_routine(ctx):
     '''
     sends a meme every 10 mins
