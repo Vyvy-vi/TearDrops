@@ -11,11 +11,9 @@ import ssl
 import discord
 from discord.ext import commands, tasks
 from itertools import cycle
-from dotenv import load_dotenv
 
 from pymongo import MongoClient
 
-load_dotenv()
 
 # temp->
 
