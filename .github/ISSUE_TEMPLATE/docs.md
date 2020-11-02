@@ -1,9 +1,9 @@
 ---
 name: Documentation
 about: Request an update to invalid/outdated documentation.
-title: "[DOC]"
+title: "[DOCS]"
 labels: "🚦 status: pending response"
-assignees: nhcarrigan
+assignees: Vyvy-vi
 ---
 
 # Incorrect Documentation
