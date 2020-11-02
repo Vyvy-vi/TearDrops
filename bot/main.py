@@ -1,6 +1,11 @@
 # TODO - transfer, casino, etc commands
 
 
+import aiohttp
+import time
+import random
+import wikipedia
+from inputs import responses, fortunes, quo, nerd, tech, rost, bk, cmp, blurt, cf, jk, cfe, chill, cl, ur
 import os
 import ssl
 import discord
@@ -11,23 +16,20 @@ from pymongo import MongoClient
 
 
 # temp->
-from inputs import responses, fortunes, quo, nerd, tech, rost, bk, cmp, blurt, cf, jk, cfe, chill, cl, ur
 
 # modules for wiki and wolfram queries
 # import wolframalpha
-import wikipedia
 # import requests
 
 # Standard modules
-import random
-import time
-import aiohttp
 
 # TOKEN, MONGO URI are env-vars
 from utils import get_environment_variable
 
+
 DISCORD_BOT_TOKEN = get_environment_variable("DISCORD_BOT_TOKEN")
 MONGO_CONNECTION_STRING = get_environment_variable("MONGO_CONNECTION_STRING")
+
 
 DB_CLIENT = MongoClient(MONGO_CONNECTION_STRING)
 db = DB_CLIENT.get_database('users_db')
@@ -38,6 +40,9 @@ timecheck = 0
 buls = 0
 ssl._create_default_https_context = ssl._create_unverified_context
 
+# Map of channel IDs to tasks.Loop automeme loops
+automeme_loops = {}
+
 # intents (new discord feature to limit bots to certain bucket events)
 intents = discord.Intents.default()
 intents.typing = False
@@ -46,7 +51,8 @@ intents.presences = False
 # NOTE- The initial version of the bot used TinyDB, but I've migrated to MongoDB (still considering sql tho)
 
 # client pointer for API-reference
-client = commands.Bot(command_prefix='qq ', case_insensitive=True, intents=intents)
+client = commands.Bot(command_prefix='qq ',
+                      case_insensitive=True, intents=intents)
 
 # discord.py has an inbuilt help command, which doesn't look good''
 client.remove_command('help')
@@ -94,7 +100,9 @@ async def on_guild_join(guild):
         if channel.permissions_for(guild.me).send_messages:
             if guild.id not in db.list_collection_names():
                 col = db[str(guild.id)]
-                col.insert_one({'server_name': guild.name, 'server_id': guild.id})
+                col.insert_one(
+                    {'server_name': guild.name, 'server_id': guild.id})
+            icon_url = 'https://cdn.discordapp.com/attachments/582605227081990233/627388598181953548/unknown.png'
             embed = discord.Embed(title='**Tear Drops:tm:**', description='A dynamic bot for _crying_, entertainment, economy and _other_ purposes...\n\
 I am here to reek sorrow and depression. Come let\'s cry together 😢\
 The prefix for the bot is _"qq"_, cuz you know _"less qq, more pew pew..."_ \
@@ -103,7 +111,7 @@ The currency credits for the bot are _tears_(hahah obviously). Have fun being sa
 This bot is under MIT License(provided as is, do whatever you want) \
 This has been uploaded to GitHub for educational and referencial purposes', colour=discord.Color.purple(), url='https://github.com/Py-Contributors/awesomeScripts/Tear-Drops_DiscordBot/')
             embed.set_footer(text='I Hope that you enjoyed the bot....😭')
-            embed.set_image(url='https://cdn.discordapp.com/attachments/582605227081990233/627388598181953548/unknown.png')
+            embed.set_image(url=icon_url)
             await channel.send(embed=embed)
         break
     print(f'Entered server {guild.name} : {guild.id}')
@@ -179,8 +187,10 @@ async def update_data(user):
     '''
     if str(user.guild.id) not in db.list_collection_names():
         server = db[str(user.guild.id)]
-        server.insert_one({'server_name': user.guild.name, 'server_id': user.guild.id})
-        server.insert_one({'id': user.id, 'experience': 0, 'level': 1, 'credits': 0, 'crytime': 0})
+        server.insert_one({'server_name': user.guild.name,
+                           'server_id': user.guild.id})
+        server.insert_one({'id': user.id, 'experience': 0,
+                           'level': 1, 'credits': 0, 'crytime': 0})
         print(f'{user.guild.name} : {user.guild.id} added to database')
         print(f'{user.id} added to database...')
     else:
@@ -188,10 +198,12 @@ async def update_data(user):
         # print(list(server.find({'id':user.id}))[-1].values())
         try:
             if len(list(server.find({'id': user.id}))) == 0:
-                server.insert_one({'id': user.id, 'experience': 0, 'level': 1, 'credits': 0, 'crytime': 0})
+                server.insert_one(
+                    {'id': user.id, 'experience': 0, 'level': 1, 'credits': 0, 'crytime': 0})
                 print(f'{user.id} added to database')
             elif user.id not in list(server.find({'id': user.id}))[-1].values():
-                server.insert_one({'id': user.id, 'experience': 0, 'level': 1, 'credits': 0, 'crytime': 0})
+                server.insert_one(
+                    {'id': user.id, 'experience': 0, 'level': 1, 'credits': 0, 'crytime': 0})
                 print(f'{user.id} added to database')
         except Exception as e:
             print(e)
@@ -250,7 +262,8 @@ async def ping(ctx):
               'At your service.']
     ph = random.choice(phrase)
     lsm = round((client.latency) * 100)
-    embed = discord.Embed(title='**pong...!**', description=f"_{ph}_ \n**~{lsm} ms taken**......", color=discord.Color.gold())
+    embed = discord.Embed(
+        title='**pong...!**', description=f"_{ph}_ \n**~{lsm} ms taken**......", color=discord.Color.gold())
     embed.set_footer(text='😭')
     await ctx.send(embed=embed)
 
@@ -266,7 +279,8 @@ async def pong(ctx):
               "Not at your service."]
     ph = random.choice(phrase)
     lsm = round((client.latency) * 100)
-    embed = discord.Embed(title='**PING...!**', description=f"_{ph}_ \n**~{lsm} ms taken**......", color=discord.Color.red())
+    embed = discord.Embed(
+        title='**PING...!**', description=f"_{ph}_ \n**~{lsm} ms taken**......", color=discord.Color.red())
     embed.set_footer(text='😭')
     await ctx.send(embed=embed)
 
@@ -275,14 +289,17 @@ async def pong(ctx):
 async def help(ctx, command_name=None, *args):
     '''This command Ofc'''
     if command_name is None:
-        embed = discord.Embed(title='**Help command**', description='All commands of bot ;-; with description', color=discord.Color.dark_orange())
+        embed = discord.Embed(
+            title='**Help command**', description='All commands of bot ;-; with description', color=discord.Color.dark_orange())
         for command in client.commands:
-            embed.add_field(name=f'{command}', value=f'`{command.short_doc}.`', inline=False)
+            embed.add_field(
+                name=f'{command}', value=f'`{command.short_doc}.`', inline=False)
         await ctx.send(embed=embed)
     else:
         for command in client.commands:
             if command_name == command.name:
-                embed = discord.Embed(title=f'**Help command: {command}**', description=f'Description : {command.short_doc} \n {command.brief}', color=discord.Color.dark_orange())
+                embed = discord.Embed(
+                    title=f'**Help command: {command}**', description=f'Description : {command.short_doc} \n {command.brief}', color=discord.Color.dark_orange())
                 await ctx.send(embed=embed)
 
 
@@ -314,9 +331,11 @@ Storing it in the vaults of tears.Spend them wisely...💧\nSpend it wisely...',
                 'You really tried but you could not cry',
                 'The tears are not coming out...']
             message = random.choice(tr2)
-            embed = discord.Embed(title='**Tear Dispenser**', description=f"You can't cry rn.{message}", color=discord.Color.blue())
+            embed = discord.Embed(
+                title='**Tear Dispenser**', description=f"You can't cry rn.{message}", color=discord.Color.blue())
             embed.set_footer(text='😭')
-            embed.add_field(name='Try again after like 3 hours.', value='oof', inline=False)
+            embed.add_field(name='Try again after like 3 hours.',
+                            value='oof', inline=False)
             await ctx.send(embed=embed)
         cred = tr + stats[-1]['credits']
         new_stats = {"$set": {'credits': cred, 'crytime': time.time()}}
@@ -338,7 +357,8 @@ async def vault(ctx, member: discord.Member = None):
     server = db[str(user.guild.id)]
     stats = server.find({'id': user.id})
     trp = list(stats)[-1]['credits']
-    embed = discord.Embed(title='**Vault of Tears**', description=f"Opening {user}'s vault-of-tears....", colour=discord.Color.blurple())
+    embed = discord.Embed(title='**Vault of Tears**',
+                          description=f"Opening {user}'s vault-of-tears....", colour=discord.Color.blurple())
     embed.set_footer(text='Cry, cry, let the emotions flow through you...😭')
     embed.add_field(name='Tears', value=trp)
     await ctx.send(embed=embed)
@@ -351,7 +371,8 @@ async def level(ctx):
     server = db[str(user.guild.id)]
     stats = server.find({'id': user.id})
     lvl = list(stats)[-1]['level']
-    embed = discord.Embed(title='**Depression-Level**', description="._.", colour=discord.Color.blurple())
+    embed = discord.Embed(title='**Depression-Level**',
+                          description="._.", colour=discord.Color.blurple())
     embed.set_footer(text='Cry, cry, let the emotions flow through you...😭')
     embed.add_field(name='Level', value=lvl)
     await ctx.send(embed=embed)
@@ -376,15 +397,19 @@ async def transfer(ctx, amount: int, member: discord.Member):
         embed = discord.Embed(title='**Heart_to_heart**',
                               description=f"You tried to cry tears for {member}",
                               colour=discord.Color.green())
-        embed.set_footer(text='Cry, cry, let the emotions flow through you...😭')
-        embed.add_field(name=f"You handed out a vial of {amount} tears to {member}", value="._.")
+        embed.set_footer(
+            text='Cry, cry, let the emotions flow through you...😭')
+        embed.add_field(
+            name=f"You handed out a vial of {amount} tears to {member}", value="._.")
 
     else:
         embed = discord.Embed(title='**Heart_to_heart**',
                               description=f"You tried to cry tears for {member}",
                               colour=discord.Color.green())
-        embed.set_footer(text='Cry, cry, let the emotions flow through you...😭')
-        embed.add_field(name=f"Failed to share {amount} tears.\nYou have insufficient tears in TearVault", value="._.")
+        embed.set_footer(
+            text='Cry, cry, let the emotions flow through you...😭')
+        embed.add_field(
+            name=f"Failed to share {amount} tears.\nYou have insufficient tears in TearVault", value="._.")
     await ctx.send(embed=embed)
 
 
@@ -408,7 +433,8 @@ The currency credits for the bot are _tears_(hahah obviously). Have fun being sa
 This bot is under MIT License(provided as is, do whatever you want) \
 This has been uploaded to GitHub for educational and referencial purposes', colour=discord.Color.purple(), url='https://github.com/Py-Contributors/awesomeScripts/Tear-Drops_DiscordBot/')
     embed.set_footer(text='I Hope that you enjoyed the bot....😭')
-    embed.set_image(url='https://cdn.discordapp.com/attachments/582605227081990233/627388598181953548/unknown.png')
+    embed.set_image(
+        url='https://cdn.discordapp.com/attachments/582605227081990233/627388598181953548/unknown.png')
     await ctx.send(embed=embed)
 
 
@@ -435,7 +461,8 @@ async def say(ctx, *args):
         output += word
         output += ' '
     user = ctx.message.author
-    embed = discord.Embed(title=f'{output}', description=f'~{user}', colour=discord.Color.greyple())
+    embed = discord.Embed(
+        title=f'{output}', description=f'~{user}', colour=discord.Color.greyple())
     await ctx.send(embed=embed)
 
 
@@ -474,7 +501,8 @@ async def dice(ctx, amount: int):
             cred += 50
             newstats = {"$set": {'credits': cred}}
             server.update_one(stats[-1], newstats)
-            embed = discord.Embed(title='Dice-roll...🎲', description=f'The dice rolled a {numtemp}.\nYou have been awarded 50 tears for this...', color=discord.Color.dark_red())
+            embed = discord.Embed(
+                title='Dice-roll...🎲', description=f'The dice rolled a {numtemp}.\nYou have been awarded 50 tears for this...', color=discord.Color.dark_red())
             await ctx.send(embed=embed)
         else:
             embed = discord.Embed(title='Dice-roll...🎲', description=f'The dice rolled a {numtemp}.\n\
@@ -490,7 +518,8 @@ Command Usage-> qq dice <num> (between 1 and 6)', color=discord.Color.dark_red()
 @client.command(pass_context=True)
 async def user(ctx, user: discord.Member):
     '''gives user info'''
-    embed = discord.Embed(title="{}'s info".format(user.name), description="Here's what I could find.", color=0x00ff00)
+    embed = discord.Embed(title="{}'s info".format(
+        user.name), description="Here's what I could find.", color=0x00ff00)
     embed.add_field(name="Name", value=user.name, inline=True)
     embed.add_field(name="ID", value=user.id, inline=True)
     embed.add_field(name="Status", value=user.status, inline=True)
@@ -507,10 +536,12 @@ async def russian_roulette(ctx):
     global buls
     if buls >= 6:
         buls = 0
-        embed = discord.Embed(title='Russian Roulette.🔫', description='All you remember is the pain you felt when the bullet pierced your skull.', color=discord.Color.light_gray())
+        embed = discord.Embed(title='Russian Roulette.🔫',
+                              description='All you remember is the pain you felt when the bullet pierced your skull.', color=discord.Color.light_gray())
     else:
         buls += 1
-        embed = discord.Embed(title='Russian Roulette.🔫', description='You live to fight another day', color=discord.Color.blue())
+        embed = discord.Embed(title='Russian Roulette.🔫',
+                              description='You live to fight another day', color=discord.Color.blue())
     await ctx.send(embed=embed)
 
 
@@ -520,7 +551,8 @@ async def wiki(ctx, *args):
     qu = ' '.join(list(args))
     searchResults = wikipedia.search(qu)
     if not searchResults:
-        embed = discord.Embed(title=f'**{qu}**', description='It appears that there is no instance of this in Wikipedia index...', colour=discord.Color.dark_red())
+        embed = discord.Embed(
+            title=f'**{qu}**', description='It appears that there is no instance of this in Wikipedia index...', colour=discord.Color.dark_red())
         embed.set_footer(text='Powered by Wikipedia...')
         await ctx.send(embed=embed)
     else:
@@ -532,7 +564,8 @@ async def wiki(ctx, *args):
             pg = err.options
         wikiTitle = str(page.title.encode('utf-8'))
         wikiSummary = page.summary
-        embed = discord.Embed(title=f'**{wikiTitle[1:]}**', description=str(wikiSummary[1:900]) + '...', color=discord.Color.dark_orange(), url=page.url)
+        embed = discord.Embed(title=f'**{wikiTitle[1:]}**', description=str(
+            wikiSummary[1:900]) + '...', color=discord.Color.dark_orange(), url=page.url)
         embed.set_footer(text='Powered by Wikipedia...')
         if pg != 0:
             s = pg[1:10] + ['...']
@@ -549,20 +582,37 @@ async def memes(ctx):
         url = "https://meme-api.herokuapp.com/gimme"
         async with session.get(url) as response:
             response = await response.json()
-        embed = discord.Embed(title=response['title'], url=response['postLink'], color=discord.Color.dark_orange())
+        embed = discord.Embed(
+            title=response['title'], url=response['postLink'], color=discord.Color.dark_orange())
         embed.set_image(url=response['url'])
-        embed.set_footer(text=f"r/{response['subreddit']} | Requested by {ctx.author.name} | Enjoy your dank memes!")
+        embed.set_footer(
+            text=f"r/{response['subreddit']} | Requested by {ctx.author.name} | Enjoy your dank memes!")
         await ctx.send(embed=embed)
 
 
-# ---> NEEDS FIXING <---
 @client.command()
 async def automeme(ctx):
     '''Triggers the automeme taskloop for the channel context'''
-    automeme_routine.start(ctx)
+    channel_id = ctx.channel.id
+    if channel_id in automeme_loops:
+        await ctx.send('Automeme already running here')
+    else:
+        # using decorator instead of tasks.Loop directly to preserve default arguments
+        loop = tasks.loop(seconds=600)(automeme_routine)
+        automeme_loops[channel_id] = loop
+        loop.start(ctx)
 
+@client.command()
+async def automeme_cancel(ctx):
+    '''Cancel the Automeme task in the current channel'''
+    channel_id = ctx.channel.id
+    if channel_id not in automeme_loops:
+        await ctx.send('Automeme not running here')
+    else:
+        automeme_loops[channel_id].cancel()
+        del automeme_loops[channel_id]
+        await ctx.send('Automeme canceled here')
 
-@tasks.loop(seconds=600)
 async def automeme_routine(ctx):
     '''
     sends a meme every 10 mins
@@ -571,9 +621,11 @@ async def automeme_routine(ctx):
         url = "https://meme-api.herokuapp.com/gimme"
         async with session.get(url) as response:
             response = await response.json()
-        embed = discord.Embed(title=response['title'], url=response['postLink'], color=discord.Color.dark_orange())
+        embed = discord.Embed(
+            title=response['title'], url=response['postLink'], color=discord.Color.dark_orange())
         embed.set_image(url=response['url'])
-        embed.set_footer(text=f"r/{response['subreddit']} | Requested by {ctx.author.name} | Enjoy your dank memes!")
+        embed.set_footer(
+            text=f"r/{response['subreddit']} | Requested by {ctx.author.name} | Enjoy your dank memes!")
         await ctx.send(embed=embed)
     # NOTE- There are other methods, that can be utilised instead of just 'playing'
 
@@ -581,66 +633,92 @@ async def automeme_routine(ctx):
 @client.command(aliases=["8ball", "seer"])
 async def magicball(ctx, *, question):
     embed = discord.Embed(title="8Ball :8ball:", color=discord.Color.magenta())
-    embed.add_field(name=f"*Question: {question}*", value=f'Conjecture: {random.choice(responses)}')
+    embed.add_field(name=f"*Question: {question}*",
+                    value=f'Conjecture: {random.choice(responses)}')
     await ctx.send(embed=embed)
 
 
 @client.command(aliases=['future'])
 async def fortune(ctx):
-    await ctx.send(random.choice(fortunes))
+    embed = discord.Embed(title='Fortune', color=0x09b58d)
+    embed.add_field(name='Your Fortune', value=random.choice(fortunes))
+    await ctx.send(embed=embed)
 
 
 @client.command(aliases=['phrase', 'wisdom'])
 async def quote(ctx):
-    await ctx.send(f'`{random.choice(quo)}`')
+    embed = discord.Embed(title='Quote', color=0x0973b5)
+    embed.add_field(name='Quote for you', value=f'`{random.choice(quo)}`')
+    await ctx.send(embed=embed)
 
 
 @client.command(aliases=['joke', 'pun', 'badjoke'])
 async def dadjoke(ctx):
-    await ctx.send(random.choice(jk))
+    embed = discord.Embed(title='Dad Jokes huh 😏', color=0x5511c2)
+    embed.add_field(name='Your Fortune', value=random.choice(jk))
+    await ctx.send(embed=embed)
 
 
 @client.command(aliases=['smartstuff'])
 async def nerdystuff(ctx):
-    await ctx.send(f'```{random.choice(nerd)}```')
+    embed = discord.Embed(title='Nerdy Stuff', color=0x22bfb0)
+    embed.add_field(name='Take this you NERD', value=f'{random.choice(nerd)}')
+    await ctx.send(embed=embed)
 
 
 @client.command(aliases=['techie', 'hackerman', 'pimp'])
 async def geek(ctx):
-    await ctx.send(f'`{random.choice(tech)}`')
+    embed = discord.Embed(title='Geek', color=0xc21155)
+    embed.add_field(name='Ahh I love geeky stuff too',
+                    value=f'{random.choice(tech)}')
+    await ctx.send(embed=embed)
 
 
 @client.command(aliases=['shame', 'destroy'])
 async def roast(ctx, *, link):
-    await ctx.send(f'{link} , {random.choice(rost)}')
+    embed = discord.Embed(title='Roast', color=0x11ad4b)
+    embed.add_field(name='😈', value=f'{link} , {random.choice(rost)}')
+    await ctx.send(embed=embed)
 
 
 @client.command(aliases=['appreciate', 'commend'])
 async def compliment(ctx, *, link):
-    await ctx.send(f'{link} , {random.choice(cmp)}')
+    embed = discord.Embed(title='Compliment', color=0xa9e010)
+    embed.add_field(name="Here's a compliment for you",
+                    value=f'{link} , {random.choice(cmp)}')
+    await ctx.send(embed=embed)
 
 
 @client.command()
 async def flirt(ctx, *, link):
-    await ctx.send(f'{link} , {random.choice(blurt)}')
+    embed = discord.Embed(title='Flirt', color=0xcf8c11)
+    embed.add_field(name='Flirt it away',
+                    value=f'{link} , {random.choice(blurt)}')
+    await ctx.send(embed=embed)
 
 
 @client.command(aliases=['goodread', 'read'])
 async def book(ctx):
-    await ctx.send(f'`Here is one of my favourite books\n{random.choice(bk)}`')
+    embed = discord.Embed(title='Books', color=0xbf2b11)
+    embed.add_field(name='Some books for you', value=f'{random.choice(bk)}')
+    await ctx.send(embed=embed)
 
 
 @client.command(aliases=['ask_out'])
 async def wannagrabacoffee(ctx, *, link):
-    await ctx.send(f'{link} , Someone wants to grab a coffee with you...*wink *wink')
-    await ctx.send(f'This happened....{random.choice(cf)}')
-    await ctx.send('*not actually.')
+    embed = discord.Embed(
+        title=f'{link}, Someone wants to grab a coffee with you...*wink *wink', color=0x11bf51)
+    embed.add_field(name='This happened....', value=f'{random.choice(cf)}')
+    embed.add_field(name='not actually')
+    await ctx.send(embed=embed)
 
 
 @client.command(aliases=['brew'])
 async def coffee(ctx):
     op = f'{random.choice(cfe)}'
-    embed = discord.Embed(title='Coffee', description=op, color=discord.Color.red())
+    embed = discord.Embed(title='Coffee',
+                          description=op,
+                          color=discord.Color.red())
     embed.set_footer(text=f'Caffeiene Level-{random.choice(cl)}.{random.choice(chill)}')
     embed.set_image(url=random.choice(ur))
     await ctx.send(embed=embed)
@@ -656,4 +734,4 @@ async def on_command_error(ctx, error):
         await ctx.send(error)
 
 # Running the BOT:
-client.run(DISCORD_BOT_TOKEN)
+client.run(str(DISCORD_BOT_TOKEN))

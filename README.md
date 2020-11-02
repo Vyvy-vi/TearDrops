@@ -1,6 +1,6 @@
 # Tear Drops
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![built-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
@@ -61,11 +61,13 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/Vyvy-vi"><img src="https://avatars0.githubusercontent.com/u/62864373?v=4" width="100px;" alt=""/><br /><sub><b>Vyom Jain</b></sub></a><br /><a href="https://github.com/Vyvy-vi/TearDrops/commits?author=Vyvy-vi" title="Code">💻</a> <a href="#projectManagement-Vyvy-vi" title="Project Management">📆</a> <a href="#design-Vyvy-vi" title="Design">🎨</a> <a href="https://github.com/Vyvy-vi/TearDrops/commits?author=Vyvy-vi" title="Documentation">📖</a> <a href="#maintenance-Vyvy-vi" title="Maintenance">🚧</a> <a href="https://github.com/Vyvy-vi/TearDrops/pulls?q=is%3Apr+reviewed-by%3AVyvy-vi" title="Reviewed Pull Requests">👀</a></td>
     <td align="center"><a href="https://github.com/AllanRegush"><img src="https://avatars0.githubusercontent.com/u/17693494?v=4" width="100px;" alt=""/><br /><sub><b>Allan Regush</b></sub></a><br /><a href="#ideas-AllanRegush" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://github.com/AbstractUmbra"><img src="https://avatars0.githubusercontent.com/u/16031716?v=4" width="100px;" alt=""/><br /><sub><b>Alex Nørgaard</b></sub></a><br /><a href="#ideas-AbstractUmbra" title="Ideas, Planning, & Feedback">🤔</a></td>
-    <td align="center"><a href="https://github.com/RascalTwo"><img src="https://avatars0.githubusercontent.com/u/9403665?v=4" width="100px;" alt=""/><br /><sub><b>Rascal_Two</b></sub></a><br /><a href="https://github.com/Vyvy-vi/TearDrops/issues?q=author%3ARascalTwo" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/RascalTwo"><img src="https://avatars0.githubusercontent.com/u/9403665?v=4" width="100px;" alt=""/><br /><sub><b>Rascal_Two</b></sub></a><br /><a href="https://github.com/Vyvy-vi/TearDrops/issues?q=author%3ARascalTwo" title="Bug reports">🐛</a> <a href="https://github.com/Vyvy-vi/TearDrops/commits?author=RascalTwo" title="Code">💻</a> <a href="#ideas-RascalTwo" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://mikeysan.hashnode.dev"><img src="https://avatars1.githubusercontent.com/u/13338176?v=4" width="100px;" alt=""/><br /><sub><b>Michael Mba</b></sub></a><br /><a href="#ideas-mikeysan" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
   <tr>
     <td align="center"><a href="https://allcontributors.org"><img src="https://avatars1.githubusercontent.com/u/46410174?v=4" width="100px;" alt=""/><br /><sub><b>All Contributors</b></sub></a><br /><a href="https://github.com/Vyvy-vi/TearDrops/commits?author=all-contributors" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/sayand0122"><img src="https://avatars1.githubusercontent.com/u/53222600?v=4" width="100px;" alt=""/><br /><sub><b>Sayan Dutta</b></sub></a><br /><a href="#ideas-sayand0122" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/Vyvy-vi/TearDrops/commits?author=sayand0122" title="Code">💻</a> <a href="#design-sayand0122" title="Design">🎨</a></td>
+    <td align="center"><a href="http://www.nhcarrigan.com"><img src="https://avatars1.githubusercontent.com/u/63889819?v=4" width="100px;" alt=""/><br /><sub><b>Nicholas Carrigan (he/him)</b></sub></a><br /><a href="#ideas-nhcarrigan" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/Vyvy-vi/TearDrops/commits?author=nhcarrigan" title="Documentation">📖</a></td>
   </tr>
 </table>
 

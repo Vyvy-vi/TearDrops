@@ -65,7 +65,9 @@
       "avatar_url": "https://avatars0.githubusercontent.com/u/9403665?v=4",
       "profile": "https://github.com/RascalTwo",
       "contributions": [
-        "bug"
+        "bug",
+        "code",
+        "ideas"
       ]
     },
     {
@@ -83,6 +85,27 @@
       "avatar_url": "https://avatars1.githubusercontent.com/u/46410174?v=4",
       "profile": "https://allcontributors.org",
       "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "sayand0122",
+      "name": "Sayan Dutta",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/53222600?v=4",
+      "profile": "https://github.com/sayand0122",
+      "contributions": [
+        "ideas",
+        "code",
+        "design"
+      ]
+    },
+    {
+      "login": "nhcarrigan",
+      "name": "Nicholas Carrigan (he/him)",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/63889819?v=4",
+      "profile": "http://www.nhcarrigan.com",
+      "contributions": [
+        "ideas",
         "doc"
       ]
     }
