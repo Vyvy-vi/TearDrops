@@ -98,6 +98,16 @@
         "code",
         "design"
       ]
+    },
+    {
+      "login": "nhcarrigan",
+      "name": "Nicholas Carrigan (he/him)",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/63889819?v=4",
+      "profile": "http://www.nhcarrigan.com",
+      "contributions": [
+        "ideas",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
