@@ -11,7 +11,7 @@
 </p>
 
 ![tears gif](cries.gif)
-![cri](https://images-ext-1.discordapp.net/external/s6Id0htXD7zAkT-yxz52y_YNj97WF9yzELQmtIk-iBs/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/627772985872220161/bdfd588427f4335fece00c0191ea1406.webp?width=519&height=519)
+![cri](https://images-ext-1.discordapp.net/external/s6Id0htXD7zAkT-yxz52y_YNj97WF9yzELQmtIk-iBs/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/627772985872220161/bdfd588427f4335fece00c0191ea1406)
 
 A discord bot wrapped around the theme of tears and crying.
 In concept, the idea is absurd but that's more of a reason to make this. :)
