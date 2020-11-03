@@ -6,26 +6,12 @@
   "commit": false,
   "contributors": [
     {
-      "login": "gamerrio",
-      "name": "Gamerrio",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/21240909?v=4",
-      "profile": "https://github.com/gamerrio",
+      "login": "all-contributors",
+      "name": "All Contributors",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/46410174?v=4",
+      "profile": "https://allcontributors.org",
       "contributions": [
-        "ideas",
-        "code",
-        "design"
-      ]
-    },
-    {
-      "login": "anubhavcodes",
-      "name": "Anubhav",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/1628340?v=4",
-      "profile": "https://anubhav.codes",
-      "contributions": [
-        "code",
-        "doc",
-        "ideas",
-        "infra"
+        "doc"
       ]
     },
     {
@@ -43,21 +29,26 @@
       ]
     },
     {
-      "login": "AllanRegush",
-      "name": "Allan Regush",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/17693494?v=4",
-      "profile": "https://github.com/AllanRegush",
+      "login": "anubhavcodes",
+      "name": "Anubhav",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1628340?v=4",
+      "profile": "https://anubhav.codes",
       "contributions": [
-        "ideas"
+        "code",
+        "doc",
+        "ideas",
+        "infra"
       ]
     },
     {
-      "login": "AbstractUmbra",
-      "name": "Alex Nørgaard",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/16031716?v=4",
-      "profile": "https://github.com/AbstractUmbra",
+      "login": "gamerrio",
+      "name": "Gamerrio",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/21240909?v=4",
+      "profile": "https://github.com/gamerrio",
       "contributions": [
-        "ideas"
+        "ideas",
+        "code",
+        "design"
       ]
     },
     {
@@ -69,24 +60,6 @@
         "bug",
         "code",
         "ideas"
-      ]
-    },
-    {
-      "login": "mikeysan",
-      "name": "Michael Mba",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/13338176?v=4",
-      "profile": "https://mikeysan.hashnode.dev",
-      "contributions": [
-        "ideas"
-      ]
-    },
-    {
-      "login": "all-contributors",
-      "name": "All Contributors",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/46410174?v=4",
-      "profile": "https://allcontributors.org",
-      "contributions": [
-        "doc"
       ]
     },
     {
@@ -108,6 +81,42 @@
       "contributions": [
         "ideas",
         "doc"
+      ]
+    },
+    {
+      "login": "mikeysan",
+      "name": "Michael Mba",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/13338176?v=4",
+      "profile": "https://mikeysan.hashnode.dev",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "AllanRegush",
+      "name": "Allan Regush",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/17693494?v=4",
+      "profile": "https://github.com/AllanRegush",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "MattIPv4",
+      "name": "Matt (IPv4) Cowley",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/12371363?v=4",
+      "profile": "https://mattcowley.co.uk/",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "AbstractUmbra",
+      "name": "Alex Nørgaard",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/16031716?v=4",
+      "profile": "https://github.com/AbstractUmbra",
+      "contributions": [
+        "ideas"
       ]
     }
   ],
