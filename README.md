@@ -10,7 +10,7 @@
 <a href="https://discord.gg/jTzGuYx"><img src="https://img.shields.io/discord/758030555005714512.svg?label=Discord&logo=Discord&colorB=7289da&style=for-the-badge" alt="discord invite"></a>
 </p>
 
-<a href="cries.gif" alt="tears gif"></a>
+![tears gif](cries.gif)
 
 A discord bot wrapped around the theme of tears and crying.
 In concept, the idea is absurd but that's more of a reason to make this. :)
