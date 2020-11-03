@@ -10,7 +10,7 @@
 <a href="https://discord.gg/jTzGuYx"><img src="https://img.shields.io/discord/758030555005714512.svg?label=Discord&logo=Discord&colorB=7289da&style=for-the-badge" alt="discord invite"></a>
 </p>
 
-<a href="https://tenor.com/view/joy-reaction-gif-4546690" alt="tears gif"></a>
+<a href="https://media1.tenor.com/images/fb8760a2ff16bafdf2cc365e25ecb249/tenor.gif" alt="tears gif"></a>
 
 A discord bot wrapped around the theme of tears and crying.
 In concept, the idea is absurd but that's more of a reason to make this. :)
