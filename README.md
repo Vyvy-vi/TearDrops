@@ -9,8 +9,8 @@
 <a href="https://raw.githubusercontent.com/Vyvy-vi/TearDrops/main/LICENSE"><img src="https://img.shields.io/github/license/Py-Contributors/awesomeScripts?style=for-the-badge" alt="MIT license"></a>
 <a href="https://discord.gg/jTzGuYx"><img src="https://img.shields.io/discord/758030555005714512.svg?label=Discord&logo=Discord&colorB=7289da&style=for-the-badge" alt="discord invite"></a>
 </p>
-<script>
-<div class="tenor-gif-embed" data-postid="4546690" data-share-method="host" data-width="100%" data-aspect-ratio="0.9931972789115646"><a href="https://tenor.com/view/joy-reaction-gif-4546690">Joy Reaction GIF</a> from <a href="https://tenor.com/search/joy-gifs">Joy GIFs</a></div><script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+
+<a href="https://tenor.com/view/joy-reaction-gif-4546690" alt="tears gif">
 
 A discord bot wrapped around the theme of tears and crying.
 In concept, the idea is absurd but that's more of a reason to make this. :)
