@@ -11,8 +11,9 @@ import ssl
 import discord
 from discord.ext import commands, tasks
 from itertools import cycle
-from username import generate
 
+from username import generate
+from joe_username import joe_generate
 
 from pymongo import MongoClient
 
@@ -727,9 +728,21 @@ async def coffee(ctx):
 @client.command(aliases=['random-username','ru','random_username'])
 async def username(ctx, lim:int=30):
     op = generate(lim)
+    if lim == 30:
+        op = generate(random.randint(20,50))
     embed = discord.Embed(title=op,
             description='That sounds cool :',
             color=discord.Color.dark_magenta())
+    await ctx.send(embed=embed)
+
+@client.command(aliases=['joe-username','ju'])
+async def joe_username(ctx, lim:int=4):
+    op = joe_generate(lim)
+    if lim == 4:
+        op = joe_generate(random.randint(3,11))
+    embed = discord.Embed(title=op,
+            description='That sounds cool, cool, cool.. Right.',
+            color=discord.Color.gold())
     await ctx.send(embed=embed)
 
 # error_handling
