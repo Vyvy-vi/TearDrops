@@ -38,3 +38,17 @@ class TextCog(commands.Cog):
                         value='_looks at you, expecting you to laugh_')
         await ctx.send(embed=embed)
 
+
+    @commands.command(aliases=['nerdystuff','smartystuff','bigbrains'])
+    async def nerd(ctx):
+        embed = discord.Embed(title='Nerdy Stuff', color=0x22bfb0)
+        embed.add_field(name='Take this you NERD', value=f'{random.choice(nerd)}')
+        await ctx.send(embed=embed)
+
+
+    @commands.command(aliases=['tehc', 'hackerman'])
+    async def geek(ctx):
+        embed = discord.Embed(title='Geek', color=0xc21155)
+        embed.add_field(name="Ahh I am a hackerman",
+                        value=f'{random.choice(tech)}')
+        await ctx.send(embed=embed)
