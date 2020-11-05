@@ -10,6 +10,10 @@
 <a href="https://discord.gg/jTzGuYx"><img src="https://img.shields.io/discord/758030555005714512.svg?label=Discord&logo=Discord&colorB=7289da&style=for-the-badge" alt="discord invite"></a>
 </p>
 
+![tears gif](cries.gif)
+![cri](https://images-ext-1.discordapp.net/external/s6Id0htXD7zAkT-yxz52y_YNj97WF9yzELQmtIk-iBs/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/627772985872220161/bdfd588427f4335fece00c0191ea1406.webp?width=292&height=294)
+![sadblob](https://media.discordapp.net/attachments/771696574697832469/773264495006318623/sadblob.png)
+
 A discord bot wrapped around the theme of tears and crying.
 In concept, the idea is absurd but that's more of a reason to make this. :)
 The bot uses tears as an economy and you can "cry" to get daily credit tears.
