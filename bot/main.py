@@ -5,6 +5,7 @@ import aiohttp
 import time
 import random
 import wikipedia
+
 from inputs import responses, fortunes, quo, nerd, tech, rost, bk, cmp, blurt, cf, jk, cfe, chill, cl, ur
 import os
 import ssl
@@ -656,7 +657,8 @@ async def quote(ctx):
 @client.command(aliases=['joke', 'pun', 'badjoke'])
 async def dadjoke(ctx):
     embed = discord.Embed(title='Dad Jokes huh 😏', color=0x5511c2)
-    embed.add_field(name='Your Fortune', value=random.choice(jk))
+    embed.add_field(name=random.choice(jk),
+                    value='_looks at you, expecting you to laugh_')
     await ctx.send(embed=embed)
 
 
