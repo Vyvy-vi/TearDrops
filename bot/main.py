@@ -6,7 +6,6 @@ import time
 import random
 import wikipedia
 
-from inputs import responses, fortunes, quo, nerd, tech, rost, bk, cmp, blurt, cf, jk, cfe, chill, cl, ur
 import os
 import ssl
 import discord
