@@ -294,7 +294,7 @@ async def help(ctx, command_name=None, *args):
             title='**Help command**', description='All commands of bot ;-; with description', color=discord.Color.dark_orange())
         for command in client.commands:
             embed.add_field(
-                name=f'{command}', value=f'`{command.short_doc}.`', inline=False)
+                name=f'{command}', value=f'`{command.short_doc}.`', inline=True)
         await ctx.send(embed=embed)
     else:
         for command in client.commands:
