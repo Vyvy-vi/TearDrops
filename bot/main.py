@@ -631,15 +631,6 @@ async def automeme_routine(ctx):
         embed.set_footer(
             text=f"r/{response['subreddit']} | Requested by {ctx.author.name} | Enjoy your dank memes!")
         await ctx.send(embed=embed)
-    # NOTE- There are other methods, that can be utilised instead of just 'playing'
-
-
-@client.command(aliases=['goodread', 'read'])
-async def book(ctx):
-    embed = discord.Embed(title='Books', color=0xbf2b11)
-    embed.add_field(name='Some books for you', value=f'{random.choice(bk)}')
-    await ctx.send(embed=embed)
-
 
 @client.command(aliases=['ask_out'])
 async def wannagrabacoffee(ctx, *, link):
