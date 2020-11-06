@@ -96,3 +96,6 @@ class TextCog(commands.Cog):
                         value=f'{random.choice(bk)}')
         await ctx.send(embed=embed)
 
+
+def setup(client);
+    bot.add_cog(Textcog(client))
