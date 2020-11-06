@@ -52,3 +52,14 @@ class TextCog(commands.Cog):
         embed.add_field(name="Ahh I am a hackerman",
                         value=f'{random.choice(tech)}')
         await ctx.send(embed=embed)
+
+
+    @commands.command(aliases=['shame'])
+    async def roast(ctx, member: discord.Member = None):
+        if not member:
+            user = ctx.message.author
+        else:
+            user = member
+        embed = discord.Embed(title='Roast', color=0x11ad4b)
+        embed.add_field(name='', value=f'{user}, {random.choice(rost)}')
+        await ctx.send(embed=embed)
