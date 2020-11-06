@@ -89,5 +89,10 @@ class TextCog(commands.Cog):
         await ctx.send(embed=embed)
 
 
-
+    @commands.command(aliases=['goodread'])
+    async def book(ctx):
+        embed = discord.Embed(title='Book', color=0xbf2b11)
+        embed.add_field(name="Here's a book recomendation: ",
+                        value=f'{random.choice(bk)}')
+        await ctx.send(embed=embed)
 
