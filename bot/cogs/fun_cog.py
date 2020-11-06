@@ -4,7 +4,7 @@ import random
 from inputs import responses,fortunes, quo, nerd, tech, rost, bk, cmp, blurt, cf, jk, cfe, chill, cl, ur
 
 
-class TextCog(commands.Cog):
+class FunCog(commands.Cog):
     def __init__(self, client):
         self.client = client
 
@@ -98,4 +98,4 @@ class TextCog(commands.Cog):
 
 
 def setup(client);
-    bot.add_cog(Textcog(client))
+    bot.add_cog(Funcog(client))
