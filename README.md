@@ -1,6 +1,6 @@
 # Tear Drops
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![built-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
@@ -73,6 +73,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/AllanRegush"><img src="https://avatars0.githubusercontent.com/u/17693494?v=4" width="100px;" alt=""/><br /><sub><b>Allan Regush</b></sub></a><br /><a href="#ideas-AllanRegush" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://mattcowley.co.uk/"><img src="https://avatars2.githubusercontent.com/u/12371363?v=4" width="100px;" alt=""/><br /><sub><b>Matt (IPv4) Cowley</b></sub></a><br /><a href="#ideas-MattIPv4" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://github.com/AbstractUmbra"><img src="https://avatars0.githubusercontent.com/u/16031716?v=4" width="100px;" alt=""/><br /><sub><b>Alex Nørgaard</b></sub></a><br /><a href="#ideas-AbstractUmbra" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/LazybuddyNK"><img src="https://avatars3.githubusercontent.com/u/59273928?v=4" width="100px;" alt=""/><br /><sub><b>Nitesh Kumar</b></sub></a><br /><a href="https://github.com/Vyvy-vi/TearDrops/commits?author=LazybuddyNK" title="Documentation">📖</a></td>
   </tr>
 </table>
 
