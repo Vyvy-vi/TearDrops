@@ -650,7 +650,7 @@ async def fortune(ctx):
 async def quote(ctx):
     randq = random.choice(list(quo.keys()))
     embed = discord.Embed(title='Quote', color=0x0973b5)
-    embed.add_field(name=f'`fix{randq}`', value=f'_~ {quo[randq]}_')
+    embed.add_field(name=f'`{randq}`', value=f'_~ {quo[randq]}_')
     await ctx.send(embed=embed)
 
 
