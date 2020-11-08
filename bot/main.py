@@ -560,7 +560,7 @@ async def wiki(ctx, *, args):
             page = wikipedia.page(searchResults[0], auto_suggest=False)
             pg = 0
         except wikipedia.DisambiguationError as err:
-            page = wikipedia.page(err.options[0])
+            page = wikipedia.page(err.options[0], auto_suggest=False)
             pg = err.options
         wikiTitle = str(page.title.encode('utf-8'))
         wikiSummary = page.summary
