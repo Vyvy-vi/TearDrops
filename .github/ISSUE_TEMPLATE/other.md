@@ -2,7 +2,7 @@
 name: Other
 about: Use this for any other issues. PLEASE do not create blank issues.
 title: "[OTHER]"
-labels: "🚦 status: pending response"
+labels: "🚦 status: awaiting triage"
 assignees: Vyvy-vi
 ---
 
