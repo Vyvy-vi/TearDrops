@@ -13,7 +13,7 @@
 ---
 
 [![TearDrops Support](https://discordapp.com/api/guilds/765880027467350047/widget.png?style=banner1)](https://discord.gg/jTzGuYx)
-[![Community](https://discordapp.com/api/guilds/659684980137656340/widget.png?style=banner2)](https://discord.io/warengonzaga) [![Tracker CLI](https://discordapp.com/api/guilds/694612151444439081/widget.png?style=banner2)](https://discord.io/trackercli)
+[![Tracker CLI](https://discordapp.com/api/guilds/694612151444439081/widget.png?style=banner1)](https://discord.io/trackercli)
 
 ---
 
