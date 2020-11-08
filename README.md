@@ -12,7 +12,7 @@
 
 ---
 
-[![TearDrops Support](https://discordapp.com/api/guilds/765880027467350047/widget.png?style=shield)](https://discord.gg/jTzGuYx)
+[![TearDrops Support](https://discordapp.com/api/guilds/765880027467350047/widget.png?style=banner1)](https://discord.gg/jTzGuYx)
 
 ---
 
