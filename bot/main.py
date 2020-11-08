@@ -547,26 +547,25 @@ async def russian_roulette(ctx):
 
 
 @client.command(pass_context=True)
-async def wiki(ctx, *args):
+async def wiki(ctx, *, args):
     '''Displays wikipedia info about given arguments'''
-    qu = ' '.join(list(args))
-    searchResults = wikipedia.search(qu)
+    searchResults = wikipedia.search(args)
     if not searchResults:
         embed = discord.Embed(
-            title=f'**{qu}**', description='It appears that there is no instance of this in Wikipedia index...', colour=discord.Color.dark_red())
+            title=f'**{args}**', description='It appears that there is no instance of this in Wikipedia index...', colour=discord.Color.dark_red())
         embed.set_footer(text='Powered by Wikipedia...')
         await ctx.send(embed=embed)
     else:
         try:
-            page = wikipedia.page(searchResults[0])
+            page = wikipedia.page(searchResults[0], auto_suggest=False)
             pg = 0
         except wikipedia.DisambiguationError as err:
-            page = wikipedia.page(err.options[0])
+            page = wikipedia.page(err.options[0], auto_suggest=False)
             pg = err.options
         wikiTitle = str(page.title.encode('utf-8'))
         wikiSummary = page.summary
         embed = discord.Embed(title=f'**{wikiTitle[1:]}**', description=str(
-            wikiSummary[1:900]) + '...', color=discord.Color.dark_orange(), url=page.url)
+            wikiSummary[0:900]) + '...', color=discord.Color.dark_orange(), url=page.url)
         embed.set_footer(text='Powered by Wikipedia...')
         if pg != 0:
             s = pg[1:10] + ['...']
