@@ -2,7 +2,7 @@
 name: Documentation
 about: Request an update to invalid/outdated documentation.
 title: "[DOCS]"
-labels: "🚦 status: pending response"
+labels: "🚦 status: awaiting triage"
 assignees: Vyvy-vi
 ---
 
