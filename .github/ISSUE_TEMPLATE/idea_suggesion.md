@@ -2,7 +2,7 @@
 name: Idea/Suggestion
 about: For giving suggestions and ideas.
 title: "[IDEA]"
-labels: "🚦 status: pending response"
+labels: "🚦 status: awaiting triage"
 assignees: Vyvy-vi
 ---
 
