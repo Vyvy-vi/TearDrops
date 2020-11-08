@@ -2,7 +2,7 @@
 name: Bug report
 about: Create a report to help us address an error.
 title: "[BUG]"
-labels: "🚦 status: pending response"
+labels: "🚦 status: awaiting triage"
 assignees: Vyvy-vi
 ---
 
