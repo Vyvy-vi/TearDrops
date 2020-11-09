@@ -136,6 +136,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "s04",
+      "name": "s04",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/70141652?v=4",
+      "profile": "https://github.com/s04",
+      "contributions": [
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
