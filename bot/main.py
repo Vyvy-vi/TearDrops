@@ -706,11 +706,11 @@ async def book(ctx):
 
 
 @client.command(aliases=['ask_out'])
-async def wannagrabacoffee(ctx, *, link):
+async def wannagrabacoffee(ctx, *, member: discord.Member):
     embed = discord.Embed(
-        title=f'{link}, Someone wants to grab a coffee with you...*wink *wink', color=0x11bf51)
+        title=f'{member}, Someone wants to grab a coffee with you...*wink *wink', color=0x11bf51)
     embed.add_field(name='This happened....', value=f'{random.choice(cf)}')
-    embed.add_field(name='not actually')
+    embed.set_footer(text='not actually')
     await ctx.send(embed=embed)
 
 
