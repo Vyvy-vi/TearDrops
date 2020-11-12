@@ -4,7 +4,6 @@
 import aiohttp
 import time
 import random
-import wikipedia
 
 import os
 import ssl
@@ -250,40 +249,6 @@ async def level_up(user, channel):
 Saving {ls} tears in your vault of tears.', color=discord.Color.teal())
         embed.set_footer(text='😭')
         await channel.send(embed=embed)
-
-
-@client.command()
-async def ping(ctx):
-    """The bot's ping command"""
-    phrase = ['I am alive...',
-              'I was definitely not sleeping...',
-              'I was definitely not laughing...',
-              'I am still here',
-              'You are using a ping command? Why?',
-              'At your service.']
-    ph = random.choice(phrase)
-    lsm = round((client.latency) * 100)
-    embed = discord.Embed(
-        title='**pong...!**', description=f"_{ph}_ \n**~{lsm} ms taken**......", color=discord.Color.gold())
-    embed.set_footer(text='😭')
-    await ctx.send(embed=embed)
-
-
-@client.command()
-async def pong(ctx):
-    """The bot's pong command"""
-    phrase = ["I am aliven't...",
-              "I was sleeping...",
-              "I was laughing...",
-              "I am still not here",
-              "You are using a pong command? Why?",
-              "Not at your service."]
-    ph = random.choice(phrase)
-    lsm = round((client.latency) * 100)
-    embed = discord.Embed(
-        title='**PING...!**', description=f"_{ph}_ \n**~{lsm} ms taken**......", color=discord.Color.red())
-    embed.set_footer(text='😭')
-    await ctx.send(embed=embed)
 
 
 @client.command(aliases=['daily'])
