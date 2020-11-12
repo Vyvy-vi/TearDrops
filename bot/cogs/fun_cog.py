@@ -26,8 +26,9 @@ class FunCog(commands.Cog):
 
     @commands.command(aliases=['wisdom'])
     async def quote(ctx):
+        randq = random.choice(list(quo.keys()))
         embed = discord.Embed(title='Quote', color=0x097b5)
-        embed.add_field(name='Quote for you', value=f'`{random.choice(quo)}`')
+        embed.add_field(name=f'`{randq}`', value=f'_~{quo[randq]}_')
         await ctx.send(embed=embed)
 
 
