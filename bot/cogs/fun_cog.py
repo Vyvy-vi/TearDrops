@@ -99,4 +99,4 @@ class FunCog(commands.Cog):
 
 
 def setup(client);
-    bot.add_cog(FunCog(client))
+    client.add_cog(FunCog(client))

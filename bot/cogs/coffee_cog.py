@@ -26,4 +26,4 @@ class CoffeeCog(commands.Cog):
         embed.set_image(url=random.choice(ur))
         await ctx.send(embed=embed)
 def setup(client):
-    bot.add_cog(CoffeeCog(client))
+    client.add_cog(CoffeeCog(client))
