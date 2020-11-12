@@ -641,7 +641,7 @@ async def magicball(ctx, *, question):
 @client.command(aliases=['future'])
 async def fortune(ctx):
     embed = discord.Embed(title='Fortune', color=0x09b58d)
-    embed.add_field(name='Your Fortune', value=random.choice(fortunes))
+    embed.add_field(name='\u200b', value=random.choice(fortunes))
     await ctx.send(embed=embed)
 
 
