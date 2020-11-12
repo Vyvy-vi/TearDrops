@@ -616,24 +616,6 @@ async def automeme_routine(ctx):
             text=f"r/{response['subreddit']} | Requested by {ctx.author.name} | Enjoy your dank memes!")
         await ctx.send(embed=embed)
 
-@client.command(aliases=['ask_out'])
-async def wannagrabacoffee(ctx, *, link):
-    embed = discord.Embed(
-        title=f'{link}, Someone wants to grab a coffee with you...*wink *wink', color=0x11bf51)
-    embed.add_field(name='This happened....', value=f'{random.choice(cf)}')
-    embed.add_field(name='not actually')
-    await ctx.send(embed=embed)
-
-
-@client.command(aliases=['brew'])
-async def coffee(ctx):
-    op = f'{random.choice(cfe)}'
-    embed = discord.Embed(title='Coffee',
-                          description=op,
-                          color=discord.Color.red())
-    embed.set_footer(text=f'Caffeiene Level-{random.choice(cl)}.{random.choice(chill)}')
-    embed.set_image(url=random.choice(ur))
-    await ctx.send(embed=embed)
 
 
 @client.command(aliases=['random-username','ru','random_username'])
