@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 import random
-from inputs import responses,fortunes, quo, nerd, tech, rost, bk, cmp, blurt, cf, jk, cfe, chill, cl, ur
+from inputs import responses,fortunes, quo, nerd, tech, rost, bk, cmp, blurt, jk, ur
 
 
 class FunCog(commands.Cog):
@@ -99,4 +99,4 @@ class FunCog(commands.Cog):
 
 
 def setup(client);
-    bot.add_cog(Funcog(client))
+    bot.add_cog(FunCog(client))
