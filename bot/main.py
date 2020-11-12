@@ -286,24 +286,6 @@ async def pong(ctx):
     await ctx.send(embed=embed)
 
 
-@client.command()
-async def help(ctx, command_name=None, *args):
-    '''This command Ofc'''
-    if command_name is None:
-        embed = discord.Embed(
-            title='**Help command**', description='All commands of bot ;-; with description', color=discord.Color.dark_orange())
-        for command in client.commands:
-            embed.add_field(
-                name=f'{command}', value=f'`{command.short_doc}.`', inline=False)
-        await ctx.send(embed=embed)
-    else:
-        for command in client.commands:
-            if command_name == command.name:
-                embed = discord.Embed(
-                    title=f'**Help command: {command}**', description=f'Description : {command.short_doc} \n {command.brief}', color=discord.Color.dark_orange())
-                await ctx.send(embed=embed)
-
-
 @client.command(aliases=['daily'])
 async def cry(ctx):
     '''credit gain command for crying'''
@@ -426,69 +408,20 @@ async def shop(ctx):
 """
 
 
-@client.command(aliases=['botwhat'])
-async def botinfo(ctx):
-    '''Gives info about the bot'''
-    embed = discord.Embed(title='**Tear Drops:tm:**', description='A dynamic bot for _crying_, entertainment, economy and _other_ purposes...\n\
-I am here to reek sorrow and depression. Come let\'s cry together 😢\
-The prefix for the bot is _"qq"_, cuz you know _"less qq, more pew pew..."_ \
-The currency credits for the bot are _tears_(hahah obviously). Have fun being sad...\
-\nNOTE- Even though this is OpenSource and under MIT license, I request you to not start a commercial bot with the same name "Tear Drops:tm:"\
-This bot is under MIT License(provided as is, do whatever you want) \
-This has been uploaded to GitHub for educational and referencial purposes', colour=discord.Color.purple(), url='https://github.com/Py-Contributors/awesomeScripts/Tear-Drops_DiscordBot/')
-    embed.set_footer(text='I Hope that you enjoyed the bot....😭')
-    embed.set_image(
-        url='https://cdn.discordapp.com/attachments/582605227081990233/627388598181953548/unknown.png')
-    await ctx.send(embed=embed)
 
-
-@client.command(pass_context=True)
-async def echo(ctx, *args):
-    '''echos the words'''
-    output = ''
-    for word in args:
-        output += word
-        output += ' '
-    print(ctx.message.author.id)
-    if ctx.message.author.id == 558192816308617227:
-        for i in range(3):
-            await ctx.send(output)
+@client.command(aliases=['russian-roulette', 'gunshot', 'rr'])
+async def russian_roulette(ctx):
+    '''starts fun russian roulette game'''
+    global buls
+    if buls >= 6:
+        buls = 0
+        embed = discord.Embed(title='Russian Roulette.🔫',
+                              description='All you remember is the pain you felt when the bullet pierced your skull.', color=discord.Color.light_gray())
     else:
-        await ctx.send(output)
-
-
-@client.command(pass_context=True)
-async def say(ctx, *args):
-    """Gives the user's statement a nice richtext quote format"""
-    output = ''
-    for word in args:
-        output += word
-        output += ' '
-    user = ctx.message.author
-    embed = discord.Embed(
-        title=f'{output}', description=f'~{user}', colour=discord.Color.greyple())
+        buls += 1
+        embed = discord.Embed(title='Russian Roulette.🔫',
+                              description='You live to fight another day', color=discord.Color.blue())
     await ctx.send(embed=embed)
-
-
-@client.command(pass_context=True)
-async def urban(ctx, *args):
-    '''searches urban dictionary for words'''
-    baseurl = "https://www.urbandictionary.com/define.php?term="
-    output = ''
-    for word in args:
-        output += word
-    await ctx.send(baseurl + output)
-
-
-@client.command(pass_context=True)
-async def define(ctx, *args):
-    '''searches merriam-webster for meanings of words'''
-    baseurl = "https://www.merriam-webster.com/dictionary/"
-    output = ''
-    for word in args:
-        output += word
-        output += '%20'
-    await ctx.send(baseurl + output)
 
 
 @client.command(aliases=['diceroll', 'roll'])
@@ -518,65 +451,6 @@ Your prediction was wrong. 😖', color=discord.Color.dark_red())
 Command Usage-> qq dice <num> (between 1 and 6)', color=discord.Color.dark_red())
         await ctx.send(embed=embed)
 
-
-@client.command(pass_context=True)
-async def user(ctx, user: discord.Member):
-    '''gives user info'''
-    embed = discord.Embed(title="{}'s info".format(
-        user.name), description="Here's what I could find.", color=0x00ff00)
-    embed.add_field(name="Name", value=user.name, inline=True)
-    embed.add_field(name="ID", value=user.id, inline=True)
-    embed.add_field(name="Status", value=user.status, inline=True)
-    embed.add_field(name="Highest role", value=user.top_role)
-    embed.add_field(name="Joined", value=user.joined_at)
-    embed.add_field(name='Account Created on', value=user.created_at)
-    embed.set_thumbnail(url=user.avatar_url)
-    await ctx.send(embed=embed)
-
-
-@client.command(aliases=['russian-roulette', 'gunshot', 'rr'])
-async def russian_roulette(ctx):
-    '''starts fun russian roulette game'''
-    global buls
-    if buls >= 6:
-        buls = 0
-        embed = discord.Embed(title='Russian Roulette.🔫',
-                              description='All you remember is the pain you felt when the bullet pierced your skull.', color=discord.Color.light_gray())
-    else:
-        buls += 1
-        embed = discord.Embed(title='Russian Roulette.🔫',
-                              description='You live to fight another day', color=discord.Color.blue())
-    await ctx.send(embed=embed)
-
-
-@client.command(pass_context=True)
-async def wiki(ctx, *args):
-    '''Displays wikipedia info about given arguments'''
-    qu = ' '.join(list(args))
-    searchResults = wikipedia.search(qu)
-    if not searchResults:
-        embed = discord.Embed(
-            title=f'**{qu}**', description='It appears that there is no instance of this in Wikipedia index...', colour=discord.Color.dark_red())
-        embed.set_footer(text='Powered by Wikipedia...')
-        await ctx.send(embed=embed)
-    else:
-        try:
-            page = wikipedia.page(searchResults[0])
-            pg = 0
-        except wikipedia.DisambiguationError as err:
-            page = wikipedia.page(err.options[0])
-            pg = err.options
-        wikiTitle = str(page.title.encode('utf-8'))
-        wikiSummary = page.summary
-        embed = discord.Embed(title=f'**{wikiTitle[1:]}**', description=str(
-            wikiSummary[1:900]) + '...', color=discord.Color.dark_orange(), url=page.url)
-        embed.set_footer(text='Powered by Wikipedia...')
-        if pg != 0:
-            s = pg[1:10] + ['...']
-            s = ','.join(s)
-            embed.add_field(name='Did you mean?:', value=s)
-        embed.set_image(url=page.images[0])
-        await ctx.send(embed=embed)
 
 @client.command()
 async def automeme(ctx):
