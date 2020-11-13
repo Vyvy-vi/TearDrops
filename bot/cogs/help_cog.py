@@ -1,13 +1,14 @@
 import discord
-from discord.ext import commmands
+from discord.ext import commands
+
 
 class HelpCog(commands.Cog):
     def __init__(self, client):
         self.client = client
 
     @commands.command(aliases=['botwhat'])
-    async def botinfo(ctx):
-    '''Gives info about the bot'''
+    async def botinfo(self, ctx):
+        '''Gives info about the bot'''
         embed = discord.Embed(title='**Tear Drops:tm:**', description='A dynamic bot for _crying_, entertainment, economy and _other_ purposes...\n\
 I am here to reek sorrow and depression. Come let\'s cry together 😢\
 The prefix for the bot is _"qq"_, cuz you know _"less qq, more pew pew..."_ \
@@ -19,20 +20,24 @@ This has been uploaded to GitHub for educational and referencial purposes', colo
         embed.set_image(url='https://cdn.discordapp.com/attachments/582605227081990233/627388598181953548/unknown.png')
         await ctx.send(embed=embed)
 
-
     @commands.command()
-    async def help(ctx, command_name=None, *args):
-    '''Displays the help command'''
+    async def help(self, ctx, command_name=None, *args):
+        '''Displays the help command'''
         if command_name is None:
-            embed = discord.Embed(title='**Help command**', description='All commands of bot ;-; with description', color=discord.Color.dark_orange())
+            embed = discord.Embed(title='**Help command**',description='All commands of bot ;-; with description',color=discord.Color.dark_orange())
             for command in self.client.commands:
                 embed.add_field(
-                    name=f'{command}', value=f'`{command.short_doc}.`', inline=True)
+    name=f'{command}',
+    value=f'`{command.short_doc}.`',
+     inline=True)
             await ctx.send(embed=embed)
         else:
             for command in self.client.commands:
                 if command_name == command.name:
-                    embed = discord.Embed(title=f'**Help command: {command}**', description=f'Description : {command.short_doc} \n {command.brief}', color=discord.Color.dark_orange())
+                    embed = discord.Embed(
+    title=f'**Help command: {command}**',
+    description=f'Description : {command.short_doc} \n {command.brief}',
+     color=discord.Color.dark_orange())
                     await ctx.send(embed=embed)
 
 

@@ -3,12 +3,13 @@ from discord.ext import commands
 import ssl
 import aiohttp
 
+
 class MemeCog(commands.Cog):
     def __init__(self, client):
         self.client = client
 
     @commands.command(aliases=['meme'])
-    async def memes(ctx):
+    async def memes(self, ctx):
         async with aiohttp.ClientSession() as session:
             url = "https://meme-api.herokuapp.com/gimme"
             async with session.get(url) as response:
@@ -20,8 +21,6 @@ class MemeCog(commands.Cog):
             txt = f"r/{response['subreddit']} | Requested by {ctx.author.name} | Enjoy your dank memes"
             embed.set_footer(text=txt)
             await ctx.send(embed=embed)
-
-
 
 
 def setup(client):
