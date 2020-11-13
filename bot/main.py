@@ -11,9 +11,6 @@ import discord
 from discord.ext import commands, tasks
 from itertools import cycle
 
-from username import generate
-from joe_username import joe_generate
-
 from pymongo import MongoClient
 
 
@@ -39,11 +36,8 @@ db = DB_CLIENT.get_database('users_db')
 print(db.list_collection_names())
 timelast = 0
 timecheck = 0
-buls = 0
 ssl._create_default_https_context = ssl._create_unverified_context
 
-# Map of channel IDs to tasks.Loop automeme loops
-automeme_loops = {}
 
 # intents (new discord feature to limit bots to certain bucket events)
 intents = discord.Intents.default()
@@ -78,7 +72,9 @@ ls_cog = ['cogs.fun_cog',
           'cogs.help_cog',
           'cogs.coffee_cog',
           'cogs.meme_cog',
-          'cogs.utils_cog']
+          'cogs.utils_cog',
+          'cogs.name_cog',
+          'cogs.game_cog']
 @client.event
 async def on_ready():
     '''
@@ -377,111 +373,6 @@ async def shop(ctx):
     items= []
     embed=discord.Embed(title='**TearShops**',description = '',colour=discord.Color.red())
 """
-
-
-
-@client.command(aliases=['russian-roulette', 'gunshot', 'rr'])
-async def russian_roulette(ctx):
-    '''starts fun russian roulette game'''
-    global buls
-    if buls >= 6:
-        buls = 0
-        embed = discord.Embed(title='Russian Roulette.🔫',
-                              description='All you remember is the pain you felt when the bullet pierced your skull.', color=discord.Color.light_gray())
-    else:
-        buls += 1
-        embed = discord.Embed(title='Russian Roulette.🔫',
-                              description='You live to fight another day', color=discord.Color.blue())
-    await ctx.send(embed=embed)
-
-
-@client.command(aliases=['diceroll', 'roll'])
-async def dice(ctx, amount: int):
-    '''dice-guess game'''
-    num = amount
-    if num <= 6:
-        user = ctx.message.author
-        server = db[str(user.guild.id)]
-        stats = list(server.find({'id': user.id}))
-        cred = stats[-1]['credits']
-        numtemp = random.randint(1, 6)
-        if num == numtemp:
-            cred += 50
-            newstats = {"$set": {'credits': cred}}
-            server.update_one(stats[-1], newstats)
-            embed = discord.Embed(
-                title='Dice-roll...🎲', description=f'The dice rolled a {numtemp}.\nYou have been awarded 50 tears for this...', color=discord.Color.dark_red())
-            await ctx.send(embed=embed)
-        else:
-            embed = discord.Embed(title='Dice-roll...🎲', description=f'The dice rolled a {numtemp}.\n\
-Your prediction was wrong. 😖', color=discord.Color.dark_red())
-            await ctx.send(embed=embed)
-
-    else:
-        embed = discord.Embed(title='Dice-roll...🎲', description='Please enter a valid number argument.\n\
-Command Usage-> qq dice <num> (between 1 and 6)', color=discord.Color.dark_red())
-        await ctx.send(embed=embed)
-
-
-@client.command()
-async def automeme(ctx):
-    '''Triggers the automeme taskloop for the channel context'''
-    channel_id = ctx.channel.id
-    if channel_id in automeme_loops:
-        await ctx.send('Automeme already running here')
-    else:
-        # using decorator instead of tasks.Loop directly to preserve default arguments
-        loop = tasks.loop(seconds=600)(automeme_routine)
-        automeme_loops[channel_id] = loop
-        loop.start(ctx)
-
-@client.command()
-async def automeme_cancel(ctx):
-    '''Cancel the Automeme task in the current channel'''
-    channel_id = ctx.channel.id
-    if channel_id not in automeme_loops:
-        await ctx.send('Automeme not running here')
-    else:
-        automeme_loops[channel_id].cancel()
-        del automeme_loops[channel_id]
-        await ctx.send('Automeme canceled here')
-
-async def automeme_routine(ctx):
-    '''
-    sends a meme every 10 mins
-    '''
-    async with aiohttp.ClientSession() as session:
-        url = "https://meme-api.herokuapp.com/gimme"
-        async with session.get(url) as response:
-            response = await response.json()
-        embed = discord.Embed(
-            title=response['title'], url=response['postLink'], color=discord.Color.dark_orange())
-        embed.set_image(url=response['url'])
-        embed.set_footer(
-            text=f"r/{response['subreddit']} | Requested by {ctx.author.name} | Enjoy your dank memes!")
-        await ctx.send(embed=embed)
-
-
-
-@client.command(aliases=['random-username','ru','random_username'])
-async def username(ctx, lim:int=30):
-    op = generate(lim)
-    if lim == 30:
-        op = generate(random.randint(20,50))
-    embed = discord.Embed(title=op,
-            description='That sounds cool :',
-            color=discord.Color.dark_magenta())
-    await ctx.send(embed=embed)
-
-@client.command(aliases=['joe-username','ju'])
-async def joe_username(ctx, lim:int=4):
-    op = joe_generate(lim)
-    if lim == 4:
-        op = joe_generate(random.randint(3,11))
-    embed = discord.Embed(title=op,
-            description='That sounds cool, cool, cool.. Right.',
-            color=discord.Color.gold())
-    await ctx.send(embed=embed)
 
 # error_handling
 @client.event
