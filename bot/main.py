@@ -73,6 +73,12 @@ STATUS = cycle([
     "with sparkles"])
 
 
+ls_cog = ['cogs.fun_cog',
+          'cogs.ping_cog',
+          'cogs.help_cog',
+          'cogs.coffee_cog',
+          'cogs.meme_cog',
+          'cogs.utils_cog']
 @client.event
 async def on_ready():
     '''
@@ -485,6 +491,12 @@ async def on_command_error(ctx, error):
         await ctx.send("Invalid command used..... ")
     else:
         await ctx.send(error)
+
+
+# cog-loader
+if __name__ == "__main__":
+    for extension in ls_cog:
+        client.load_extension(extension)
 
 # Running the BOT:
 client.run(str(DISCORD_BOT_TOKEN))
