@@ -74,7 +74,8 @@ ls_cog = ['cogs.fun_cog',
           'cogs.name_cog',
           'cogs.game_cog',
           'cogs.economy_cog',
-          'cogs.events_cog']
+          'cogs.events_cog',
+          'cogs.error_cog']
 
 
 @client.event
@@ -92,9 +93,6 @@ async def on_ready():
     print('Successfully logged in as {0.user}...'.format(client))
     # client.user gives the bots discord username tag
 
-
-
-
 @tasks.loop(seconds=600)
 async def change_status():
     '''
@@ -103,18 +101,6 @@ async def change_status():
     await client.change_presence(activity=discord.Game(next(STATUS)))
     # NOTE- There are other methods, that can be utilised instead of just
     # 'playing'
-
-
-
-
-# error_handling
-@client.event
-async def on_command_error(ctx, error):
-    # TODO- Error Handling
-    if isinstance(error, commands.CommandNotFound):
-        await ctx.send("Invalid command used..... ")
-    else:
-        await ctx.send(error)
 
 
 # cog-loader
