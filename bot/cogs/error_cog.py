@@ -9,7 +9,7 @@ class ErrorCog(commands.Cog):
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
         # TODO- Error Handling
-        if type(error.original) is commands.CommandNotFound:
+        if isinstance(error, commands.CommandNotFound):
             await ctx.send("Invalid command used...")
         else:
             await ctx.send(error)
