@@ -1,7 +1,7 @@
 import discord
 import wikipedia
+import wolframalpha
 from discord.ext import commands
-
 
 class UtilsCog(commands.Cog):
     def __init__(self, client):
@@ -92,6 +92,14 @@ class UtilsCog(commands.Cog):
                 embed.add_field(name='Did you mean?:', value=s)
             embed.set_image(url=page.images[0])
             await ctx.send(embed=embed)
+
+    @commands.command(pass_context=True)
+    async def wolfram(self, ctx, *args):
+        '''displays info from wolfram'''
+        ques = ' '.join(list(args))
+        wolfram = wolframalpha.Client("QYKRJ8-YT2JP8U85T")
+        res = wolfram.query(ques)
+        await ctx.send(next(res.results).text)
 
 def setup(client):
     client.add_cog(UtilsCog(client))

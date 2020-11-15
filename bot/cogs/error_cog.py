@@ -1,5 +1,5 @@
 import discord
-from dicord.ext import commands
+from discord.ext import commands
 
 
 class ErrorCog(commands.Cog):
@@ -9,9 +9,9 @@ class ErrorCog(commands.Cog):
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
         # TODO- Error Handling
-        if isinstance(error, commands.CommandNotFound):
+        if type(error.original) is commands.CommandNotFound:
             await ctx.send("Invalid command used...")
         else:
             await ctx.send(error)
 def setup(client):
-    client.add_cog(ErrorCog)
+    client.add_cog(ErrorCog(client))
