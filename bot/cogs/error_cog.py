@@ -13,5 +13,7 @@ class ErrorCog(commands.Cog):
             await ctx.send("Invalid command used...")
         else:
             await ctx.send(error)
+
+
 def setup(client):
     client.add_cog(ErrorCog(client))

@@ -93,6 +93,7 @@ async def on_ready():
     print('Successfully logged in as {0.user}...'.format(client))
     # client.user gives the bots discord username tag
 
+
 @tasks.loop(seconds=600)
 async def change_status():
     '''
@@ -110,7 +111,7 @@ if __name__ == "__main__":
 
 
 # Running the BOT:
-if DISCORD_BOT_TOKEN != None:
+if DISCORD_BOT_TOKEN is not None:
     client.run(str(DISCORD_BOT_TOKEN))
-else: 
+else:
     print('No token Loaded')

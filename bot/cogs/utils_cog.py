@@ -3,6 +3,7 @@ import wikipedia
 import wolframalpha
 from discord.ext import commands
 
+
 class UtilsCog(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -52,7 +53,11 @@ class UtilsCog(commands.Cog):
     @commands.command(pass_context=True)
     async def user(self, ctx, user: discord.Member):
         '''gives user info'''
-        embed = discord.Embed(title="{}'s info".format(user.name), description="Here's what I could find.", color=0x00ff00)
+        embed = discord.Embed(
+            title="{}'s info".format(
+                user.name),
+            description="Here's what I could find.",
+            color=0x00ff00)
         embed.add_field(name="Name", value=user.name, inline=True)
         embed.add_field(name="ID", value=user.id, inline=True)
         embed.add_field(name="Status", value=user.status, inline=True)
@@ -100,6 +105,7 @@ class UtilsCog(commands.Cog):
         wolfram = wolframalpha.Client("QYKRJ8-YT2JP8U85T")
         res = wolfram.query(ques)
         await ctx.send(next(res.results).text)
+
 
 def setup(client):
     client.add_cog(UtilsCog(client))
