@@ -28,7 +28,7 @@ This has been uploaded to GitHub for educational and referencial purposes', colo
             for command in self.client.commands:
                 embed.add_field(
     name=f'{command}',
-    value=f'`{command.short_doc}.`',
+    value=f'\u200b',
      inline=True)
             await ctx.send(embed=embed)
         else:
