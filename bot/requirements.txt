@@ -2,5 +2,4 @@ discord.py
 pymongo
 wikipedia
 requests
-aiohttp
 dnspython
