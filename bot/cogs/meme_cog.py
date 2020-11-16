@@ -1,6 +1,5 @@
 import discord
 from discord.ext import commands, tasks
-import ssl
 import aiohttp
 
 # Map of channel IDs to tasks.Loop automeme loops

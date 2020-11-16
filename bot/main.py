@@ -1,11 +1,3 @@
-# TODO - transfer, casino, etc commands
-
-
-import aiohttp
-import time
-import random
-
-import os
 import ssl
 import discord
 from discord.ext import commands, tasks

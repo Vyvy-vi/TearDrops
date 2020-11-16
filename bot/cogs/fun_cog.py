@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 import random
-from .inputs import responses, fortunes, quo, nerd, tech, rost, bk, cmp, blurt, jk, ur
+from .inputs import responses, fortunes, quo, nerd, tech, rost, bk, cmp, blurt, jk
 
 
 class FunCog(commands.Cog):

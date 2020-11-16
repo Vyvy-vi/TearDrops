@@ -1,4 +1,5 @@
 import discord
+import random
 from discord.ext import commands
 from .username import generate
 from .joeUsername import joe_generate

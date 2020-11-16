@@ -1,6 +1,6 @@
-import discord
 import time
 import random
+import discord
 from discord.ext import commands
 from pymongo import MongoClient
 

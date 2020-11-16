@@ -10,7 +10,9 @@ class ErrorCog(commands.Cog):
     async def on_command_error(self, ctx, error):
         # TODO- Error Handling
         if isinstance(error, commands.CommandNotFound):
-            await ctx.send("Invalid command used...")
+            embed = discord.Embed(title='Invalid command used...',
+                                  colour=discord.Colour.red())
+            await ctx.send(embed=embed)
         else:
             await ctx.send(error)
 

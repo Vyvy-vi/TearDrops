@@ -36,7 +36,7 @@ This has been uploaded to GitHub for educational and referencial purposes',
             for command in self.client.commands:
                 embed.add_field(
                     name=f'{command}',
-                    value=f'\u200b',
+                    value='\u200b',
                     inline=True)
             await ctx.send(embed=embed)
         else:
