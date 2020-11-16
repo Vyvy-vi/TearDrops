@@ -755,4 +755,7 @@ async def on_command_error(ctx, error):
         await ctx.send(error)
 
 # Running the BOT:
-client.run(str(DISCORD_BOT_TOKEN))
+if DISCORD_BOT_TOKEN != None:
+    client.run(str(DISCORD_BOT_TOKEN))
+else: 
+    print('No token Loaded')
