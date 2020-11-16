@@ -108,5 +108,9 @@ if __name__ == "__main__":
     for extension in ls_cog:
         client.load_extension(extension)
 
+
 # Running the BOT:
-client.run(str(DISCORD_BOT_TOKEN))
+if DISCORD_BOT_TOKEN != None:
+    client.run(str(DISCORD_BOT_TOKEN))
+else: 
+    print('No token Loaded')
