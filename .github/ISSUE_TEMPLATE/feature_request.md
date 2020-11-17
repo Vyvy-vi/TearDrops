@@ -2,7 +2,7 @@
 name: Feature request
 about: Suggest an idea for this project
 title: "[FEAT]"
-labels: "🚦 status: pending response"
+labels: "🚦 status: awaiting triage"
 assignees: "Vyvy-vi"
 ---
 

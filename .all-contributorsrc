@@ -98,7 +98,8 @@
       "avatar_url": "https://avatars0.githubusercontent.com/u/17693494?v=4",
       "profile": "https://github.com/AllanRegush",
       "contributions": [
-        "ideas"
+        "ideas",
+        "doc"
       ]
     },
     {
@@ -115,6 +116,33 @@
       "name": "Alex Nørgaard",
       "avatar_url": "https://avatars0.githubusercontent.com/u/16031716?v=4",
       "profile": "https://github.com/AbstractUmbra",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "LazybuddyNK",
+      "name": "Nitesh Kumar",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/59273928?v=4",
+      "profile": "https://github.com/LazybuddyNK",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "IcemanEtika",
+      "name": "TJ LeBlanc",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/44535539?v=4",
+      "profile": "https://github.com/IcemanEtika",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "s04",
+      "name": "s04",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/70141652?v=4",
+      "profile": "https://github.com/s04",
       "contributions": [
         "ideas"
       ]

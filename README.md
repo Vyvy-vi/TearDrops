@@ -1,14 +1,16 @@
 # Tear Drops
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-[![built-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
-[![built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://github.com/Vyvy-vi/)
 <p>
-<a href="https://raw.githubusercontent.com/Vyvy-vi/TearDrops/main/LICENSE"><img src="https://img.shields.io/github/license/Py-Contributors/awesomeScripts?style=for-the-badge" alt="MIT license"></a>
-<a href="https://discord.gg/jTzGuYx"><img src="https://img.shields.io/discord/758030555005714512.svg?label=Discord&logo=Discord&colorB=7289da&style=for-the-badge" alt="discord invite"></a>
+<a href="https://www.python.org/"><img src="http://ForTheBadge.com/images/badges/made-with-python.svg" alt="made with Python"></a>
+<a href="https://github.com/Vyvy-vi/"><img src="http://ForTheBadge.com/images/badges/built-with-love.svg" alt="built with Love"></a><br>
+<a href="https://raw.githubusercontent.com/Vyvy-vi/TearDrops/main/LICENSE"><img src="https://img.shields.io/github/license/Vyvy-vi/TearDrops?style=flat-square" alt="MIT license"></a>
+<a href="https://github.com/Rapptz/discord.py/releases/tag/v1.5.0"><img src="https://img.shields.io/badge/discord.py-v1.5.0-7289da.svg?style=flat-square" alt="discord.py version"></a>
 </p>
+
+[![TearDrops Support](https://discordapp.com/api/guilds/765880027467350047/widget.png?style=banner2)](https://discord.io/TearDropsSupport)
 
 ![tears gif](cries.gif)
 ![cri](https://images-ext-1.discordapp.net/external/s6Id0htXD7zAkT-yxz52y_YNj97WF9yzELQmtIk-iBs/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/627772985872220161/bdfd588427f4335fece00c0191ea1406.webp?width=292&height=294)
@@ -70,9 +72,12 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="https://mikeysan.hashnode.dev"><img src="https://avatars1.githubusercontent.com/u/13338176?v=4" width="100px;" alt=""/><br /><sub><b>Michael Mba</b></sub></a><br /><a href="#ideas-mikeysan" title="Ideas, Planning, & Feedback">🤔</a></td>
-    <td align="center"><a href="https://github.com/AllanRegush"><img src="https://avatars0.githubusercontent.com/u/17693494?v=4" width="100px;" alt=""/><br /><sub><b>Allan Regush</b></sub></a><br /><a href="#ideas-AllanRegush" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/AllanRegush"><img src="https://avatars0.githubusercontent.com/u/17693494?v=4" width="100px;" alt=""/><br /><sub><b>Allan Regush</b></sub></a><br /><a href="#ideas-AllanRegush" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/Vyvy-vi/TearDrops/commits?author=AllanRegush" title="Documentation">📖</a></td>
     <td align="center"><a href="https://mattcowley.co.uk/"><img src="https://avatars2.githubusercontent.com/u/12371363?v=4" width="100px;" alt=""/><br /><sub><b>Matt (IPv4) Cowley</b></sub></a><br /><a href="#ideas-MattIPv4" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://github.com/AbstractUmbra"><img src="https://avatars0.githubusercontent.com/u/16031716?v=4" width="100px;" alt=""/><br /><sub><b>Alex Nørgaard</b></sub></a><br /><a href="#ideas-AbstractUmbra" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/LazybuddyNK"><img src="https://avatars3.githubusercontent.com/u/59273928?v=4" width="100px;" alt=""/><br /><sub><b>Nitesh Kumar</b></sub></a><br /><a href="https://github.com/Vyvy-vi/TearDrops/commits?author=LazybuddyNK" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/IcemanEtika"><img src="https://avatars0.githubusercontent.com/u/44535539?v=4" width="100px;" alt=""/><br /><sub><b>TJ LeBlanc</b></sub></a><br /><a href="https://github.com/Vyvy-vi/TearDrops/commits?author=IcemanEtika" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/s04"><img src="https://avatars2.githubusercontent.com/u/70141652?v=4" width="100px;" alt=""/><br /><sub><b>s04</b></sub></a><br /><a href="#ideas-s04" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
 </table>
 

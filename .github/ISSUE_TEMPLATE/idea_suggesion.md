@@ -2,7 +2,7 @@
 name: Idea/Suggestion
 about: For giving suggestions and ideas.
 title: "[IDEA]"
-labels: "🚦 status: pending response"
+labels: "🚦 status: awaiting triage"
 assignees: Vyvy-vi
 ---
 
@@ -17,13 +17,13 @@ assignees: Vyvy-vi
 <!--Put an x in the [] of the option you want to choose-->
 
 1- Would you like to work on this idea?
-- [] Yes
-- [] No
+- [ ] Yes
+- [ ] No
 
 2- Is this idea an original idea or something you have seen elsewhere?
-- [] It is original.
-- [] No, I saw this somewhere.
-- [] Prefer not to say.
+- [ ] It is original.
+- [ ] No, I saw this somewhere.
+- [ ] Prefer not to say.
 
 3- If you have seen this idea somewhere, can you state where?
 <!--We have a policy-->
@@ -40,14 +40,14 @@ assignees: Vyvy-vi
 4- How much would you rate the current version of the bot?
 <!--honestly?-->
 
-- [] Amazing(5/5)
-- [] Good(4/5)
-- [] Not Bad(3/5)
+- [ ] Amazing(5/5)
+- [ ] Good(4/5)
+- [ ] Not Bad(3/5)
 - [x] Meh(2/5)
-- [] It succ(1/5)
+- [ ] It succ(1/5)
 
-- [] Sad, depressing and makes me want to cry
-
+- [ ] Sad, depressing and makes me want to cry
+ 
 ## Additional information
 
 <!--Add any other context about the idea here.-->
