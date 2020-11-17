@@ -36,6 +36,9 @@ jobs:
       run: |
         pylint_runner
     - name: Build Test (cog-loader)
+      env:
+        DISCORD_BOT_TOKEN: foo
+        MONGO_CONNECTION_STRING: bar
       run: |
         python ./bot/main.py
     # - name: Test with pytest
