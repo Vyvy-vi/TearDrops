@@ -1,12 +1,7 @@
 # TODO - transfer, casino, etc commands
-import aiohttp
-import time
-import random
-import os
-import ssl
+from itertools import cycle
 import discord
 from discord.ext import commands, tasks
-from itertools import cycle
 from pymongo import MongoClient
 # temp->
 # modules for wiki and wolfram queries
@@ -19,7 +14,6 @@ DISCORD_BOT_TOKEN = get_environment_variable("DISCORD_BOT_TOKEN")
 MONGO_CONNECTION_STRING = get_environment_variable("MONGO_CONNECTION_STRING")
 DB_CLIENT = MongoClient(MONGO_CONNECTION_STRING)
 db = DB_CLIENT.get_database('users_db')
-ssl._create_default_https_context = ssl._create_unverified_context
 # intents (new discord feature to limit bots to certain bucket events)
 intents = discord.Intents.default()
 intents.typing = False
@@ -53,6 +47,8 @@ ls_cog = ['cogs.fun_cog',
           'cogs.economy_cog',
           'cogs.events_cog',
           'cogs.error_cog']
+
+
 @client.event
 async def on_ready():
     '''
@@ -65,6 +61,8 @@ async def on_ready():
     print("Bot has Successfully logged onto Discord...")
     print('Successfully logged in as {0.user}...'.format(client))
     # client.user gives the bots discord username tag
+
+
 @tasks.loop(seconds=600)
 async def change_status():
     '''
@@ -81,8 +79,7 @@ if __name__ == "__main__":
 
 # Running the BOT:
 client.run(str(DISCORD_BOT_TOKEN))
-if DISCORD_BOT_TOKEN != None:
+if DISCORD_BOT_TOKEN is not None:
     client.run(str(DISCORD_BOT_TOKEN))
 else:
     print('No token Loaded')
-
