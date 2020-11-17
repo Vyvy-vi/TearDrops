@@ -78,7 +78,6 @@ if __name__ == "__main__":
 
 
 # Running the BOT:
-client.run(str(DISCORD_BOT_TOKEN))
 if DISCORD_BOT_TOKEN is not None:
     client.run(str(DISCORD_BOT_TOKEN))
 else:
