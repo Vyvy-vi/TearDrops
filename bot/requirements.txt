@@ -1,7 +1,6 @@
 discord.py
 pymongo
 wikipedia
-wolframalpha
-requests
+wolframalpha==4.0.0
 aiohttp
 dnspython
