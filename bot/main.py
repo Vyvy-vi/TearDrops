@@ -2,11 +2,6 @@
 from itertools import cycle
 import discord
 from discord.ext import commands, tasks
-from pymongo import MongoClient
-# temp->
-# modules for wiki and wolfram queries
-# import wolframalpha
-# import requests
 # Standard modules
 # TOKEN, MONGO URI are env-vars
 from utils import get_environment_variable
