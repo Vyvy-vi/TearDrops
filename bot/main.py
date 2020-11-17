@@ -11,9 +11,6 @@ from pymongo import MongoClient
 # TOKEN, MONGO URI are env-vars
 from utils import get_environment_variable
 DISCORD_BOT_TOKEN = get_environment_variable("DISCORD_BOT_TOKEN")
-MONGO_CONNECTION_STRING = get_environment_variable("MONGO_CONNECTION_STRING")
-DB_CLIENT = MongoClient(MONGO_CONNECTION_STRING)
-db = DB_CLIENT.get_database('users_db')
 # intents (new discord feature to limit bots to certain bucket events)
 intents = discord.Intents.default()
 intents.typing = False
@@ -78,7 +75,7 @@ if __name__ == "__main__":
 
 
 # Running the BOT:
-if DISCORD_BOT_TOKEN is not None:
+if DISCORD_BOT_TOKEN != 'foo':
     client.run(str(DISCORD_BOT_TOKEN))
 else:
     print('No token Loaded')
