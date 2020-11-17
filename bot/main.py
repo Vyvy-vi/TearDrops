@@ -67,6 +67,7 @@ async def change_status():
 if __name__ == "__main__":
     for extension in ls_cog:
         client.load_extension(extension)
+        print(f'Loaded cog : {extension}')
 
 
 # Running the BOT:
