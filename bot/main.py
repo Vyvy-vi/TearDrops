@@ -63,6 +63,7 @@ async def change_status():
     await client.change_presence(activity=discord.Game(next(STATUS)))
     # NOTE- There are other methods, that can be utilised instead of just
     # 'playing'
+
 # cog-loader
 if __name__ == "__main__":
     for extension in ls_cog:
@@ -70,8 +71,8 @@ if __name__ == "__main__":
         print(f'Loaded cog : {extension}')
 
 
-# Running the BOT:
-if DISCORD_BOT_TOKEN != 'foo':
-    client.run(str(DISCORD_BOT_TOKEN))
-else:
-    print('No token Loaded')
+    # Running the BOT:
+    if DISCORD_BOT_TOKEN != 'foo':
+        client.run(str(DISCORD_BOT_TOKEN))
+    else:
+        print('No token Loaded')
