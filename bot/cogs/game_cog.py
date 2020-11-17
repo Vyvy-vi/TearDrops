@@ -1,8 +1,8 @@
-from utils import get_environment_variable
-import discord
 import random
-from discord.ext import commands
+import discord
 from pymongo import MongoClient
+from discord.ext import commands
+from utils import get_environment_variable
 
 buls = 1
 

@@ -1,6 +1,6 @@
+import random
 import discord
 from discord.ext import commands
-import random
 from .inputs import responses, fortunes, quo, nerd, tech, rost, bk, cmp, blurt, jk
 
 

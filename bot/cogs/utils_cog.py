@@ -35,19 +35,14 @@ class UtilsCog(commands.Cog):
     async def urban(self, ctx, *args):
         '''searches urban dictionary for words'''
         baseurl = "https://www.urbandictionary.com/define.php?term="
-        output = ''
-        for word in args:
-            output += word
+        output = args.join('')
         await ctx.send(baseurl + output)
 
     @commands.command(pass_context=True)
     async def define(self, ctx, *args):
         '''searches merriam-webster for meanings of words'''
         baseurl = "https://www.merriam-webster.com/dictionary/"
-        output = ''
-        for word in args:
-            output += word
-            output += '%20'
+        output = args.join('%20')
         await ctx.send(baseurl + output)
 
     @commands.command(pass_context=True)

@@ -38,8 +38,8 @@ async def update_data(user):
                 server.insert_one(
                     {'id': user.id, 'experience': 0, 'level': 1, 'credits': 0, 'crytime': 0})
                 print(f'{user.id} added to database')
-        except Exception as e:
-            print(e)
+        except BaseException:
+            print('Some error occured')
 
 
 async def add_experience(message, user, exp):
@@ -260,13 +260,13 @@ Wait for like {round((10800 - time.time()+tim)//3600)} hours or something.",
                 value="._.")
         await ctx.send(embed=embed)
 
-    """ The marketplace ---> TODO
-    @commands.command(aliases=['market'])
-    async def shop(self, ctx):
-        '''market command'''
-        items= []
-        embed=discord.Embed(title='**TearShops**',description = f'items',colour=discord.Color.red())
-    """
+
+""" The marketplace ---> TODO
+@commands.command(aliases=['market'])
+async def shop(self, ctx):
+    '''market command'''
+    items= []
+    embed=discord.Embed(title='**TearShops**',description = f'items',colour=discord.Color.red())"""
 
 
 def setup(client):

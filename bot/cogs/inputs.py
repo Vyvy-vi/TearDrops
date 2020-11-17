@@ -1471,7 +1471,6 @@ quo = {
     "Do you know what the big problemis in telling Fantasy and Reality apart?  They're both ridiculous....": "Someone...",
     "Without the capacity for pain, we can't feel the hurt that we inflict...": "Someone...",
     "I want you to know that someone cares. Someone, not me": "Someone...",
-    "Our greatest weakness lies in giving up. The most certain way to succeed is always to try just one more time.": "Someone...",
     "The will to win, the desire to succeed, the urge to reach your full potential... these are the keys that will unlock the door to personal excellence.": "Someone...",
     "Our greatest weakness lies in giving up. The most certain way to succeed is always to try just one more time.": "Someone...",
     "Always do your best. What you plant now, you will harvest later.": "Someone...",

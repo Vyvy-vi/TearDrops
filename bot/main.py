@@ -1,7 +1,6 @@
-import ssl
+from itertools import cycle
 import discord
 from discord.ext import commands, tasks
-from itertools import cycle
 
 from pymongo import MongoClient
 
@@ -24,8 +23,6 @@ MONGO_CONNECTION_STRING = get_environment_variable("MONGO_CONNECTION_STRING")
 
 DB_CLIENT = MongoClient(MONGO_CONNECTION_STRING)
 db = DB_CLIENT.get_database('users_db')
-
-ssl._create_default_https_context = ssl._create_unverified_context
 
 
 # intents (new discord feature to limit bots to certain bucket events)

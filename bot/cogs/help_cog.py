@@ -26,7 +26,7 @@ This has been uploaded to GitHub for educational and referencial purposes',
         await ctx.send(embed=embed)
 
     @commands.command()
-    async def help(self, ctx, command_name=None, *args):
+    async def help(self, ctx, command_name=None):
         '''Displays the help command'''
         if command_name is None:
             embed = discord.Embed(

@@ -35,7 +35,7 @@ def random_color():
     return rand(colors)
 
 
-def format(array):
+def formatList(array):
     return "".join(map(lambda word: word.title(), array))
 
 
@@ -45,13 +45,13 @@ def generate(max_size: int = 30):
     color = random_color()
 
     if len(descriptor + noun + color) <= max_size:
-        return format([descriptor, color, noun])
+        return formatList([descriptor, color, noun])
     elif len(descriptor + noun) <= max_size:
-        return format([descriptor, color])
+        return formatList([descriptor, color])
     elif len(color + noun) <= max_size:
-        return format([color, noun])
+        return formatList([color, noun])
     else:
-        return format([noun])[:max_size]
+        return formatList([noun])[:max_size]
 
 
 if __name__ == "__main__":
