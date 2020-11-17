@@ -18,16 +18,25 @@ colors = "blue blueGreen darkCyan electricBlue greenBlue lightCyan lightSeaGreen
     " ")
 
 
-def rand(array): return array[math.floor(random.random() * len(array))]
+def rand(array):
+    return array[math.floor(random.random() * len(array))]
 
 
-def random_noun(): return rand(nlist)
-def random_descriptor(noun): return rand(
-    descriptors) if noun not in creatures else rand(descriptors + creature_descriptors)
+def random_noun():
+    return rand(nlist)
 
 
-def random_color(): return rand(colors)
-def format(array): return "".join(map(lambda word: word.title(), array))
+def random_descriptor(noun):
+    return rand(descriptors) if noun not in creatures else rand(
+        descriptors + creature_descriptors)
+
+
+def random_color():
+    return rand(colors)
+
+
+def format(array):
+    return "".join(map(lambda word: word.title(), array))
 
 
 def generate(max_size: int = 30):

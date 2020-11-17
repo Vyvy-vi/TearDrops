@@ -60,7 +60,7 @@ async def level_up(user, channel):
     experience = stats[-1]['experience']
     x = 35
     cnt = 1
-    while (x < experience):
+    while x < experience:
         x = 2 * x + 10
         cnt += 1
 
@@ -111,7 +111,7 @@ class EconomyCog(commands.Cog):
         if message.author == self.client.user:
             # self-ignore, to prevent responses to self
             return
-        elif(message.author.bot):
+        elif message.author.bot:
             # To ignore the messages of other bots
             return
         else:
