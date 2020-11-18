@@ -20,7 +20,7 @@ client.remove_command('help')
 # status-change-cycle(The bot changes presence after a few mins.)
 STATUS = cycle([
     "qq help | :(",
-    "with your heart"
+    "with your heart",
     "in tears",
     "with tears",
     "with ",
