@@ -1,8 +1,9 @@
+import random
 import discord
 import wikipedia
 import wolframalpha
 from discord.ext import commands
-
+from translate import Translator
 
 class UtilsCog(commands.Cog):
     def __init__(self, client):
@@ -99,6 +100,19 @@ class UtilsCog(commands.Cog):
         wolfram = wolframalpha.Client("QYKRJ8-YT2JP8U85T")
         res = wolfram.query(ques)
         await ctx.send(next(res.results).text)
+
+    @commands.command(pass_context=True)
+    async def translate(self, ctx, lang, *, args):
+        '''Converts text to different language'''
+        color = "%06x" % random.randint(0, 0xFFFFFF)
+
+        translator = Translator(to_lang=f"{lang}", from_lang='autodetect')
+        translated = translator.translate(f"{args}")
+        embed = discord.Embed(title= "---translating--->",
+                              description= f'{translated}\n~{ctx.message.author.mention}',
+                              colour= int(color, 16))
+        embed.set_footer(text=f'Translated to {lang}...')
+        await ctx.send(embed=embed)
 
 
 def setup(client):

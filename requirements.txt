@@ -2,6 +2,6 @@ discord.py
 pymongo
 wikipedia
 wolframalpha
-requests
 aiohttp
 dnspython
+translate
