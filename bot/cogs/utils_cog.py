@@ -1,6 +1,7 @@
 import random
 import discord
 import wikipedia
+import requests
 import wolframalpha
 from discord.ext import commands
 from translate import Translator
@@ -100,6 +101,61 @@ class UtilsCog(commands.Cog):
         wolfram = wolframalpha.Client("QYKRJ8-YT2JP8U85T")
         res = wolfram.query(ques)
         await ctx.send(next(res.results).text)
+
+    @commands.command(pass_context=True)
+    async def weather(self, ctx, *, loc):
+        '''displays weather data'''
+        p = {"http": "http://111.233.225.166:1234"}
+        k = "353ddfe27aa4b3537c47c975c70b58d9" # dummy key(for now)
+        api_r = requests.get(f"http://api.openweathermap.org/data/2.5/weather?appid={k}&q={loc}, verify= False, proxies=p")
+        q = api_r.json()
+        if q["cod"] != 404:
+            weather_data={}
+            temp = q['main']['temp']
+            weather_data['Temperature'] = f'{str(round(temp-273.16, 2))} °C'
+
+            p = q['main']['pressure']
+            weather_data['Pressure'] = f'{str(p)} hpa'
+
+            hum = q['main']['humidity']
+            weather_data['Humidity'] = f'str{hum} %'
+
+            wind = q['wind']['speed']
+            weather_data['Wind Speed'] = wind
+
+            w_obj = q['weather'][0]
+            desc = w_obj['description']
+            weather_data['\nDescription'] = desc
+            w_id = str(w_obj['id'])
+            if '8' in w_id[0]:
+                if w_id=='800':
+                    col=0xd8d1b4
+                else:
+                    col=0xbababa
+            elif '7' in w_id[0]:
+                col=0xc2eaea
+            elif '6' in w_id[0]:
+                col=0xdde5f4
+            elif '5' in w_id[0]:
+                col= 0x68707c
+            elif '3' in w_id[0]:
+                col= 0xb1c4d8
+            elif '2' in w_id[0]:
+                col= 0x4d5665
+            else: col= 0x000000
+            weather_data = [f'**{field}**: {weather_data[field]}' for field in weather_data]
+            embed = discord.Embed(title='Weather',
+                                  description=f'displaying weather of {loc}...',
+                                  color=col)
+            embed.add_field(name='\u200b',value='\n'.join(weather_data))
+            embed.set_footer(text=f'Requested by {ctx.message.author.name}')
+        else:
+            embed = discord.Embed(title='Weather',
+                                  description='API Connection Refused',
+                                  color=discord.Color.red())
+            embed.set_footer(text='Requested by {ctx.message.author.name}')
+
+        await ctx.send(embed=embed)
 
     @commands.command(pass_context=True)
     async def translate(self, ctx, lang, *, args):
