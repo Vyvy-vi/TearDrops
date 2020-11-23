@@ -4,7 +4,7 @@ from discord.ext import commands
 from .inputs import cl, cf, chill, cfe, ur
 
 
-class CoffeeCog(commands.Cog):
+class Coffee(commands.Cog):
     def __init__(self, client):
         self.client = client
 
@@ -32,4 +32,4 @@ class CoffeeCog(commands.Cog):
 
 
 def setup(client):
-    client.add_cog(CoffeeCog(client))
+    client.add_cog(Coffee(client))

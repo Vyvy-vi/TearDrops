@@ -5,7 +5,7 @@ from .username import generate
 from .joeUsername import joe_generate
 
 
-class NameCog(commands.Cog):
+class Name(commands.Cog):
     def __init__(self, client):
         self.client = client
 
@@ -33,4 +33,4 @@ class NameCog(commands.Cog):
 
 
 def setup(client):
-    client.add_cog(NameCog(client))
+    client.add_cog(Name(client))

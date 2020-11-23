@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands, menus
 
-class HelpCog(commands.Cog):
+class Help(commands.Cog):
     def __init__(self, client):
         self.client = client
 
@@ -67,4 +67,4 @@ This has been uploaded to GitHub for educational and referencial purposes',
 
 
 def setup(client):
-    client.add_cog(HelpCog(client))
+    client.add_cog(Help(client))

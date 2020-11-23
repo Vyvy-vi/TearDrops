@@ -12,7 +12,7 @@ DB_CLIENT = MongoClient(MONGO_CONNECTION_STRING)
 db = DB_CLIENT.get_database('users_db')
 
 
-class GameCog(commands.Cog):
+class Game(commands.Cog):
     def __init__(self, client):
         self.client = client
 
@@ -71,4 +71,4 @@ Command Usage-> qq dice <num> (between 1 and 6)',
 
 
 def setup(client):
-    client.add_cog(GameCog(client))
+    client.add_cog(Game(client))

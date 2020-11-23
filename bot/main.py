@@ -23,7 +23,7 @@ STATUS = cycle([
     "with your heart"
     "in tears",
     "with tears",
-    "with ",
+    "with your soul",
     "I'm so sad",
     "with your tears...",
     "with your feelings",
@@ -38,7 +38,8 @@ ls_cog = ['cogs.fun_cog',
           'cogs.game_cog',
           'cogs.economy_cog',
           'cogs.events_cog',
-          'cogs.error_cog']
+          'cogs.error_cog',
+          'jishaku']
 
 
 @client.event
