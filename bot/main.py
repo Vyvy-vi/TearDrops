@@ -71,7 +71,6 @@ if __name__ == "__main__":
         client.load_extension(extension)
         print(f'Loaded cog : {extension}')
 
-
     # Running the BOT:
     if DISCORD_BOT_TOKEN != 'foo':
         client.run(str(DISCORD_BOT_TOKEN))
