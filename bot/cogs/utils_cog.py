@@ -1,8 +1,10 @@
+import random
 import discord
 import wikipedia
+import requests
 import wolframalpha
 from discord.ext import commands
-
+from translate import Translator
 
 class Utils(commands.Cog):
     def __init__(self, client):
@@ -35,14 +37,14 @@ class Utils(commands.Cog):
     async def urban(self, ctx, *args):
         '''searches urban dictionary for words'''
         baseurl = "https://www.urbandictionary.com/define.php?term="
-        output = args.join('')
+        output = ''.join(args)
         await ctx.send(baseurl + output)
 
     @commands.command(pass_context=True)
     async def define(self, ctx, *args):
         '''searches merriam-webster for meanings of words'''
         baseurl = "https://www.merriam-webster.com/dictionary/"
-        output = args.join('%20')
+        output = '%20'.join(args)
         await ctx.send(baseurl + output)
 
     @commands.command(pass_context=True)
@@ -63,28 +65,27 @@ class Utils(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(pass_context=True)
-    async def wiki(self, ctx, *args):
+    async def wiki(self, ctx, *, args):
         '''Displays wikipedia info about given arguments'''
-        qu = ' '.join(list(args))
-        searchResults = wikipedia.search(qu)
+        searchResults = wikipedia.search(args)
         if not searchResults:
             embed = discord.Embed(
-                title=f'**{qu}**',
+                title=f'**{args}**',
                 description='It appears that there is no instance of this in Wikipedia index...',
                 colour=discord.Color.dark_red())
             embed.set_footer(text='Powered by Wikipedia...')
             await ctx.send(embed=embed)
         else:
             try:
-                page = wikipedia.page(searchResults[0])
+                page = wikipedia.page(searchResults[0], auto_suggest=False)
                 pg = 0
             except wikipedia.DisambiguationError as err:
-                page = wikipedia.page(err.options[0])
+                page = wikipedia.page(err.options[0], auto_suggest=False)
                 pg = err.options
             wikiTitle = str(page.title.encode('utf-8'))
             wikiSummary = page.summary
             embed = discord.Embed(title=f'**{wikiTitle[1:]}**', description=str(
-                wikiSummary[1:900]) + '...', color=discord.Color.dark_orange(), url=page.url)
+                wikiSummary[0:900]) + '...', color=discord.Color.dark_orange(), url=page.url)
             embed.set_footer(text='Powered by Wikipedia...')
             if pg != 0:
                 s = pg[1:10] + ['...']
@@ -100,6 +101,74 @@ class Utils(commands.Cog):
         wolfram = wolframalpha.Client("QYKRJ8-YT2JP8U85T")
         res = wolfram.query(ques)
         await ctx.send(next(res.results).text)
+
+    @commands.command(pass_context=True)
+    async def weather(self, ctx, *, loc):
+        '''displays weather data'''
+        p = {"http": "http://111.233.225.166:1234"}
+        k = "353ddfe27aa4b3537c47c975c70b58d9" # dummy key(for now)
+        api_r = requests.get(f"http://api.openweathermap.org/data/2.5/weather?appid={k}&q={loc}, verify= False, proxies=p")
+        q = api_r.json()
+        if q["cod"] != 404:
+            weather_data={}
+            temp = q['main']['temp']
+            weather_data['Temperature'] = f'{str(round(temp-273.16, 2))} °C'
+
+            p = q['main']['pressure']
+            weather_data['Pressure'] = f'{str(p)} hpa'
+
+            hum = q['main']['humidity']
+            weather_data['Humidity'] = f'str{hum} %'
+
+            wind = q['wind']['speed']
+            weather_data['Wind Speed'] = wind
+
+            w_obj = q['weather'][0]
+            desc = w_obj['description']
+            weather_data['\nDescription'] = desc
+            w_id = str(w_obj['id'])
+            if '8' in w_id[0]:
+                if w_id=='800':
+                    col=0xd8d1b4
+                else:
+                    col=0xbababa
+            elif '7' in w_id[0]:
+                col=0xc2eaea
+            elif '6' in w_id[0]:
+                col=0xdde5f4
+            elif '5' in w_id[0]:
+                col= 0x68707c
+            elif '3' in w_id[0]:
+                col= 0xb1c4d8
+            elif '2' in w_id[0]:
+                col= 0x4d5665
+            else: col= 0x000000
+            weather_data = [f'**{field}**: {weather_data[field]}' for field in weather_data]
+            embed = discord.Embed(title='Weather',
+                                  description=f'displaying weather of {loc}...',
+                                  color=col)
+            embed.add_field(name='\u200b',value='\n'.join(weather_data))
+            embed.set_footer(text=f'Requested by {ctx.message.author.name}')
+        else:
+            embed = discord.Embed(title='Weather',
+                                  description='API Connection Refused',
+                                  color=discord.Color.red())
+            embed.set_footer(text='Requested by {ctx.message.author.name}')
+
+        await ctx.send(embed=embed)
+
+    @commands.command(pass_context=True)
+    async def translate(self, ctx, lang, *, args):
+        '''Converts text to different language'''
+        color = "%06x" % random.randint(0, 0xFFFFFF)
+
+        translator = Translator(to_lang=f"{lang}", from_lang='autodetect')
+        translated = translator.translate(f"{args}")
+        embed = discord.Embed(title= "---translating--->",
+                              description= f'{translated}\n~{ctx.message.author.mention}',
+                              colour= int(color, 16))
+        embed.set_footer(text=f'Translated to {lang}...')
+        await ctx.send(embed=embed)
 
 
 def setup(client):
