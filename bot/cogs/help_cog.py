@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 
 
-class HelpCog(commands.Cog):
+class Help(commands.Cog):
     def __init__(self, client):
         self.client = client
 
@@ -26,28 +26,50 @@ This has been uploaded to GitHub for educational and referencial purposes',
         await ctx.send(embed=embed)
 
     @commands.command()
-    async def help(self, ctx, command_name=None):
+    async def help(self, ctx, index=None):
         '''Displays the help command'''
-        if command_name is None:
+        text = []
+        if index is None:
             embed = discord.Embed(
                 title='**Help command**',
-                description='All commands of bot ;-; with description',
-                color=discord.Color.dark_orange())
-            for command in self.client.commands:
-                embed.add_field(
-                    name=f'{command}',
-                    value='\u200b',
-                    inline=True)
+                description='The following command categories exist for bot ;-;',
+                color=discord.Color.green())
+            for cog in self.client.cogs.items():
+                text.append(f'**{cog[0]}')
+            text = f"{',** '.join(sorted(text))}**".split(' ')
+            text = [text[i:i + 2] for i in range(0, len(text), 2)]
+            text = [' '.join(i) for i in text]
+            embed.add_field(
+                name='\u200b',
+                value='\n'.join(text) + '\nFor more info, use `qq help <Category-name>`')
+            embed.set_footer(
+                text='Cry, cry, let the tears flow through you...')
             await ctx.send(embed=embed)
         else:
-            for command in self.client.commands:
-                if command_name == command.name:
-                    embed = discord.Embed(
-                        title=f'**Help command: {command}**',
-                        description=f'Description : {command.short_doc} \n {command.brief}',
-                        color=discord.Color.dark_orange())
-                    await ctx.send(embed=embed)
+            if index in list(self.client.cogs.keys()):
+                for category in self.client.cogs:
+                    if index == category:
+                        cog = self.client.get_cog(category)
+                        text = [
+                            f'**{c.name}** : {c.short_doc}' for c in cog.get_commands()]
+                        embed = discord.Embed(
+                            title=f'**Help category: {category}**',
+                            description='\n'.join(text),
+                            color=discord.Color.green())
+            else:
+                for command in self.client.commands:
+                    if index == command.name:
+                        embed = discord.Embed(
+                            title=f'**Help command: {command}**',
+                            description=f'Description : {command.short_doc} \n {command.brief}',
+                            color=discord.Color.green())
+                        await ctx.send(embed=embed)
+                    else:
+                        embed = discord.Embed(
+                            title=f'{index} was not found...',
+                            color=discord.Color.red())
+                        await ctx.send(embed=embed)
 
 
 def setup(client):
-    client.add_cog(HelpCog(client))
+    client.add_cog(Help(client))

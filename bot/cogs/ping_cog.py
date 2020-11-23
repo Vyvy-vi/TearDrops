@@ -3,7 +3,7 @@ import discord
 from discord.ext import commands
 
 
-class PingCog(commands.Cog):
+class Ping(commands.Cog):
     def __init__(self, client):
         self.client = client
 
@@ -45,4 +45,4 @@ class PingCog(commands.Cog):
 
 
 def setup(client):
-    client.add_cog(PingCog(client))
+    client.add_cog(Ping(client))

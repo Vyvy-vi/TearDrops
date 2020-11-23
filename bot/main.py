@@ -25,7 +25,7 @@ STATUS = cycle([
     "with your heart",
     "in tears",
     "with tears",
-    "with ",
+    "with your soul",
     "I'm so sad",
     "with your tears...",
     "with your feelings",
@@ -40,7 +40,8 @@ ls_cog = ['cogs.fun_cog',
           'cogs.game_cog',
           'cogs.economy_cog',
           'cogs.events_cog',
-          'cogs.error_cog']
+          'cogs.error_cog',
+          'jishaku']
 
 
 @client.event
@@ -71,7 +72,6 @@ if __name__ == "__main__":
     for extension in ls_cog:
         client.load_extension(extension)
         print(f'Loaded cog : {extension}')
-
 
     # Running the BOT:
     if DISCORD_BOT_TOKEN != 'foo':

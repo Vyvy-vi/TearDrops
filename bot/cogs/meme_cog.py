@@ -22,7 +22,7 @@ async def automeme_routine(ctx):
         await ctx.send(embed=embed)
 
 
-class MemeCog(commands.Cog):
+class Meme(commands.Cog):
     def __init__(self, client):
         self.client = client
 
@@ -67,4 +67,4 @@ class MemeCog(commands.Cog):
 
 
 def setup(client):
-    client.add_cog(MemeCog(client))
+    client.add_cog(Meme(client))

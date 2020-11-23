@@ -10,7 +10,7 @@ DB_CLIENT = MongoClient(MONGO_CONNECTION_STRING)
 db = DB_CLIENT.get_database('users_db')
 
 
-class EventsCog(commands.Cog):
+class Events(commands.Cog):
     def __init__(self, client):
         self.client = client
 
@@ -63,4 +63,4 @@ This has been uploaded to GitHub for educational and referencial purposes',
 
 
 def setup(client):
-    client.add_cog(EventsCog(client))
+    client.add_cog(Events(client))

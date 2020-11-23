@@ -4,12 +4,13 @@ from discord.ext import commands
 from .inputs import cl, cf, chill, cfe, ur
 
 
-class CoffeeCog(commands.Cog):
+class Coffee(commands.Cog):
     def __init__(self, client):
         self.client = client
 
     @commands.command(aliases=['ask_out'])
     async def wannagrabacoffee(self, ctx, *, member: discord.Member):
+        '''Wanna ask someone out on coffee'''
         embed = discord.Embed(
             title=f'{member}, Someone wants to grab a coffee with you...*wink *wink',
             color=0x11bf51)
@@ -19,6 +20,7 @@ class CoffeeCog(commands.Cog):
 
     @commands.command(aliases=['brew'])
     async def coffee(self, ctx):
+        '''A lovely coffee command (sip, sip)'''
         op = f'{random.choice(cfe)}'
         embed = discord.Embed(title='Coffee',
                               description=op,
@@ -30,4 +32,4 @@ class CoffeeCog(commands.Cog):
 
 
 def setup(client):
-    client.add_cog(CoffeeCog(client))
+    client.add_cog(Coffee(client))

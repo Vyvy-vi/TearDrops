@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 
 
-class ErrorCog(commands.Cog):
+class Errors(commands.Cog):
     def __init__(self, client):
         self.client = client
 
@@ -17,4 +17,4 @@ class ErrorCog(commands.Cog):
 
 
 def setup(client):
-    client.add_cog(ErrorCog(client))
+    client.add_cog(Errors(client))

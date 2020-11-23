@@ -87,7 +87,7 @@ Saving {ls} tears in your vault of tears.',
         await channel.send(embed=embed)
 
 
-class EconomyCog(commands.Cog):
+class Economy(commands.Cog):
     def __init__(self, client):
         self.client = client
 
@@ -270,4 +270,4 @@ async def shop(self, ctx):
 
 
 def setup(client):
-    client.add_cog(EconomyCog(client))
+    client.add_cog(Economy(client))
