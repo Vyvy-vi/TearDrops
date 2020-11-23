@@ -28,16 +28,20 @@ This has been uploaded to GitHub for educational and referencial purposes',
     @commands.command()
     async def help(self, ctx, command_name=None):
         '''Displays the help command'''
+        text = []
         if command_name is None:
             embed = discord.Embed(
                 title='**Help command**',
-                description='All commands of bot ;-; with description',
+                description='All commands of bot ;-;',
                 color=discord.Color.dark_orange())
             for command in self.client.commands:
-                embed.add_field(
-                    name=f'{command}',
-                    value='\u200b',
-                    inline=True)
+                text.append(f'`{command}`')
+            text = [text[i:i + 5] for i in range(0, len(text), 5)]
+            text = [', '.join(i) for i in text]
+            embed.add_field(
+                name=f'\u200b',
+                value='\n'.join(sorted(text)),
+                inline=True)
             await ctx.send(embed=embed)
         else:
             for command in self.client.commands:
