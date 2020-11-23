@@ -10,6 +10,7 @@ class CoffeeCog(commands.Cog):
 
     @commands.command(aliases=['ask_out'])
     async def wannagrabacoffee(self, ctx, *, member: discord.Member):
+        '''Wanna ask someone out on coffee'''
         embed = discord.Embed(
             title=f'{member}, Someone wants to grab a coffee with you...*wink *wink',
             color=0x11bf51)
@@ -19,6 +20,7 @@ class CoffeeCog(commands.Cog):
 
     @commands.command(aliases=['brew'])
     async def coffee(self, ctx):
+        '''A lovely coffee command (sip, sip)'''
         op = f'{random.choice(cfe)}'
         embed = discord.Embed(title='Coffee',
                               description=op,
