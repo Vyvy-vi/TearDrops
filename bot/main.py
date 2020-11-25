@@ -8,9 +8,6 @@ from utils import get_environment_variable
 DISCORD_BOT_TOKEN = get_environment_variable("DISCORD_BOT_TOKEN")
 # intents (new discord feature to limit bots to certain bucket events)
 intents = discord.Intents.default()
-intents.typing = False
-intents.presences = True
-intents.members = True
 
 # NOTE- The initial version of the bot used TinyDB, but I've migrated to
 # MongoDB (still considering sql tho)

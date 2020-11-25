@@ -44,7 +44,7 @@ This has been uploaded to GitHub for educational and referencial purposes',
                 await channel.send(embed=embed)
             break
         print(f'Entered server {guild.name} : {guild.id}')
-
+    """
     @commands.Cog.listener()
     async def on_member_remove(self, guild, user):
         '''
@@ -52,15 +52,16 @@ This has been uploaded to GitHub for educational and referencial purposes',
         NOTE- This can also be displayed on the server
         '''
         print(f'{user} has left the server {guild}......')
-
+    """
+    """
     @commands.Cog.listener()
     async def on_member_ban(self, guild, user):
-        """Event Listener which is called when a user is banned from the guild
+        '''Event Listener which is called when a user is banned from the guild
         For more info:
         http://discordpy.readthedocs.io/en/rewrite/api.html#discord.on_member_ban
-        """
+        '''
         print(f'{user} was banned from {guild.name}-{guild.id}')
-
+    """
 
 def setup(client):
     client.add_cog(Events(client))
