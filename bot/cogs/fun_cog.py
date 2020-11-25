@@ -51,8 +51,8 @@ class Fun(commands.Cog):
                         value=f'{random.choice(tech)}')
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=['shame'])
-    async def roast(self, ctx, member: discord.Member = None):
+    @commands.command()
+    async def roast(self, ctx, *,member: discord.Member = None):
         if not member:
             user = ctx.message.author
         else:
