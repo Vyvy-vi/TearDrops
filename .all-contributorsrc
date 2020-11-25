@@ -146,6 +146,15 @@
       "contributions": [
         "ideas"
       ]
+    },
+    {
+      "login": "SKULLXL",
+      "name": "Rayn Islam",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/68315325?v=4",
+      "profile": "https://github.com/SKULLXL",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
