@@ -49,7 +49,7 @@ class Utils(commands.Cog):
 
     @commands.command(pass_context=True)
     async def user(self, ctx, username: discord.Member = None):
-        if username == None:
+        if username is None:
             username = ctx.message.author
         '''gives user info'''
         embed = discord.Embed(
