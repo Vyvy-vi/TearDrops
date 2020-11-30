@@ -64,7 +64,7 @@ This has been uploaded to GitHub for educational and referencial purposes',
                             title=f'**Help command: {command}**',
                             description=f'Description : {command.short_doc} \n {command.brief}',
                             color=discord.Color.green())
-                            break
+                        break
                     else:
                         embed = discord.Embed(title=f'{index} was not found...',
                                           color=discord.Color.red())
