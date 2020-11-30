@@ -58,18 +58,18 @@ This has been uploaded to GitHub for educational and referencial purposes',
                             color=discord.Color.green())
                 await ctx.send(embed=embed)
             else:
+                not_found = True
                 for command in self.client.commands:
                     if index == command.name:
                         embed = discord.Embed(
                             title=f'**Help command: {command}**',
                             description=f'Description : {command.short_doc} \n {command.brief}',
                             color=discord.Color.green())
-                        break
-                    else:
-                        embed = discord.Embed(title=f'{index} was not found...',
-                                          color=discord.Color.red())
-                await ctx.send(embed=embed)
-
-
+                        not_found = False
+                        await ctx.send(embed=embed)
+                if not_found:
+                    embed = discord.Embed(title=f'{index} was not found...',
+                                          color=discord.Color.red())    
+                    await ctx.send(embed=embed)
 def setup(client):
     client.add_cog(Help(client))
