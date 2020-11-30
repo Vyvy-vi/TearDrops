@@ -69,7 +69,7 @@ This has been uploaded to GitHub for educational and referencial purposes',
                         await ctx.send(embed=embed)
                 if not_found:
                     embed = discord.Embed(title=f'{index} was not found...',
-                                          color=discord.Color.red())    
+                                          color=discord.Color.red())
                     await ctx.send(embed=embed)
 def setup(client):
     client.add_cog(Help(client))
