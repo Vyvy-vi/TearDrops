@@ -39,6 +39,7 @@ ls_cog = ['cogs.fun_cog',
           'cogs.events_cog',
           'cogs.error_cog',
           'cogs.users_cog',
+          'cogs.comic_cog',
           'jishaku']
 
 
