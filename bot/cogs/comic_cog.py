@@ -1,9 +1,9 @@
 from random import randint
+from typing import Optional
+import aiohttp
 
 import discord
 from discord.ext import commands
-from typing import Optional
-import aiohttp
 
 class Comics(commands.Cog):
     def __init__(self, client):
