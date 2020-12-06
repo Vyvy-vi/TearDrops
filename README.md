@@ -15,6 +15,8 @@
 ![tears gif](cries.gif)
 ![sadblob](https://media.discordapp.net/attachments/771696574697832469/773264495006318623/sadblob.png)
 
+#### Python based discord bot built to add fun to the guild with memes, provide wisdom with book-recommendations along with XP rating system with <strong>CRY</strong> currency.
+
 A discord bot wrapped around the theme of tears and crying.
 In concept, the idea is absurd but that's more of a reason to make this. :)
 The bot uses tears as an economy and you can "cry" to get daily credit tears.
