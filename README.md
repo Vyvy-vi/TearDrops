@@ -13,7 +13,6 @@
 [![TearDrops Support](https://discordapp.com/api/guilds/765880027467350047/widget.png?style=banner2)](https://discord.io/TearDropsSupport)
 
 ![tears gif](cries.gif)
-![cri](https://images-ext-1.discordapp.net/external/s6Id0htXD7zAkT-yxz52y_YNj97WF9yzELQmtIk-iBs/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/627772985872220161/bdfd588427f4335fece00c0191ea1406.webp?width=292&height=294)
 ![sadblob](https://media.discordapp.net/attachments/771696574697832469/773264495006318623/sadblob.png)
 
 A discord bot wrapped around the theme of tears and crying.
