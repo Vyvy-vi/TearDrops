@@ -12,7 +12,9 @@
 
 [![TearDrops Support](https://discordapp.com/api/guilds/765880027467350047/widget.png?style=banner2)](https://discord.io/TearDropsSupport)
 
-![tears gif](cries.gif)
+
+![tears gif](.github/resources/cries.gif)
+![cri](.github/resources/cri.png)
 ![sadblob](https://media.discordapp.net/attachments/771696574697832469/773264495006318623/sadblob.png)
 
 #### Python based discord bot built to add fun to the guild with memes, provide wisdom with book-recommendations along with XP rating system with <strong>TEARS</strong> currency.
