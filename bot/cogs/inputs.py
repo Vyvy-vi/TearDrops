@@ -1434,7 +1434,7 @@ quo = {
     'Bruce Lee': 'The successful warrior is the average man, with laser-like focus.',
     'Denzel Washington': 'Success? I don’t know what that word means. I’m happy. But success, that goes back to what in somebody’s eyes success means. For me, success is inner peace. That’s a good day for me.',
     'Ingrid Bergman': 'A kiss is a lovely trick designed by nature to stop speech when words become superfluous.',
-    '': "Sooner or later, we all go through a crucible. Most believe there are two types of people who go into a crucible: the ones who grow stronger from the experience and survive it, and the ones who die. But there's a third type: the ones who learn to love the fire. They chose to stay in their crucible because it's easier to embrace the pain when it's all you know anymore......",
+    '': "Sooner or later, we all go through a crucible. Most believe there are two types of people who go into a crucible: the ones who grow stronger from the experience and survive it, and the ones who die. But there's a third type: the ones who learn to love the fire. They chose to stay in their crucible because it's easier to embrace the pain when it's all you know anymore......"
 }
 
 nerd = [
