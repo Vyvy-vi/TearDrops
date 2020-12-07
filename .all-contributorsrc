@@ -164,6 +164,26 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "jveer634",
+      "name": "Jay",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/47923507?v=4",
+      "profile": "https://github.com/jveer634",
+      "contributions": [
+        "ideas",
+        "doc",
+        "bug"
+      ]
+    },
+    {
+      "login": "mstanciu552",
+      "name": "mstanciu552",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/34579048?v=4",
+      "profile": "https://github.com/mstanciu552",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,

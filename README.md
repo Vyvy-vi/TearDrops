@@ -1,6 +1,6 @@
 # Tear Drops
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-16-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-18-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <p>
@@ -12,24 +12,30 @@
 
 [![TearDrops Support](https://discordapp.com/api/guilds/765880027467350047/widget.png?style=banner2)](https://discord.io/TearDropsSupport)
 
+
 ![tears gif](.github/resources/cries.gif)
 ![cri](.github/resources/cri.png)
 ![sadblob](https://media.discordapp.net/attachments/771696574697832469/773264495006318623/sadblob.png)
+
+#### Python based discord bot built to add fun to the guild with memes, provide wisdom with book-recommendations along with XP rating system with <strong>TEARS</strong> currency.
 
 A discord bot wrapped around the theme of tears and crying.
 In concept, the idea is absurd but that's more of a reason to make this. :)
 The bot uses tears as an economy and you can "cry" to get daily credit tears.
 
-NOTE- It is recommended that you add your own discord token while running the bot.
+**NOTE**- It is recommended that you add your own discord token while running the bot.
 
-- [Invite the bot to your server](https://discord.com/api/oauth2/authorize?client_id=627772985872220161&permissions=379968&scope=bot)
-[*NOTE- The bot is still in v0.1 and is being constantly updated and bug fixed. Inviting this, might have unintentional complications. If you really want the bot, open an issue so that we can provide a Beta Version to you that is stable and updated slowly*]
-- To test the bot join this [Support Server](https://discord.gg/jTzGuYx)
+## How to test the bot before running it on your server
+To test the bot join this [Support Server](https://discord.gg/jTzGuYx)
   [*NOTE- Bot is not active 24x7 as it is hosted on heroku. To get a sample, join* [TearDropsSupport](https://discord.gg/jTzGuYx) *and ping* **@Tissue**]
+
+## How to run the bot on your own server
+[Invite the bot to your server](https://discord.com/api/oauth2/authorize?client_id=627772985872220161&permissions=379968&scope=bot)
+[*NOTE- The bot is still in v0.1 and is being constantly updated and bug fixed. Inviting this, might have unintentional complications. If you really want the bot, open an issue so that we can provide a Beta Version to you that is stable and updated slowly*]
 
 ## Hosting the bot locally:
 
-- NOTE: To replicate this bot, you will need a bot **token**. Go get yours at https://discord.com/developers/ (If you need help with this step, feel free to ask for help in our [Support Server](https://discord.gg/jTzGuYx)).
+**NOTE**: To replicate this bot, you will need a bot **token**. Go get yours at https://discord.com/developers/ (If you need help with this step, feel free to ask for help in our [Support Server](https://discord.gg/jTzGuYx)).
 - Clone this repo using `git clone`
 - cd into the bot folder.
 - Add the token in a `.env` file in the project root as follows:
@@ -82,6 +88,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/SKULLXL"><img src="https://avatars3.githubusercontent.com/u/68315325?v=4" width="100px;" alt=""/><br /><sub><b>Rayn Islam</b></sub></a><br /><a href="https://github.com/Vyvy-vi/TearDrops/issues?q=author%3ASKULLXL" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/AkshayaKulasekaran"><img src="https://avatars2.githubusercontent.com/u/61582763?v=4" width="100px;" alt=""/><br /><sub><b>Akshaya</b></sub></a><br /><a href="https://github.com/Vyvy-vi/TearDrops/issues?q=author%3AAkshayaKulasekaran" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/jveer634"><img src="https://avatars0.githubusercontent.com/u/47923507?v=4" width="100px;" alt=""/><br /><sub><b>Jay</b></sub></a><br /><a href="#ideas-jveer634" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/Vyvy-vi/TearDrops/commits?author=jveer634" title="Documentation">📖</a> <a href="https://github.com/Vyvy-vi/TearDrops/issues?q=author%3Ajveer634" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/mstanciu552"><img src="https://avatars3.githubusercontent.com/u/34579048?v=4" width="100px;" alt=""/><br /><sub><b>mstanciu552</b></sub></a><br /><a href="https://github.com/Vyvy-vi/TearDrops/commits?author=mstanciu552" title="Documentation">📖</a></td>
   </tr>
 </table>
 
