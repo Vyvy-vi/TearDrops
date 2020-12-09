@@ -5,7 +5,7 @@
 			<style>
 				h1 {
 					font-size: 200px;
-					text-align: "left";
+					text-align: left;
 					letter-spacing: 5px;
 					line-height: 1.8;
 					font-family: monospace;
