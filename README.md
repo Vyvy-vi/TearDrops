@@ -1,4 +1,4 @@
-![](.github/resources/test.svg)
+![](.github/resources/NEW.svg)
 
 ```yaml
 ▄▄▄█████▓ ▓█████ ▄▄▄        ██▀███   ▓█████▄   ██▀███    ▒█████    ██▓███     ██████ 
