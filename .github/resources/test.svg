@@ -68,13 +68,6 @@
 					letter-spacing: 5px;
 					font-family: hack;
 					color: green;
-					text-shadow:
-						0 1px 0 #efefef,
-						0 2px 0 #efefef,
-						0 3px 0 #efefef,
-						0 4px 0 #efefef,
-						0 12px 5px rgba(0, 0, 0, 0.1);
-					animation: rotate ease-in-out 1s infinite alternate;
 				}
 
 				p {
