@@ -1,10 +1,6 @@
-<style>
-  h1 {
-    font-family: hack;
-    font-size: 16px;
-    color: blue;
-  }
-</style>
+```diff
++ Tear drops
+```
 
 <h1 align="center"> 
   Tear Drops 
