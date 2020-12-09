@@ -62,6 +62,68 @@ docker-compose up
 - Enjoy! (don't forget to add your own bot into your discord server by generating an invite link from the discord developers application page in [OAuth2 section](https://discord.com/developers/applications/) and choose application and check Oauth2 section)
 - You may do bug-reporting or ask for help in on the SupportServer... or just open an issue on this repo.
 
+## How to contribute
+Before contributing, here is some information that might help your **PR (Pull Request)** get merged.
+### How to set up the development environment
+    
+Requirements:
+- git
+- pip
+- python 3.8.1 or higher
+
+**Note**: If you're not on Windows, you should also have GNU make installed, and you can optionally install [pyenv](https://github.com/pyenv/pyenv), which can help you run tests for different python versions.
+
+1. Fork and clone the repository with `git clone https://github.com/Vyvy-vi/TearDrops` 
+1. Get in the clone directory using the command `cd TearDrops`
+1. Execute the following command `python3 -m venv venv`
+1. Activate the virtual environment with the following command:
+    - Posix
+    ```
+    source .venv/bin/activate
+    ```
+    - Windows
+    ```
+    .venv\Scripts\activate
+    ```
+    
+**Note**: From here onwards, we will assume you are executing commands from within this activated virtual environment.
+
+**Note**: If you're comfortable with setting up virtual environments yourself and would rather do it manually, just run pip install -r bot/requirements.txt after setting it up.
+
+### To contribute changes follow these steps:
+
+**Note**: Make sure you have been assigned the issue to which you are making a PR. If you make PR before being assigned, It will be labeled invalid and closed without merging.
+
+
+1. Add a upstream link to main branch in your cloned repo
+  ```
+  git remote add upstream https://github.com/Vyvy-vi/TearDrops.git
+  ```
+2. Keep your cloned repo upto date by pulling from upstream (this will also avoid any merge conflicts while committing new changes)
+  ```
+  git pull upstream master
+  ```
+3. Create your feature branch
+  ```
+  git checkout -b <feature-name>
+  ```
+4. Commit all the changes
+  ```
+  git commit -am "Meaningful commit message"
+  ```
+5. Push the changes for review
+  ```
+  git push origin <branch-name>
+  ```
+6. Create a PR from our repo on Github.
+
+### How to report a bug
+Submit an issue on GitHub and add as much information as you can about the bug, with screenshots of inputs to the bot and bot response if possible (if the issue is regarding bugs). 
+
+**Note**: Try to make issues that are not blank and are in their respective category.
+
+**Note**: For more detailed information about how to contribute, please refere to the [CONTRIBUTING.md](https://github.com/Vyvy-vi/TearDrops/blob/main/CONTRIBUTING.md) file.
+
 ## Requirements:
 - python 3
 - discord(rewrite branch)
