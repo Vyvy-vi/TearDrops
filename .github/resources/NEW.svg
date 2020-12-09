@@ -6,6 +6,7 @@
 				h1 {
 					font-size: 80px;
 					letter-spacing: 5px;
+					line-height: 1.5;
 					font-family: monospace;
 					color: green;
 				}
