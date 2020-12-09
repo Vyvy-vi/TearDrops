@@ -12,7 +12,9 @@
 					color: green;
 				}
 			</style>
+			<div>
 				<h1>TearDrops</h1>
+			</div>
 		</div>
 	</foreignObject>
 </svg>
