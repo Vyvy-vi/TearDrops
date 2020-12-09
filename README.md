@@ -29,7 +29,7 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-18-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <p align='right'>
-  <h6>-------------------------------------------------</h6>
+  -------------------------------------------------
   <a href="https://github.com/Vyvy-vi/TearDrops/releases/latest)"><img src="https://img.shields.io/badge/Bot_Version-v1.0.8-green.svg?style=flat-square" alt="bot version"></a>
 </p>
 
