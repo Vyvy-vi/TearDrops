@@ -2,6 +2,7 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-18-orange.svg?style=flat-square)](#contributors-)
+[![Bot Version](https://img.shields.io/badge/Bot_Version-v1.0.8-green.svg?style=flat-square)](https://github.com/Vyvy-vi/TearDrops/releases/latest)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <p>
