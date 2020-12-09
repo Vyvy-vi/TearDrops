@@ -1,7 +1,7 @@
 ![](.github/resources/title.svg)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-18-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-19-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <p>
@@ -153,6 +153,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/AkshayaKulasekaran"><img src="https://avatars2.githubusercontent.com/u/61582763?v=4" width="100px;" alt=""/><br /><sub><b>Akshaya</b></sub></a><br /><a href="https://github.com/Vyvy-vi/TearDrops/issues?q=author%3AAkshayaKulasekaran" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/jveer634"><img src="https://avatars0.githubusercontent.com/u/47923507?v=4" width="100px;" alt=""/><br /><sub><b>Jay</b></sub></a><br /><a href="#ideas-jveer634" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/Vyvy-vi/TearDrops/commits?author=jveer634" title="Documentation">📖</a> <a href="https://github.com/Vyvy-vi/TearDrops/issues?q=author%3Ajveer634" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/mstanciu552"><img src="https://avatars3.githubusercontent.com/u/34579048?v=4" width="100px;" alt=""/><br /><sub><b>mstanciu552</b></sub></a><br /><a href="https://github.com/Vyvy-vi/TearDrops/commits?author=mstanciu552" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/features/security"><img src="https://avatars1.githubusercontent.com/u/27347476?v=4" width="100px;" alt=""/><br /><sub><b>Dependabot</b></sub></a><br /><a href="#security-dependabot" title="Security">🛡️</a></td>
   </tr>
 </table>
 
