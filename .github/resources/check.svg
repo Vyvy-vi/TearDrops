@@ -7,7 +7,7 @@
 					font-size: 200px;
 					text-align: left;
 					letter-spacing: 5px;
-					line-height: 1.8;
+					line-height: 20px;
 					font-family: monospace;
 					color: green;
 				}
