@@ -1,4 +1,4 @@
-![](.github/resources/title.svg)
+![](.github/resources/titlestroke.svg)
 
 <!---
 ```yaml
