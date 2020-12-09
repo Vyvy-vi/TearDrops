@@ -24,14 +24,14 @@
 </p>
 
 
-<p>
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-18-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
+<a href="https://github.com/Rapptz/discord.py/releases/tag/v1.5.0"><img src="https://img.shields.io/badge/discord.py-v1.5.0-7289da.svg?style=flat-square" alt="discord.py version"></a>
+
 [![Bot Version](https://img.shields.io/badge/Bot_Version-v1.0.8-green.svg?style=flat-square)](https://github.com/Vyvy-vi/TearDrops/releases/latest)
 
-</p>
 
 ![sadblob](https://media.discordapp.net/attachments/771696574697832469/773264495006318623/sadblob.png)
 ![tears gif](.github/resources/cries.gif)
