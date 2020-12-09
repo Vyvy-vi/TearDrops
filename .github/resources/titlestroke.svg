@@ -8,7 +8,7 @@
 					letter-spacing: 5px;
 					line-height: 20px;
 					font-family: monospace;
-					-webkit-text-stroke: 2px black;
+					-webkit-text-stroke: 10px black;
 					color: green;
 				}
 			</style>
