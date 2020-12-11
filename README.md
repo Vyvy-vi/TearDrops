@@ -40,7 +40,7 @@
 </div>
 
 ![sadblob](https://media.discordapp.net/attachments/771696574697832469/773264495006318623/sadblob.png)
-![tears gif](.github/resources/cries.gif)
+![tears gif](.github/resources/cries2.gif)
 ![cri](.github/resources/cri.png)
 
 
