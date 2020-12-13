@@ -1,23 +1,44 @@
 ![](.github/resources/title.svg)
 
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-18-orange.svg?style=flat-square)](#contributors-)
-[![Bot Version](https://img.shields.io/badge/Bot_Version-v1.0.8-green.svg?style=flat-square)](https://github.com/Vyvy-vi/TearDrops/releases/latest)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
+<!---
+```yaml
+▄▄▄█████▓  ▓█████  ▄▄▄         ██▀███    ▓█████▄    ██▀███     ▒█████     ██▓███      ██████ 
+▓  ██▒ ▓▒  ▓█   ▀  ▒████▄      ▓██ ▒ ██  ▒▒██▀ ██▌  ▓██ ▒ ██  ▒▒██▒  ██▒  ▓██░  ██▒  ▒██    ▒ 
+▒ ▓██░ ▒░  ▒███    ▒██  ▀█▄    ▓██ ░▄█   ▒░██   █▌  ▓██ ░▄█   ▒▒██░  ██▒  ▓██░ ██▓▒  ░ ▓██▄   
+░ ▓██▓ ░   ▒▓█  ▄  ░██▄▄▄▄██   ▒██▀▀█▄    ░▓█▄   ▌  ▒██▀▀█▄    ▒██   ██░  ▒██▄█▓▒   ▒  ▒   ██▒
+  ▒██▒ ░   ░▒████  ▒▓█   ▓██▒  ░██▓ ▒██▒  ░▒████▓   ░██▓ ▒██▒░   ████▓▒░  ▒██▒ ░    ░▒██████▒▒
+  ▒ ░░     ░░ ▒░   ░▒▒   ▓▒█░  ░ ▒▓ ░▒▓░   ▒▒▓  ▒   ░▒▓ ░▒▓░░   ▒░▒░▒░ ▒  ▓▒░ ░  ░  ▒ ▒▓▒ ▒ ░
+    ░       ░ ░  ░   ▒   ▒▒ ░   ░▒ ░ ▒░ ░   ▒  ▒    ░▒ ░ ▒░  ░   ▒ ▒░ ░   ▒  ░       ░ ░▒  ░ ░
+  ░           ░      ░   ▒      ░░   ░  ░   ░  ░    ░░   ░ ░ ░   ░ ▒  ░        ░  ░    ░  
+              ░   ░      ░  ░    ░          ░        ░           ░ ░                    ░  
+                                   ░                                          
+```
+-->
 
-<p>
+<p align='center'>
+<a href="https://discord.io/TearDropsSupport"><img src="https://discordapp.com/api/guilds/765880027467350047/widget.png?style=banner2" alt="Link to discord server"><br>
 <a href="https://www.python.org/"><img src="http://ForTheBadge.com/images/badges/made-with-python.svg" alt="made with Python"></a>
 <a href="https://github.com/Vyvy-vi/"><img src="http://ForTheBadge.com/images/badges/built-with-love.svg" alt="built with Love"></a><br>
 <a href="https://raw.githubusercontent.com/Vyvy-vi/TearDrops/main/LICENSE"><img src="https://img.shields.io/github/license/Vyvy-vi/TearDrops?style=flat-square" alt="MIT license"></a>
 <a href="https://github.com/Rapptz/discord.py/releases/tag/v1.5.0"><img src="https://img.shields.io/badge/discord.py-v1.5.0-7289da.svg?style=flat-square" alt="discord.py version"></a>
 </p>
 
-[![TearDrops Support](https://discordapp.com/api/guilds/765880027467350047/widget.png?style=banner2)](https://discord.io/TearDropsSupport)
 
 
-![tears gif](.github/resources/cries.gif)
-![cri](.github/resources/cri.png)
+  
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+  [![All Contributors](https://img.shields.io/badge/all_contributors-18-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+
+<p align='right'>
+   <a href="https://github.com/Vyvy-vi/TearDrops/releases/latest/"><img src="https://img.shields.io/badge/Bot_Version-v1.0.8-green.svg?style=flat-square" alt="bot version"></a>
+</p>
+
+
 ![sadblob](https://media.discordapp.net/attachments/771696574697832469/773264495006318623/sadblob.png)
+![tears](.github/resources/crying.gif)
+![cri](.github/resources/cri.png)
+
 
 #### Python based discord bot built to add fun to the guild with memes, provide wisdom with book-recommendations along with XP rating system with <strong>TEARS</strong> currency.
 
