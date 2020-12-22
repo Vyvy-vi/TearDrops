@@ -53,20 +53,14 @@ class Fun(commands.Cog):
 
     @commands.command(aliases=['shame'])
     async def roast(self, ctx, member: discord.Member = None):
-        if not member:
-            user = ctx.message.author
-        else:
-            user = member
+        user = ctx.message.author if not member else member
         embed = discord.Embed(title='Roast', color=0x11ad4b)
         embed.add_field(name='😈', value=f'{user}, {random.choice(rost)}')
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['commend'])
     async def compliment(self, ctx, *, member: discord.Member = None):
-        if not member:
-            user = ctx.message.author
-        else:
-            user = member
+        user = ctx.message.author if not member else member
         embed = discord.Embed(title='Compliment', color=0xa9e010)
         embed.add_field(name="Here's a compliment for you",
                         value=f'{user}, {random.choice(cmp)}')
@@ -74,10 +68,7 @@ class Fun(commands.Cog):
 
     @commands.command()
     async def flirt(self, ctx, *, member: discord.Member = None):
-        if not member:
-            user = ctx.message.author
-        else:
-            user = member
+        user = ctx.message.author if not member else member
         embed = discord.Embed(title='Flirt', color=0xcf8c11)
         embed.add_field(name='Flirt it away',
                         value=f'{user}, {random.choice(blurt)}')
