@@ -34,22 +34,20 @@ class Game(commands.Cog):
                     title='Dice-roll...🎲',
                     description=f'The dice rolled a {numtemp}.\nYou have been awarded 50 tears for this...',
                     color=discord.Color.dark_red())
-                await ctx.send(embed=embed)
             else:
                 embed = discord.Embed(
                     title='Dice-roll...🎲',
                     description=f'The dice rolled a {numtemp}.\n\
 Your prediction was wrong. 😖',
                     color=discord.Color.dark_red())
-                await ctx.send(embed=embed)
-
         else:
             embed = discord.Embed(
                 title='Dice-roll...🎲',
                 description='Please enter a valid number argument.\n\
 Command Usage-> qq dice <num> (between 1 and 6)',
                 color=discord.Color.dark_red())
-            await ctx.send(embed=embed)
+
+        await ctx.send(embed=embed)
 
     @commands.command(aliases=['russian-roulette', 'gunshot', 'rr'])
     async def russian_roulette(self, ctx):

@@ -64,11 +64,7 @@ async def level_up(user, channel):
         x = 2 * x + 10
         cnt += 1
 
-    if experience >= x:
-        lvl_end = cnt - 1
-    else:
-        lvl_end = lvl_start
-
+    lvl_end = cnt - 1 if experience >= x else lvl_start
     if lvl_start < lvl_end:
         new_stats = {"$set": {'level': lvl_end}}
         server.update_one(stats[-1], new_stats)
@@ -134,9 +130,9 @@ class Economy(commands.Cog):
         user = ctx.message.author
         server = db[str(user.guild.id)]
         stats = list(server.find({'id': user.id}))
-        trs = [0, 100, 150, 150, 200, 100, 50, 250, 500, 200, 1, 200, 150, 100]
         tim = stats[-1]['crytime']
         if time.time() - tim > 10800:
+            trs = [0, 100, 150, 150, 200, 100, 50, 250, 500, 200, 1, 200, 150, 100]
             tr = random.choice(trs)
             if tr > 1:
                 embed = discord.Embed(
@@ -145,7 +141,6 @@ class Economy(commands.Cog):
 Storing them in the vaults of tears.Spend them wisely...💦\nSpend them wisely...',
                     color=discord.Color.blue())
                 embed.set_footer(text='😭')
-                await ctx.send(embed=embed)
             elif tr == 1:
                 embed = discord.Embed(
                     title='**Tear Dispenser**',
@@ -153,7 +148,6 @@ Storing them in the vaults of tears.Spend them wisely...💦\nSpend them wisely.
 Storing it in the vaults of tears.Spend them wisely...💧\nSpend it wisely...',
                     color=discord.Color.blue())
                 embed.set_footer(text='😭')
-                await ctx.send(embed=embed)
             else:
                 tr2 = [
                     'You were not sad',
@@ -171,7 +165,7 @@ Storing it in the vaults of tears.Spend them wisely...💧\nSpend it wisely...',
                     name='Try again after like 3 hours.',
                     value='oof',
                     inline=False)
-                await ctx.send(embed=embed)
+            await ctx.send(embed=embed)
             cred = tr + stats[-1]['credits']
             new_stats = {"$set": {'credits': cred, 'crytime': time.time()}}
             server.update_one(stats[-1], new_stats)
@@ -187,10 +181,7 @@ Wait for like {round((10800 - time.time()+tim)//3600)} hours or something.",
     @commands.command(aliases=['vaultoftears', 'tearvault'])
     async def vault(self, ctx, member: discord.Member = None):
         '''Gives the users economy balance'''
-        if not member:
-            user = ctx.message.author
-        else:
-            user = member
+        user = ctx.message.author if not member else member
         server = db[str(user.guild.id)]
         stats = server.find({'id': user.id})
         trp = list(stats)[-1]['credits']
@@ -206,10 +197,7 @@ Wait for like {round((10800 - time.time()+tim)//3600)} hours or something.",
     @commands.command(aliases=['lvl', 'dep_level'])
     async def level(self, ctx, member: discord.Member = None):
         '''Gives the users level'''
-        if not member:
-            user = ctx.message.author
-        else:
-            user = member
+        user = ctx.message.author if not member else member
         server = db[str(user.guild.id)]
         stats = server.find({'id': user.id})
         lvl = list(stats)[-1]['level']
