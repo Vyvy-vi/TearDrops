@@ -3,7 +3,6 @@ import discord
 from discord.ext import commands
 from .inputs import responses, fortunes, quo, nerd, tech, rost, bk, cmp, blurt, jk
 
-
 class Fun(commands.Cog):
     def __init__(self, client):
         self.client = client
