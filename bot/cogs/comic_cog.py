@@ -15,9 +15,7 @@ class Comics(commands.Cog):
         base_url = 'https://xkcd.com/'
         if arg == 'random':
             base_url += f'{randint(1, 2390)}/'
-        elif arg == 'latest':
-            pass
-        else:
+        elif arg != 'latest':
             base_url += f'{arg}/'
         async with aiohttp.ClientSession() as session:
             url = base_url + 'info.0.json'

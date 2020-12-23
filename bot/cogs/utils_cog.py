@@ -66,7 +66,6 @@ class Utils(commands.Cog):
                 description='It appears that there is no instance of this in Wikipedia index...',
                 colour=discord.Color.dark_red())
             embed.set_footer(text='Powered by Wikipedia...')
-            await ctx.send(embed=embed)
         else:
             try:
                 page = wikipedia.page(searchResults[0], auto_suggest=False)
@@ -84,7 +83,8 @@ class Utils(commands.Cog):
                 s = ','.join(s)
                 embed.add_field(name='Did you mean?:', value=s)
             embed.set_image(url=page.images[0])
-            await ctx.send(embed=embed)
+
+        await ctx.send(embed=embed)
 
     @commands.command(pass_context=True)
     async def wolfram(self, ctx, *args):
@@ -143,10 +143,7 @@ class Utils(commands.Cog):
             weather_data['\nDescription'] = desc
             w_id = str(w_obj['id'])
             if '8' in w_id[0]:
-                if w_id=='800':
-                    col=0xd8d1b4
-                else:
-                    col=0xbababa
+                col = 0xd8d1b4 if w_id=='800' else 0xbababa
             elif '7' in w_id[0]:
                 col=0xc2eaea
             elif '6' in w_id[0]:
