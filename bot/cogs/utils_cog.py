@@ -81,10 +81,13 @@ class Utils(commands.Cog):
     @commands.command(pass_context=True)
     async def wolfram(self, ctx, *args):
         '''displays info from wolfram'''
-        ques = ' '.join(list(args))
+        ques = ''.join(args)
         wolfram = wolframalpha.Client("QYKRJ8-YT2JP8U85T")
         res = wolfram.query(ques)
-        await ctx.send(next(res.results).text)
+        if res['@success'] == 'false':
+            await ctx.send('Question cannot be resolved')
+        else:
+            await ctx.send(next(res.results).text)
 
     @commands.command(pass_context=True)
     async def weather(self, ctx, *, loc):

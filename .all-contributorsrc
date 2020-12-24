@@ -153,7 +153,37 @@
       "avatar_url": "https://avatars3.githubusercontent.com/u/68315325?v=4",
       "profile": "https://github.com/SKULLXL",
       "contributions": [
+        "bug",
+        "ideas"
+      ]
+    },
+    {
+      "login": "AkshayaKulasekaran",
+      "name": "Akshaya",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/61582763?v=4",
+      "profile": "https://github.com/AkshayaKulasekaran",
+      "contributions": [
         "bug"
+      ]
+    },
+    {
+      "login": "jveer634",
+      "name": "Jay",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/47923507?v=4",
+      "profile": "https://github.com/jveer634",
+      "contributions": [
+        "ideas",
+        "doc",
+        "bug"
+      ]
+    },
+    {
+      "login": "mstanciu552",
+      "name": "mstanciu552",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/34579048?v=4",
+      "profile": "https://github.com/mstanciu552",
+      "contributions": [
+        "doc"
       ]
     }
   ],

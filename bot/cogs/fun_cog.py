@@ -3,7 +3,6 @@ import discord
 from discord.ext import commands
 from .inputs import responses, fortunes, quo, nerd, tech, rost, bk, cmp, blurt, jk
 
-
 class Fun(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -51,8 +50,8 @@ class Fun(commands.Cog):
                         value=f'{random.choice(tech)}')
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=['shame'])
-    async def roast(self, ctx, member: discord.Member = None):
+    @commands.command()
+    async def roast(self, ctx, *,member: discord.Member = None):
         user = ctx.message.author if not member else member
         embed = discord.Embed(title='Roast', color=0x11ad4b)
         embed.add_field(name='😈', value=f'{user}, {random.choice(rost)}')

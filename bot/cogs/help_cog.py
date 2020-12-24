@@ -57,6 +57,7 @@ This has been uploaded to GitHub for educational and referencial purposes',
                             description='\n'.join(text),
                             color=discord.Color.green())
             else:
+                not_found = True
                 for command in self.client.commands:
                     if index == command.name:
                         embed = discord.Embed(
@@ -69,7 +70,6 @@ This has been uploaded to GitHub for educational and referencial purposes',
                             title=f'{index} was not found...',
                             color=discord.Color.red())
             await ctx.send(embed=embed)
-
 
 def setup(client):
     client.add_cog(Help(client))
