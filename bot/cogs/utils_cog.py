@@ -6,14 +6,6 @@ import wolframalpha
 from discord.ext import commands
 from translate import Translator
 
-def resolveListOrDict(variable):
-    if isinstance(variable, list):
-        return variable[0]['plaintext']
-    else:
-        return variable['plaintext']
-def removeBrackets(variable):
-    return variable.split('(')[0]
-
 class Utils(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -92,30 +84,10 @@ class Utils(commands.Cog):
         ques = ''.join(args)
         wolfram = wolframalpha.Client("QYKRJ8-YT2JP8U85T")
         res = wolfram.query(ques)
-        print(res)
         if res['@success'] == 'false':
-            print('Question cannot be resolved')
-        # Wolfram was able to resolve question
+            await ctx.send('Question cannot be resolved')
         else:
-            result = ''
-            # pod[0] is the question
-            pod0 = res['pod'][0]
-            # pod[1] may contains the answer
-            pod1 = res['pod'][1]
-            # checking if pod1 has primary=true or title=result|definition
-            if (('definition' in pod1['@title'].lower()) or ('result' in  pod1['@title'].lower()) or (pod1.get('@primary','false') == 'true')):
-                # extracting result from pod1
-                result = resolveListOrDict(pod1['subpod'])
-                await ctx.send(result)
-            else:
-                # extracting wolfram question interpretation from pod0
-                question = resolveListOrDict(pod0['subpod'])
-                # removing unnecessary parenthesis
-                question = removeBrackets(question)
-                # searching for response from wikipedia
-                await wiki(self, ctx, question)
-
-        await ctx.send(next(res.results).plainText)
+            await ctx.send(next(res.results).text)
 
     @commands.command(pass_context=True)
     async def weather(self, ctx, *, loc):
@@ -176,12 +148,34 @@ class Utils(commands.Cog):
 
         translator = Translator(to_lang=f"{lang}", from_lang='autodetect')
         translated = translator.translate(f"{args}")
-        embed = discord.Embed(title= "---translating--->",
+        embed = discord.Embed(title= "---> translating",
                               description= f'{translated}\n~{ctx.message.author.mention}',
                               colour= int(color, 16))
         embed.set_footer(text=f'Translated to {lang}...')
         await ctx.send(embed=embed)
 
+    @commands.command(pass_context=True, aliases=['multitrans', 'mt'])
+    async def multi_translate(self, ctx, *, args):
+        '''Converts text multiple times'''
+        color = "%06x" % random.randint(0, 0xFFFFFF)
+        LANGS = ['Zulu', 'Welsh', 'Uzbek', 'Turkish', 'Thai', 'Swedish', 'Swahili', 'Somali', 'Slovak', 'Russian', 'Romanian', 'Persian', 'Polish', 'Panjabi', 'Nepali', 'Mongolian', 'Macedonian', 'Latin', 'Korean', 'Japanese', 'Italian', 'Irish', 'Hebrew', 'German', 'French', 'Finnish', 'Estonian', 'Dutch', 'Danish', 'Czech', 'Chinese', 'Catalan', 'Armenian', 'Arabic', 'Afrikaans']
+        REPS = random.randint(8, 18)
+        conversion_hist = f"---> Translated {REPS} times... "
+        translated = f"{args}"
+        RAND_LANGS = list(set([random.choice(LANGS) for __ in range(REPS)]))
+        for _ in RAND_LANGS:
+            conversion_lang = _
+            conversion_hist += f'> {conversion_lang} '
+            translator = Translator(to_lang=f'{conversion_lang}',
+                                    from_lang='autodetect')
+            translated = translator.translate(translated)
+        embed = discord.Embed(title=f"Multi-translate",
+                             description=conversion_hist+'> English',
+                             color= int(color, 16))
+        translated = Translator(to_lang='en', from_lang='autodetect').translate(translated)
+        embed.add_field(name='Original text', value=f"`{args}`")
+        embed.add_field(name='Translated text', value=f"`{translated}`", inline=False)
+        await ctx.send(embed=embed)
 
 def setup(client):
     client.add_cog(Utils(client))
