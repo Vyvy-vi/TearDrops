@@ -162,7 +162,7 @@ class Utils(commands.Cog):
         REPS = random.randint(8, 18)
         conversion_hist = f"---> Translated {REPS} times... "
         translated = f"{args}"
-        RAND_LANGS = list(set([random.choice(LANGS) for __ in range(REPS)]))
+        RAND_LANGS = list({random.choice(LANGS) for __ in range(REPS)})
         for _ in RAND_LANGS:
             conversion_lang = _
             conversion_hist += f'> {conversion_lang} '

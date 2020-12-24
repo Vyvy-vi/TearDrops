@@ -44,7 +44,6 @@ This has been uploaded to GitHub for educational and referencial purposes',
                 value='\n'.join(text) + '\nFor more info, use `qq help <Category-name>`')
             embed.set_footer(
                 text='Cry, cry, let the tears flow through you...')
-            await ctx.send(embed=embed)
         else:
             if index in list(self.client.cogs.keys()):
                 for category in self.client.cogs:
@@ -69,7 +68,8 @@ This has been uploaded to GitHub for educational and referencial purposes',
                         embed = discord.Embed(
                             title=f'{index} was not found...',
                             color=discord.Color.red())
-            await ctx.send(embed=embed)
+
+        await ctx.send(embed=embed)
 
 def setup(client):
     client.add_cog(Help(client))
