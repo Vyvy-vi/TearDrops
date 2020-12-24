@@ -54,7 +54,7 @@ This has been uploaded to GitHub for educational and referencial purposes',
                         embed = discord.Embed(
                             title=f'**Help category: {category}**',
                             description='\n'.join(text),
-                            color=discord.Color.green())
+                            color=discord.Color.gold())
             else:
                 not_found = True
                 for command in self.client.commands:
