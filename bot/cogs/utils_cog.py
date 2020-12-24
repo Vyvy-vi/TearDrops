@@ -145,12 +145,34 @@ class Utils(commands.Cog):
 
         translator = Translator(to_lang=f"{lang}", from_lang='autodetect')
         translated = translator.translate(f"{args}")
-        embed = discord.Embed(title= "---translating--->",
+        embed = discord.Embed(title= "---> translating",
                               description= f'{translated}\n~{ctx.message.author.mention}',
                               colour= int(color, 16))
         embed.set_footer(text=f'Translated to {lang}...')
         await ctx.send(embed=embed)
 
+    @commands.command(pass_context=True, aliases=['multitrans', 'mt'])
+    async def multi_translate(self, ctx, *, args):
+        '''Converts text multiple times'''
+        color = "%06x" % random.randint(0, 0xFFFFFF)
+        LANGS = ['Zulu', 'Welsh', 'Uzbek', 'Turkish', 'Thai', 'Swedish', 'Swahili', 'Somali', 'Slovak', 'Russian', 'Romanian', 'Persian', 'Polish', 'Panjabi', 'Nepali', 'Mongolian', 'Macedonian', 'Latin', 'Korean', 'Japanese', 'Italian', 'Irish', 'Hebrew', 'German', 'French', 'Finnish', 'Estonian', 'Dutch', 'Danish', 'Czech', 'Chinese', 'Catalan', 'Armenian', 'Arabic', 'Afrikaans']
+        REPS = random.randint(8, 18)
+        conversion_hist = f"---> Translated {REPS} times... "
+        translated = f"{args}"
+        RAND_LANGS = list(set([random.choice(LANGS) for __ in range(REPS)]))
+        for _ in RAND_LANGS:
+            conversion_lang = _
+            conversion_hist += f'> {conversion_lang} '
+            translator = Translator(to_lang=f'{conversion_lang}',
+                                    from_lang='autodetect')
+            translated = translator.translate(translated)
+        embed = discord.Embed(title=f"Multi-translate",
+                             description=conversion_hist+'> English',
+                             color= int(color, 16))
+        translated = Translator(to_lang='en', from_lang='autodetect').translate(translated)
+        embed.add_field(name='Original text', value=f"`{args}`")
+        embed.add_field(name='Translated text', value=f"`{translated}`", inline=False)
+        await ctx.send(embed=embed)
 
 def setup(client):
     client.add_cog(Utils(client))
