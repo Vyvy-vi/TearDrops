@@ -162,14 +162,14 @@ class Utils(commands.Cog):
         REPS = random.randint(8, 18)
         conversion_hist = f"---> Translated {REPS} times... "
         translated = f"{args}"
-        RAND_LANGS = list(set([random.choice(LANGS) for __ in range(REPS)]))
+        RAND_LANGS = list({random.choice(LANGS) for __ in range(REPS)})
         for _ in RAND_LANGS:
             conversion_lang = _
             conversion_hist += f'> {conversion_lang} '
             translator = Translator(to_lang=f'{conversion_lang}',
                                     from_lang='autodetect')
             translated = translator.translate(translated)
-        embed = discord.Embed(title=f"Multi-translate",
+        embed = discord.Embed(title="Multi-translate",
                              description=conversion_hist+'> English',
                              color= int(color, 16))
         translated = Translator(to_lang='en', from_lang='autodetect').translate(translated)
