@@ -169,7 +169,7 @@ class Utils(commands.Cog):
             translator = Translator(to_lang=f'{conversion_lang}',
                                     from_lang='autodetect')
             translated = translator.translate(translated)
-        embed = discord.Embed(title=f"Multi-translate",
+        embed = discord.Embed(title="Multi-translate",
                              description=conversion_hist+'> English',
                              color= int(color, 16))
         translated = Translator(to_lang='en', from_lang='autodetect').translate(translated)
