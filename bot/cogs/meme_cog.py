@@ -27,7 +27,7 @@ class Meme(commands.Cog):
         self.client = client
 
     @commands.command(aliases=['meme'])
-    async def memes(self, ctx, param=None):
+    async def memes(self, ctx, param: str = None):
         if param == None:
             sub ='/'
         else:
