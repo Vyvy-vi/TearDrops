@@ -27,9 +27,13 @@ class Meme(commands.Cog):
         self.client = client
 
     @commands.command(aliases=['meme'])
-    async def memes(self, ctx):
+    async def memes(self, ctx, param==None):
+        if param == None:
+            sub ='/'
+        else:
+            sub = '/' + str(param)
         async with aiohttp.ClientSession() as session:
-            url = "https://meme-api.herokuapp.com/gimme"
+            url = "https://meme-api.herokuapp.com/gimme" + sub
             async with session.get(url) as response:
                 response = await response.json()
             embed = discord.Embed(
