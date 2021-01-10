@@ -28,10 +28,7 @@ class Meme(commands.Cog):
 
     @commands.command(aliases=['meme'])
     async def memes(self, ctx, param: str = None):
-        if param == None:
-            sub ='/'
-        else:
-            sub = '/' + str(param)
+        sub = '/' if param is None else '/' + str(param)
         async with aiohttp.ClientSession() as session:
             url = "https://meme-api.herokuapp.com/gimme" + sub
             async with session.get(url) as response:
