@@ -78,7 +78,7 @@ If you're not on Windows, you should also have GNU make installed, and you can o
 * Fork the repo and clone it on your machine.
 * Add a upstream link to main branch in your cloned repo
     ```
-    git remote add upstream https://github.com/Py-Contributors/py-contributors-Bot.git
+    git remote add upstream https://github.com/Vyvy-vi/TearDrops
     ```
 * Keep your cloned repo upto date by pulling from upstream (this will also avoid any merge conflicts while committing new changes)
     ```
