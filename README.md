@@ -79,7 +79,7 @@ Before contributing, here is some information that might help your **PR (Pull Re
 Requirements:
 - git
 - pip
-- python 3.8.1 or higher
+- python `3.8.1` or higher
 
 **Note**: If you're not on Windows, you should also have GNU make installed, and you can optionally install [pyenv](https://github.com/pyenv/pyenv), which can help you run tests for different python versions.
 
