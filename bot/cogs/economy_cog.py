@@ -6,6 +6,7 @@ from pymongo import MongoClient
 
 
 from utils import get_environment_variable
+from .utils import COLOR
 
 MONGO_CONNECTION_STRING = get_environment_variable("MONGO_CONNECTION_STRING")
 DB_CLIENT = MongoClient(MONGO_CONNECTION_STRING)
@@ -78,7 +79,7 @@ async def level_up(user, channel):
             title=f'{user} has leveled up to {lvl_end}.',
             description=f'You have been given {ls} tears for your active-ness.\n\
 Saving {ls} tears in your vault of tears.',
-            color=discord.Color.teal())
+            color=COLOR.LEVELLING)
         embed.set_footer(text='😭')
         await channel.send(embed=embed)
 
@@ -153,14 +154,14 @@ class Economy(commands.Cog):
                     title='**Tear Dispenser**',
                     description=f'You cried {tr} tears.\n\
 Storing them in the vaults of tears.Spend them wisely...💦\nSpend them wisely...',
-                    color=discord.Color.blue())
+                    color=COLOR.DEFAULT)
                 embed.set_footer(text='😭')
             elif tr == 1:
                 embed = discord.Embed(
                     title='**Tear Dispenser**',
                     description='You really tried but only 1 tear came out...\n\
 Storing it in the vaults of tears.Spend them wisely...💧\nSpend it wisely...',
-                    color=discord.Color.blue())
+                    color=COLOR.DEFAULT)
                 embed.set_footer(text='😭')
             else:
                 tr2 = [
@@ -173,7 +174,7 @@ Storing it in the vaults of tears.Spend them wisely...💧\nSpend it wisely...',
                 embed = discord.Embed(
                     title='**Tear Dispenser**',
                     description=f"You can't cry rn.{message}",
-                    color=discord.Color.blue())
+                    color=COLOR.ERROR)
                 embed.set_footer(text='😭')
                 embed.add_field(
                     name='Try again after like 3 hours.',
@@ -188,7 +189,7 @@ Storing it in the vaults of tears.Spend them wisely...💧\nSpend it wisely...',
                 title='**Tear Dispenser**',
                 description=f"You can't cry rn. Let your eyes hydrate.\n\
 Wait for like {round((10800 - time.time()+tim)//3600)} hours or something.",
-                color=discord.Color.blue())
+                color=COLOR.ECONOMY)
             embed.set_footer(text='😭')
             await ctx.send(embed=embed)
 
@@ -202,7 +203,7 @@ Wait for like {round((10800 - time.time()+tim)//3600)} hours or something.",
         embed = discord.Embed(
             title='**Vault of Tears**',
             description=f"Opening {user}'s vault-of-tears....",
-            colour=discord.Color.blurple())
+            colour=COLOR.ECONOMY)
         embed.set_footer(
             text='Cry, cry, let the emotions flow through you...😭')
         embed.add_field(name='Tears', value=trp)
@@ -218,7 +219,7 @@ Wait for like {round((10800 - time.time()+tim)//3600)} hours or something.",
         embed = discord.Embed(
             title=f'**Depression-Level of {user}**',
             description="._.",
-            colour=discord.Color.blurple())
+            colour=COLOR.LEVELLING)
         embed.set_footer(
             text='Cry, cry, let the emotions flow through you...😭')
         embed.add_field(name='Level', value=lvl)
@@ -243,7 +244,7 @@ Wait for like {round((10800 - time.time()+tim)//3600)} hours or something.",
             embed = discord.Embed(
                 title='**Heart_to_heart**',
                 description=f"You tried to cry tears for {member}",
-                colour=discord.Color.green())
+                colour=COLOR.ECONOMY)
             embed.set_footer(
                 text='Cry, cry, let the emotions flow through you...😭')
             embed.add_field(
@@ -254,7 +255,7 @@ Wait for like {round((10800 - time.time()+tim)//3600)} hours or something.",
             embed = discord.Embed(
                 title='**Heart_to_heart**',
                 description=f"You tried to cry tears for {member}",
-                colour=discord.Color.green())
+                colour=COLOR.ERROR)
             embed.set_footer(
                 text='Cry, cry, let the emotions flow through you...😭')
             embed.add_field(

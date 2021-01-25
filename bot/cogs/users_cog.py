@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 
+from .utils import COLOR
 
 class Users(commands.Cog):
     def __init__(self, client):

@@ -3,7 +3,7 @@ from discord.ext import commands
 from pymongo import MongoClient
 
 from utils import get_environment_variable
-
+from .utils import COLOR
 
 MONGO_CONNECTION_STRING = get_environment_variable("MONGO_CONNECTION_STRING")
 DB_CLIENT = MongoClient(MONGO_CONNECTION_STRING)
@@ -37,7 +37,7 @@ The currency credits for the bot are _tears_(hahah obviously). Have fun being sa
 \nNOTE- Even though this is OpenSource and under MIT license, I request you to not start a commercial bot with the same name "Tear Drops:tm:"\
 This bot is under MIT License(provided as is, do whatever you want) \
 This has been uploaded to GitHub for educational and referencial purposes',
-                    colour=discord.Color.purple(),
+                    colour=COLOR.DEFAULT,
                     url='https://github.com/Py-Contributors/awesomeScripts/Tear-Drops_DiscordBot/')
                 embed.set_footer(text='I Hope that you enjoyed the bot....😭')
                 embed.set_image(url=icon_url)

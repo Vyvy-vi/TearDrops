@@ -20,15 +20,14 @@ def get_environment_variable(key, default=sentinel, coerce=str):
 
 
 class COLOR:
-    DEFAULT = 0x922C40
-    ERROR = 0x922C40
-    SUCCESS = 0x922C40
-    READY = 0x922C40
-    WELCOME = 0x922C40
-    SADNESS = 0x922C40
-    JOY = 0x922C40
-    LEVELLING = 0x922C40
-    ECONOMY = 0x922C40
+    DEFAULT = 0x8FDDE7
+    ERROR = 0xFF3333
+    SUCCESS = 0xB6E5D8
+    READY = 0xB6E5D8
+    SADNESS = 0x0f0f18
+    JOY = 0xFBE5C8
+    LEVELLING = 0xFFC2C7
+    ECONOMY = 0x85bb65
     WIKI = 0xa9a9aa
     XKCD = 0x96a8c8
 
