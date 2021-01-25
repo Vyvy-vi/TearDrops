@@ -8,6 +8,7 @@ from discord.ext import commands
 from translate import Translator
 from .utils import COLOR
 
+
 class Utils(commands.Cog):
     def __init__(self, client):
         self.client = client

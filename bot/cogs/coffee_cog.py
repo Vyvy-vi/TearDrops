@@ -5,6 +5,7 @@ from discord.ext import commands
 from .inputs import cl, cf, chill, cfe, ur
 from .utils import COLOR
 
+
 class Coffee(commands.Cog):
     def __init__(self, client):
         self.client = client

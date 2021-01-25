@@ -4,6 +4,7 @@ from discord.ext import commands
 
 from .utils import COLOR
 
+
 class Ping(commands.Cog):
     def __init__(self, client):
         self.client = client

@@ -33,5 +33,5 @@ class COLOR:
 
     @staticmethod
     def RANDOM():
-        colndint(0, 0xFFFFFF)
+        color = int(0, 0xFFFFFF)
         return int(color, 16)
