@@ -1,8 +1,6 @@
 import os
-import random
 
 sentinel = object()
-
 
 def get_environment_variable(key, default=sentinel, coerce=str):
     try:
