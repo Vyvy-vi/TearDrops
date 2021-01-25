@@ -58,7 +58,7 @@ class Utils(commands.Cog):
             embed = discord.Embed(
                 title=f'**{args}**',
                 description='It appears that there is no instance of this in Wikipedia index...',
-                colour=COLORS.ERROR)
+                colour=COLOR.ERROR)
             embed.set_footer(text='Powered by Wikipedia...')
         else:
             try:
