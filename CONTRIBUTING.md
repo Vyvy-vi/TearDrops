@@ -45,7 +45,7 @@ TearDrops's repository is configured to follow a particular development workflow
 
 ### 4.1 Setting up your development environment
 The following requirements must be installed prior to setting up:
- - Python 3.8.1 or greater
+ - Python `3.8.1` or greater
  - git
  - pip
  
