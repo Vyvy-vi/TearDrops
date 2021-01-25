@@ -21,7 +21,7 @@ def get_environment_variable(key, default=sentinel, coerce=str):
 
 class COLOR:
     INDIGO = 0x097b5
-
+    @staticmethod
     def RANDOM():
         color = "%06x" % random.randint(0, 0xFFFFFF)
         return int(color, 16)
