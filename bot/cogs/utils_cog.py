@@ -3,8 +3,10 @@ import discord
 import wikipedia
 import requests
 import wolframalpha
+
 from discord.ext import commands
 from translate import Translator
+from .utils import COLOR
 
 
 class Utils(commands.Cog):
@@ -56,7 +58,7 @@ class Utils(commands.Cog):
             embed = discord.Embed(
                 title=f'**{args}**',
                 description='It appears that there is no instance of this in Wikipedia index...',
-                colour=discord.Color.dark_red())
+                colour=COLOR.ERROR)
             embed.set_footer(text='Powered by Wikipedia...')
         else:
             try:
@@ -68,7 +70,7 @@ class Utils(commands.Cog):
             wikiTitle = str(page.title.encode('utf-8'))
             wikiSummary = page.summary
             embed = discord.Embed(title=f'**{wikiTitle[1:]}**', description=str(
-                wikiSummary[0:900]) + '...', color=discord.Color.dark_orange(), url=page.url)
+                wikiSummary[0:900]) + '...', color=COLOR.WIKI, url=page.url)
             embed.set_footer(text='Powered by Wikipedia...')
             if pg != 0:
                 s = pg[1:10] + ['...']
@@ -148,23 +150,19 @@ class Utils(commands.Cog):
     @commands.command(pass_context=True)
     async def translate(self, ctx, lang, *, args):
         '''Converts text to different language'''
-        color = "%06x" % random.randint(0, 0xFFFFFF)
 
         translator = Translator(to_lang=f"{lang}", from_lang='autodetect')
         translated = translator.translate(f"{args}")
         embed = discord.Embed(
             title="---> translating",
             description=f'{translated}\n~{ctx.message.author.mention}',
-            colour=int(
-                color,
-                16))
+            colour=COLOR.RANDOM())
         embed.set_footer(text=f'Translated to {lang}...')
         await ctx.send(embed=embed)
 
     @commands.command(pass_context=True, aliases=['multitrans', 'mt'])
     async def multi_translate(self, ctx, *, args):
         '''Converts text multiple times'''
-        color = "%06x" % random.randint(0, 0xFFFFFF)
         LANGS = [
             'Zulu',
             'Welsh',
@@ -213,7 +211,7 @@ class Utils(commands.Cog):
             translated = translator.translate(translated)
         embed = discord.Embed(title="Multi-translate",
                               description=conversion_hist + '> English',
-                              color=int(color, 16))
+                              color=COLOR.RANDOM())
         translated = Translator(to_lang='en',
                                 from_lang='autodetect').translate(translated)
         embed.add_field(name='Original text', value=f"`{args}`")

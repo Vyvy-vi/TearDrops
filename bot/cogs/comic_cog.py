@@ -4,6 +4,7 @@ import aiohttp
 
 import discord
 from discord.ext import commands
+from .utils import COLOR
 
 
 class Comics(commands.Cog):
@@ -25,7 +26,7 @@ class Comics(commands.Cog):
             embed = discord.Embed(title=json['title'],
                                   url=base_url,
                                   description=json['alt'],
-                                  color=0x96a8c8)
+                                  color=COLOR.XKCD)
             embed.set_image(url=json['img'])
             txt = f"xkcd comic #{json['num']} | Requested by {ctx.author.name}"
             embed.set_footer(text=txt)

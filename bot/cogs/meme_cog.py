@@ -2,6 +2,8 @@ import discord
 from discord.ext import commands, tasks
 import aiohttp
 
+from .utils import COLOR
+
 # Map of channel IDs to tasks.Loop automeme loops
 automeme_loops = {}
 
@@ -15,7 +17,7 @@ async def automeme_routine(ctx):
         embed = discord.Embed(
             title=response['title'],
             url=response['postLink'],
-            color=discord.Color.dark_orange())
+            color=COLOR.JOY)
         embed.set_image(url=response['url'])
         embed.set_footer(
             text=f"r/{response['subreddit']} | Requested by {ctx.author.name} | Enjoy your dank memes!")
@@ -36,7 +38,7 @@ class Meme(commands.Cog):
             embed = discord.Embed(
                 title=response['title'],
                 url=response['postLink'],
-                color=discord.Color.dark_orange())
+                color=COLOR.JOY)
             embed.set_image(url=response['url'])
             txt = f"r/{response['subreddit']} | Requested by {ctx.author.name} | Enjoy your dank memes"
             embed.set_footer(text=txt)

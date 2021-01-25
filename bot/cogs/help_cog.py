@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands
 
+from .utils import COLOR
+
 
 class Help(commands.Cog):
     def __init__(self, client):
@@ -18,7 +20,7 @@ The currency credits for the bot are _tears_(hahah obviously). Have fun being sa
 \nNOTE- Even though this is OpenSource and under MIT license, I request you to not start a commercial bot with the same name "Tear Drops:tm:"\
 This bot is under MIT License(provided as is, do whatever you want) \
 This has been uploaded to GitHub for educational and referencial purposes',
-            colour=discord.Color.purple(),
+            colour=COLOR.DEFAULT,
             url='https://github.com/Py-Contributors/awesomeScripts/Tear-Drops_DiscordBot/')
         embed.set_footer(text='I Hope that you enjoyed the bot....😭')
         embed.set_image(
@@ -33,7 +35,7 @@ This has been uploaded to GitHub for educational and referencial purposes',
             embed = discord.Embed(
                 title='**Help command**',
                 description='The following command categories exist for bot ;-;',
-                color=discord.Color.green())
+                color=COLOR.DEFAULT)
             for cog in self.client.cogs.items():
                 text.append(f'**{cog[0]}')
             text = f"{',** '.join(sorted(text))}**".split(' ')
@@ -55,7 +57,7 @@ This has been uploaded to GitHub for educational and referencial purposes',
                         embed = discord.Embed(
                             title=f'**Help category: {category}**',
                             description='\n'.join(text),
-                            color=discord.Color.gold())
+                            color=COLOR.DEFAULT)
             else:
                 not_found = True
                 for command in self.client.commands:
@@ -63,12 +65,12 @@ This has been uploaded to GitHub for educational and referencial purposes',
                         embed = discord.Embed(
                             title=f'**Help command: {command}**',
                             description=f'Description : {command.short_doc} \n {command.brief}',
-                            color=discord.Color.green())
+                            color=COLOR.DEFAULT)
                         break
                     else:
                         embed = discord.Embed(
                             title=f'{index} was not found...',
-                            color=discord.Color.red())
+                            color=COLOR.ERROR)
 
         await ctx.send(embed=embed)
 

@@ -2,6 +2,8 @@ import random
 import discord
 from discord.ext import commands
 
+from .utils import COLOR
+
 
 class Ping(commands.Cog):
     def __init__(self, client):
@@ -21,7 +23,7 @@ class Ping(commands.Cog):
         embed = discord.Embed(
             title='**pong...!**',
             description=f"_{ph}_ \n**~{lsm} ms taken**......",
-            color=discord.Color.gold())
+            color=COLOR.SUCCESS)
         embed.set_footer(text='😭')
         await ctx.send(embed=embed)
 
@@ -39,7 +41,7 @@ class Ping(commands.Cog):
         embed = discord.Embed(
             title='**PING...!**',
             description=f"_{ph}_ \n**~{lsm} ms taken**......",
-            color=discord.Color.red())
+            color=COLOR.ERROR)
         embed.set_footer(text='😭')
         await ctx.send(embed=embed)
 

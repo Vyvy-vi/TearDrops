@@ -3,7 +3,7 @@ import discord
 from pymongo import MongoClient
 from discord.ext import commands
 from utils import get_environment_variable
-
+from .utils import COLOR
 buls = 1
 
 
@@ -33,19 +33,19 @@ class Game(commands.Cog):
                 embed = discord.Embed(
                     title='Dice-roll...🎲',
                     description=f'The dice rolled a {numtemp}.\nYou have been awarded 50 tears for this...',
-                    color=discord.Color.dark_red())
+                    color=COLOR.JOY)
             else:
                 embed = discord.Embed(
                     title='Dice-roll...🎲',
                     description=f'The dice rolled a {numtemp}.\n\
 Your prediction was wrong. 😖',
-                    color=discord.Color.dark_red())
+                    color=COLOR.DEFAULT)
         else:
             embed = discord.Embed(
                 title='Dice-roll...🎲',
                 description='Please enter a valid number argument.\n\
 Command Usage-> qq dice <num> (between 1 and 6)',
-                color=discord.Color.dark_red())
+                color=COLOR.ERROR)
 
         await ctx.send(embed=embed)
 
@@ -58,13 +58,13 @@ Command Usage-> qq dice <num> (between 1 and 6)',
             embed = discord.Embed(
                 title='Russian Roulette.🔫',
                 description='All you remember is the pain you felt when the bullet pierced your skull.',
-                color=discord.Color.light_gray())
+                color=COLOR.ERROR())
         else:
             buls += 1
             embed = discord.Embed(
                 title='Russian Roulette.🔫',
                 description='You live to fight another day',
-                color=discord.Color.blue())
+                color=COLOR.DEFAULT())
         await ctx.send(embed=embed)
 
 
