@@ -194,6 +194,15 @@
       "contributions": [
         "ideas"
       ]
+    },
+    {
+      "login": "sreekaransrinath",
+      "name": "Sreekaran Srinath",
+      "avatar_url": "https://avatars.githubusercontent.com/u/50989977?v=4",
+      "profile": "http://sreekaransrinath.github.io",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
