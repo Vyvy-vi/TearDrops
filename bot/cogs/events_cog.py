@@ -63,5 +63,6 @@ This has been uploaded to GitHub for educational and referencial purposes',
         print(f'{user} was banned from {guild.name}-{guild.id}')
     """
 
+
 def setup(client):
     client.add_cog(Events(client))

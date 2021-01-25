@@ -41,7 +41,8 @@ This has been uploaded to GitHub for educational and referencial purposes',
             text = [' '.join(i) for i in text]
             embed.add_field(
                 name='\u200b',
-                value='\n'.join(text) + '\nFor more info, use `qq help <Category-name>`')
+                value='\n'.join(text) +
+                '\nFor more info, use `qq help <Category-name>`')
             embed.set_footer(
                 text='Cry, cry, let the tears flow through you...')
         else:
@@ -70,6 +71,7 @@ This has been uploaded to GitHub for educational and referencial purposes',
                             color=discord.Color.red())
 
         await ctx.send(embed=embed)
+
 
 def setup(client):
     client.add_cog(Help(client))

@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 
+
 class Users(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -32,6 +33,7 @@ class Users(commands.Cog):
             embed.set_footer(text=f"Displaying avatar of {user.display_name}")
             embed.set_image(url=user.avatar_url)
         await ctx.send(embed=embed)
+
 
 def setup(client):
     client.add_cog(Users(client))
