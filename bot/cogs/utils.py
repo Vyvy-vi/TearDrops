@@ -15,12 +15,13 @@ def get_environment_variable(key, default=sentinel, coerce=str):
             "You must specify '{}' environment variable.".format(key))
     except Exception as e:
         raise ValueError(
-            "Error while parsing environment variable '{}', more info: '{}'.".format(key, e))
+            "Error while parsing environment variable '{}', more info: '{}'.".format(
+                key, e))
+
 
 class COLOR:
     INDIGO = 0x097b5
+
     def RANDOM():
         color = "%06x" % random.randint(0, 0xFFFFFF)
         return int(color, 16)
-
-

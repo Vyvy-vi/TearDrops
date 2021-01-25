@@ -6,6 +6,7 @@ import wolframalpha
 from discord.ext import commands
 from translate import Translator
 
+
 class Utils(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -46,7 +47,6 @@ class Utils(commands.Cog):
         baseurl = "https://www.merriam-webster.com/dictionary/"
         output = '%20'.join(args)
         await ctx.send(baseurl + output)
-
 
     @commands.command(pass_context=True)
     async def wiki(self, ctx, *, args):
@@ -93,11 +93,12 @@ class Utils(commands.Cog):
     async def weather(self, ctx, *, loc):
         '''displays weather data'''
         p = {"http": "http://111.233.225.166:1234"}
-        k = "353ddfe27aa4b3537c47c975c70b58d9" # dummy key(for now)
-        api_r = requests.get(f"http://api.openweathermap.org/data/2.5/weather?appid={k}&q={loc}, verify= False, proxies=p")
+        k = "353ddfe27aa4b3537c47c975c70b58d9"  # dummy key(for now)
+        api_r = requests.get(
+            f"http://api.openweathermap.org/data/2.5/weather?appid={k}&q={loc}, verify= False, proxies=p")
         q = api_r.json()
         if q["cod"] != 404:
-            weather_data={}
+            weather_data = {}
             temp = q['main']['temp']
             weather_data['Temperature'] = f'{str(round(temp-273.16, 2))} °C'
 
@@ -115,23 +116,26 @@ class Utils(commands.Cog):
             weather_data['\nDescription'] = desc
             w_id = str(w_obj['id'])
             if '8' in w_id[0]:
-                col = 0xd8d1b4 if w_id=='800' else 0xbababa
+                col = 0xd8d1b4 if w_id == '800' else 0xbababa
             elif '7' in w_id[0]:
-                col=0xc2eaea
+                col = 0xc2eaea
             elif '6' in w_id[0]:
-                col=0xdde5f4
+                col = 0xdde5f4
             elif '5' in w_id[0]:
-                col= 0x68707c
+                col = 0x68707c
             elif '3' in w_id[0]:
-                col= 0xb1c4d8
+                col = 0xb1c4d8
             elif '2' in w_id[0]:
-                col= 0x4d5665
-            else: col= 0x000000
-            weather_data = [f'**{field}**: {weather_data[field]}' for field in weather_data]
-            embed = discord.Embed(title='Weather',
-                                  description=f'displaying weather of {loc}...',
-                                  color=col)
-            embed.add_field(name='\u200b',value='\n'.join(weather_data))
+                col = 0x4d5665
+            else:
+                col = 0x000000
+            weather_data = [
+                f'**{field}**: {weather_data[field]}' for field in weather_data]
+            embed = discord.Embed(
+                title='Weather',
+                description=f'displaying weather of {loc}...',
+                color=col)
+            embed.add_field(name='\u200b', value='\n'.join(weather_data))
             embed.set_footer(text=f'Requested by {ctx.message.author.name}')
         else:
             embed = discord.Embed(title='Weather',
@@ -148,9 +152,12 @@ class Utils(commands.Cog):
 
         translator = Translator(to_lang=f"{lang}", from_lang='autodetect')
         translated = translator.translate(f"{args}")
-        embed = discord.Embed(title= "---> translating",
-                              description= f'{translated}\n~{ctx.message.author.mention}',
-                              colour= int(color, 16))
+        embed = discord.Embed(
+            title="---> translating",
+            description=f'{translated}\n~{ctx.message.author.mention}',
+            colour=int(
+                color,
+                16))
         embed.set_footer(text=f'Translated to {lang}...')
         await ctx.send(embed=embed)
 
@@ -158,7 +165,42 @@ class Utils(commands.Cog):
     async def multi_translate(self, ctx, *, args):
         '''Converts text multiple times'''
         color = "%06x" % random.randint(0, 0xFFFFFF)
-        LANGS = ['Zulu', 'Welsh', 'Uzbek', 'Turkish', 'Thai', 'Swedish', 'Swahili', 'Somali', 'Slovak', 'Russian', 'Romanian', 'Persian', 'Polish', 'Panjabi', 'Nepali', 'Mongolian', 'Macedonian', 'Latin', 'Korean', 'Japanese', 'Italian', 'Irish', 'Hebrew', 'German', 'French', 'Finnish', 'Estonian', 'Dutch', 'Danish', 'Czech', 'Chinese', 'Catalan', 'Armenian', 'Arabic', 'Afrikaans']
+        LANGS = [
+            'Zulu',
+            'Welsh',
+            'Uzbek',
+            'Turkish',
+            'Thai',
+            'Swedish',
+            'Swahili',
+            'Somali',
+            'Slovak',
+            'Russian',
+            'Romanian',
+            'Persian',
+            'Polish',
+            'Panjabi',
+            'Nepali',
+            'Mongolian',
+            'Macedonian',
+            'Latin',
+            'Korean',
+            'Japanese',
+            'Italian',
+            'Irish',
+            'Hebrew',
+            'German',
+            'French',
+            'Finnish',
+            'Estonian',
+            'Dutch',
+            'Danish',
+            'Czech',
+            'Chinese',
+            'Catalan',
+            'Armenian',
+            'Arabic',
+            'Afrikaans']
         REPS = random.randint(8, 18)
         conversion_hist = f"---> Translated {REPS} times... "
         translated = f"{args}"
@@ -170,12 +212,17 @@ class Utils(commands.Cog):
                                     from_lang='autodetect')
             translated = translator.translate(translated)
         embed = discord.Embed(title="Multi-translate",
-                             description=conversion_hist+'> English',
-                             color= int(color, 16))
-        translated = Translator(to_lang='en', from_lang='autodetect').translate(translated)
+                              description=conversion_hist + '> English',
+                              color=int(color, 16))
+        translated = Translator(to_lang='en',
+                                from_lang='autodetect').translate(translated)
         embed.add_field(name='Original text', value=f"`{args}`")
-        embed.add_field(name='Translated text', value=f"`{translated}`", inline=False)
+        embed.add_field(
+            name='Translated text',
+            value=f"`{translated}`",
+            inline=False)
         await ctx.send(embed=embed)
+
 
 def setup(client):
     client.add_cog(Utils(client))

@@ -4,6 +4,7 @@ from discord.ext import commands
 from .inputs import responses, fortunes, quo, nerd, tech, rost, bk, cmp, blurt, jk
 from .utils import COLOR
 
+
 class Fun(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -26,7 +27,10 @@ class Fun(commands.Cog):
     async def quote(self, ctx):
         randq = random.choice(list(quo.keys()))
         quote_text = f'`{randq}`\n_~{quo[randq]}_'
-        embed = discord.Embed(title='Quote', description= quote_text, color=COLOR.RANDOM())
+        embed = discord.Embed(
+            title='Quote',
+            description=quote_text,
+            color=COLOR.RANDOM())
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['joke', 'pun'])
@@ -52,7 +56,7 @@ class Fun(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command()
-    async def roast(self, ctx, *,member: discord.Member = None):
+    async def roast(self, ctx, *, member: discord.Member = None):
         user = ctx.message.author if not member else member
         embed = discord.Embed(title='Roast', color=0x11ad4b)
         embed.add_field(name='😈', value=f'{user}, {random.choice(rost)}')

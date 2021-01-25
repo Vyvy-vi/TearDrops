@@ -132,7 +132,21 @@ class Economy(commands.Cog):
         stats = list(server.find({'id': user.id}))
         tim = stats[-1]['crytime']
         if time.time() - tim > 10800:
-            trs = [0, 100, 150, 150, 200, 100, 50, 250, 500, 200, 1, 200, 150, 100]
+            trs = [
+                0,
+                100,
+                150,
+                150,
+                200,
+                100,
+                50,
+                250,
+                500,
+                200,
+                1,
+                200,
+                150,
+                100]
             tr = random.choice(trs)
             if tr > 1:
                 embed = discord.Embed(
