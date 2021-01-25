@@ -2,6 +2,7 @@ import random
 import discord
 from discord.ext import commands
 from .inputs import responses, fortunes, quo, nerd, tech, rost, bk, cmp, blurt, jk
+from .utils import COLOR
 
 class Fun(commands.Cog):
     def __init__(self, client):
@@ -24,8 +25,8 @@ class Fun(commands.Cog):
     @commands.command(aliases=['wisdom'])
     async def quote(self, ctx):
         randq = random.choice(list(quo.keys()))
-        embed = discord.Embed(title='Quote', color=0x097b5)
-        embed.add_field(name=f'`{randq}`', value=f'_~{quo[randq]}_')
+        quote_text = f'`{randq}`\n_~{quo[randq]}_'
+        embed = discord.Embed(title='Quote', description= quote_text, color=COLOR.RANDOM())
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['joke', 'pun'])
