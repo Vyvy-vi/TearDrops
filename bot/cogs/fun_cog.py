@@ -19,7 +19,7 @@ class Fun(commands.Cog):
 
     @commands.command(aliases=["future"])
     async def fortune(self, ctx):
-        embed = discord.Embed(title='Fortune', color=0x09b58d)
+        embed = discord.Embed(title='Fortune', color=COLOR.DEFAULT)
         embed.add_field(name='Your Fortune', value=random.choice(fortunes))
         await ctx.send(embed=embed)
 
