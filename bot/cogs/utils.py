@@ -29,10 +29,10 @@ class COLOR:
     JOY = 0x922C40
     LEVELLING = 0x922C40
     ECONOMY = 0x922C40
-    WIKI = 0x922
-    XKCD = 0x922C40
+    WIKI = 0xa9a9aa
+    XKCD = 0x96a8c8
 
     @staticmethod
     def RANDOM():
-        color = "%06x" % random.randint(0, 0xFFFFFF)
+        colndint(0, 0xFFFFFF)
         return int(color, 16)

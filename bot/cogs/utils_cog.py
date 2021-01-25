@@ -3,9 +3,10 @@ import discord
 import wikipedia
 import requests
 import wolframalpha
+
 from discord.ext import commands
 from translate import Translator
-
+from .utils import COLOR
 
 class Utils(commands.Cog):
     def __init__(self, client):
@@ -56,7 +57,7 @@ class Utils(commands.Cog):
             embed = discord.Embed(
                 title=f'**{args}**',
                 description='It appears that there is no instance of this in Wikipedia index...',
-                colour=discord.Color.dark_red())
+                colour=COLORS.ERROR)
             embed.set_footer(text='Powered by Wikipedia...')
         else:
             try:
@@ -68,7 +69,7 @@ class Utils(commands.Cog):
             wikiTitle = str(page.title.encode('utf-8'))
             wikiSummary = page.summary
             embed = discord.Embed(title=f'**{wikiTitle[1:]}**', description=str(
-                wikiSummary[0:900]) + '...', color=discord.Color.dark_orange(), url=page.url)
+                wikiSummary[0:900]) + '...', color=COLOR.WIKI, url=page.url)
             embed.set_footer(text='Powered by Wikipedia...')
             if pg != 0:
                 s = pg[1:10] + ['...']
