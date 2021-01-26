@@ -31,8 +31,8 @@
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <p align='right'>
-   <a href="https://github.com/Vyvy-vi/TearDrops/releases/latest/"><img src="https://img.shields.io/badge/Bot_Version-v1.0.8-green.svg?style=flat-square" alt="bot version"></a>
-</p>
+   <a href="https://github.com/Vyvy-vi/TearDrops/releases/latest/"><img src="https://img.shields.io/badge/Bot_Version-v1.0.9-green.svg?style=flat-square" alt="bot version"></a>
+</p>      
 
 
 ![sadblob](https://media.discordapp.net/attachments/771696574697832469/773264495006318623/sadblob.png)
