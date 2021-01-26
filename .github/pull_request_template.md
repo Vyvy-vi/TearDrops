@@ -8,7 +8,7 @@ reviewers: "Vyvy-vi"
 
 ## Description
 
-Provide a summary of the changes you have made.
+<!--Provide a summary of the changes you have made.-->
 
 
 ## Related Issue:
@@ -18,7 +18,7 @@ closes # (issue)
 
 ## Type of change
 
-Please delete options that are not relevant.
+<!--Please delete options that are not relevant.-->
 
 - [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] New feature (non-breaking change which adds functionality)
