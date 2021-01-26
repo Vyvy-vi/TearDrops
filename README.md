@@ -27,7 +27,7 @@
 
   
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-20-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-21-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <p align='right'>
@@ -177,6 +177,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/mstanciu552"><img src="https://avatars3.githubusercontent.com/u/34579048?v=4?s=100" width="100px;" alt=""/><br /><sub><b>mstanciu552</b></sub></a><br /><a href="https://github.com/Vyvy-vi/TearDrops/commits?author=mstanciu552" title="Documentation">📖</a></td>
     <td align="center"><a href="https://utkarsh299-tech.github.io/myportfolio/"><img src="https://avatars3.githubusercontent.com/u/60184229?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Utkarsh Singh</b></sub></a><br /><a href="#ideas-Utkarsh299-tech" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="http://sreekaransrinath.github.io"><img src="https://avatars.githubusercontent.com/u/50989977?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sreekaran Srinath</b></sub></a><br /><a href="https://github.com/Vyvy-vi/TearDrops/commits?author=sreekaransrinath" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/OBITORASU"><img src="https://avatars.githubusercontent.com/u/65222459?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Souhit Dey</b></sub></a><br /><a href="https://github.com/Vyvy-vi/TearDrops/commits?author=OBITORASU" title="Documentation">📖</a></td>
   </tr>
 </table>
 
