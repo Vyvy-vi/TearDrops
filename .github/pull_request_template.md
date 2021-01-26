@@ -3,7 +3,7 @@ name: Pull Request
 about: Made relevant changes to the code
 title: "[PR]"
 labels: "🚦 status: awaiting triage"
-assignees: "Vyvy-vi"
+reviewers: "Vyvy-vi"
 ---
 
 ## Description
