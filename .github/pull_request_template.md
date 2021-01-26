@@ -10,7 +10,11 @@ reviewers: "Vyvy-vi"
 
 Provide a summary of the changes you have made.
 
-Fixes # (issue)
+
+## Related Issue:
+
+closes # (issue)
+
 
 ## Type of change
 
