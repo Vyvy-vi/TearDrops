@@ -3,5 +3,5 @@
 # - any: ['./*', 'bot/*']
 # Add documentation label-
 documentation:
-- any: ['.all-contributorsrc', '*.md']
+- any: ['*.md']
 # - all: ['!.github/workflows/*', '!.github/resources/*']
