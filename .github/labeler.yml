@@ -4,6 +4,8 @@
 # Add documentation label-
 awaiting review:
   - ./*
+  - bot/*
+  - bot/cogs/*
   - .github/*/*
 
 documentation: 
