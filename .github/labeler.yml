@@ -2,6 +2,9 @@
 # awaiting_review:
 # - any: ['./*', 'bot/*']
 # Add documentation label-
-documentation:
-- any: ['*.md']
+documentation: 
+  - README.md
+  - CONTRIBUTING.md
+  - CODE_OF_CONDUCT.md
+  - LICENSE
 # - all: ['!.github/workflows/*', '!.github/resources/*']
