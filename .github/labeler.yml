@@ -1,5 +1,5 @@
 # Add awaiting review label to all PRs-
-awaiting review:
+awaiting_review:
 - any: ['*', '.*', '*/*/*']
 # Add documentation label-
 documentation:
