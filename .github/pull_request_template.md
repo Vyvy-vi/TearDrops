@@ -1,11 +1,3 @@
----
-name: Pull Request
-about: Made relevant changes to the code
-title: "[PR]"
-labels: "🚦 status: awaiting triage"
-reviewers: "Vyvy-vi"
----
-
 ## Description
 
 <!--Provide a summary of the changes you have made.-->
