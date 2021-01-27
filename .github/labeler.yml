@@ -3,5 +3,5 @@ awaiting_review:
 - any: ['./*', 'bot/*', '.github/*']
 # Add documentation label-
 documentation:
-- any: ['.all-contributorsrc', './*.md', './.github/*/*']
+- any: ['.all-contributorsrc', '*.md', './.github/*/*']
 - all: ['!.github/workflows/*', '!.github/resources/*']
