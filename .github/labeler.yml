@@ -1,6 +1,6 @@
 # Add awaiting review label to all PRs-
 awaiting review:
-- any: ['*', '.*', '*/**/*']
+- any: ['./*', './.*', './*/**/*']
 # Add documentation label-
 documentation:
 - any: ['.all-contributorsrc', '*.md', '.github/**/*', '!.github/workflows/*', '!.github/resources/*']
