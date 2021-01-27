@@ -2,7 +2,7 @@
 # awaiting_review:
 # - any: ['./*', 'bot/*']
 # Add documentation label-
-awaiting_review:
+awaiting review:
   - ./*
   - .github/*/*
 
@@ -13,7 +13,7 @@ documentation:
   - LICENSE
   - .all-contributorsrc
   - .github/ISSUE_TEMPLATE/*
-maintainer_task:
+maintainer task:
   - .github/resources/*
   - .github/FUNDING.yml
 enhancement:
