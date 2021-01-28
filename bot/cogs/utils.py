@@ -1,4 +1,5 @@
 import os
+import random
 
 sentinel = object()
 
