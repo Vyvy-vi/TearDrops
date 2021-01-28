@@ -31,5 +31,5 @@ class COLOR:
 
     @staticmethod
     def RANDOM():
-        color = int(0, 0xFFFFFF)
+        color = random.randint(0, 0xFFFFFF)
         return int(color, 16)
