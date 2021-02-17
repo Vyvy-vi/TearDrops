@@ -80,11 +80,11 @@ In no form, is any discord message data stored anywhere off-platform by TearDrop
 - Ensure application safety for the mongodb instance.
 
 ## Contact:
-If you have any queries or concerns or want to request access to your datas, contact @Vyvy-vi.
+If you have any queries or concerns or want to request access to your Data, contact @Vyvy-vi.
 At any time, you have the right to request to view the Data pertaining to your Discord account.
 ou may submit a request through the [Discord Server](http://chat.vyvy-vi.ninja). You have the right to request the removal of relevant Data.
 For more information check [Discord's Terms of Service](https://discord.com/terms)
 
 
-
+---
 This Privacy Policy is based on [Becca-Lyrias's Privacy Policy](https://github.com/nhcarrigan/Becca-Lyria/blob/main/PRIVACY.md) made by "[nhcarrigan](https://github.com/nhcarrigan)"
