@@ -1,5 +1,6 @@
 import math
 import random
+from typing import List
 
 creatures = "cat doggo parrot parakeet turtle mouse squirell elephant lion dog hamster walrus seal fish shark clam coral whale crab lobster starfish eel dolphin squid jellyfish ray shrimp mantaRay angler snorkler scubaDiver urchin anemone morel axolotl".split(
     " ")
@@ -18,7 +19,7 @@ colors = "blue blueGreen darkCyan electricBlue greenBlue lightCyan lightSeaGreen
     " ")
 
 
-def rand(array):
+def rand(array: List[str]) -> List[str]:
     return array[math.floor(random.random() * len(array))]
 
 
@@ -26,7 +27,7 @@ def random_noun():
     return rand(nlist)
 
 
-def random_descriptor(noun):
+def random_descriptor(noun: str) -> List[str]:
     return rand(descriptors) if noun not in creatures else rand(
         descriptors + creature_descriptors)
 
@@ -35,11 +36,11 @@ def random_color():
     return rand(colors)
 
 
-def formatList(array):
+def formatList(array: List[str]) -> str:
     return "".join(map(lambda word: word.title(), array))
 
 
-def generate(max_size: int = 30):
+def generate(max_size: int = 30) -> str:
     noun = random_noun()
     descriptor = random_descriptor(noun)
     color = random_color()

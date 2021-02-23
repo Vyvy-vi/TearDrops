@@ -1,5 +1,9 @@
 import discord
 from discord.ext import commands, tasks
+from discord import Embed
+
+from discord.ext.commands import Context
+
 import aiohttp
 
 from .utils import COLOR
@@ -8,13 +12,13 @@ from .utils import COLOR
 automeme_loops = {}
 
 
-async def automeme_routine(ctx):
+async def automeme_routine(ctx: Context):
     '''sends a meme every 10 mins'''
     async with aiohttp.ClientSession() as session:
         url = "https://meme-api.herokuapp.com/gimme"
         async with session.get(url) as response:
             response = await response.json()
-        embed = discord.Embed(
+        embed = Embed(
             title=response['title'],
             url=response['postLink'],
             color=COLOR.JOY)
@@ -29,13 +33,13 @@ class Meme(commands.Cog):
         self.client = client
 
     @commands.command(aliases=['meme'])
-    async def memes(self, ctx, param: str = None):
+    async def memes(self, ctx: Context, param: str = None):
         sub = '/' if param is None else '/' + str(param)
         async with aiohttp.ClientSession() as session:
             url = "https://meme-api.herokuapp.com/gimme" + sub
             async with session.get(url) as response:
                 response = await response.json()
-            embed = discord.Embed(
+            embed = Embed(
                 title=response['title'],
                 url=response['postLink'],
                 color=COLOR.JOY)
@@ -45,7 +49,7 @@ class Meme(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command()
-    async def automeme(self, ctx):
+    async def automeme(self, ctx: Context):
         '''Triggers the automeme taskloop for the channel context'''
         channel_id = ctx.channel.id
         if channel_id in automeme_loops:
@@ -58,7 +62,7 @@ class Meme(commands.Cog):
             loop.start(ctx)
 
     @commands.command()
-    async def automeme_cancel(self, ctx):
+    async def automeme_cancel(self, ctx: Context):
         '''Cancel the Automeme task in the current channel'''
         channel_id = ctx.channel.id
         if channel_id not in automeme_loops:

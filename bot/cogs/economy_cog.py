@@ -3,10 +3,12 @@ import random
 import discord
 from discord.ext import commands
 from pymongo import MongoClient
-
-
+from typing import Union
+from discord import User, Member, Message, TextChannel, Embed
 from utils import get_environment_variable
 from .utils import COLOR
+from discord.ext.commands import Context
+
 
 MONGO_CONNECTION_STRING = get_environment_variable("MONGO_CONNECTION_STRING")
 DB_CLIENT = MongoClient(MONGO_CONNECTION_STRING)
@@ -15,7 +17,7 @@ db = DB_CLIENT.get_database('users_db')
 timelast = 0
 
 
-async def update_data(user):
+async def update_data(user: Union[User, Member]):
     '''
     This Updates the user data in the db to add entry for new members
     '''
@@ -43,7 +45,7 @@ async def update_data(user):
             print('Some error occured')
 
 
-async def add_experience(message, user, exp):
+async def add_experience(message: Message, user: Union[User, Member], exp: int):
     """Adds xp to the user in the database, and calls the level up function"""
     server = db[str(user.guild.id)]
     stats = list(server.find({'id': user.id}))
@@ -53,7 +55,7 @@ async def add_experience(message, user, exp):
     await level_up(message.author, message.channel)
 
 
-async def level_up(user, channel):
+async def level_up(user: Union[User, Member], channel: TextChannel):
     """Takes care of checking the level-up parameters to boot ppl to next level when sufficient xp obtained"""
     server = db[str(user.guild.id)]
     stats = list(server.find({'id': user.id}))
@@ -75,7 +77,7 @@ async def level_up(user, channel):
         cred = stats[-1]['credits'] + ls
         new_stats = {"$set": {'credits': cred}}
         server.update_one(stats[-1], new_stats)
-        embed = discord.Embed(
+        embed = Embed(
             title=f'{user} has leveled up to {lvl_end}.',
             description=f'You have been given {ls} tears for your active-ness.\n\
 Saving {ls} tears in your vault of tears.',
@@ -89,7 +91,7 @@ class Economy(commands.Cog):
         self.client = client
 
     @commands.Cog.listener()
-    async def on_member_join(self, member):
+    async def on_member_join(self, member: Union[User, Member]):
         '''
         Event triggered when a new member enters server
         This prints the message out on Terminal.
@@ -99,7 +101,7 @@ class Economy(commands.Cog):
         await update_data(member)
 
     @commands.Cog.listener()
-    async def on_message(self, message):
+    async def on_message(self, message: Message):
         '''
         Event triggered when a message is sent on the server
         This is associated with a few if-else responses(you can add more by looking at the examples)
@@ -126,7 +128,7 @@ class Economy(commands.Cog):
         # prevents commands from not being processed
 
     @commands.command(aliases=['daily'])
-    async def cry(self, ctx):
+    async def cry(self, ctx: Context):
         '''credit gain command for crying'''
         user = ctx.message.author
         server = db[str(user.guild.id)]
@@ -150,14 +152,14 @@ class Economy(commands.Cog):
                 100]
             tr = random.choice(trs)
             if tr > 1:
-                embed = discord.Embed(
+                embed = Embed(
                     title='**Tear Dispenser**',
                     description=f'You cried {tr} tears.\n\
 Storing them in the vaults of tears.Spend them wisely...💦\nSpend them wisely...',
                     color=COLOR.DEFAULT)
                 embed.set_footer(text='😭')
             elif tr == 1:
-                embed = discord.Embed(
+                embed = Embed(
                     title='**Tear Dispenser**',
                     description='You really tried but only 1 tear came out...\n\
 Storing it in the vaults of tears.Spend them wisely...💧\nSpend it wisely...',
@@ -171,7 +173,7 @@ Storing it in the vaults of tears.Spend them wisely...💧\nSpend it wisely...',
                     'You really tried but you could not cry',
                     'The tears are not coming out...']
                 message = random.choice(tr2)
-                embed = discord.Embed(
+                embed = Embed(
                     title='**Tear Dispenser**',
                     description=f"You can't cry rn.{message}",
                     color=COLOR.ERROR)
@@ -185,7 +187,7 @@ Storing it in the vaults of tears.Spend them wisely...💧\nSpend it wisely...',
             new_stats = {"$set": {'credits': cred, 'crytime': time.time()}}
             server.update_one(stats[-1], new_stats)
         else:
-            embed = discord.Embed(
+            embed = Embed(
                 title='**Tear Dispenser**',
                 description=f"You can't cry rn. Let your eyes hydrate.\n\
 Wait for like {round((10800 - time.time()+tim)//3600)} hours or something.",
@@ -194,13 +196,13 @@ Wait for like {round((10800 - time.time()+tim)//3600)} hours or something.",
             await ctx.send(embed=embed)
 
     @commands.command(aliases=['vaultoftears', 'tearvault'])
-    async def vault(self, ctx, member: discord.Member = None):
+    async def vault(self, ctx: Context, member: Member = None):
         '''Gives the users economy balance'''
         user = ctx.message.author if not member else member
         server = db[str(user.guild.id)]
         stats = server.find({'id': user.id})
         trp = list(stats)[-1]['credits']
-        embed = discord.Embed(
+        embed = Embed(
             title='**Vault of Tears**',
             description=f"Opening {user}'s vault-of-tears....",
             colour=COLOR.ECONOMY)
@@ -210,13 +212,13 @@ Wait for like {round((10800 - time.time()+tim)//3600)} hours or something.",
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['lvl', 'dep_level'])
-    async def level(self, ctx, member: discord.Member = None):
+    async def level(self, ctx: Context, member: Member = None):
         '''Gives the users level'''
         user = ctx.message.author if not member else member
         server = db[str(user.guild.id)]
         stats = server.find({'id': user.id})
         lvl = list(stats)[-1]['level']
-        embed = discord.Embed(
+        embed = Embed(
             title=f'**Depression-Level of {user}**',
             description="._.",
             colour=COLOR.LEVELLING)
@@ -226,7 +228,7 @@ Wait for like {round((10800 - time.time()+tim)//3600)} hours or something.",
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['share', 'send', 'cryon'])
-    async def transfer(self, ctx, amount: int, member: discord.Member):
+    async def transfer(self, ctx: Context, amount: int, member: Member):
         '''transfer command'''
         user1 = ctx.message.author
         user2 = member
@@ -241,7 +243,7 @@ Wait for like {round((10800 - time.time()+tim)//3600)} hours or something.",
             bal2 = stat2[-1]['credits'] + amount
             new_stat2 = {"$set": {'credits': bal2}}
             server.update_one(stat2[-1], new_stat2)
-            embed = discord.Embed(
+            embed = Embed(
                 title='**Heart_to_heart**',
                 description=f"You tried to cry tears for {member}",
                 colour=COLOR.ECONOMY)
@@ -252,7 +254,7 @@ Wait for like {round((10800 - time.time()+tim)//3600)} hours or something.",
                 value="._.")
 
         else:
-            embed = discord.Embed(
+            embed = Embed(
                 title='**Heart_to_heart**',
                 description=f"You tried to cry tears for {member}",
                 colour=COLOR.ERROR)
@@ -266,7 +268,7 @@ Wait for like {round((10800 - time.time()+tim)//3600)} hours or something.",
 
 """ The marketplace ---> TODO
 @commands.command(aliases=['market'])
-async def shop(self, ctx):
+async def shop(self, ctx: Context):
     '''market command'''
     items= []
     embed=discord.Embed(title='**TearShops**',description = f'items',colour=discord.Color.red())"""

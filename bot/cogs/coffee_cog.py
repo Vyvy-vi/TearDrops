@@ -1,7 +1,8 @@
 import random
 import discord
+from discord import Member, Embed
 from discord.ext import commands
-
+from discord.ext.commands import Context
 from .inputs import cl, cf, chill, cfe, ur
 from .utils import COLOR
 
@@ -11,9 +12,9 @@ class Coffee(commands.Cog):
         self.client = client
 
     @commands.command(aliases=['ask_out'])
-    async def wannagrabacoffee(self, ctx, *, member: discord.Member):
+    async def wannagrabacoffee(self, ctx: Context, *, member: Member):
         '''Wanna ask someone out on coffee'''
-        embed = discord.Embed(
+        embed = Embed(
             title=f'{member}, Someone wants to grab a coffee with you...*wink *wink',
             color=COLOR.DEFAULT)
         embed.add_field(name='This happened....', value=f'{random.choice(cf)}')
@@ -21,10 +22,10 @@ class Coffee(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['brew'])
-    async def coffee(self, ctx):
+    async def coffee(self, ctx: Context):
         '''A lovely coffee command (sip, sip)'''
         op = f'{random.choice(cfe)}'
-        embed = discord.Embed(title='Coffee',
+        embed = Embed(title='Coffee',
                               description=op,
                               color=COLOR.DEFAULT)
         embed.set_footer(
