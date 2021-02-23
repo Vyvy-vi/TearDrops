@@ -1,5 +1,7 @@
-import discord
 from discord.ext import commands
+from discord import Embed
+
+from discord.ext.commands import Context
 
 from .utils import COLOR
 
@@ -9,9 +11,9 @@ class Help(commands.Cog):
         self.client = client
 
     @commands.command(aliases=['botwhat'])
-    async def botinfo(self, ctx):
+    async def botinfo(self, ctx: Context):
         '''Gives info about the bot'''
-        embed = discord.Embed(
+        embed = Embed(
             title='**Tear Drops:tm:**',
             description='A dynamic bot for _crying_, entertainment, economy and _other_ purposes...\n\
 I am here to reek sorrow and depression. Come let\'s cry together 😢\
@@ -28,11 +30,11 @@ This has been uploaded to GitHub for educational and referencial purposes',
         await ctx.send(embed=embed)
 
     @commands.command()
-    async def help(self, ctx, index=None):
+    async def help(self, ctx: Context, index: str = None):
         '''Displays the help command'''
         text = []
         if index is None:
-            embed = discord.Embed(
+            embed = Embed(
                 title='**Help command**',
                 description='The following command categories exist for bot ;-;',
                 color=COLOR.DEFAULT)
@@ -54,7 +56,7 @@ This has been uploaded to GitHub for educational and referencial purposes',
                         cog = self.client.get_cog(category)
                         text = [
                             f'**{c.name}** : {c.short_doc}' for c in cog.get_commands()]
-                        embed = discord.Embed(
+                        embed = Embed(
                             title=f'**Help category: {category}**',
                             description='\n'.join(text),
                             color=COLOR.DEFAULT)
@@ -62,13 +64,13 @@ This has been uploaded to GitHub for educational and referencial purposes',
                 not_found = True
                 for command in self.client.commands:
                     if index == command.name:
-                        embed = discord.Embed(
+                        embed = Embed(
                             title=f'**Help command: {command}**',
                             description=f'Description : {command.short_doc} \n {command.brief}',
                             color=COLOR.DEFAULT)
                         break
                     else:
-                        embed = discord.Embed(
+                        embed = Embed(
                             title=f'{index} was not found...',
                             color=COLOR.ERROR)
 

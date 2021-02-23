@@ -3,6 +3,7 @@ import random
 
 sentinel = object()
 
+
 def get_environment_variable(key, default=sentinel, coerce=str):
     try:
         value = os.environ[key]
@@ -31,6 +32,6 @@ class COLOR:
     XKCD = 0x96a8c8
 
     @staticmethod
-    def RANDOM():
+    def RANDOM() -> int:
         color = "%06x" % random.randint(0, 0xFFFFFF)
         return int(color, 16)

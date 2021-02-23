@@ -1,16 +1,18 @@
-import discord
+from discord import Member, Embed
 from discord.ext import commands
+from discord.ext.commands import Context
+
 
 class Users(commands.Cog):
     def __init__(self, client):
         self.client = client
 
     @commands.command(pass_context=True)
-    async def user(self, ctx, *, user: discord.Member = None):
+    async def user(self, ctx: Context, *, user: Member = None):
         '''gives user info'''
         if user is None:
             user = ctx.message.author
-        embed = discord.Embed(
+        embed = Embed(
             title="{}'s info".format(
                 user.name),
             description="Here's what I could find.",
@@ -24,11 +26,11 @@ class Users(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(pass_context=True)
-    async def avatar(self, ctx, *, user: discord.Member = None):
+    async def avatar(self, ctx: Context, *, user: Member = None):
         if user is None:
             user = ctx.message.author
         async with ctx.channel.typing():
-            embed = discord.Embed(color=user.color)
+            embed = Embed(color=user.color)
             embed.set_footer(text=f"Displaying avatar of {user.display_name}")
             embed.set_image(url=user.avatar_url)
         await ctx.send(embed=embed)

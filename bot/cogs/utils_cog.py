@@ -1,10 +1,12 @@
 import random
-import discord
 import wikipedia
 import requests
 import wolframalpha
 
+from discord import Embed, Color
 from discord.ext import commands
+from discord.ext.commands import Context
+
 from translate import Translator
 from .utils import COLOR
 
@@ -14,7 +16,7 @@ class Utils(commands.Cog):
         self.client = client
 
     @commands.command(pass_context=True)
-    async def echo(self, ctx, *args):
+    async def echo(self, ctx: Context, *args):
         '''echos the words'''
         output = ''
         for word in args:
@@ -23,39 +25,39 @@ class Utils(commands.Cog):
         await ctx.send(output)
 
     @commands.command(pass_context=True)
-    async def say(self, ctx, *args):
+    async def say(self, ctx: Context, *args):
         """Gives the user's statement a nice richtext quote format"""
         output = ''
         for word in args:
             output += word
             output += ' '
         user = ctx.message.author
-        embed = discord.Embed(
+        embed = Embed(
             title=f'{output}',
             description=f'~{user}',
-            colour=discord.Color.greyple())
+            colour=Color.greyple())
         await ctx.send(embed=embed)
 
     @commands.command(pass_context=True)
-    async def urban(self, ctx, *args):
+    async def urban(self, ctx: Context, *args):
         '''searches urban dictionary for words'''
         baseurl = "https://www.urbandictionary.com/define.php?term="
         output = ''.join(args)
         await ctx.send(baseurl + output)
 
     @commands.command(pass_context=True)
-    async def define(self, ctx, *args):
+    async def define(self, ctx: Context, *args):
         '''searches merriam-webster for meanings of words'''
         baseurl = "https://www.merriam-webster.com/dictionary/"
         output = '%20'.join(args)
         await ctx.send(baseurl + output)
 
     @commands.command(pass_context=True)
-    async def wiki(self, ctx, *, args):
+    async def wiki(self, ctx: Context, *, args):
         '''Displays wikipedia info about given arguments'''
         searchResults = wikipedia.search(args)
         if not searchResults:
-            embed = discord.Embed(
+            embed = Embed(
                 title=f'**{args}**',
                 description='It appears that there is no instance of this in Wikipedia index...',
                 colour=COLOR.ERROR)
@@ -69,7 +71,7 @@ class Utils(commands.Cog):
                 pg = err.options
             wikiTitle = str(page.title.encode('utf-8'))
             wikiSummary = page.summary
-            embed = discord.Embed(title=f'**{wikiTitle[1:]}**', description=str(
+            embed = Embed(title=f'**{wikiTitle[1:]}**', description=str(
                 wikiSummary[0:900]) + '...', color=COLOR.WIKI, url=page.url)
             embed.set_footer(text='Powered by Wikipedia...')
             if pg != 0:
@@ -81,7 +83,7 @@ class Utils(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(pass_context=True)
-    async def wolfram(self, ctx, *args):
+    async def wolfram(self, ctx: Context, *args):
         '''displays info from wolfram'''
         ques = ''.join(args)
         wolfram = wolframalpha.Client("QYKRJ8-YT2JP8U85T")
@@ -92,7 +94,7 @@ class Utils(commands.Cog):
             await ctx.send(next(res.results).text)
 
     @commands.command(pass_context=True)
-    async def weather(self, ctx, *, loc):
+    async def weather(self, ctx: Context, *, loc):
         '''displays weather data'''
         p = {"http": "http://111.233.225.166:1234"}
         k = "353ddfe27aa4b3537c47c975c70b58d9"  # dummy key(for now)
@@ -133,27 +135,27 @@ class Utils(commands.Cog):
                 col = 0x000000
             weather_data = [
                 f'**{field}**: {weather_data[field]}' for field in weather_data]
-            embed = discord.Embed(
+            embed = Embed(
                 title='Weather',
                 description=f'displaying weather of {loc}...',
                 color=col)
             embed.add_field(name='\u200b', value='\n'.join(weather_data))
             embed.set_footer(text=f'Requested by {ctx.message.author.name}')
         else:
-            embed = discord.Embed(title='Weather',
-                                  description='API Connection Refused',
-                                  color=discord.Color.red())
+            embed = Embed(title='Weather',
+                          description='API Connection Refused',
+                          color=Color.red())
             embed.set_footer(text='Requested by {ctx.message.author.name}')
 
         await ctx.send(embed=embed)
 
     @commands.command(pass_context=True)
-    async def translate(self, ctx, lang, *, args):
+    async def translate(self, ctx: Context, lang: str, *, args):
         '''Converts text to different language'''
 
         translator = Translator(to_lang=f"{lang}", from_lang='autodetect')
         translated = translator.translate(f"{args}")
-        embed = discord.Embed(
+        embed = Embed(
             title="---> translating",
             description=f'{translated}\n~{ctx.message.author.mention}',
             colour=COLOR.RANDOM())
@@ -161,7 +163,7 @@ class Utils(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(pass_context=True, aliases=['multitrans', 'mt'])
-    async def multi_translate(self, ctx, *, args):
+    async def multi_translate(self, ctx: Context, *, args):
         '''Converts text multiple times'''
         LANGS = [
             'Zulu',
@@ -209,9 +211,9 @@ class Utils(commands.Cog):
             translator = Translator(to_lang=f'{conversion_lang}',
                                     from_lang='autodetect')
             translated = translator.translate(translated)
-        embed = discord.Embed(title="Multi-translate",
-                              description=conversion_hist + '> English',
-                              color=COLOR.RANDOM())
+        embed = Embed(title="Multi-translate",
+                      description=conversion_hist + '> English',
+                      color=COLOR.RANDOM())
         translated = Translator(to_lang='en',
                                 from_lang='autodetect').translate(translated)
         embed.add_field(name='Original text', value=f"`{args}`")

@@ -3,7 +3,7 @@ import random
 JOE_WORDS = ["right", "awesome", "interesting", "cool", "cool"]
 
 
-def joe_generate(lim: int = 4):
+def joe_generate(lim: int = 4) -> str:
     word = ""
     for _ in range(lim):
         rand_word = random.choice(JOE_WORDS)

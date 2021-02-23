@@ -1,9 +1,14 @@
 import random
-import discord
-from pymongo import MongoClient
+
+from discord import Embed
 from discord.ext import commands
+from discord.ext.commands import Context
+
+from pymongo import MongoClient
+
 from utils import get_environment_variable
 from .utils import COLOR
+
 buls = 1
 
 
@@ -17,7 +22,7 @@ class Game(commands.Cog):
         self.client = client
 
     @commands.command(aliases=['diceroll', 'roll'])
-    async def dice(self, ctx, amount: int):
+    async def dice(self, ctx: Context, amount: int):
         '''dice-guess game'''
         num = amount
         if num <= 6:
@@ -30,18 +35,18 @@ class Game(commands.Cog):
                 cred += 50
                 newstats = {"$set": {'credits': cred}}
                 server.update_one(stats[-1], newstats)
-                embed = discord.Embed(
+                embed = Embed(
                     title='Dice-roll...🎲',
                     description=f'The dice rolled a {numtemp}.\nYou have been awarded 50 tears for this...',
                     color=COLOR.JOY)
             else:
-                embed = discord.Embed(
+                embed = Embed(
                     title='Dice-roll...🎲',
                     description=f'The dice rolled a {numtemp}.\n\
 Your prediction was wrong. 😖',
                     color=COLOR.DEFAULT)
         else:
-            embed = discord.Embed(
+            embed = Embed(
                 title='Dice-roll...🎲',
                 description='Please enter a valid number argument.\n\
 Command Usage-> qq dice <num> (between 1 and 6)',
@@ -50,18 +55,18 @@ Command Usage-> qq dice <num> (between 1 and 6)',
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['russian-roulette', 'gunshot', 'rr'])
-    async def russian_roulette(self, ctx):
+    async def russian_roulette(self, ctx: Context):
         '''starts fun russian roulette game'''
         global buls
         if buls >= 6:
             buls = 1
-            embed = discord.Embed(
+            embed = Embed(
                 title='Russian Roulette.🔫',
                 description='All you remember is the pain you felt when the bullet pierced your skull.',
                 color=COLOR.ERROR())
         else:
             buls += 1
-            embed = discord.Embed(
+            embed = Embed(
                 title='Russian Roulette.🔫',
                 description='You live to fight another day',
                 color=COLOR.DEFAULT())

@@ -1,5 +1,6 @@
-import discord
+from discord import Embed
 from discord.ext import commands
+
 from pymongo import MongoClient
 
 from utils import get_environment_variable
@@ -28,7 +29,7 @@ class Events(commands.Cog):
                     col.insert_one(
                         {'server_name': guild.name, 'server_id': guild.id})
                 icon_url = 'https://cdn.discordapp.com/attachments/582605227081990233/627388598181953548/unknown.png'
-                embed = discord.Embed(
+                embed = Embed(
                     title='**Tear Drops:tm:**',
                     description='A dynamic bot for _crying_, entertainment, economy and _other_ purposes...\n\
 I am here to reek sorrow and depression. Come let\'s cry together 😢\
