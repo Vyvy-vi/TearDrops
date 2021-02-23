@@ -1,5 +1,3 @@
-import discord
-from discord.ext import commands, tasks
 from discord import Embed
 
 from discord.ext.commands import Context

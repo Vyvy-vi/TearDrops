@@ -1,5 +1,4 @@
 import random
-import discord
 from discord import Embed, Member
 from discord.ext import commands
 from discord.ext.commands import Context

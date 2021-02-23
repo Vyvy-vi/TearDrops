@@ -1,4 +1,3 @@
-import discord
 from discord import Member, Embed
 from discord.ext import commands
 from discord.ext.commands import Context

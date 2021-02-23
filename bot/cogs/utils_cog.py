@@ -1,10 +1,9 @@
 import random
-import discord
 import wikipedia
 import requests
 import wolframalpha
 
-from discord import Embed
+from discord import Embed, Color
 from discord.ext import commands
 from discord.ext.commands import Context
 
@@ -36,7 +35,7 @@ class Utils(commands.Cog):
         embed = Embed(
             title=f'{output}',
             description=f'~{user}',
-            colour=discord.Color.greyple())
+            colour=Color.greyple())
         await ctx.send(embed=embed)
 
     @commands.command(pass_context=True)
@@ -72,7 +71,7 @@ class Utils(commands.Cog):
                 pg = err.options
             wikiTitle = str(page.title.encode('utf-8'))
             wikiSummary = page.summary
-            embed = discord.Embed(title=f'**{wikiTitle[1:]}**', description=str(
+            embed = Embed(title=f'**{wikiTitle[1:]}**', description=str(
                 wikiSummary[0:900]) + '...', color=COLOR.WIKI, url=page.url)
             embed.set_footer(text='Powered by Wikipedia...')
             if pg != 0:
@@ -145,7 +144,7 @@ class Utils(commands.Cog):
         else:
             embed = Embed(title='Weather',
                                   description='API Connection Refused',
-                                  color=discord.Color.red())
+                                  color=Color.red())
             embed.set_footer(text='Requested by {ctx.message.author.name}')
 
         await ctx.send(embed=embed)

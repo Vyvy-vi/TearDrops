@@ -1,6 +1,5 @@
 import random
-import discord
-from discord import Embed
+from discord import Embed, Color
 
 from discord.ext import commands
 from discord.ext.commands import Context
@@ -21,7 +20,7 @@ class Name(commands.Cog):
         embed = Embed(
             title=op,
             description='That sounds cool :',
-            color=discord.Color.dark_magenta())
+            color=Color.dark_magenta())
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['joe-username', 'ju'])
@@ -32,7 +31,7 @@ class Name(commands.Cog):
         embed = Embed(
             title=op,
             description='That sounds cool, cool, cool.. Right.',
-            color=discord.Color.gold())
+            color=Color.gold())
         await ctx.send(embed=embed)
 
 
