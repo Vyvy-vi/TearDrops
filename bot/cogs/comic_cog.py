@@ -3,7 +3,8 @@ from typing import Optional
 
 import aiohttp
 
-from discord.ext.commands import Context, Embed
+from discord import Embed
+from discord.ext.commands import Context
 from discord.ext import commands
 from .utils import COLOR
 
