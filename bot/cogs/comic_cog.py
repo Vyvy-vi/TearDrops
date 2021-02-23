@@ -1,5 +1,6 @@
 from random import randint
 from typing import Optional
+
 import aiohttp
 
 from discord.ext.commands import Context, Embed
@@ -24,9 +25,9 @@ class Comics(commands.Cog):
             async with session.get(url) as json:
                 json = await json.json()
             embed = Embed(title=json['title'],
-                                  url=base_url,
-                                  description=json['alt'],
-                                  color=COLOR.XKCD)
+                          url=base_url,
+                          description=json['alt'],
+                          color=COLOR.XKCD)
             embed.set_image(url=json['img'])
             txt = f"xkcd comic #{json['num']} | Requested by {ctx.author.name}"
             embed.set_footer(text=txt)

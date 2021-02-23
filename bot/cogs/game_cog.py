@@ -1,12 +1,14 @@
 import random
-from discord import Member, Embed
 
-from pymongo import MongoClient
+from discord import Embed
 from discord.ext import commands
 from discord.ext.commands import Context
 
+from pymongo import MongoClient
+
 from utils import get_environment_variable
 from .utils import COLOR
+
 buls = 1
 
 
@@ -58,7 +60,7 @@ Command Usage-> qq dice <num> (between 1 and 6)',
         global buls
         if buls >= 6:
             buls = 1
-            embed = discord.Embed(
+            embed = Embed(
                 title='Russian Roulette.🔫',
                 description='All you remember is the pain you felt when the bullet pierced your skull.',
                 color=COLOR.ERROR())

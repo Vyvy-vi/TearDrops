@@ -1,4 +1,6 @@
+from discord import Embed
 from discord.ext import commands
+from discord.ext.commands import Context
 
 from .utils import COLOR
 
@@ -8,10 +10,10 @@ class Errors(commands.Cog):
         self.client = client
 
     @commands.Cog.listener()
-    async def on_command_error(self, ctx, error):
+    async def on_command_error(self, ctx: Context, error):
         if isinstance(error, commands.CommandNotFound):
-            embed = discord.Embed(title='Invalid command used...',
-                                  colour=COLOR.ERROR)
+            embed = Embed(title='Invalid command used...',
+                          colour=COLOR.ERROR)
             await ctx.send(embed=embed)
         else:  # TODO - Error Handling
             await ctx.send(error)

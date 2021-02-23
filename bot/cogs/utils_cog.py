@@ -57,7 +57,7 @@ class Utils(commands.Cog):
         '''Displays wikipedia info about given arguments'''
         searchResults = wikipedia.search(args)
         if not searchResults:
-            embed =Embed(
+            embed = Embed(
                 title=f'**{args}**',
                 description='It appears that there is no instance of this in Wikipedia index...',
                 colour=COLOR.ERROR)
@@ -143,8 +143,8 @@ class Utils(commands.Cog):
             embed.set_footer(text=f'Requested by {ctx.message.author.name}')
         else:
             embed = Embed(title='Weather',
-                                  description='API Connection Refused',
-                                  color=Color.red())
+                          description='API Connection Refused',
+                          color=Color.red())
             embed.set_footer(text='Requested by {ctx.message.author.name}')
 
         await ctx.send(embed=embed)
@@ -212,8 +212,8 @@ class Utils(commands.Cog):
                                     from_lang='autodetect')
             translated = translator.translate(translated)
         embed = Embed(title="Multi-translate",
-                              description=conversion_hist + '> English',
-                              color=COLOR.RANDOM())
+                      description=conversion_hist + '> English',
+                      color=COLOR.RANDOM())
         translated = Translator(to_lang='en',
                                 from_lang='autodetect').translate(translated)
         embed.add_field(name='Original text', value=f"`{args}`")

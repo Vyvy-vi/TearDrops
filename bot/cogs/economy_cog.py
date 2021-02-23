@@ -1,12 +1,16 @@
 import time
 import random
-from discord.ext import commands
-from pymongo import MongoClient
+
 from typing import Union
+
+from pymongo import MongoClient
+
 from discord import User, Member, Message, TextChannel, Embed
+from discord.ext import commands
+from discord.ext.commands import Context
+
 from utils import get_environment_variable
 from .utils import COLOR
-from discord.ext.commands import Context
 
 
 MONGO_CONNECTION_STRING = get_environment_variable("MONGO_CONNECTION_STRING")

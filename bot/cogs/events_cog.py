@@ -1,4 +1,6 @@
+from discord import Embed
 from discord.ext import commands
+
 from pymongo import MongoClient
 
 from utils import get_environment_variable

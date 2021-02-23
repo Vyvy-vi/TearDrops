@@ -14,7 +14,7 @@ class Fun(commands.Cog):
     @commands.command(aliases=["8ball"])
     async def magicball(self, ctx: Context, *, question: str):
         embed = Embed(title="8Ball :8ball:",
-                              colour=COLOR.DEFAULT)
+                      colour=COLOR.DEFAULT)
         embed.add_field(name=f"*Question: {question}*",
                         value=f"Conjecture: {random.choice(responses)}")
         await ctx.send(embed=embed)

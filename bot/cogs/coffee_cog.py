@@ -26,8 +26,8 @@ class Coffee(commands.Cog):
         '''A lovely coffee command (sip, sip)'''
         op = f'{random.choice(cfe)}'
         embed = Embed(title='Coffee',
-                              description=op,
-                              color=COLOR.DEFAULT)
+                      description=op,
+                      color=COLOR.DEFAULT)
         embed.set_footer(
             text=f'Caffeiene Level-{random.choice(cl)}.{random.choice(chill)}')
         embed.set_image(url=random.choice(ur))
