@@ -2,7 +2,7 @@
 
 The use of this application ("TearDrops") in a server requires the collection of some specific user data ("Data").
 The Data that can be accessed includes, but is not limited to, user names, user nicknames, and Discord user ID values.
-The Data collected, that is collected at the moment is- The Discord user ID value for users.
+The Data, that is collected at the moment is- The Discord user ID value for users.
 Use of TearDrops is considered an agreement to the terms of this Policy.
 
 ## What is considered User Data?:
