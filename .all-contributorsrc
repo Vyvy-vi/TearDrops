@@ -213,6 +213,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "kcoder63",
+      "name": "Karuna Tata",
+      "avatar_url": "https://avatars.githubusercontent.com/u/74637789?v=4",
+      "profile": "https://codenlytical.wordpress.com/",
+      "contributions": [
+        "design"
+      ]
     }
   ],
   "contributorsPerLine": 7,
