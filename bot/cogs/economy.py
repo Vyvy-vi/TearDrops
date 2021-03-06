@@ -33,8 +33,6 @@ async def update_data(user: Union[User, Member]):
                                  'credits': 0,
                                  'crytime': 0})
         print(f'{user.id} added to database...')
-    else:
-        pass
 
 
 async def add_experience(message: Message, user: Union[User, Member], exp: int):
