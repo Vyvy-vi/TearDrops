@@ -22,18 +22,16 @@ class Game(commands.Cog):
         self.client = client
 
     @commands.command(aliases=['diceroll', 'roll'])
-    async def dice(self, ctx: Context, amount: int):
+    async def dice(self, ctx: Context, num: int):
         '''dice-guess game'''
-        num = amount
         if num <= 6:
             user = ctx.message.author
             db = DB_CLIENT.users_db
             server = db[str(user.guild.id)]
-            stats = list(await server.find_one({'id': user.id}))
-            cred = stats[-1]['credits']
+            stats = await server.find_one({'id': user.id})
             numtemp = random.randint(1, 6)
             if num == numtemp:
-                await server.update_one(stats[-1], {"$inc": {'credits': 50}})
+                await server.update_one(stats, {"$inc": {'credits': 50}})
                 embed = Embed(
                     title='Dice-roll...🎲',
                     description=f'The dice rolled a {numtemp}.\nYou have been awarded 50 tears for this...',
