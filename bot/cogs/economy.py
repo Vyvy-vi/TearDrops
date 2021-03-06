@@ -26,7 +26,7 @@ async def update_data(user: Union[User, Member]):
     db = DB_CLIENT.users_db
     server = db[str(user.guild.id)]
     matching_entry = await server.find_one({'id': user.id})
-    if (matching_entry is None):
+    if matching_entry is None:
         await server.insert_one({'id': user.id,
                                  'experience': 0,
                                  'level': 1,
@@ -58,14 +58,15 @@ async def level_up(user: Union[User, Member], channel: TextChannel):
         cnt += 1
 
     lvl_end = cnt - 1 if experience >= x else lvl_start
-    cred = stats['credits'] + ( lvl_end * 150 )
+    earned = lvl_end * 150
+    cred = stats['credits'] + earned
     if lvl_start < lvl_end:
         new_stats = {"$set": {'level': lvl_end, 'credits': cred}}
         await server.update_one(stats, new_stats)
         embed = Embed(
             title=f'{user} has leveled up to {lvl_end}.',
-            description=f'You have been given {ls} tears for your active-ness.\n\
-Saving {ls} tears in your vault of tears.',
+            description=f'You have been given {earned} tears for your active-ness.\n\
+Saving {earned} tears in your vault of tears.',
             color=COLOR.LEVELLING)
         embed.set_footer(text='😭')
         await channel.send(embed=embed)

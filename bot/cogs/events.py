@@ -27,7 +27,7 @@ class Events(commands.Cog):
                 if guild.id not in await db.list_collection_names():
                     col = db[str(guild.id)]
                     await col.insert_one({'server_name': guild.name,
-                                    'server_id': guild.id})
+                                          'server_id': guild.id})
                     print(f'Server added to db:  {guild.name} - {guild.id}')
                 icon_url = 'https://cdn.discordapp.com/attachments/582605227081990233/627388598181953548/unknown.png'
                 embed = Embed(

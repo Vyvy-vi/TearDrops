@@ -4,7 +4,6 @@ from discord import Embed
 from discord.ext import commands
 from discord.ext.commands import Context
 
-from pymongo import MongoClient
 import motor.motor_asyncio as motor
 
 from utils import get_environment_variable
