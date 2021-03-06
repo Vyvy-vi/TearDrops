@@ -122,36 +122,17 @@ class Economy(commands.Cog):
         stats = await server.find_one({'id': user.id})
         tim = stats['crytime']
         if time.time() - tim > 10800:
-            trs = [
-                0,
-                100,
-                150,
-                150,
-                200,
-                100,
-                50,
-                250,
-                500,
-                200,
-                1,
-                200,
-                150,
-                100]
-            tr = random.choice(trs)
+            trs = [ _ for _ in range(0, 501, 50)]
+            l = [5, 15, 20, 30, 45]
+            tr = random.choices(trs, l + [50] + l)
             if tr > 1:
-                embed = Embed(
-                    title='**Tear Dispenser**',
-                    description=f'You cried {tr} tears.\n\
+                desc = f'You cried {tr} tears.\n\
 Storing them in the vaults of tears.Spend them wisely...💦\nSpend them wisely...',
-                    color=COLOR.DEFAULT)
-                embed.set_footer(text='😭')
+                colo = COLOR.DEFAULT
             elif tr == 1:
-                embed = Embed(
-                    title='**Tear Dispenser**',
-                    description='You really tried but only 1 tear came out...\n\
+                desc = 'You really tried but only 1 tear came out...\n\
 Storing it in the vaults of tears.Spend them wisely...💧\nSpend it wisely...',
-                    color=COLOR.DEFAULT)
-                embed.set_footer(text='😭')
+                colo = COLOR.DEFAULT
             else:
                 tr2 = [
                     'You were not sad',
@@ -160,27 +141,20 @@ Storing it in the vaults of tears.Spend them wisely...💧\nSpend it wisely...',
                     'You really tried but you could not cry',
                     'The tears are not coming out...']
                 message = random.choice(tr2)
-                embed = Embed(
-                    title='**Tear Dispenser**',
-                    description=f"You can't cry rn.{message}",
-                    color=COLOR.ERROR)
-                embed.set_footer(text='😭')
-                embed.add_field(
-                    name='Try again after like 3 hours.',
-                    value='oof',
-                    inline=False)
-            await ctx.send(embed=embed)
+                desc = "You can't cry rn.{message}\n\
+Try again in like 3 hours.",
+                colo = COLOR.ERROR
             cred = tr + stats['credits']
             new_stats = {"$set": {'credits': cred, 'crytime': time.time()}}
             await server.update_one(stats, new_stats)
         else:
-            embed = Embed(
-                title='**Tear Dispenser**',
-                description=f"You can't cry rn. Let your eyes hydrate.\n\
+            desc=f"You can't cry rn. Let your eyes hydrate.\n\
 Wait for like {round((10800 - time.time()+tim)//3600)} hours or something.",
-                color=COLOR.ECONOMY)
-            embed.set_footer(text='😭')
-            await ctx.send(embed=embed)
+            colo = COLOR.ERROR
+        embed = Embed(title="**Tear Dispenser**",
+                      description=desc,
+                      color = colo)
+        embed.set_footer(text='😭')
 
     @commands.command(aliases=['vaultoftears', 'tearvault'])
     async def vault(self, ctx: Context, member: Member = None):
