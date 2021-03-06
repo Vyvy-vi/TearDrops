@@ -1,5 +1,5 @@
 discord.py
-pymongo
+motor
 wikipedia
 wolframalpha
 aiohttp

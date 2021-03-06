@@ -1,14 +1,13 @@
 from discord import Embed
 from discord.ext import commands
 
-from pymongo import MongoClient
+import motor.motor_asyncio as motor
 
 from utils import get_environment_variable
 from .utils import COLOR
 
 MONGO_CONNECTION_STRING = get_environment_variable("MONGO_CONNECTION_STRING")
-DB_CLIENT = MongoClient(MONGO_CONNECTION_STRING)
-db = DB_CLIENT.get_database('users_db')
+DB_CLIENT = motor.AsyncIOMotorClient(MONGO_CONNECTION_STRING)
 
 
 class Events(commands.Cog):
@@ -22,12 +21,14 @@ class Events(commands.Cog):
         Joining a guild is synonymous to joining a server.
         Basically, a hi message the bot sends on enterring the server.
         '''
+        db = DB_CLIENT.users_db
         for channel in guild.text_channels:
             if channel.permissions_for(guild.me).send_messages:
-                if guild.id not in db.list_collection_names():
+                if guild.id not in await db.list_collection_names():
                     col = db[str(guild.id)]
-                    col.insert_one(
-                        {'server_name': guild.name, 'server_id': guild.id})
+                    await col.insert_one({'server_name': guild.name,
+                                          'server_id': guild.id})
+                    print(f'Server added to db:  {guild.name} - {guild.id}')
                 icon_url = 'https://cdn.discordapp.com/attachments/582605227081990233/627388598181953548/unknown.png'
                 embed = Embed(
                     title='**Tear Drops:tm:**',
@@ -44,7 +45,7 @@ This has been uploaded to GitHub for educational and referencial purposes',
                 embed.set_image(url=icon_url)
                 await channel.send(embed=embed)
             break
-        print(f'Entered server {guild.name} : {guild.id}')
+        print(f'Entered server:  {guild.name} - {guild.id}')
     """
     @commands.Cog.listener()
     async def on_member_remove(self, guild, user):
