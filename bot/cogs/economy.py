@@ -23,46 +23,36 @@ async def update_data(user: Union[User, Member]):
     '''
     This Updates the user data in the db to add entry for new members
     '''
-    db = DB_CLIENT.users_db
+    db = DB_CLIENT.test_db
     server = db[str(user.guild.id)]
-    matching_entry = list(server.find({'id': user.id}))
-    try:
-        if (len(matching_entry) == 0):
-            await server.insert_one({'id': user.id,
-                                     'experience': 0,
-                                     'level': 1,
-                                     'credits': 0,
-                                     'crytime': 0})
-            print(f'{user.id} added to database...')
-        elif user.id not in matching_entry[-1].values():
-            await server.insert_one({'id': user.id,
-                                     'experience': 0,
-                                     'level': 1,
-                                     'credits': 0,
-                                     'crytime': 0})
-            print(f'{user.id} added to database...')
-    except BaseException:
-        print('Some error occured')
+    matching_entry = await server.find_one({'id': user.id})
+    if (matching_entry is None):
+        await server.insert_one({'id': user.id,
+                                 'experience': 0,
+                                 'level': 1,
+                                 'credits': 0,
+                                 'crytime': 0})
+        print(f'{user.id} added to database...')
+    else:
+        pass
 
 
 async def add_experience(message: Message, user: Union[User, Member], exp: int):
     """Adds xp to the user in the database, and calls the level up function"""
-    db = DB_CLIENT.users_db
+    db = DB_CLIENT.test_db
     server = db[str(user.guild.id)]
-    stats = list(await server.find_one({'id': user.id}))
-    exp = stats[-1]['experience'] + exp
-    new_stats = {"$set": {'experience': exp}}
-    await server.update_one(stats[-1], new_stats)
+    stats = await server.find_one({'id': user.id})
+    await server.update_one(stats, {"$inc": {'experience': exp}})
     await level_up(message.author, message.channel)
 
 
 async def level_up(user: Union[User, Member], channel: TextChannel):
     """Takes care of checking the level-up parameters to boot ppl to next level when sufficient xp obtained"""
-    db = DB_CLIENT.users_db
+    db = DB_CLIENT.test_db
     server = db[str(user.guild.id)]
-    stats = list(await server.find_one({'id': user.id}))
-    lvl_start = stats[-1]['level']
-    experience = stats[-1]['experience']
+    stats = await server.find_one({'id': user.id})
+    lvl_start = stats['level']
+    experience = stats['experience']
     x = 35
     cnt = 1
     while x < experience:
@@ -70,10 +60,10 @@ async def level_up(user: Union[User, Member], channel: TextChannel):
         cnt += 1
 
     lvl_end = cnt - 1 if experience >= x else lvl_start
-    cred = stats[-1]['credits'] + ( lvl_end * 150 )
+    cred = stats['credits'] + ( lvl_end * 150 )
     if lvl_start < lvl_end:
         new_stats = {"$set": {'level': lvl_end, 'credits': cred}}
-        await server.update_one(stats[-1], new_stats)
+        await server.update_one(stats, new_stats)
         embed = Embed(
             title=f'{user} has leveled up to {lvl_end}.',
             description=f'You have been given {ls} tears for your active-ness.\n\
@@ -197,10 +187,10 @@ Wait for like {round((10800 - time.time()+tim)//3600)} hours or something.",
     async def vault(self, ctx: Context, member: Member = None):
         '''Gives the users economy balance'''
         user = ctx.message.author if not member else member
-        db = DB_CLIENT.users_db
+        db = DB_CLIENT.test_db
         server = db[str(user.guild.id)]
-        stats = list(await server.find_one({'id': user.id}))
-        trp = stats[-1]['credits']
+        stats = await server.find_one({'id': user.id})
+        trp = stats['credits']
         embed = Embed(
             title='**Vault of Tears**',
             description=f"Opening {user}'s vault-of-tears....",
@@ -214,10 +204,10 @@ Wait for like {round((10800 - time.time()+tim)//3600)} hours or something.",
     async def level(self, ctx: Context, member: Member = None):
         '''Gives the users level'''
         user = ctx.message.author if not member else member
-        db = DB_CLIENT.users_db
+        db = DB_CLIENT.test_db
         server = db[str(user.guild.id)]
-        stats = list(await server.find_one({'id': user.id}))
-        lvl = stats[-1]['level']
+        stats = await server.find_one({'id': user.id})
+        lvl = stats['level']
         embed = Embed(
             title=f'**Depression-Level of {user}**',
             description="._.",
