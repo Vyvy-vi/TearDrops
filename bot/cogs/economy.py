@@ -3,7 +3,6 @@ import random
 
 from typing import Union
 
-from pymongo import MongoClient
 import motor.motor_asyncio as motor
 
 from discord import User, Member, Message, TextChannel, Embed
