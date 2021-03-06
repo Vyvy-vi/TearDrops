@@ -118,10 +118,10 @@ class Economy(commands.Cog):
     async def cry(self, ctx: Context):
         '''credit gain command for crying'''
         user = ctx.message.author
-        db = DB_CLIENT.users_db
+        db = DB_CLIENT.test_db
         server = db[str(user.guild.id)]
-        stats = list(await server.find_one({'id': user.id}))
-        tim = stats[-1]['crytime']
+        stats = await server.find_one({'id': user.id})
+        tim = stats['crytime']
         if time.time() - tim > 10800:
             trs = [
                 0,
@@ -171,9 +171,9 @@ Storing it in the vaults of tears.Spend them wisely...💧\nSpend it wisely...',
                     value='oof',
                     inline=False)
             await ctx.send(embed=embed)
-            cred = tr + stats[-1]['credits']
+            cred = tr + stats['credits']
             new_stats = {"$set": {'credits': cred, 'crytime': time.time()}}
-            await server.update_one(stats[-1], new_stats)
+            await server.update_one(stats, new_stats)
         else:
             embed = Embed(
                 title='**Tear Dispenser**',
@@ -217,19 +217,20 @@ Wait for like {round((10800 - time.time()+tim)//3600)} hours or something.",
         embed.add_field(name='Level', value=lvl)
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=['share', 'send', 'cryon'])
+    @commands.command(aliases=['absorb', 'cryon'])
     async def transfer(self, ctx: Context, amount: int, member: Member):
         '''transfer command'''
         user1 = ctx.message.author
         user2 = member
-        db = DB_CLIENT.users_db
+        db = DB_CLIENT.test_db
         server = db[str(user1.guild.id)]
-        stat1 = list(await server.find_one({'id': user1.id}))
-        stat2 = list(await server.find_one({'id': user2.id}))
-        bal1 = stat1[-1]['credits'] - amount
+        stat1 = await server.find_one({'id': user1.id})
+        await update_data(user2)
+        stat2 = await server.find_one({'id': user2.id})
+        bal1 = stat1['credits'] - amount
         if bal1 >= 0:
-            await server.update_one(stat1[-1], {"$set": {'credits': bal1}})
-            await server.update_one(stat2[-1], {"$inc": {'credits': amount}})
+            await server.update_one(stat1, {"$set": {'credits': bal1}})
+            await server.update_one(stat2, {"$inc": {'credits': amount}})
             embed = Embed(
                 title='**Heart_to_heart**',
                 description=f"You tried to cry tears for {member}",
