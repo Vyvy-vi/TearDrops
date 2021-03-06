@@ -28,6 +28,7 @@ class Events(commands.Cog):
                     col = db[str(guild.id)]
                     await col.insert_one({'server_name': guild.name,
                                     'server_id': guild.id})
+                    print(f'Server added to db:  {guild.name} - {guild.id}')
                 icon_url = 'https://cdn.discordapp.com/attachments/582605227081990233/627388598181953548/unknown.png'
                 embed = Embed(
                     title='**Tear Drops:tm:**',
@@ -44,7 +45,7 @@ This has been uploaded to GitHub for educational and referencial purposes',
                 embed.set_image(url=icon_url)
                 await channel.send(embed=embed)
             break
-        print(f'Entered server {guild.name} : {guild.id}')
+        print(f'Entered server:  {guild.name} - {guild.id}')
     """
     @commands.Cog.listener()
     async def on_member_remove(self, guild, user):

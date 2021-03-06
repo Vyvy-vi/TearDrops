@@ -23,7 +23,7 @@ async def update_data(user: Union[User, Member]):
     '''
     This Updates the user data in the db to add entry for new members
     '''
-    db = DB_CLIENT.test_db
+    db = DB_CLIENT.users_db
     server = db[str(user.guild.id)]
     matching_entry = await server.find_one({'id': user.id})
     if (matching_entry is None):
@@ -39,7 +39,7 @@ async def update_data(user: Union[User, Member]):
 
 async def add_experience(message: Message, user: Union[User, Member], exp: int):
     """Adds xp to the user in the database, and calls the level up function"""
-    db = DB_CLIENT.test_db
+    db = DB_CLIENT.users_db
     server = db[str(user.guild.id)]
     stats = await server.find_one({'id': user.id})
     await server.update_one(stats, {"$inc": {'experience': exp}})
@@ -48,7 +48,7 @@ async def add_experience(message: Message, user: Union[User, Member], exp: int):
 
 async def level_up(user: Union[User, Member], channel: TextChannel):
     """Takes care of checking the level-up parameters to boot ppl to next level when sufficient xp obtained"""
-    db = DB_CLIENT.test_db
+    db = DB_CLIENT.users_db
     server = db[str(user.guild.id)]
     stats = await server.find_one({'id': user.id})
     lvl_start = stats['level']
@@ -118,7 +118,7 @@ class Economy(commands.Cog):
     async def cry(self, ctx: Context):
         '''credit gain command for crying'''
         user = ctx.message.author
-        db = DB_CLIENT.test_db
+        db = DB_CLIENT.users_db
         server = db[str(user.guild.id)]
         stats = await server.find_one({'id': user.id})
         tim = stats['crytime']
@@ -187,7 +187,7 @@ Wait for like {round((10800 - time.time()+tim)//3600)} hours or something.",
     async def vault(self, ctx: Context, member: Member = None):
         '''Gives the users economy balance'''
         user = ctx.message.author if not member else member
-        db = DB_CLIENT.test_db
+        db = DB_CLIENT.users_db
         server = db[str(user.guild.id)]
         stats = await server.find_one({'id': user.id})
         trp = stats['credits']
@@ -204,7 +204,7 @@ Wait for like {round((10800 - time.time()+tim)//3600)} hours or something.",
     async def level(self, ctx: Context, member: Member = None):
         '''Gives the users level'''
         user = ctx.message.author if not member else member
-        db = DB_CLIENT.test_db
+        db = DB_CLIENT.users_db
         server = db[str(user.guild.id)]
         stats = await server.find_one({'id': user.id})
         lvl = stats['level']
@@ -222,7 +222,7 @@ Wait for like {round((10800 - time.time()+tim)//3600)} hours or something.",
         '''transfer command'''
         user1 = ctx.message.author
         user2 = member
-        db = DB_CLIENT.test_db
+        db = DB_CLIENT.users_db
         server = db[str(user1.guild.id)]
         stat1 = await server.find_one({'id': user1.id})
         await update_data(user2)
