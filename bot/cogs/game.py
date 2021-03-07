@@ -6,26 +6,21 @@ from discord.ext.commands import Context
 
 import motor.motor_asyncio as motor
 
-from utils import get_environment_variable
-from .utils import COLOR
+from .utils.colo import COLOR
 
 buls = 1
-
-
-MONGO_CONNECTION_STRING = get_environment_variable("MONGO_CONNECTION_STRING")
-DB_CLIENT = motor.AsyncIOMotorClient(MONGO_CONNECTION_STRING)
-
 
 class Game(commands.Cog):
     def __init__(self, client):
         self.client = client
+        self.DB_CLIENT = motor.AsyncIOMotorClient(client.MONGO)
 
     @commands.command(aliases=['diceroll', 'roll'])
     async def dice(self, ctx: Context, num: int):
         '''dice-guess game'''
         if num <= 6:
             user = ctx.message.author
-            db = DB_CLIENT.users_db
+            db = self.DB_CLIENT.users_db
             server = db[str(user.guild.id)]
             stats = await server.find_one({'id': user.id})
             numtemp = random.randint(1, 6)

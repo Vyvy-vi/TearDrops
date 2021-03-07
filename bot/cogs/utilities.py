@@ -1,14 +1,11 @@
-import random
 import wikipedia
 import requests
-import wolframalpha
 
 from discord import Embed, Color
 from discord.ext import commands
 from discord.ext.commands import Context
 
-from translate import Translator
-from .utils import COLOR
+from .utils.colo import COLOR
 
 
 class Utils(commands.Cog):
@@ -83,23 +80,12 @@ class Utils(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(pass_context=True)
-    async def wolfram(self, ctx: Context, *args):
-        '''displays info from wolfram'''
-        ques = ''.join(args)
-        wolfram = wolframalpha.Client("QYKRJ8-YT2JP8U85T")
-        res = wolfram.query(ques)
-        if res['@success'] == 'false':
-            await ctx.send('Question cannot be resolved')
-        else:
-            await ctx.send(next(res.results).text)
-
-    @commands.command(pass_context=True)
     async def weather(self, ctx: Context, *, loc):
         '''displays weather data'''
         p = {"http": "http://111.233.225.166:1234"}
-        k = "353ddfe27aa4b3537c47c975c70b58d9"  # dummy key(for now)
+        key = "353ddfe27aa4b3537c47c975c70b58d9"  # dummy key(for now)
         api_r = requests.get(
-            f"http://api.openweathermap.org/data/2.5/weather?appid={k}&q={loc}, verify= False, proxies=p")
+            f"http://api.openweathermap.org/data/2.5/weather?appid={key}&q={loc}, verify= False, proxies=p")
         q = api_r.json()
         if q["cod"] != 404:
             weather_data = {}
@@ -107,10 +93,10 @@ class Utils(commands.Cog):
             weather_data['Temperature'] = f'{str(round(temp-273.16, 2))} °C'
 
             p = q['main']['pressure']
-            weather_data['Pressure'] = f'{str(p)} hpa'
+            weather_data['Pressure'] = f'{p} hpa'
 
             hum = q['main']['humidity']
-            weather_data['Humidity'] = f'str{hum} %'
+            weather_data['Humidity'] = f'{hum} %'
 
             wind = q['wind']['speed']
             weather_data['Wind Speed'] = wind
@@ -119,20 +105,16 @@ class Utils(commands.Cog):
             desc = w_obj['description']
             weather_data['\nDescription'] = desc
             w_id = str(w_obj['id'])
-            if '8' in w_id[0]:
-                col = 0xd8d1b4 if w_id == '800' else 0xbababa
-            elif '7' in w_id[0]:
-                col = 0xc2eaea
-            elif '6' in w_id[0]:
-                col = 0xdde5f4
-            elif '5' in w_id[0]:
-                col = 0x68707c
-            elif '3' in w_id[0]:
-                col = 0xb1c4d8
-            elif '2' in w_id[0]:
-                col = 0x4d5665
+            col = { '8': 0xbababa,
+                    '7': 0xc2eaea,
+                    '6': 0xdde5f4,
+                    '5': 0x68707c,
+                    '3': 0xb1c4d8,
+                    '2': 0x4d5665 }
+            if w_id == '800':
+                col = 0xd8d1b4
             else:
-                col = 0x000000
+                col = col.get(w_id[0], 0x000000)
             weather_data = [
                 f'**{field}**: {weather_data[field]}' for field in weather_data]
             embed = Embed(
@@ -146,83 +128,7 @@ class Utils(commands.Cog):
                           description='API Connection Refused',
                           color=Color.red())
             embed.set_footer(text='Requested by {ctx.message.author.name}')
-
         await ctx.send(embed=embed)
-
-    @commands.command(pass_context=True)
-    async def translate(self, ctx: Context, lang: str, *, args):
-        '''Converts text to different language'''
-
-        translator = Translator(to_lang=f"{lang}", from_lang='autodetect')
-        translated = translator.translate(f"{args}")
-        embed = Embed(
-            title="---> translating",
-            description=f'{translated}\n~{ctx.message.author.mention}',
-            colour=COLOR.RANDOM())
-        embed.set_footer(text=f'Translated to {lang}...')
-        await ctx.send(embed=embed)
-
-    @commands.command(pass_context=True, aliases=['multitrans', 'mt'])
-    async def multi_translate(self, ctx: Context, *, args):
-        '''Converts text multiple times'''
-        LANGS = [
-            'Zulu',
-            'Welsh',
-            'Uzbek',
-            'Turkish',
-            'Thai',
-            'Swedish',
-            'Swahili',
-            'Somali',
-            'Slovak',
-            'Russian',
-            'Romanian',
-            'Persian',
-            'Polish',
-            'Panjabi',
-            'Nepali',
-            'Mongolian',
-            'Macedonian',
-            'Latin',
-            'Korean',
-            'Japanese',
-            'Italian',
-            'Irish',
-            'Hebrew',
-            'German',
-            'French',
-            'Finnish',
-            'Estonian',
-            'Dutch',
-            'Danish',
-            'Czech',
-            'Chinese',
-            'Catalan',
-            'Armenian',
-            'Arabic',
-            'Afrikaans']
-        REPS = random.randint(8, 18)
-        conversion_hist = f"---> Translated {REPS} times... "
-        translated = f"{args}"
-        RAND_LANGS = list({random.choice(LANGS) for __ in range(REPS)})
-        for _ in RAND_LANGS:
-            conversion_lang = _
-            conversion_hist += f'> {conversion_lang} '
-            translator = Translator(to_lang=f'{conversion_lang}',
-                                    from_lang='autodetect')
-            translated = translator.translate(translated)
-        embed = Embed(title="Multi-translate",
-                      description=conversion_hist + '> English',
-                      color=COLOR.RANDOM())
-        translated = Translator(to_lang='en',
-                                from_lang='autodetect').translate(translated)
-        embed.add_field(name='Original text', value=f"`{args}`")
-        embed.add_field(
-            name='Translated text',
-            value=f"`{translated}`",
-            inline=False)
-        await ctx.send(embed=embed)
-
 
 def setup(client):
     client.add_cog(Utils(client))

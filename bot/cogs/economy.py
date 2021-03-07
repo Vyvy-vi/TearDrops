@@ -9,21 +9,31 @@ from discord import User, Member, Message, TextChannel, Embed
 from discord.ext import commands
 from discord.ext.commands import Context
 
-from utils import get_environment_variable
-from .utils import COLOR
-
-
-MONGO_CONNECTION_STRING = get_environment_variable("MONGO_CONNECTION_STRING")
-DB_CLIENT = motor.AsyncIOMotorClient(MONGO_CONNECTION_STRING)
+from .utils.colo import COLOR
 
 timelast = 0
 
 
-async def update_data(user: Union[User, Member]):
+def decide_score() -> int:
+    trs = tuple(range(0, 501, 50))
+    weights = (5, 15, 20, 30, 45, 50, 45, 30, 20, 15, 5)
+    return random.choices(trs, weights)[0]
+
+def rand_message() -> str:
+    txt = (
+            'You were not sad',
+            'You were surprisingly too happy to cry',
+            'You cried so much already that the tears are not coming out',
+            'You really tried but you could not cry',
+            'The tears are not coming out...')
+    return random.choice(txt)
+
+
+
+async def update_data(db, user: Union[User, Member]):
     '''
     This Updates the user data in the db to add entry for new members
     '''
-    db = DB_CLIENT.users_db
     server = db[str(user.guild.id)]
     matching_entry = await server.find_one({'id': user.id})
     if matching_entry is None:
@@ -35,33 +45,30 @@ async def update_data(user: Union[User, Member]):
         print(f'{user.id} added to database...')
 
 
-async def add_experience(message: Message, user: Union[User, Member], exp: int):
+async def add_experience(db, message: Message, user: Union[User, Member], exp: int):
     """Adds xp to the user in the database, and calls the level up function"""
-    db = DB_CLIENT.users_db
     server = db[str(user.guild.id)]
     stats = await server.find_one({'id': user.id})
     await server.update_one(stats, {"$inc": {'experience': exp}})
-    await level_up(message.author, message.channel)
+    await level_up(db, message.author, message.channel)
 
 
-async def level_up(user: Union[User, Member], channel: TextChannel):
+async def level_up(db, user: Union[User, Member], channel: TextChannel):
     """Takes care of checking the level-up parameters to boot ppl to next level when sufficient xp obtained"""
-    db = DB_CLIENT.users_db
     server = db[str(user.guild.id)]
     stats = await server.find_one({'id': user.id})
     lvl_start = stats['level']
-    experience = stats['experience']
+    exp = stats['experience']
     x = 35
     cnt = 1
-    while x < experience:
+    while x < exp:
         x = 2 * x + 10
         cnt += 1
-
-    lvl_end = cnt - 1 if experience >= x else lvl_start
+    lvl_end = cnt - 1 if exp >= x else lvl_start
     earned = lvl_end * 150
-    cred = stats['credits'] + earned
     if lvl_start < lvl_end:
-        new_stats = {"$set": {'level': lvl_end, 'credits': cred}}
+        new_stats = {"$set": {'level': lvl_end,
+                              'credits': stats['credits'] + earned}}
         await server.update_one(stats, new_stats)
         embed = Embed(
             title=f'{user} has leveled up to {lvl_end}.',
@@ -75,6 +82,7 @@ Saving {earned} tears in your vault of tears.',
 class Economy(commands.Cog):
     def __init__(self, client):
         self.client = client
+        self.DB_CLIENT = motor.AsyncIOMotorClient(client.MONGO)
 
     @commands.Cog.listener()
     async def on_member_join(self, member: Union[User, Member]):
@@ -84,7 +92,7 @@ class Economy(commands.Cog):
         Also, this awaits the update_data() function, to add member to the database.
         '''
         print(f'{member} has joined the server.....')
-        await update_data(member)
+        await update_data(self.DB_CLIENT.users_db, member)
 
     @commands.Cog.listener()
     async def on_message(self, message: Message):
@@ -102,10 +110,10 @@ class Economy(commands.Cog):
         else:
             # message_xp updation block
             global timelast
-            await update_data(message.author)
+            await update_data(self.DB_CLIENT.users_db, message.author)
             timlst = timelast
             if time.time() - timlst > 25:
-                await add_experience(message, message.author, 10)
+                await add_experience(self.DB_CLIENT.users_db, message, message.author, 10)
                 timelast = time.time()
             # message if-else response examples(you can add more)
             if 'tears' in message.content:
@@ -117,77 +125,39 @@ class Economy(commands.Cog):
     async def cry(self, ctx: Context):
         '''credit gain command for crying'''
         user = ctx.message.author
-        db = DB_CLIENT.users_db
-        server = db[str(user.guild.id)]
+        server = self.DB_CLIENT.users_db[str(user.guild.id)]
         stats = await server.find_one({'id': user.id})
-        tim = stats['crytime']
-        if time.time() - tim > 10800:
-            trs = [
-                0,
-                100,
-                150,
-                150,
-                200,
-                100,
-                50,
-                250,
-                500,
-                200,
-                1,
-                200,
-                150,
-                100]
-            tr = random.choice(trs)
+        colo = COLOR.DEFAULT
+        if time.time() - stats['crytime'] > 10800:
+            tr = decide_score()
             if tr > 1:
-                embed = Embed(
-                    title='**Tear Dispenser**',
-                    description=f'You cried {tr} tears.\n\
-Storing them in the vaults of tears.Spend them wisely...💦\nSpend them wisely...',
-                    color=COLOR.DEFAULT)
-                embed.set_footer(text='😭')
+                desc = f'You cried {tr} tears.\n\
+Storing them in the vaults of tears.Spend them wisely...💦\nSpend them wisely...'
             elif tr == 1:
-                embed = Embed(
-                    title='**Tear Dispenser**',
-                    description='You really tried but only 1 tear came out...\n\
-Storing it in the vaults of tears.Spend them wisely...💧\nSpend it wisely...',
-                    color=COLOR.DEFAULT)
-                embed.set_footer(text='😭')
+                desc = 'You really tried but only 1 tear came out...\n\
+Storing it in the vaults of tears.Spend them wisely...💧\nSpend it wisely...'
             else:
-                tr2 = [
-                    'You were not sad',
-                    'You were surprisingly too happy to cry',
-                    'You cried so much already that the tears are not coming out',
-                    'You really tried but you could not cry',
-                    'The tears are not coming out...']
-                message = random.choice(tr2)
-                embed = Embed(
-                    title='**Tear Dispenser**',
-                    description=f"You can't cry rn.{message}",
-                    color=COLOR.ERROR)
-                embed.set_footer(text='😭')
-                embed.add_field(
-                    name='Try again after like 3 hours.',
-                    value='oof',
-                    inline=False)
-            await ctx.send(embed=embed)
-            cred = tr + stats['credits']
-            new_stats = {"$set": {'credits': cred, 'crytime': time.time()}}
+                desc = "You can't cry rn. {rand_message()}\n\
+Try again in like 3 hours."
+                colo = COLOR.ERROR
+            new_stats = {"$set": {'credits': tr + stats['credits'],
+                                  'crytime': time.time()}}
             await server.update_one(stats, new_stats)
         else:
-            embed = Embed(
-                title='**Tear Dispenser**',
-                description=f"You can't cry rn. Let your eyes hydrate.\n\
-Wait for like {round((10800 - time.time()+tim)//3600)} hours or something.",
-                color=COLOR.ECONOMY)
-            embed.set_footer(text='😭')
-            await ctx.send(embed=embed)
+            desc = f"You can't cry rn. Let your eyes hydrate.\n\
+Wait for like {round((10800 - time.time()+stats['crytime'])//3600)} hours or something."
+            colo = COLOR.ERROR
+        embed = Embed(title="**Tear Dispenser**",
+                      description=desc,
+                      color=colo)
+        embed.set_footer(text='😭')
+        await ctx.send(embed=embed)
 
     @commands.command(aliases=['vaultoftears', 'tearvault'])
     async def vault(self, ctx: Context, member: Member = None):
         '''Gives the users economy balance'''
         user = ctx.message.author if not member else member
-        db = DB_CLIENT.users_db
-        server = db[str(user.guild.id)]
+        server = self.DB_CLIENT.users_db[str(user.guild.id)]
         stats = await server.find_one({'id': user.id})
         trp = stats['credits']
         embed = Embed(
@@ -203,8 +173,7 @@ Wait for like {round((10800 - time.time()+tim)//3600)} hours or something.",
     async def level(self, ctx: Context, member: Member = None):
         '''Gives the users level'''
         user = ctx.message.author if not member else member
-        db = DB_CLIENT.users_db
-        server = db[str(user.guild.id)]
+        server = self.DB_CLIENT.users_db[str(user.guild.id)]
         stats = await server.find_one({'id': user.id})
         lvl = stats['level']
         embed = Embed(
@@ -221,10 +190,9 @@ Wait for like {round((10800 - time.time()+tim)//3600)} hours or something.",
         '''transfer command'''
         user1 = ctx.message.author
         user2 = member
-        db = DB_CLIENT.users_db
-        server = db[str(user1.guild.id)]
+        server = self.DB_CLIENT.users_db[str(user1.guild.id)]
         stat1 = await server.find_one({'id': user1.id})
-        await update_data(user2)
+        await update_data(self.DB_CLIENT.users_db, user2)
         stat2 = await server.find_one({'id': user2.id})
         bal1 = stat1['credits'] - amount
         if bal1 >= 0:

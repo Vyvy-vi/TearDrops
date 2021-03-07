@@ -5,7 +5,7 @@ from discord.ext.commands import Context
 
 import aiohttp
 
-from .utils import COLOR
+from .utils.colo import COLOR
 
 # Map of channel IDs to tasks.Loop automeme loops
 automeme_loops = {}
@@ -23,7 +23,7 @@ async def automeme_routine(ctx: Context):
             color=COLOR.JOY)
         embed.set_image(url=response['url'])
         embed.set_footer(
-            text=f"r/{response['subreddit']} | Requested by {ctx.author.name} | Enjoy your dank memes!")
+            text=f"r/{response['subreddit']} | Requested by {ctx.author.name}")
         await ctx.send(embed=embed)
 
 
@@ -43,7 +43,7 @@ class Meme(commands.Cog):
                 url=response['postLink'],
                 color=COLOR.JOY)
             embed.set_image(url=response['url'])
-            txt = f"r/{response['subreddit']} | Requested by {ctx.author.name} | Enjoy your dank memes"
+            txt = f"r/{response['subreddit']} | Requested by {ctx.author.name}"
             embed.set_footer(text=txt)
             await ctx.send(embed=embed)
 

@@ -3,8 +3,8 @@ from discord import Embed, Member
 from discord.ext import commands
 from discord.ext.commands import Context
 
-from .inputs import responses, fortunes, quo, nerd, tech, rost, bk, cmp, blurt, jk
-from .utils import COLOR
+from .utils.inputs import responses, fortunes, quo, nerd, tech, rost, bk, cmp, blurt, jk
+from .utils.colo import COLOR
 
 
 class Fun(commands.Cog):
@@ -13,6 +13,7 @@ class Fun(commands.Cog):
 
     @commands.command(aliases=["8ball"])
     async def magicball(self, ctx: Context, *, question: str):
+        """use an 8ball"""
         embed = Embed(title="8Ball :8ball:",
                       colour=COLOR.DEFAULT)
         embed.add_field(name=f"*Question: {question}*",
@@ -21,12 +22,14 @@ class Fun(commands.Cog):
 
     @commands.command(aliases=["future"])
     async def fortune(self, ctx: Context):
+        """Gives you your terrible fortune"""
         embed = Embed(title='Fortune', color=COLOR.DEFAULT)
         embed.add_field(name='Your Fortune', value=random.choice(fortunes))
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['wisdom'])
     async def quote(self, ctx: Context):
+        """Gives you a dose of motivational quotes"""
         randq = random.choice(list(quo.keys()))
         quote_text = f'`{randq}`\n_~{quo[randq]}_'
         embed = Embed(
@@ -37,6 +40,7 @@ class Fun(commands.Cog):
 
     @commands.command(aliases=['joke', 'pun'])
     async def dadjoke(self, ctx: Context):
+        """Gives you some dad puns"""
         embed = Embed(title='Dad joke huh 😏', color=COLOR.RANDOM())
         embed.add_field(name=random.choice(jk),
                         value='_looks at you, expecting you to laugh_')
@@ -44,6 +48,7 @@ class Fun(commands.Cog):
 
     @commands.command(aliases=['nerdystuff', 'smartystuff', 'bigbrains'])
     async def nerd(self, ctx: Context):
+        """returns some nerdy stuff"""
         embed = Embed(title='Nerdy Stuff', color=COLOR.JOY)
         embed.add_field(
             name='Take this you NERD',
@@ -52,6 +57,7 @@ class Fun(commands.Cog):
 
     @commands.command(aliases=['tehc', 'hackerman'])
     async def geek(self, ctx: Context):
+        """returns some geeky gibberish"""
         embed = Embed(title='Geek', color=COLOR.JOY)
         embed.add_field(name="Ahh I am a hackerman",
                         value=f'{random.choice(tech)}')
@@ -59,6 +65,7 @@ class Fun(commands.Cog):
 
     @commands.command()
     async def roast(self, ctx: Context, *, member: Member = None):
+        """wanna roast someone?"""
         user = ctx.message.author if not member else member
         embed = Embed(title='Roast', color=COLOR.SADNESS)
         embed.add_field(name='😈', value=f'{user}, {random.choice(rost)}')
@@ -66,6 +73,7 @@ class Fun(commands.Cog):
 
     @commands.command(aliases=['commend'])
     async def compliment(self, ctx: Context, *, member: Member = None):
+        """Wanna shoot some compliments"""
         user = ctx.message.author if not member else member
         embed = Embed(title='Compliment', color=COLOR.JOY)
         embed.add_field(name="Here's a compliment for you",
@@ -74,6 +82,7 @@ class Fun(commands.Cog):
 
     @commands.command()
     async def flirt(self, ctx: Context, *, member: Member = None):
+        """Flirting with bots is nice"""
         user = ctx.message.author if not member else member
         embed = Embed(title='Flirt', color=COLOR.DEFAULT)
         embed.add_field(name='Flirt it away',
@@ -82,6 +91,7 @@ class Fun(commands.Cog):
 
     @commands.command(aliases=['goodread'])
     async def book(self, ctx: Context):
+        """returns you some epic book recomendation"""
         embed = Embed(title='Book', color=COLOR.JOY)
         embed.add_field(name="Here's a book recomendation: ",
                         value=f'{random.choice(bk)}')

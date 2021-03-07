@@ -4,8 +4,8 @@ from discord import Embed, Color
 from discord.ext import commands
 from discord.ext.commands import Context
 
-from .username import generate
-from .joeUsername import joe_generate
+from .utils.username import generate
+from .utils.joeUsername import joe_generate
 
 
 class Name(commands.Cog):
