@@ -61,11 +61,11 @@ This has been uploaded to GitHub for educational and referencial purposes',
                 is_command = lambda cmd: cmd.name == index
                 cmd_match = list(filter(lambda cmd: cmd.name == index,
                                  self.client.commands))
-                if len(cmd_match) > 0:
-                        embed = Embed(
-                            title=f'**Help command: {cmd_match[0]}**',
-                            description=f'Description : {cmd_match[0].short_doc} \n {cmd_match[0].brief}',
-                            color=COLOR.DEFAULT)
+                if cmd_match:
+                    embed = Embed(
+                        title=f'**Help command: {cmd_match[0]}**',
+                        description=f'Description : {cmd_match[0].short_doc} \n {cmd_match[0].brief}',
+                        color=COLOR.DEFAULT)
                 else:
                     embed = Embed(
                             title=f'{index} was not found...',
