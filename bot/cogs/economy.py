@@ -19,6 +19,13 @@ DB_CLIENT = motor.AsyncIOMotorClient(MONGO_CONNECTION_STRING)
 timelast = 0
 
 
+def decide_score() -> int:
+    trs = tuple(range(0, 501, 50))
+    weights = (5, 15, 20, 30, 45, 50, 45, 30, 20, 15, 5)
+    return random.choices(trs, weights)
+
+
+
 async def update_data(user: Union[User, Member]):
     '''
     This Updates the user data in the db to add entry for new members
@@ -46,8 +53,7 @@ async def add_experience(message: Message, user: Union[User, Member], exp: int):
 
 async def level_up(user: Union[User, Member], channel: TextChannel):
     """Takes care of checking the level-up parameters to boot ppl to next level when sufficient xp obtained"""
-    db = DB_CLIENT.users_db
-    server = db[str(user.guild.id)]
+    server = DB_CLIENT.users_db[str(user.guild.id)]
     stats = await server.find_one({'id': user.id})
     lvl_start = stats['level']
     experience = stats['experience']
@@ -59,9 +65,9 @@ async def level_up(user: Union[User, Member], channel: TextChannel):
 
     lvl_end = cnt - 1 if experience >= x else lvl_start
     earned = lvl_end * 150
-    cred = stats['credits'] + earned
     if lvl_start < lvl_end:
-        new_stats = {"$set": {'level': lvl_end, 'credits': cred}}
+        new_stats = {"$set": {'level': lvl_end,
+                              'credits': stats['credits'] + earned}}
         await server.update_one(stats, new_stats)
         embed = Embed(
             title=f'{user} has leveled up to {lvl_end}.',
@@ -117,15 +123,11 @@ class Economy(commands.Cog):
     async def cry(self, ctx: Context):
         '''credit gain command for crying'''
         user = ctx.message.author
-        db = DB_CLIENT.users_db
-        server = db[str(user.guild.id)]
+        server = DB_CLIENT.users_db[str(user.guild.id)]
         stats = await server.find_one({'id': user.id})
-        tim = stats['crytime']
         colo = COLOR.DEFAULT
-        if time.time() - tim > 10800:
-            trs = tuple(_ for _ in range(0, 501, 50))
-            weights = (5, 15, 20, 30, 45, 50, 45, 30, 20, 15, 5)
-            tr = random.choices(trs, weights)
+        if time.time() - stats['crytime'] > 10800:
+            tr = decide_score()
             if tr > 1:
                 desc = f'You cried {tr} tears.\n\
 Storing them in the vaults of tears.Spend them wisely...💦\nSpend them wisely...',
@@ -147,7 +149,7 @@ Try again in like 3 hours.",
             await server.update_one(stats, new_stats)
         else:
             desc = f"You can't cry rn. Let your eyes hydrate.\n\
-Wait for like {round((10800 - time.time()+tim)//3600)} hours or something.",
+Wait for like {round((10800 - time.time()+stats['crytime'])//3600)} hours or something.",
             colo = COLOR.ERROR
         embed = Embed(title="**Tear Dispenser**",
                       description=desc,
