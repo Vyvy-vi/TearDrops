@@ -6,7 +6,15 @@ from discord.ext.commands import Context
 
 from .utils.colo import COLOR
 
+def ping_embed(title, desc, colo):
+    embed = Embed(title=title,
+                  description=desc,
+                  color=colo)
+    embed.set_footer(text='😭')
+    return embed
+
 class Ping(commands.Cog):
+    """This is the Ping Cog, mainly for testing the bot-status"""
     def __init__(self, client):
         self.client = client
 
@@ -19,13 +27,12 @@ class Ping(commands.Cog):
                   'I am still here',
                   'You are using a ping command? Why?',
                   'At your service.']
-        ph = random.choice(phrase)
-        lsm = round(self.client.latency * 1000)
-        embed = Embed(
-            title='**pong...!**',
-            description=f"_{ph}_ \n**~{lsm} ms taken**......",
-            color=COLOR.SUCCESS)
-        embed.set_footer(text='😭')
+        rand_ph = random.choice(phrase)
+        bot_lsm = round(self.client.latency * 1000)
+        embed = ping_embed(
+                '**pong...!**',
+                f"_{rand_ph}_ \n**~{bot_lsm} ms taken**......",
+                COLOR.SUCCESS)
         await ctx.send(embed=embed)
 
     @commands.command()
@@ -37,13 +44,12 @@ class Ping(commands.Cog):
                   "I am still not here",
                   "You are using a pong command? Why?",
                   "Not at your service."]
-        ph = random.choice(phrase)
-        lsm = round(self.client.latency * 1000)
-        embed = Embed(
-            title='**PING...!**',
-            description=f"_{ph}_ \n**~{lsm} ms taken**......",
-            color=COLOR.ERROR)
-        embed.set_footer(text='😭')
+        rand_ph = random.choice(phrase)
+        bot_lsm = round(self.client.latency * 1000)
+        embed = ping_embed(
+                '**PING...!**',
+                f"_{rand_ph}_ \n**~{bot_lsm} ms taken**......",
+                COLOR.ERROR)
         await ctx.send(embed=embed)
 
 
