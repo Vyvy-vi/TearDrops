@@ -32,44 +32,33 @@ This has been uploaded to GitHub for educational and referencial purposes',
     @commands.command()
     async def help(self, ctx: Context, index: str = None):
         '''Displays the help command'''
-        text = []
+        colo = COLOR.DEFAULT
         if index is None:
-            embed = Embed(
-                title='**Help command**',
-                description='The following command categories exist for bot ;-;',
-                color=COLOR.DEFAULT)
-            for cog in self.client.cogs.items():
-                text.append(f'**{cog[0]}')
+            title='**Help command**'
+            text = [f'**{cog[0]}' for cog in self.client.cogs.items()]
             text = f"{',** '.join(sorted(text))}**".split(' ')
             text = [text[i:i + 2] for i in range(0, len(text), 2)]
             text = [' '.join(i) for i in text]
-            embed.add_field(
-                name='\u200b',
-                value='\n'.join(text) +
-                '\nFor more info, use `qq help <Category-name>` or `qq help <Command-name>`')
-            embed.set_footer(
-                text='Cry, cry, let the tears flow through you...')
+            desc = 'The following command categories exist for bot ;-;\n' + '\n'.join(text) + '\nFor more info, use\n`qq help <Category-name>`\nor `qq help <Command-name>`'
         else:
             if index in self.client.cogs:
-                cog = self.client.get_cog(index)
-                text = [f'**{c.name}** : {c.short_doc}' for c in cog.get_commands()]
-                embed = Embed(
-                            title=f'**Help category: {index}**',
-                            description='\n'.join(text),
-                            color=COLOR.DEFAULT)
+                cog_cmds = self.client.get_cog(index).get_commands()
+                title = f'**Help category: `{index}`**'
+                desc = '\n'.join([f'**{c.name}** : {c.short_doc}' for c in cog_cmds])
             else:
-                is_command = lambda cmd: cmd.name == index
                 cmd_match = list(filter(lambda cmd: cmd.name == index,
                                  self.client.commands))
                 if len(cmd_match) > 0:
-                        embed = Embed(
-                            title=f'**Help command: {cmd_match[0]}**',
-                            description=f'Description : {cmd_match[0].short_doc} \n {cmd_match[0].brief}',
-                            color=COLOR.DEFAULT)
+                    title=f'**Help command: `{cmd_match[0]}`**'
+                    desc=f'Description : {cmd_match[0].short_doc} \n {cmd_match[0].brief}'
                 else:
-                    embed = Embed(
-                            title=f'{index} was not found...',
-                            color=COLOR.ERROR)
+                    title = f'`{index}` was not found...'
+                    desc = None
+                    colo = COLOR.ERROR
+        embed = Embed(title=title,
+                      description=desc,
+                      color=colo)
+        embed.set_footer(text='Cry, cry, let the tears flow through you...')
         await ctx.send(embed=embed)
 
 

@@ -138,7 +138,7 @@ Storing them in the vaults of tears.Spend them wisely...💦\nSpend them wisely.
 Storing it in the vaults of tears.Spend them wisely...💧\nSpend it wisely...'
             else:
                 desc = "You can't cry rn. {rand_message()}\n\
-Try again in like 3 hours.",
+Try again in like 3 hours."
                 colo = COLOR.ERROR
             new_stats = {"$set": {'credits': tr + stats['credits'],
                                   'crytime': time.time()}}
@@ -192,7 +192,7 @@ Wait for like {round((10800 - time.time()+stats['crytime'])//3600)} hours or som
         user2 = member
         server = self.DB_CLIENT.users_db[str(user1.guild.id)]
         stat1 = await server.find_one({'id': user1.id})
-        await update_data(user2)
+        await update_data(self.DB_CLIENT.users_db, user2)
         stat2 = await server.find_one({'id': user2.id})
         bal1 = stat1['credits'] - amount
         if bal1 >= 0:
