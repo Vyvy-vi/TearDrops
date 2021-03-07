@@ -1,13 +1,10 @@
-import random
 import wikipedia
 import requests
-import wolframalpha
 
 from discord import Embed, Color
 from discord.ext import commands
 from discord.ext.commands import Context
 
-from translate import Translator
 from .utils.colo import COLOR
 
 
@@ -83,23 +80,12 @@ class Utils(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(pass_context=True)
-    async def wolfram(self, ctx: Context, *args):
-        '''displays info from wolfram'''
-        ques = ''.join(args)
-        wolfram = wolframalpha.Client("QYKRJ8-YT2JP8U85T")
-        res = wolfram.query(ques)
-        if res['@success'] == 'false':
-            await ctx.send('Question cannot be resolved')
-        else:
-            await ctx.send(next(res.results).text)
-
-    @commands.command(pass_context=True)
     async def weather(self, ctx: Context, *, loc):
         '''displays weather data'''
         p = {"http": "http://111.233.225.166:1234"}
-        k = "353ddfe27aa4b3537c47c975c70b58d9"  # dummy key(for now)
+        key = "353ddfe27aa4b3537c47c975c70b58d9"  # dummy key(for now)
         api_r = requests.get(
-            f"http://api.openweathermap.org/data/2.5/weather?appid={k}&q={loc}, verify= False, proxies=p")
+            f"http://api.openweathermap.org/data/2.5/weather?appid={key}&q={loc}, verify= False, proxies=p")
         q = api_r.json()
         if q["cod"] != 404:
             weather_data = {}
@@ -119,13 +105,12 @@ class Utils(commands.Cog):
             desc = w_obj['description']
             weather_data['\nDescription'] = desc
             w_id = str(w_obj['id'])
-            col = {'8': 0xbababa,
+            col = { '8': 0xbababa,
                     '7': 0xc2eaea,
                     '6': 0xdde5f4,
                     '5': 0x68707c,
                     '3': 0xb1c4d8,
-                    '2': 0x4d5665}
-            print(w_id)
+                    '2': 0x4d5665 }
             if w_id == '800':
                 col = 0xd8d1b4
             else:
