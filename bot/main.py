@@ -2,6 +2,8 @@
 from itertools import cycle
 import discord
 from discord.ext import commands, tasks
+from glob import glob
+
 # Standard modules
 # TOKEN, MONGO URI are env-vars
 from utils import get_environment_variable
@@ -30,20 +32,7 @@ STATUS = cycle([
     "with your tears...",
     "with your feelings",
     "with sparkles"])
-ls_cog = ['cogs.fun',
-          'cogs.ping',
-          'cogs.help',
-          'cogs.coffee',
-          'cogs.meme',
-          'cogs.utilities',
-          'cogs.name',
-          'cogs.game',
-          'cogs.economy',
-          'cogs.events',
-          'cogs.error',
-          'cogs.users',
-          'cogs.comic',
-          'jishaku']
+COGS = ['cogs.' + path.split("/")[-1][:-3] for path in glob("./bot/cogs/*.py")]
 
 
 @client.event
@@ -71,9 +60,10 @@ async def change_status():
 
 # cog-loader
 if __name__ == "__main__":
-    for extension in ls_cog:
-        client.load_extension(extension)
-        print(f'Loaded cog : {extension}')
+    COGS.append('jishaku')
+    for ext in COGS:
+        client.load_extension(ext)
+        print(f'Loaded cog : {ext}')
 
     # Running the BOT:
     if client.TOKEN != 'foo' and (client.TOKEN is not None):

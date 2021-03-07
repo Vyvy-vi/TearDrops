@@ -3,7 +3,7 @@ from discord import Embed, Member
 from discord.ext import commands
 from discord.ext.commands import Context
 
-from .inputs import responses, fortunes, quo, nerd, tech, rost, bk, cmp, blurt, jk
+from .utils.inputs import responses, fortunes, quo, nerd, tech, rost, bk, cmp, blurt, jk
 from .utils.colo import COLOR
 
 

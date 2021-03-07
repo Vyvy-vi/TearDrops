@@ -3,7 +3,7 @@ import random
 from discord import Member, Embed
 from discord.ext import commands
 from discord.ext.commands import Context
-from .inputs import cl, cf, chill, cfe, ur
+from .utils.inputs import cl, cf, chill, cfe, ur
 from .utils.colo import COLOR
 
 
