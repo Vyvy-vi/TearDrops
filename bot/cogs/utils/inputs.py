@@ -105,8 +105,7 @@ cmp = [
     "You make me see the world in a way no one else ever has.",
     "I love the way you make me think.",
     "Around you, I’m the best possible version of myself.",
-    " I can’t stop thinking about you",
-    " You’re my constant reminder that people can be good.",,
+    "You’re my constant reminder that people can be good.",
     "Are you for real? How did I get so lucky that I met you?",
     "You impress me every single day.",
     "Your capacity for kindness is boundless.",
@@ -115,23 +114,14 @@ cmp = [
     "There’s no one like you.",
     "You’re not as dumb as you let people think you are.",
     "You’re beautiful.",
-    "Your soul is gorgeous.",
-    "I love your brain.",
-    "Your existence makes me feel better about life.",
-    "The very idea of you makes me smile on the inside.",
     "I’ve never met a person as wonderful as you are.",
-    "I’ve never met a person as hot as you are.",
-    "Mating with you would be a smart evolutionary play.",
-    "I’ve never met anyone as caring as you.",
-    "No one else can make me laugh like you do.",
     "You make me want to be a better person.",
     "You make me believe in goodness.",
-    "When I see you, everything else within the frame falls away.",
     "How did you learn to be so good?",
     "Your heart must be ten times the average size.",
     "I don’t know what I’d do without you. Actually.",
     "You give me the kind of advice I always need to hear (even if I don’t want to hear it). Thank you for that.",
-    " You’re accomplishing so much. Every day you are growing and evolving into a better, stronger version of who you were yesterday. You have already done so much in the time that I’ve known you. Your passion for life has encouraged me to dream bigger, love harder, and find beauty everywhere."]
+    "You’re accomplishing so much. Every day you are growing and evolving into a better, stronger version of who you were yesterday. You have already done so much in the time that I’ve known you. Your passion for life has encouraged me to dream bigger, love harder, and find beauty everywhere."]
 
 
 blurt = [
