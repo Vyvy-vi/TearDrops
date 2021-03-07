@@ -139,7 +139,7 @@ Storing it in the vaults of tears.Spend them wisely...💧\nSpend it wisely...',
                     'You were surprisingly too happy to cry',
                     'You cried so much already that the tears are not coming out',
                     'You really tried but you could not cry',
-                    'The tears are not coming out...')
+                    'The tears are not coming out...',)
                 desc = "You can't cry rn. {random.choice(txt)}\n\
 Try again in like 3 hours.",
                 colo = COLOR.ERROR
