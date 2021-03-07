@@ -9,12 +9,7 @@ from discord import User, Member, Message, TextChannel, Embed
 from discord.ext import commands
 from discord.ext.commands import Context
 
-from utils import get_environment_variable
 from .utils import COLOR
-
-
-MONGO_CONNECTION_STRING = get_environment_variable("MONGO_CONNECTION_STRING")
-DB_CLIENT = motor.AsyncIOMotorClient(MONGO_CONNECTION_STRING)
 
 timelast = 0
 
@@ -22,7 +17,7 @@ timelast = 0
 def decide_score() -> int:
     trs = tuple(range(0, 501, 50))
     weights = (5, 15, 20, 30, 45, 50, 45, 30, 20, 15, 5)
-    return random.choices(trs, weights)
+    return random.choices(trs, weights)[0]
 
 def rand_message() -> str:
     txt = (
@@ -35,11 +30,10 @@ def rand_message() -> str:
 
 
 
-async def update_data(user: Union[User, Member]):
+async def update_data(db, user: Union[User, Member]):
     '''
     This Updates the user data in the db to add entry for new members
     '''
-    db = DB_CLIENT.users_db
     server = db[str(user.guild.id)]
     matching_entry = await server.find_one({'id': user.id})
     if matching_entry is None:
@@ -51,18 +45,17 @@ async def update_data(user: Union[User, Member]):
         print(f'{user.id} added to database...')
 
 
-async def add_experience(message: Message, user: Union[User, Member], exp: int):
+async def add_experience(db, message: Message, user: Union[User, Member], exp: int):
     """Adds xp to the user in the database, and calls the level up function"""
-    db = DB_CLIENT.users_db
     server = db[str(user.guild.id)]
     stats = await server.find_one({'id': user.id})
     await server.update_one(stats, {"$inc": {'experience': exp}})
-    await level_up(message.author, message.channel)
+    await level_up(db, message.author, message.channel)
 
 
-async def level_up(user: Union[User, Member], channel: TextChannel):
+async def level_up(db, user: Union[User, Member], channel: TextChannel):
     """Takes care of checking the level-up parameters to boot ppl to next level when sufficient xp obtained"""
-    server = DB_CLIENT.users_db[str(user.guild.id)]
+    server = db[str(user.guild.id)]
     stats = await server.find_one({'id': user.id})
     lvl_start = stats['level']
     exp = stats['experience']
@@ -89,6 +82,7 @@ Saving {earned} tears in your vault of tears.',
 class Economy(commands.Cog):
     def __init__(self, client):
         self.client = client
+        self.DB_CLIENT = motor.AsyncIOMotorClient(client.MONGO)
 
     @commands.Cog.listener()
     async def on_member_join(self, member: Union[User, Member]):
@@ -98,7 +92,7 @@ class Economy(commands.Cog):
         Also, this awaits the update_data() function, to add member to the database.
         '''
         print(f'{member} has joined the server.....')
-        await update_data(member)
+        await update_data(self.DB_CLIENT.users_db, member)
 
     @commands.Cog.listener()
     async def on_message(self, message: Message):
@@ -116,10 +110,10 @@ class Economy(commands.Cog):
         else:
             # message_xp updation block
             global timelast
-            await update_data(message.author)
+            await update_data(self.DB_CLIENT.users_db, message.author)
             timlst = timelast
             if time.time() - timlst > 25:
-                await add_experience(message, message.author, 10)
+                await add_experience(self.DB_CLIENT.users_db, message, message.author, 10)
                 timelast = time.time()
             # message if-else response examples(you can add more)
             if 'tears' in message.content:
@@ -131,7 +125,7 @@ class Economy(commands.Cog):
     async def cry(self, ctx: Context):
         '''credit gain command for crying'''
         user = ctx.message.author
-        server = DB_CLIENT.users_db[str(user.guild.id)]
+        server = self.DB_CLIENT.users_db[str(user.guild.id)]
         stats = await server.find_one({'id': user.id})
         colo = COLOR.DEFAULT
         if time.time() - stats['crytime'] > 10800:
@@ -163,7 +157,7 @@ Wait for like {round((10800 - time.time()+stats['crytime'])//3600)} hours or som
     async def vault(self, ctx: Context, member: Member = None):
         '''Gives the users economy balance'''
         user = ctx.message.author if not member else member
-        server = DB_CLIENT.users_db[str(user.guild.id)]
+        server = self.DB_CLIENT.users_db[str(user.guild.id)]
         stats = await server.find_one({'id': user.id})
         trp = stats['credits']
         embed = Embed(
@@ -179,7 +173,7 @@ Wait for like {round((10800 - time.time()+stats['crytime'])//3600)} hours or som
     async def level(self, ctx: Context, member: Member = None):
         '''Gives the users level'''
         user = ctx.message.author if not member else member
-        server = DB_CLIENT.users_db[str(user.guild.id)]
+        server = self.DB_CLIENT.users_db[str(user.guild.id)]
         stats = await server.find_one({'id': user.id})
         lvl = stats['level']
         embed = Embed(
@@ -196,7 +190,7 @@ Wait for like {round((10800 - time.time()+stats['crytime'])//3600)} hours or som
         '''transfer command'''
         user1 = ctx.message.author
         user2 = member
-        server = DB_CLIENT.users_db[str(user1.guild.id)]
+        server = self.DB_CLIENT.users_db[str(user1.guild.id)]
         stat1 = await server.find_one({'id': user1.id})
         await update_data(user2)
         stat2 = await server.find_one({'id': user2.id})

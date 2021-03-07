@@ -6,13 +6,11 @@ import motor.motor_asyncio as motor
 from utils import get_environment_variable
 from .utils import COLOR
 
-MONGO_CONNECTION_STRING = get_environment_variable("MONGO_CONNECTION_STRING")
-DB_CLIENT = motor.AsyncIOMotorClient(MONGO_CONNECTION_STRING)
-
 
 class Events(commands.Cog):
     def __init__(self, client):
         self.client = client
+        self.DB_CLIENT = motor.AsyncIOMotorClient(client.MONGO)
 
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
@@ -21,7 +19,7 @@ class Events(commands.Cog):
         Joining a guild is synonymous to joining a server.
         Basically, a hi message the bot sends on enterring the server.
         '''
-        db = DB_CLIENT.users_db
+        db = self.DB_CLIENT.users_db
         for channel in guild.text_channels:
             if channel.permissions_for(guild.me).send_messages:
                 if guild.id not in await db.list_collection_names():

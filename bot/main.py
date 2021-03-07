@@ -5,7 +5,6 @@ from discord.ext import commands, tasks
 # Standard modules
 # TOKEN, MONGO URI are env-vars
 from utils import get_environment_variable
-DISCORD_BOT_TOKEN = get_environment_variable("DISCORD_BOT_TOKEN")
 # intents (new discord feature to limit bots to certain bucket events)
 intents = discord.Intents.default()
 
@@ -14,6 +13,10 @@ intents = discord.Intents.default()
 # client pointer for API-reference
 client = commands.Bot(command_prefix='qq ',
                       case_insensitive=True, intents=intents)
+# Mongo connection string
+client.MONGO = get_environment_variable("MONGO_CONNECTION_STRING")
+client.TOKEN = get_environment_variable("DISCORD_BOT_TOKEN")
+
 # discord.py has an inbuilt help command, which doesn't look good''
 client.remove_command('help')
 # status-change-cycle(The bot changes presence after a few mins.)
@@ -73,7 +76,7 @@ if __name__ == "__main__":
         print(f'Loaded cog : {extension}')
 
     # Running the BOT:
-    if DISCORD_BOT_TOKEN != 'foo':
-        client.run(str(DISCORD_BOT_TOKEN))
+    if client.TOKEN != 'foo' and (client.TOKEN is not None):
+        client.run(str(client.TOKEN))
     else:
         print('No token Loaded')
