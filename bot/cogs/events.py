@@ -1,9 +1,9 @@
-from discord import Embed
+# from discord import Embed
 from discord.ext import commands
 
 import motor.motor_asyncio as motor
 
-from .utils.colo import COLOR
+# from .utils.colo import COLOR
 from .utils.embeds import info_embed
 
 class Events(commands.Cog):
