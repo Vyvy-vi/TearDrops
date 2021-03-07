@@ -123,7 +123,7 @@ class Economy(commands.Cog):
         tim = stats['crytime']
         colo = COLOR.DEFAULT
         if time.time() - tim > 10800:
-            trs = tuple(_ for _ in range(0, 501, 50))
+            trs = tuple(range(0, 501, 50))
             weights = (5, 15, 20, 30, 45, 50, 45, 30, 20, 15, 5)
             tr = random.choices(trs, weights)
             if tr > 1:
