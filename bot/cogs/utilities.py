@@ -107,10 +107,10 @@ class Utils(commands.Cog):
             weather_data['Temperature'] = f'{str(round(temp-273.16, 2))} °C'
 
             p = q['main']['pressure']
-            weather_data['Pressure'] = f'{str(p)} hpa'
+            weather_data['Pressure'] = f'{p} hpa'
 
             hum = q['main']['humidity']
-            weather_data['Humidity'] = f'str{hum} %'
+            weather_data['Humidity'] = f'{hum} %'
 
             wind = q['wind']['speed']
             weather_data['Wind Speed'] = wind
@@ -119,20 +119,17 @@ class Utils(commands.Cog):
             desc = w_obj['description']
             weather_data['\nDescription'] = desc
             w_id = str(w_obj['id'])
-            if '8' in w_id[0]:
-                col = 0xd8d1b4 if w_id == '800' else 0xbababa
-            elif '7' in w_id[0]:
-                col = 0xc2eaea
-            elif '6' in w_id[0]:
-                col = 0xdde5f4
-            elif '5' in w_id[0]:
-                col = 0x68707c
-            elif '3' in w_id[0]:
-                col = 0xb1c4d8
-            elif '2' in w_id[0]:
-                col = 0x4d5665
+            col = {'8': 0xbababa,
+                    '7': 0xc2eaea,
+                    '6': 0xdde5f4,
+                    '5': 0x68707c,
+                    '3': 0xb1c4d8,
+                    '2': 0x4d5665}
+            print(w_id)
+            if w_id == '800':
+                col = 0xd8d1b4
             else:
-                col = 0x000000
+                col = col.get(w_id[0], 0x000000)
             weather_data = [
                 f'**{field}**: {weather_data[field]}' for field in weather_data]
             embed = Embed(
