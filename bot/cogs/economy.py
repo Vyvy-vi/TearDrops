@@ -24,6 +24,16 @@ def decide_score() -> int:
     weights = (5, 15, 20, 30, 45, 50, 45, 30, 20, 15, 5)
     return random.choices(trs, weights)
 
+def rand_message() -> str:
+    txt = (
+            'You were not sad',
+            'You were surprisingly too happy to cry',
+            'You cried so much already that the tears are not coming out',
+            'You really tried but you could not cry',
+            'The tears are not coming out...')
+    return random.choice(txt)
+
+
 
 async def update_data(user: Union[User, Member]):
     '''
@@ -55,14 +65,13 @@ async def level_up(user: Union[User, Member], channel: TextChannel):
     server = DB_CLIENT.users_db[str(user.guild.id)]
     stats = await server.find_one({'id': user.id})
     lvl_start = stats['level']
-    experience = stats['experience']
+    exp = stats['experience']
     x = 35
     cnt = 1
-    while x < experience:
+    while x < exp:
         x = 2 * x + 10
         cnt += 1
-
-    lvl_end = cnt - 1 if experience >= x else lvl_start
+    lvl_end = cnt - 1 if exp >= x else lvl_start
     earned = lvl_end * 150
     if lvl_start < lvl_end:
         new_stats = {"$set": {'level': lvl_end,
@@ -129,18 +138,12 @@ class Economy(commands.Cog):
             tr = decide_score()
             if tr > 1:
                 desc = f'You cried {tr} tears.\n\
-Storing them in the vaults of tears.Spend them wisely...💦\nSpend them wisely...',
+Storing them in the vaults of tears.Spend them wisely...💦\nSpend them wisely...'
             elif tr == 1:
                 desc = 'You really tried but only 1 tear came out...\n\
-Storing it in the vaults of tears.Spend them wisely...💧\nSpend it wisely...',
+Storing it in the vaults of tears.Spend them wisely...💧\nSpend it wisely...'
             else:
-                txt = (
-                    'You were not sad',
-                    'You were surprisingly too happy to cry',
-                    'You cried so much already that the tears are not coming out',
-                    'You really tried but you could not cry',
-                    'The tears are not coming out...',)
-                desc = "You can't cry rn. {random.choice(txt)}\n\
+                desc = "You can't cry rn. {rand_message()}\n\
 Try again in like 3 hours.",
                 colo = COLOR.ERROR
             new_stats = {"$set": {'credits': tr + stats['credits'],
@@ -148,7 +151,7 @@ Try again in like 3 hours.",
             await server.update_one(stats, new_stats)
         else:
             desc = f"You can't cry rn. Let your eyes hydrate.\n\
-Wait for like {round((10800 - time.time()+stats['crytime'])//3600)} hours or something.",
+Wait for like {round((10800 - time.time()+stats['crytime'])//3600)} hours or something."
             colo = COLOR.ERROR
         embed = Embed(title="**Tear Dispenser**",
                       description=desc,
@@ -160,8 +163,7 @@ Wait for like {round((10800 - time.time()+stats['crytime'])//3600)} hours or som
     async def vault(self, ctx: Context, member: Member = None):
         '''Gives the users economy balance'''
         user = ctx.message.author if not member else member
-        db = DB_CLIENT.users_db
-        server = db[str(user.guild.id)]
+        server = DB_CLIENT.users_db[str(user.guild.id)]
         stats = await server.find_one({'id': user.id})
         trp = stats['credits']
         embed = Embed(
@@ -177,8 +179,7 @@ Wait for like {round((10800 - time.time()+stats['crytime'])//3600)} hours or som
     async def level(self, ctx: Context, member: Member = None):
         '''Gives the users level'''
         user = ctx.message.author if not member else member
-        db = DB_CLIENT.users_db
-        server = db[str(user.guild.id)]
+        server = DB_CLIENT.users_db[str(user.guild.id)]
         stats = await server.find_one({'id': user.id})
         lvl = stats['level']
         embed = Embed(
@@ -195,8 +196,7 @@ Wait for like {round((10800 - time.time()+stats['crytime'])//3600)} hours or som
         '''transfer command'''
         user1 = ctx.message.author
         user2 = member
-        db = DB_CLIENT.users_db
-        server = db[str(user1.guild.id)]
+        server = DB_CLIENT.users_db[str(user1.guild.id)]
         stat1 = await server.find_one({'id': user1.id})
         await update_data(user2)
         stat2 = await server.find_one({'id': user2.id})
