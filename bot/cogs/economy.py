@@ -25,7 +25,6 @@ def decide_score() -> int:
     return random.choices(trs, weights)
 
 
-
 async def update_data(user: Union[User, Member]):
     '''
     This Updates the user data in the db to add entry for new members
