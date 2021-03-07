@@ -121,40 +121,39 @@ class Economy(commands.Cog):
         server = db[str(user.guild.id)]
         stats = await server.find_one({'id': user.id})
         tim = stats['crytime']
+        colo = COLOR.DEFAULT
         if time.time() - tim > 10800:
-            trs = [ _ for _ in range(0, 501, 50)]
-            l = [5, 15, 20, 30, 45]
-            tr = random.choices(trs, l + [50] + l)
+            trs = tuple(_ for _ in range(0, 501, 50))
+            weights = (5, 15, 20, 30, 45, 50, 45, 30, 20, 15, 5)
+            tr = random.choices(trs, weights)
             if tr > 1:
                 desc = f'You cried {tr} tears.\n\
 Storing them in the vaults of tears.Spend them wisely...💦\nSpend them wisely...',
-                colo = COLOR.DEFAULT
             elif tr == 1:
                 desc = 'You really tried but only 1 tear came out...\n\
 Storing it in the vaults of tears.Spend them wisely...💧\nSpend it wisely...',
-                colo = COLOR.DEFAULT
             else:
-                tr2 = [
+                txt = (
                     'You were not sad',
                     'You were surprisingly too happy to cry',
                     'You cried so much already that the tears are not coming out',
                     'You really tried but you could not cry',
-                    'The tears are not coming out...']
-                message = random.choice(tr2)
-                desc = "You can't cry rn.{message}\n\
+                    'The tears are not coming out...')
+                desc = "You can't cry rn. {random.choice(txt)}\n\
 Try again in like 3 hours.",
                 colo = COLOR.ERROR
-            cred = tr + stats['credits']
-            new_stats = {"$set": {'credits': cred, 'crytime': time.time()}}
+            new_stats = {"$set": {'credits': tr + stats['credits'],
+                                  'crytime': time.time()}}
             await server.update_one(stats, new_stats)
         else:
-            desc=f"You can't cry rn. Let your eyes hydrate.\n\
+            desc = f"You can't cry rn. Let your eyes hydrate.\n\
 Wait for like {round((10800 - time.time()+tim)//3600)} hours or something.",
             colo = COLOR.ERROR
         embed = Embed(title="**Tear Dispenser**",
                       description=desc,
-                      color = colo)
+                      color=colo)
         embed.set_footer(text='😭')
+        await ctx.send(embed=embed)
 
     @commands.command(aliases=['vaultoftears', 'tearvault'])
     async def vault(self, ctx: Context, member: Member = None):
