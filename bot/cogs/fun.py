@@ -3,7 +3,7 @@ from discord import Embed, Member
 from discord.ext import commands
 from discord.ext.commands import Context
 
-from .utils.inputs import responses, fortunes, quo, nerd, tech, rost, bk, cmp, blurt, jk
+from .utils.inputs import responses, fortunes, quo, nerd, tech, bk, cmp, blurt, jk
 from .utils.colo import COLOR
 
 
@@ -61,14 +61,6 @@ class Fun(commands.Cog):
         embed = Embed(title='Geek', color=COLOR.JOY)
         embed.add_field(name="Ahh I am a hackerman",
                         value=f'{random.choice(tech)}')
-        await ctx.send(embed=embed)
-
-    @commands.command()
-    async def roast(self, ctx: Context, *, member: Member = None):
-        """wanna roast someone?"""
-        user = ctx.message.author if not member else member
-        embed = Embed(title='Roast', color=COLOR.SADNESS)
-        embed.add_field(name='😈', value=f'{user}, {random.choice(rost)}')
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['commend'])
