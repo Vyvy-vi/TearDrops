@@ -4,8 +4,7 @@ from discord import Embed
 from discord.ext import commands
 from discord.ext.commands import Context
 
-from .utils import COLOR
-
+from .utils.colo import COLOR
 
 class Ping(commands.Cog):
     def __init__(self, client):

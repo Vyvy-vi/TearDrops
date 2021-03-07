@@ -3,7 +3,7 @@ from discord import Embed
 
 from discord.ext.commands import Context
 
-from .utils import COLOR
+from .utils.colo import COLOR
 
 
 class Help(commands.Cog):

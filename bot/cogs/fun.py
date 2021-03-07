@@ -4,7 +4,7 @@ from discord.ext import commands
 from discord.ext.commands import Context
 
 from .inputs import responses, fortunes, quo, nerd, tech, rost, bk, cmp, blurt, jk
-from .utils import COLOR
+from .utils.colo import COLOR
 
 
 class Fun(commands.Cog):

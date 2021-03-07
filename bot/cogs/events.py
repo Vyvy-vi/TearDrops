@@ -3,8 +3,7 @@ from discord.ext import commands
 
 import motor.motor_asyncio as motor
 
-from utils import get_environment_variable
-from .utils import COLOR
+from .utils.colo import COLOR
 
 
 class Events(commands.Cog):

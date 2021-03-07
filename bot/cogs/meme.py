@@ -5,7 +5,7 @@ from discord.ext.commands import Context
 
 import aiohttp
 
-from .utils import COLOR
+from .utils.colo import COLOR
 
 # Map of channel IDs to tasks.Loop automeme loops
 automeme_loops = {}

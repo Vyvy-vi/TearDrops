@@ -8,7 +8,7 @@ from discord.ext import commands
 from discord.ext.commands import Context
 
 from translate import Translator
-from .utils import COLOR
+from .utils.colo import COLOR
 
 
 class Utils(commands.Cog):

@@ -6,7 +6,7 @@ from discord.ext.commands import Context
 
 import motor.motor_asyncio as motor
 
-from .utils import COLOR
+from .utils.colo import COLOR
 
 buls = 1
 

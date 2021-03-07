@@ -9,7 +9,7 @@ from discord import User, Member, Message, TextChannel, Embed
 from discord.ext import commands
 from discord.ext.commands import Context
 
-from .utils import COLOR
+from .utils.colo import COLOR
 
 timelast = 0
 
