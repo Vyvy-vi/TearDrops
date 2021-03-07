@@ -38,11 +38,11 @@ class Help(commands.Cog):
             if index in self.client.cogs:
                 cog_cmds = self.client.get_cog(index).get_commands()
                 title = f'**Help category: `{index}`**'
-                desc = '\n'.join([f'**{c.name}** : {c.short_doc}' for c in cog_cmds])
+                desc = '\n'.join(f'**{c.name}** : {c.short_doc}' for c in cog_cmds)
             else:
                 cmd_match = list(filter(lambda cmd: cmd.name == index,
                                  self.client.commands))
-                if len(cmd_match) > 0:
+                if cmd_match:
                     title=f'**Help command: `{cmd_match[0]}`**'
                     desc=f'Description : {cmd_match[0].short_doc} \n {cmd_match[0].brief}'
                 else:
