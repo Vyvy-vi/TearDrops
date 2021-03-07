@@ -4,7 +4,14 @@ from discord import Embed
 from discord.ext.commands import Context
 
 from .utils.colo import COLOR
+from typing import List
 
+def format_help_text(txt: List) -> str:
+    txt = f"{',** '.join(sorted(txt))}**".split(' ')
+    txt = [txt[i: i+2] for i in range(0, len(txt), 2)]
+    txt = [' '.join(i) for i in txt]
+    txt = 'The following command categories exist for bot ;-;\n' + '\n'.join(txt)+ '\nFor more info, use\n`qq help <Category-name>`\nor `qq help <Command-name>`'
+    return txt
 
 class Help(commands.Cog):
     def __init__(self, client):
@@ -36,10 +43,8 @@ This has been uploaded to GitHub for educational and referencial purposes',
         if index is None:
             title='**Help command**'
             text = [f'**{cog[0]}' for cog in self.client.cogs.items()]
-            text = f"{',** '.join(sorted(text))}**".split(' ')
-            text = [text[i:i + 2] for i in range(0, len(text), 2)]
-            text = [' '.join(i) for i in text]
-            desc = 'The following command categories exist for bot ;-;\n' + '\n'.join(text) + '\nFor more info, use\n`qq help <Category-name>`\nor `qq help <Command-name>`'
+            print(text)
+            desc = format_help_text(text)
         else:
             if index in self.client.cogs:
                 cog_cmds = self.client.get_cog(index).get_commands()
