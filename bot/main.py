@@ -1,8 +1,9 @@
 # TODO - transfer, casino, etc commands
 from itertools import cycle
+from glob import glob
+
 import discord
 from discord.ext import commands, tasks
-from glob import glob
 
 # Standard modules
 # TOKEN, MONGO URI are env-vars

@@ -46,34 +46,30 @@ This has been uploaded to GitHub for educational and referencial purposes',
             embed.add_field(
                 name='\u200b',
                 value='\n'.join(text) +
-                '\nFor more info, use `qq help <Category-name>`')
+                '\nFor more info, use `qq help <Category-name>` or `qq help <Command-name>`')
             embed.set_footer(
                 text='Cry, cry, let the tears flow through you...')
         else:
-            if index in list(self.client.cogs.keys()):
-                for category in self.client.cogs:
-                    if index == category:
-                        cog = self.client.get_cog(category)
-                        text = [
-                            f'**{c.name}** : {c.short_doc}' for c in cog.get_commands()]
-                        embed = Embed(
-                            title=f'**Help category: {category}**',
+            if index in self.client.cogs:
+                cog = self.client.get_cog(index)
+                text = [f'**{c.name}** : {c.short_doc}' for c in cog.get_commands()]
+                embed = Embed(
+                            title=f'**Help category: {index}**',
                             description='\n'.join(text),
                             color=COLOR.DEFAULT)
             else:
-                not_found = True
-                for command in self.client.commands:
-                    if index == command.name:
+                is_command = lambda cmd: cmd.name == index
+                cmd_match = list(filter(lambda cmd: cmd.name == index,
+                                 self.client.commands))
+                if len(cmd_match) > 0:
                         embed = Embed(
-                            title=f'**Help command: {command}**',
-                            description=f'Description : {command.short_doc} \n {command.brief}',
+                            title=f'**Help command: {cmd_match[0]}**',
+                            description=f'Description : {cmd_match[0].short_doc} \n {cmd_match[0].brief}',
                             color=COLOR.DEFAULT)
-                        break
-                    else:
-                        embed = Embed(
+                else:
+                    embed = Embed(
                             title=f'{index} was not found...',
                             color=COLOR.ERROR)
-
         await ctx.send(embed=embed)
 
 
