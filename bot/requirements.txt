@@ -1,8 +1,6 @@
 discord.py
 motor
 wikipedia
-wolframalpha==4.0.0
 aiohttp
 dnspython
 jishaku
-translate
