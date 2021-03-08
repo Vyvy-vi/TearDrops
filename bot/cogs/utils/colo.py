@@ -11,6 +11,7 @@ class COLOR:
     ECONOMY = 0x85bb65
     WIKI = 0xa9a9aa
     XKCD = 0x96a8c8
+    COFFEE = 0x8c4e08
 
     @staticmethod
     def RANDOM() -> int:

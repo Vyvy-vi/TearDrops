@@ -1,36 +1,38 @@
-import random
+from random import choice
 
+import motor.motor_asyncio as motor
 from discord import Member, Embed
 from discord.ext import commands
 from discord.ext.commands import Context
-from .utils.inputs import cl, cf, chill, cfe, ur
+
 from .utils.colo import COLOR
 
 
 class Coffee(commands.Cog):
     def __init__(self, client):
         self.client = client
-
+        self.data = motor.AsyncIOMotorClient(client.MONGO).DATA.inputs
     @commands.command(aliases=['ask_out'])
     async def wannagrabacoffee(self, ctx: Context, *, member: Member):
         '''Wanna ask someone out on coffee'''
+        res = await self.data.find_one({'type': 'coffee'})
         embed = Embed(
             title=f'{member}, Someone wants to grab a coffee with you...*wink *wink',
-            color=COLOR.DEFAULT)
-        embed.add_field(name='This happened....', value=f'{random.choice(cf)}')
-        embed.set_footer(text='not actually')
+            color=COLOR.COFFEE)
+        embed.add_field(name='This happened....', value=choice(res['events']))
+        embed.set_footer(text='not actually :P')
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['brew'])
     async def coffee(self, ctx: Context):
         '''A lovely coffee command (sip, sip)'''
-        op = f'{random.choice(cfe)}'
+        res = await self.data.find_one({'type': 'coffee'})
         embed = Embed(title='Coffee',
-                      description=op,
-                      color=COLOR.DEFAULT)
+                      description=choice(res['text']),
+                      color=COLOR.COFFEE)
         embed.set_footer(
-            text=f'Caffeiene Level-{random.choice(cl)}.{random.choice(chill)}')
-        embed.set_image(url=random.choice(ur))
+            text=f"Caffeiene Level-{choice(res['strength'])}. {choice(res['msg'])}")
+        embed.set_image(url=choice(res['img']))
         await ctx.send(embed=embed)
 
 
