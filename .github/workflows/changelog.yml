@@ -17,6 +17,7 @@ jobs:
         with:
           github-token: ${{ secrets.CHANGELOG_RELEASE }}
           output-file: "false"
+          version-file: "./config.toml"
 
       - name: Create Release
         uses: actions/create-release@v1
