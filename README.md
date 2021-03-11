@@ -1,20 +1,5 @@
 ![](.github/resources/title.svg)
 
-<!---
-```yaml
-▄▄▄█████▓  ▓█████  ▄▄▄         ██▀███    ▓█████▄    ██▀███     ▒█████     ██▓███      ██████ 
-▓  ██▒ ▓▒  ▓█   ▀  ▒████▄      ▓██ ▒ ██  ▒▒██▀ ██▌  ▓██ ▒ ██  ▒▒██▒  ██▒  ▓██░  ██▒  ▒██    ▒ 
-▒ ▓██░ ▒░  ▒███    ▒██  ▀█▄    ▓██ ░▄█   ▒░██   █▌  ▓██ ░▄█   ▒▒██░  ██▒  ▓██░ ██▓▒  ░ ▓██▄   
-░ ▓██▓ ░   ▒▓█  ▄  ░██▄▄▄▄██   ▒██▀▀█▄    ░▓█▄   ▌  ▒██▀▀█▄    ▒██   ██░  ▒██▄█▓▒   ▒  ▒   ██▒
-  ▒██▒ ░   ░▒████  ▒▓█   ▓██▒  ░██▓ ▒██▒  ░▒████▓   ░██▓ ▒██▒░   ████▓▒░  ▒██▒ ░    ░▒██████▒▒
-  ▒ ░░     ░░ ▒░   ░▒▒   ▓▒█░  ░ ▒▓ ░▒▓░   ▒▒▓  ▒   ░▒▓ ░▒▓░░   ▒░▒░▒░ ▒  ▓▒░ ░  ░  ▒ ▒▓▒ ▒ ░
-    ░       ░ ░  ░   ▒   ▒▒ ░   ░▒ ░ ▒░ ░   ▒  ▒    ░▒ ░ ▒░  ░   ▒ ▒░ ░   ▒  ░       ░ ░▒  ░ ░
-  ░           ░      ░   ▒      ░░   ░  ░   ░  ░    ░░   ░ ░ ░   ░ ▒  ░        ░  ░    ░  
-              ░   ░      ░  ░    ░          ░        ░           ░ ░                    ░  
-                                   ░                                          
-```
--->
-
 <p align='center'>
 <a href="https://discord.io/TearDropsSupport"><img src="https://discordapp.com/api/guilds/765880027467350047/widget.png?style=banner2" alt="Link to discord server"><br>
 <a href="https://www.python.org/"><img src="http://ForTheBadge.com/images/badges/made-with-python.svg" alt="made with Python"></a>
