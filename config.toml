@@ -1,9 +1,12 @@
-[project]
-name = "TearDrops"
-description = "Discord bot made using discord.py with xp level-up system"
+title = "TearDrops"
 version = "0.1.1"
+
+# Project Details
+[project]
+description = "Discord bot made using discord.py with xp level-up system"
 authors = ["Vyvy-vi <chat.vyvy-vi.ninja>"]
 repo = "https://github.com/Vyvy-vi/TearDrops"
+
 
 [dependencies]
 python = "^3.7.0"
