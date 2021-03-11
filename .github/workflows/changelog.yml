@@ -2,7 +2,7 @@ name: Changelog
 on:
   push:
     branches:
-      - test-(changelog)
+      - main
 
 jobs:
   changelog:
