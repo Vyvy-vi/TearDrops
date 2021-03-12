@@ -5,7 +5,7 @@
 <a href="https://www.python.org/"><img src="http://ForTheBadge.com/images/badges/made-with-python.svg" alt="made with Python"></a>
 <a href="https://github.com/Vyvy-vi/"><img src="http://ForTheBadge.com/images/badges/built-with-love.svg" alt="built with Love"></a><br>
 <a href="https://raw.githubusercontent.com/Vyvy-vi/TearDrops/main/LICENSE"><img src="https://img.shields.io/github/license/Vyvy-vi/TearDrops?style=flat-square" alt="MIT license"></a>
-<a href="https://github.com/Rapptz/discord.py/releases/tag/v1.5.0"><img src="https://img.shields.io/badge/discord.py-v1.5.0-7289da.svg?style=flat-square" alt="discord.py version"></a>
+<a href="https://github.com/Rapptz/discord.py/releases/tag/v1.5.0"><img src="https://img.shields.io/badge/discord.py-v1.6.0-7289da.svg?style=flat-square" alt="discord.py version"></a>
 </p>
 
 
@@ -16,7 +16,7 @@
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <p align='right'>
-   <a href="https://github.com/Vyvy-vi/TearDrops/releases/latest/"><img src="https://img.shields.io/badge/Bot_Version-v1.0.9-green.svg?style=flat-square" alt="bot version"></a>
+   <a href="https://github.com/Vyvy-vi/TearDrops/releases/latest/"><img src="https://img.shields.io/badge/Bot_Version-v0.1.3-green.svg?style=flat-square" alt="bot version"></a>
 </p>      
 
 
