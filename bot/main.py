@@ -1,6 +1,5 @@
 # TODO - transfer, casino, etc commands
 from itertools import cycle
-from glob import glob
 
 import discord
 from discord.ext import commands, tasks
@@ -33,8 +32,20 @@ STATUS = cycle([
     "with your tears...",
     "with your feelings",
     "with sparkles"])
-COGS = ['cogs.' + path.split("/")[-1][:-3] for path in glob("./bot/cogs/*.py")]
 
+COGS = ['cogs.coffee',
+        'cogs.comic',
+        'cogs.error',
+        'cogs.help',
+        'cogs.game',
+        'cogs.meme',
+        'cogs.users',
+        'cogs.utilities',
+        'cogs.ping',
+        'cogs.events',
+        'cogs.economy',
+        'cogs.fun',
+        'cogs.name']
 
 @client.event
 async def on_ready():
@@ -65,7 +76,7 @@ if __name__ == "__main__":
     for ext in COGS:
         client.load_extension(ext)
         print(f'Loaded cog : {ext}')
-
+        pass
     # Running the BOT:
     if client.TOKEN != 'foo' and (client.TOKEN is not None):
         client.run(str(client.TOKEN))
