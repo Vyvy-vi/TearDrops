@@ -4,4 +4,4 @@ wikipedia
 aiohttp
 dnspython
 jishaku
-dotenv
+python-dotenv
