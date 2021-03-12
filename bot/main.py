@@ -76,7 +76,6 @@ if __name__ == "__main__":
     for ext in COGS:
         client.load_extension(ext)
         print(f'Loaded cog : {ext}')
-        pass
     # Running the BOT:
     if client.TOKEN != 'foo' and (client.TOKEN is not None):
         client.run(str(client.TOKEN))
