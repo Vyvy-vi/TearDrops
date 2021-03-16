@@ -5,7 +5,7 @@ name: Python Build and Lint
 
 on:
   push:
-    branches: [ main ]
+    branches: [ fix/ci-update-pipenv ]
   pull_request:
     branches: [ main ]
 
