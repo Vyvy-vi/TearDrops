@@ -16,31 +16,37 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python 3.8
+    - name: Set up Python 3.9
       uses: actions/setup-python@v2
       with:
-        python-version: 3.8
+        python-version: 3.9
   
-    - name: Install dependencies
+    - name: Install pipenv
       run: |
-        python -m pip install --upgrade pip
-        pip install flake8 pytest pylint_runner
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        python -m pip install --upgrade pipenv wheel
+    - name: Set up pipenv
+      with:
+        path: ~/.local/share/virtualenvs
+        key: ${{ runner.os }}-pipenv-${{ hashFiles('**/Pipfile.lock') }}
+    - name: Set up pipenv cache
+      if: steps.cache-pipenv.outputs.cache-hit != 'true'
+      run: |
+          pipenv install --deploy --dev
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        pipenv run flake8 --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        pipenv run flake8 --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Lint with pylint
       run: |
-        pylint_runner
+        pipenv run lint
     - name: Build Test (cog-loader)
       env:
         DISCORD_BOT_TOKEN: foo
         MONGO_CONNECTION_STRING: bar
       run: |
-        python ./bot/main.py
+        pipenv run start
     # - name: Test with pytest
       # run: |
         # pytest
