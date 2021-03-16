@@ -24,3 +24,4 @@ python_version = "3.9"
 start = "python bot/main.py"
 lint = "pylint_runner"
 flake8 = "python -m flake8"
+
