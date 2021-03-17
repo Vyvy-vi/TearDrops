@@ -11,7 +11,6 @@ aiohttp = "==3.7.4"
 dnspython = "==2.1.0"
 jishaku = "1.20.0.220"
 python-dotenv = "==0.15.0"
-flake8 = "*"
 
 [dev-packages]
 flake8 = "~=3.8.4"
