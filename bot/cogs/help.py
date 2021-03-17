@@ -32,7 +32,6 @@ class Help(commands.Cog):
         if index is None:
             title='**Help command**'
             text = [f'**{cog[0]}' for cog in self.client.cogs.items()]
-            print(text)
             desc = format_help_text(text)
         else:
             if index in self.client.cogs:

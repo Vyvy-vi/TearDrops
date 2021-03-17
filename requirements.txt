@@ -1,7 +1,0 @@
-discord.py
-motor
-wikipedia
-aiohttp
-dnspython
-jishaku
-python-dotenv

@@ -34,12 +34,12 @@ The bot uses tears as an economy and you can "cry" to get daily credit tears.
 **NOTE**- It is recommended that you add your own discord token while running the bot.
 
 ## How to test the bot before running it on your server
-To test the bot join this [Support Server](https://discord.gg/jTzGuYx)
+To test the bot join the [Support Server](https://discord.gg/jTzGuYx)
   [*NOTE- Bot is not active 24x7 as it is hosted on heroku. To get a sample, join* [TearDropsSupport](https://discord.gg/jTzGuYx) *and ping* **@Tissue**]
 
 ## How to run the bot on your own server
 [Invite the bot to your server](https://discord.com/api/oauth2/authorize?client_id=627772985872220161&permissions=379968&scope=bot)
-[*NOTE- The bot is still in v0.1 and is being constantly updated and bug fixed. Inviting this, might have unintentional complications. If you really want the bot, open an issue so that we can provide a Beta Version to you that is stable and updated slowly*]
+[*NOTE- The bot is still in v0.2.0 and is being constantly updated and bug fixed. Inviting this, might have unintentional complications. If you really want the bot, open an issue so that we can provide a Beta Version to you that is stable and updated slowly*]
 
 ## Hosting the bot locally:
 
@@ -55,6 +55,7 @@ DISCORD_BOT_TOKEN=<your token>
 docker-compose up
 ```
 - Enjoy! (don't forget to add your own bot into your discord server by generating an invite link from the discord developers application page in [OAuth2 section](https://discord.com/developers/applications/) and choose application and check Oauth2 section)
+- To stop this instance of the bot, run `docker-compose down`
 - You may do bug-reporting or ask for help in on the SupportServer... or just open an issue on this repo.
 
 ## How to contribute
@@ -66,24 +67,25 @@ Requirements:
 - pip
 - python `3.8.1` or higher
 
-**Note**: If you're not on Windows, you should also have GNU make installed, and you can optionally install [pyenv](https://github.com/pyenv/pyenv), which can help you run tests for different python versions.
+1. Fork and clone the repository with `git clone https://github.com/<your-username>/TearDrops`
+2. Get to the clone directory using the command `cd Teardrops`
+3. Copy the contents of the `.env.sample` file into a new file - `.env` and add your DISCORD bot token in there.
+4. There are two ways to do further setup, pipenv or via docker:
+DOCKER METHOD:
+- Install [docker and docker-compose](https://docs.docker.com/desktop/)
+- Run the command: `docker-compose up`
+**OR**
+THE TRADITIONAL METHOD:
+(Requires [pipenv](https://pipenv.pypa.io/en/latest/))
+- Install pipenv
+- Add the mongo connection URI in the `.env` file
+- Run `pipenv sync --dev` to install project dependencies and development dependencies
+- Run `pipenv run start` to run the bot.
+- Run `pipenv run lint` to lint the code.
 
-1. Fork and clone the repository with `git clone https://github.com/Vyvy-vi/TearDrops` 
-1. Get in the clone directory using the command `cd TearDrops`
-1. Execute the following command `python3 -m venv venv`
-1. Activate the virtual environment with the following command:
-    - Posix
-    ```
-    source .venv/bin/activate
-    ```
-    - Windows
-    ```
-    .venv\Scripts\activate
-    ```
-    
-**Note**: From here onwards, we will assume you are executing commands from within this activated virtual environment.
+- For downloading more libraries, use `pipenv install <package-name>`
+* If you're adding any development-dependencies, use-> `pipenv install <package-name> --dev`
 
-**Note**: If you're comfortable with setting up virtual environments yourself and would rather do it manually, just run pip install -r bot/requirements.txt after setting it up.
 
 ### To contribute changes follow these steps:
 
@@ -124,9 +126,8 @@ Submit an issue on GitHub and add as much information as you can about the bug, 
 - discord(rewrite branch)
 - asyncio(inbuilt with python3.4)
 - wikipedia
-- requests
 - aiohttp
-- pymongo
+- motor(asynchronous client for mongodb)
 - dnspython
 
 ## Contributors ✨

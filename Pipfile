@@ -1,0 +1,27 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+"discord.py" = "1.6.0"
+motor = "==2.3.1"
+wikipedia = "==1.4.0"
+aiohttp = "==3.7.4"
+dnspython = "==2.1.0"
+jishaku = "1.20.0.220"
+python-dotenv = "==0.15.0"
+flake8 = "*"
+
+[dev-packages]
+flake8 = "~=3.8.4"
+pylint_runner = "0.6.0"
+
+[requires]
+python_version = "3.9"
+
+[scripts]
+start = "python bot/main.py"
+lint = "pylint_runner"
+flake8 = "python -m flake8"
+
