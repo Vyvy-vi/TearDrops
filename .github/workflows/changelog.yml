@@ -17,7 +17,7 @@ jobs:
         with:
           github-token: ${{ secrets.CHANGELOG_RELEASE }}
           output-file: "false"
-          version-file: "./config.toml"
+          skip-version-file: "true"
           release-count: 0
 
       - name: Create Release
