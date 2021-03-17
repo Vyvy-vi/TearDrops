@@ -13,7 +13,7 @@ jobs:
 
       - name: Conventional Changelog Action
         id: changelog
-        uses: Vyvy-vi-learns/conventional-changelog-action@ignore
+        uses: Vyvy-vi-learns/conventional-changelog-action@test
         with:
           github-token: ${{ secrets.CHANGELOG_RELEASE }}
           output-file: "false"
