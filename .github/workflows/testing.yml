@@ -7,7 +7,7 @@ on:
   push:
     branches: [ fix/ci-update-pipenv ]
   pull_request:
-    branches: [ main ]
+    branches: [ chore/dependencies ]
 
 jobs:
   build:
