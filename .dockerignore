@@ -1,0 +1,11 @@
+# Ignore all
+**
+
+# Add Sources and Dependencies
+!Pipfile
+!Pipfile.lock
+!bot
+!Dockerfile
+!.pylintrc
+!.env
+
