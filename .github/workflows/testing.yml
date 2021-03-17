@@ -5,9 +5,9 @@ name: Python Build and Lint
 
 on:
   push:
-    branches: [ chore/dependencies ]
+    branches: [ main ]
   pull_request:
-    branches: [ chore/dependencies ]
+    branches: [ main ]
 
 jobs:
   build:
