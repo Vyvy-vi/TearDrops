@@ -24,11 +24,11 @@ jobs:
     - name: Install pipenv
       run: |
         python -m pip install --upgrade pipenv wheel
-    - name: Set up pipenv
+    - id: Set up pipenv cache
       with:
         path: ~/.local/share/virtualenvs
         key: ${{ runner.os }}-pipenv-${{ hashFiles('**/Pipfile.lock') }}
-    - name: Set up pipenv cache
+    - name: Install dependencies
       if: steps.cache-pipenv.outputs.cache-hit != 'true'
       run: |
           pipenv install --deploy --dev
