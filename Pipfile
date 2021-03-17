@@ -1,3 +1,6 @@
+name = "TearDrops"
+version = "0.1.4"
+
 [[source]]
 url = "https://pypi.org/simple"
 verify_ssl = true
@@ -17,7 +20,7 @@ flake8 = "~=3.8.4"
 pylint_runner = "0.6.0"
 
 [requires]
-python_version = "3.9"
+python_version = "3.8"
 
 [scripts]
 start = "python bot/main.py"
