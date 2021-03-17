@@ -70,21 +70,20 @@ Requirements:
 1. Fork and clone the repository with `git clone https://github.com/<your-username>/TearDrops`
 2. Get to the clone directory using the command `cd Teardrops`
 3. Copy the contents of the `.env.sample` file into a new file - `.env` and add your DISCORD bot token in there.
-4. There are two ways to do further setup, pipenv or via docker:
-DOCKER METHOD:
-- Install [docker and docker-compose](https://docs.docker.com/desktop/)
-- Run the command: `docker-compose up`
-**OR**
-THE TRADITIONAL METHOD:
+4. There are two ways to do further setup, pipenv or via docker:\
+DOCKER METHOD:\
+  \- Install [docker and docker-compose](https://docs.docker.com/desktop/)\
+  \- Run the command: `docker-compose up`\
+**OR**\
+THE TRADITIONAL METHOD:\
 (Requires [pipenv](https://pipenv.pypa.io/en/latest/))
-- Install pipenv
-- Add the mongo connection URI in the `.env` file
-- Run `pipenv sync --dev` to install project dependencies and development dependencies
-- Run `pipenv run start` to run the bot.
-- Run `pipenv run lint` to lint the code.
-
-- For downloading more libraries, use `pipenv install <package-name>`
-* If you're adding any development-dependencies, use-> `pipenv install <package-name> --dev`
+\- Install pipenv\
+\- Add the mongo connection URI in the `.env` file\
+\- Run `pipenv sync --dev` to install project dependencies and development dependencies\
+\- Run `pipenv run start` to run the bot.\
+\- Run `pipenv run lint` to lint the code.\
+\- For downloading more libraries, use `pipenv install <package-name>`\
+\- If you're adding any development-dependencies, use-> `pipenv install <package-name> --dev`\
 
 
 ### To contribute changes follow these steps:
