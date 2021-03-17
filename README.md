@@ -81,10 +81,9 @@ THE TRADITIONAL METHOD:\
 \- Add the mongo connection URI in the `.env` file\
 \- Run `pipenv sync --dev` to install project dependencies and development dependencies\
 \- Run `pipenv run start` to run the bot.\
-\- Run `pipenv run lint` to lint the code.
-
-\- For downloading more libraries, use `pipenv install <package-name>`
-* If you're adding any development-dependencies, use-> `pipenv install <package-name> --dev`
+\- Run `pipenv run lint` to lint the code.\
+\- For downloading more libraries, use `pipenv install <package-name>`\
+\- If you're adding any development-dependencies, use-> `pipenv install <package-name> --dev`\
 
 
 ### To contribute changes follow these steps:
