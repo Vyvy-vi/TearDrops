@@ -3,11 +3,7 @@
 
 name: Python Build and Lint
 
-on:
-  push:
-    branches: [ fix/ci-update-pipenv ]
-  pull_request:
-    branches: [ chore/dependencies ]
+on: [push, pull_request]
 
 jobs:
   build:
