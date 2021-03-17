@@ -13,11 +13,11 @@ jobs:
 
       - name: Conventional Changelog Action
         id: changelog
-        uses: Vyvy-vi-learns/conventional-changelog-action@test
+        uses: TriPSs/conventional-changelog-action@v3
         with:
           github-token: ${{ secrets.CHANGELOG_RELEASE }}
           output-file: "false"
-          version-file: "Pipfile"
+          version-file: "meta.json"
 
       - name: Create Release
         uses: actions/create-release@v1
