@@ -25,7 +25,7 @@ jobs:
       run: |
         python -m pip install --upgrade pipenv wheel
 
-    - id: Set up pipenv cache
+    - id: pipenv-cache
       uses: actions/cache@v1
       with:
         path: ~/.local/share/virtualenvs
