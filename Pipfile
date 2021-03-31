@@ -26,4 +26,4 @@ python_version = "3.8"
 [scripts]
 start = "python bot/main.py"
 lint = "pylint_runner"
-flake8 = "python -m flake8"
+flake8 = "python -m flake8 --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics --format='::error file=%(path)s,line=%(row)d,col=%(col)d::[flake8] %(code)s: %(text)s' --show-source"
