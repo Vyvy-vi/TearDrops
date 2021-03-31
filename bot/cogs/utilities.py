@@ -90,20 +90,14 @@ class Utils(commands.Cog):
         if q["cod"] != 404:
             weather_data = {}
             temp = q['main']['temp']
+
             weather_data['Temperature'] = f'{str(round(temp-273.16, 2))} °C'
-
-            p = q['main']['pressure']
-            weather_data['Pressure'] = f'{p} hpa'
-
-            hum = q['main']['humidity']
-            weather_data['Humidity'] = f'{hum} %'
-
-            wind = q['wind']['speed']
-            weather_data['Wind Speed'] = wind
+            weather_data['Pressure'] = f"{q['main']['pressure']} hpa"
+            weather_data['Humidity'] = f"{q['main']['humidity']} %"
+            weather_data['Wind Speed'] = q['wind']['speed']
 
             w_obj = q['weather'][0]
-            desc = w_obj['description']
-            weather_data['\nDescription'] = desc
+            weather_data['\nDescription'] = w_obj['description']
             w_id = str(w_obj['id'])
             col = {'8': 0xbababa,
                    '7': 0xc2eaea,
