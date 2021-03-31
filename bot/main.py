@@ -55,8 +55,14 @@ handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w'
 handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
 discord_log.addHandler(handler)
 
-logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger()
+std_handler = logging.StreamHandler()
+std_handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
+logger.addHandler(std_handler)
+logger.info('Deployed successfully')
+logger.error('')
 
+client.logger = logger
 @client.event
 async def on_ready():
     '''
@@ -64,7 +70,7 @@ async def on_ready():
     That is, when the bot logs onto discord when the script is ran.
     '''
     change_status.start()  # Triggers status change task
-    logging.info('lalalla')
+    client.logger.info('lalall')
     print("Processing.....")
     print("|||||||||||||||")
     print("Bot has Successfully logged onto Discord...")
