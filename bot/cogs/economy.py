@@ -2,6 +2,7 @@ import time
 import random
 
 from typing import Union
+from loguru import logger
 
 import motor.motor_asyncio as motor
 
@@ -42,7 +43,7 @@ async def update_data(db, user: Union[User, Member]):
                                  'level': 1,
                                  'credits': 0,
                                  'crytime': 0})
-        print(f'{user.id} added to database...')
+        logger.info(f'{user.id} added to database...')
 
 
 async def add_experience(db, message: Message, user: Union[User, Member], exp: int):
@@ -91,7 +92,7 @@ class Economy(commands.Cog):
         This prints the message out on Terminal.
         Also, this awaits the update_data() function, to add member to the database.
         '''
-        print(f'{member} has joined the server.....')
+        logger.info(f'{member} has joined the server.....')
         await update_data(self.DB_CLIENT.users_db, member)
 
     @commands.Cog.listener()
