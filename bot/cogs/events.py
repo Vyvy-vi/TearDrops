@@ -7,6 +7,7 @@ from loguru import logger
 # from .utils.colo import COLOR
 from .utils.embeds import info_embed
 
+
 class Events(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -26,7 +27,8 @@ class Events(commands.Cog):
                     col = db[str(guild.id)]
                     await col.insert_one({'server_name': guild.name,
                                           'server_id': guild.id})
-                    logger.info(f'Server added to db:  {guild.name} - {guild.id}')
+                    logger.info(
+                        f'Server added to db:  {guild.name} - {guild.id}')
                 embed = info_embed()
                 await channel.send(embed=embed)
             break

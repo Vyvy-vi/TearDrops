@@ -7,15 +7,19 @@ from discord.ext.commands import Context
 from .utils.colo import COLOR
 from .utils.embeds import info_embed
 
+
 def format_help_text(txt: List) -> str:
     txt = f"{',** '.join(sorted(txt))}**".split(' ')
-    txt = [txt[i: i+2] for i in range(0, len(txt), 2)]
+    txt = [txt[i: i + 2] for i in range(0, len(txt), 2)]
     txt = [' '.join(i) for i in txt]
-    txt = 'The following command categories exist for bot ;-;\n' + '\n'.join(txt)+ '\nFor more info, use\n`qq help <Category-name>`\nor `qq help <Command-name>`'
+    txt = 'The following command categories exist for bot ;-;\n' + \
+        '\n'.join(txt) + '\nFor more info, use\n`qq help <Category-name>`\nor `qq help <Command-name>`'
     return txt
+
 
 class Help(commands.Cog):
     """Help cog for custom help embed"""
+
     def __init__(self, client):
         self.client = client
 
@@ -30,20 +34,21 @@ class Help(commands.Cog):
         '''Displays the help command'''
         colo = COLOR.DEFAULT
         if index is None:
-            title='**Help command**'
+            title = '**Help command**'
             text = [f'**{cog[0]}' for cog in self.client.cogs.items()]
             desc = format_help_text(text)
         else:
             if index in self.client.cogs:
                 cog_cmds = self.client.get_cog(index).get_commands()
                 title = f'**Help category: `{index}`**'
-                desc = '\n'.join(f'**{c.name}** : {c.short_doc}' for c in cog_cmds)
+                desc = '\n'.join(
+                    f'**{c.name}** : {c.short_doc}' for c in cog_cmds)
             else:
                 cmd_match = list(filter(lambda cmd: cmd.name == index,
-                                 self.client.commands))
+                                        self.client.commands))
                 if cmd_match:
-                    title=f'**Help command: `{cmd_match[0]}`**'
-                    desc=f'Description : {cmd_match[0].short_doc} \n {cmd_match[0].brief}'
+                    title = f'**Help command: `{cmd_match[0]}`**'
+                    desc = f'Description : {cmd_match[0].short_doc} \n {cmd_match[0].brief}'
                 else:
                     title = f'`{index}` was not found...'
                     desc = None

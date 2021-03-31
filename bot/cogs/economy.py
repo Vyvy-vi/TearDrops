@@ -20,15 +20,15 @@ def decide_score() -> int:
     weights = (5, 15, 20, 30, 45, 50, 45, 30, 20, 15, 5)
     return random.choices(trs, weights)[0]
 
+
 def rand_message() -> str:
     txt = (
-            'You were not sad',
-            'You were surprisingly too happy to cry',
-            'You cried so much already that the tears are not coming out',
-            'You really tried but you could not cry',
-            'The tears are not coming out...')
+        'You were not sad',
+        'You were surprisingly too happy to cry',
+        'You cried so much already that the tears are not coming out',
+        'You really tried but you could not cry',
+        'The tears are not coming out...')
     return random.choice(txt)
-
 
 
 async def update_data(db, user: Union[User, Member]):

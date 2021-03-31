@@ -105,12 +105,12 @@ class Utils(commands.Cog):
             desc = w_obj['description']
             weather_data['\nDescription'] = desc
             w_id = str(w_obj['id'])
-            col = { '8': 0xbababa,
-                    '7': 0xc2eaea,
-                    '6': 0xdde5f4,
-                    '5': 0x68707c,
-                    '3': 0xb1c4d8,
-                    '2': 0x4d5665 }
+            col = {'8': 0xbababa,
+                   '7': 0xc2eaea,
+                   '6': 0xdde5f4,
+                   '5': 0x68707c,
+                   '3': 0xb1c4d8,
+                   '2': 0x4d5665}
             if w_id == '800':
                 col = 0xd8d1b4
             else:
@@ -129,6 +129,7 @@ class Utils(commands.Cog):
                           color=Color.red())
             embed.set_footer(text='Requested by {ctx.message.author.name}')
         await ctx.send(embed=embed)
+
 
 def setup(client):
     client.add_cog(Utils(client))

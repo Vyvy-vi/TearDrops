@@ -12,6 +12,7 @@ class Coffee(commands.Cog):
     def __init__(self, client):
         self.client = client
         self.data = motor.AsyncIOMotorClient(client.MONGO).DATA.inputs
+
     @commands.command(aliases=['ask_out'])
     async def wannagrabacoffee(self, ctx: Context, *, member: Member):
         '''Wanna ask someone out on coffee'''
