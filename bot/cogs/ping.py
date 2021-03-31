@@ -6,6 +6,7 @@ from discord.ext.commands import Context
 
 from .utils.colo import COLOR
 
+
 def ping_embed(title, desc, colo):
     embed = Embed(title=title,
                   description=desc,
@@ -13,8 +14,10 @@ def ping_embed(title, desc, colo):
     embed.set_footer(text='😭')
     return embed
 
+
 class Ping(commands.Cog):
     """This is the Ping Cog, mainly for testing the bot-status"""
+
     def __init__(self, client):
         self.client = client
 
@@ -30,9 +33,9 @@ class Ping(commands.Cog):
         rand_ph = random.choice(phrase)
         bot_lsm = round(self.client.latency * 1000)
         embed = ping_embed(
-                '**pong...!**',
-                f"_{rand_ph}_ \n**~{bot_lsm} ms taken**......",
-                COLOR.SUCCESS)
+            '**pong...!**',
+            f"_{rand_ph}_ \n**~{bot_lsm} ms taken**......",
+            COLOR.SUCCESS)
         await ctx.send(embed=embed)
 
     @commands.command()
@@ -47,9 +50,9 @@ class Ping(commands.Cog):
         rand_ph = random.choice(phrase)
         bot_lsm = round(self.client.latency * 1000)
         embed = ping_embed(
-                '**PING...!**',
-                f"_{rand_ph}_ \n**~{bot_lsm} ms taken**......",
-                COLOR.ERROR)
+            '**PING...!**',
+            f"_{rand_ph}_ \n**~{bot_lsm} ms taken**......",
+            COLOR.ERROR)
         await ctx.send(embed=embed)
 
 

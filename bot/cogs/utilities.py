@@ -90,27 +90,21 @@ class Utils(commands.Cog):
         if q["cod"] != 404:
             weather_data = {}
             temp = q['main']['temp']
+
             weather_data['Temperature'] = f'{str(round(temp-273.16, 2))} °C'
-
-            p = q['main']['pressure']
-            weather_data['Pressure'] = f'{p} hpa'
-
-            hum = q['main']['humidity']
-            weather_data['Humidity'] = f'{hum} %'
-
-            wind = q['wind']['speed']
-            weather_data['Wind Speed'] = wind
+            weather_data['Pressure'] = f"{q['main']['pressure']} hpa"
+            weather_data['Humidity'] = f"{q['main']['humidity']} %"
+            weather_data['Wind Speed'] = q['wind']['speed']
 
             w_obj = q['weather'][0]
-            desc = w_obj['description']
-            weather_data['\nDescription'] = desc
+            weather_data['\nDescription'] = w_obj['description']
             w_id = str(w_obj['id'])
-            col = { '8': 0xbababa,
-                    '7': 0xc2eaea,
-                    '6': 0xdde5f4,
-                    '5': 0x68707c,
-                    '3': 0xb1c4d8,
-                    '2': 0x4d5665 }
+            col = {'8': 0xbababa,
+                   '7': 0xc2eaea,
+                   '6': 0xdde5f4,
+                   '5': 0x68707c,
+                   '3': 0xb1c4d8,
+                   '2': 0x4d5665}
             if w_id == '800':
                 col = 0xd8d1b4
             else:
@@ -129,6 +123,7 @@ class Utils(commands.Cog):
                           color=Color.red())
             embed.set_footer(text='Requested by {ctx.message.author.name}')
         await ctx.send(embed=embed)
+
 
 def setup(client):
     client.add_cog(Utils(client))
