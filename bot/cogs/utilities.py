@@ -1,9 +1,10 @@
 import wikipedia
-import requests
+import aiohttp
 
 from discord import Embed, Color
 from discord.ext import commands
 from discord.ext.commands import Context
+from loguru import logger
 
 from .utils.colo import COLOR
 
@@ -47,10 +48,12 @@ class Utils(commands.Cog):
         '''displays weather data'''
         p = {"http": "http://111.233.225.166:1234"}
         key = "353ddfe27aa4b3537c47c975c70b58d9"  # dummy key(for now)
-        api_r = requests.get(
-            f"http://api.openweathermap.org/data/2.5/weather?appid={key}&q={loc}, verify= False, proxies={p}")
-        q = api_r.json()
-        if q["cod"] != 404:
+        async with aiohttp.ClientSession() as session:
+            url = f"http://api.openweathermap.org/data/2.5/weather?appid={key}&q={loc}, verify= False"
+            async with session.get(url) as res:
+                q = await res.json()
+
+        if q["cod"] != 404 and q["cod"] != 401:
             weather_data = {}
             temp = q['main']['temp']
 
@@ -82,6 +85,7 @@ class Utils(commands.Cog):
                           description='API Connection Refused',
                           color=Color.red())
             embed.set_footer(text='Requested by {ctx.message.author.name}')
+            logger.error('Error with weather command')
         await ctx.send(embed=embed)
 
 
