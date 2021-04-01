@@ -11,6 +11,7 @@ on:
   pull_request:
     paths-ignore:
       - legal/**
+      - .github/**
 jobs:
   build:
 
