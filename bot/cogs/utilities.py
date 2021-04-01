@@ -13,43 +13,6 @@ class Utils(commands.Cog):
         self.client = client
 
     @commands.command(pass_context=True)
-    async def echo(self, ctx: Context, *args):
-        '''echos the words'''
-        output = ''
-        for word in args:
-            output += word
-            output += ' '
-        await ctx.send(output)
-
-    @commands.command(pass_context=True)
-    async def say(self, ctx: Context, *args):
-        """Gives the user's statement a nice richtext quote format"""
-        output = ''
-        for word in args:
-            output += word
-            output += ' '
-        user = ctx.message.author
-        embed = Embed(
-            title=f'{output}',
-            description=f'~{user}',
-            colour=Color.greyple())
-        await ctx.send(embed=embed)
-
-    @commands.command(pass_context=True)
-    async def urban(self, ctx: Context, *args):
-        '''searches urban dictionary for words'''
-        baseurl = "https://www.urbandictionary.com/define.php?term="
-        output = ''.join(args)
-        await ctx.send(baseurl + output)
-
-    @commands.command(pass_context=True)
-    async def define(self, ctx: Context, *args):
-        '''searches merriam-webster for meanings of words'''
-        baseurl = "https://www.merriam-webster.com/dictionary/"
-        output = '%20'.join(args)
-        await ctx.send(baseurl + output)
-
-    @commands.command(pass_context=True)
     async def wiki(self, ctx: Context, *, args):
         '''Displays wikipedia info about given arguments'''
         searchResults = wikipedia.search(args)
