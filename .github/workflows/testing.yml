@@ -3,7 +3,8 @@
 
 name: Python Build and Lint
 
-on: 
+on:
+  workflow_dispatch:
   push:
     branches:
       - main
