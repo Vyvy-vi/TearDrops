@@ -53,7 +53,7 @@ class Utils(commands.Cog):
             async with session.get(url) as res:
                 q = await res.json()
 
-        if q["cod"] != 404 and q["cod"] != 401:
+        if q["cod"] not in [404, 401]:
             weather_data = {}
             temp = q['main']['temp']
 
