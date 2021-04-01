@@ -85,7 +85,7 @@ class Utils(commands.Cog):
         p = {"http": "http://111.233.225.166:1234"}
         key = "353ddfe27aa4b3537c47c975c70b58d9"  # dummy key(for now)
         api_r = requests.get(
-            f"http://api.openweathermap.org/data/2.5/weather?appid={key}&q={loc}, verify= False, proxies=p")
+            f"http://api.openweathermap.org/data/2.5/weather?appid={key}&q={loc}, verify= False, proxies={p}")
         q = api_r.json()
         if q["cod"] != 404:
             weather_data = {}
