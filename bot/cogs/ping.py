@@ -1,10 +1,10 @@
-import random
 from discord import Embed
 
 from discord.ext import commands
 from discord.ext.commands import Context
 
 from .utils.colo import COLOR
+from .utils.phrases import TEXT
 
 
 def ping_embed(title, desc, colo):
@@ -24,34 +24,20 @@ class Ping(commands.Cog):
     @commands.command()
     async def ping(self, ctx: Context):
         """The bot's ping command"""
-        phrase = ['I am alive...',
-                  'I was definitely not sleeping...',
-                  'I was definitely not laughing...',
-                  'I am still here',
-                  'You are using a ping command? Why?',
-                  'At your service.']
-        rand_ph = random.choice(phrase)
         bot_lsm = round(self.client.latency * 1000)
         embed = ping_embed(
             '**pong...!**',
-            f"_{rand_ph}_ \n**~{bot_lsm} ms taken**......",
+            f"_{TEXT.ping}_ \n**~{bot_lsm} ms taken**......",
             COLOR.SUCCESS)
         await ctx.send(embed=embed)
 
     @commands.command()
     async def pong(self, ctx: Context):
         """The bot's pong command"""
-        phrase = ["I am aliven't...",
-                  "I was sleeping...",
-                  "I was laughing...",
-                  "I am still not here",
-                  "You are using a pong command? Why?",
-                  "Not at your service."]
-        rand_ph = random.choice(phrase)
         bot_lsm = round(self.client.latency * 1000)
         embed = ping_embed(
             '**PING...!**',
-            f"_{rand_ph}_ \n**~{bot_lsm} ms taken**......",
+            f"_{TEXT.pong}_ \n**~{bot_lsm} ms taken**......",
             COLOR.ERROR)
         await ctx.send(embed=embed)
 
