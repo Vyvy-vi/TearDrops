@@ -7,7 +7,7 @@ from discord.ext.commands import Context
 from loguru import logger
 
 from .utils.colo import COLOR
-
+from .utils.embeds import weather_embed
 
 class Utils(commands.Cog):
     def __init__(self, client):
@@ -56,30 +56,7 @@ class Utils(commands.Cog):
         if q["cod"] != 404 and q["cod"] != 401:
             weather_data = {}
             temp = q['main']['temp']
-
-            weather_data['Temperature'] = f'{str(round(temp-273.16, 2))} °C'
-            weather_data['Pressure'] = f"{q['main']['pressure']} hpa"
-            weather_data['Humidity'] = f"{q['main']['humidity']} %"
-            weather_data['Wind Speed'] = q['wind']['speed']
-
-            w_obj = q['weather'][0]
-            weather_data['\nDescription'] = w_obj['description']
-            w_id = str(w_obj['id'])
-            col = {'8': 0xbababa,
-                   '7': 0xc2eaea,
-                   '6': 0xdde5f4,
-                   '5': 0x68707c,
-                   '3': 0xb1c4d8,
-                   '2': 0x4d5665}
-            col = 0xd8d1b4 if w_id == '800' else col.get(w_id[0], 0x000000)
-            weather_data = [
-                f'**{field}**: {weather_data[field]}' for field in weather_data]
-            embed = Embed(
-                title='Weather',
-                description=f'displaying weather of {loc}...',
-                color=col)
-            embed.add_field(name='\u200b', value='\n'.join(weather_data))
-            embed.set_footer(text=f'Requested by {ctx.message.author.name}')
+            embed = weather_embed(loc, q, ctx.message.author.name)
         else:
             embed = Embed(title='Weather',
                           description='API Connection Refused',
