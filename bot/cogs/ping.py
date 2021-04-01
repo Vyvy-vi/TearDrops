@@ -55,6 +55,29 @@ class Ping(commands.Cog):
             COLOR.ERROR)
         await ctx.send(embed=embed)
 
+    @commands.command(pass_context=True)
+    async def echo(self, ctx: Context, *args):
+        '''echos the words'''
+        output = ''
+        for word in args:
+            output += word
+            output += ' '
+        await ctx.send(output)
+
+    @commands.command(pass_context=True)
+    async def say(self, ctx: Context, *args):
+        """Gives the user's statement a nice richtext quote format"""
+        output = ''
+        for word in args:
+            output += word
+            output += ' '
+        user = ctx.message.author
+        embed = Embed(
+            title=f'{output}',
+            description=f'~{user}',
+            colour=COLOR.RANDOM())
+        await ctx.send(embed=embed)
+
 
 def setup(client):
     client.add_cog(Ping(client))
