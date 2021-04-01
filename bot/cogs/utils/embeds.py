@@ -19,6 +19,18 @@ This has been uploaded to GitHub for educational and referencial purposes',
         url='https://cdn.discordapp.com/attachments/582605227081990233/627388598181953548/unknown.png')
     return embed
 
+
+def weather_embed_color(w_id):
+    col = {'8': 0xbababa,
+           '7': 0xc2eaea,
+           '6': 0xdde5f4,
+           '5': 0x68707c,
+           '3': 0xb1c4d8,
+           '2': 0x4d5665}
+    col = 0xd8d1b4 if w_id == '800' else col.get(w_id[0], 0x000000)
+    return col
+
+
 def weather_embed(loc, q, author):
     weather_data = {}
     temp = q['main']['temp']
@@ -30,14 +42,8 @@ def weather_embed(loc, q, author):
 
     w_obj = q['weather'][0]
     weather_data['\nDescription'] = w_obj['description']
-    w_id = str(w_obj['id'])
-    col = {'8': 0xbababa,
-           '7': 0xc2eaea,
-           '6': 0xdde5f4,
-           '5': 0x68707c,
-           '3': 0xb1c4d8,
-           '2': 0x4d5665}
-    col = 0xd8d1b4 if w_id == '800' else col.get(w_id[0], 0x000000)
+
+    col = weather_embed_color(str(w_obj['id']))
     weather_data = [f'**{field}**: {weather_data[field]}' for field in weather_data]
     embed = Embed(title='Weather',
                   description=f'displaying weather of {loc}',

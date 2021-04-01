@@ -9,6 +9,7 @@ from loguru import logger
 from .utils.colo import COLOR
 from .utils.embeds import weather_embed
 
+
 class Utils(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -53,8 +54,6 @@ class Utils(commands.Cog):
                 q = await res.json()
 
         if q["cod"] not in [404, 401]:
-            weather_data = {}
-            temp = q['main']['temp']
             embed = weather_embed(loc, q, ctx.message.author.name)
         else:
             embed = Embed(title='Weather',
