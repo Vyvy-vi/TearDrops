@@ -2,6 +2,7 @@ import time
 import random
 
 from typing import Union
+from loguru import logger
 
 import motor.motor_asyncio as motor
 
@@ -19,15 +20,15 @@ def decide_score() -> int:
     weights = (5, 15, 20, 30, 45, 50, 45, 30, 20, 15, 5)
     return random.choices(trs, weights)[0]
 
+
 def rand_message() -> str:
     txt = (
-            'You were not sad',
-            'You were surprisingly too happy to cry',
-            'You cried so much already that the tears are not coming out',
-            'You really tried but you could not cry',
-            'The tears are not coming out...')
+        'You were not sad',
+        'You were surprisingly too happy to cry',
+        'You cried so much already that the tears are not coming out',
+        'You really tried but you could not cry',
+        'The tears are not coming out...')
     return random.choice(txt)
-
 
 
 async def update_data(db, user: Union[User, Member]):
@@ -42,7 +43,7 @@ async def update_data(db, user: Union[User, Member]):
                                  'level': 1,
                                  'credits': 0,
                                  'crytime': 0})
-        print(f'{user.id} added to database...')
+        logger.info(f'{user.id} added to database...')
 
 
 async def add_experience(db, message: Message, user: Union[User, Member], exp: int):
@@ -91,7 +92,7 @@ class Economy(commands.Cog):
         This prints the message out on Terminal.
         Also, this awaits the update_data() function, to add member to the database.
         '''
-        print(f'{member} has joined the server.....')
+        logger.info(f'{member} has joined the server.....')
         await update_data(self.DB_CLIENT.users_db, member)
 
     @commands.Cog.listener()

@@ -1,7 +1,11 @@
 # TODO - transfer, casino, etc commands
 from itertools import cycle
 
+import logging
 import discord
+
+from loguru import logger
+
 from discord.ext import commands, tasks
 
 # Standard modules
@@ -22,6 +26,24 @@ client.TOKEN = get_environment_variable("DISCORD_BOT_TOKEN")
 # discord.py has an inbuilt help command, which doesn't look good''
 client.remove_command('help')
 # status-change-cycle(The bot changes presence after a few mins.)
+
+
+d_logger = logging.getLogger('discord')
+d_logger.setLevel(logging.DEBUG)
+handler = logging.FileHandler(
+    filename='discord.log',
+    encoding='utf-8',
+    mode='w')
+handler.setFormatter(logging.Formatter(
+    '%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
+d_logger.addHandler(handler)
+
+logger.add(
+    'discord.log',
+    format="{time} {level} {message}",
+    level='DEBUG',
+    rotation="5 MB")
+
 STATUS = cycle([
     "qq help | :(",
     "with your heart",
@@ -47,6 +69,7 @@ COGS = ['cogs.coffee',
         'cogs.fun',
         'cogs.name']
 
+
 @client.event
 async def on_ready():
     '''
@@ -54,10 +77,11 @@ async def on_ready():
     That is, when the bot logs onto discord when the script is ran.
     '''
     change_status.start()  # Triggers status change task
-    print("Processing.....")
-    print("|||||||||||||||")
-    print("Bot has Successfully logged onto Discord...")
-    print('Successfully logged in as {0.user}...'.format(client))
+    logger.info('Logging Started...')
+    logger.info("Processing...")
+    logger.info("|||||||||||||||")
+    logger.info("Bot has Successfully logged onto Discord...")
+    logger.info('Successfully logged in as {0.user}...'.format(client))
     # client.user gives the bots discord username tag
 
 
@@ -75,9 +99,9 @@ if __name__ == "__main__":
     COGS.append('jishaku')
     for ext in COGS:
         client.load_extension(ext)
-        print(f'Loaded cog : {ext}')
+        logger.info(f'Loaded cog : {ext}')
     # Running the BOT:
     if client.TOKEN != 'foo' and (client.TOKEN is not None):
         client.run(str(client.TOKEN))
     else:
-        print('No token Loaded')
+        logger.info('No token Loaded')

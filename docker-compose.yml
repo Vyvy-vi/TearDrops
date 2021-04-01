@@ -4,7 +4,7 @@ services:
     image: mongo:3.6.20
   bot:
     build:
-      context: bot
+      context: .
     environment:
       MONGO_CONNECTION_STRING: "mongodb://db:27017"
       DISCORD_BOT_TOKEN: #will be injected via .env
@@ -13,4 +13,4 @@ services:
     links:
       - db
     volumes:
-      - ./bot:/srv
+      - .:/home/appuser

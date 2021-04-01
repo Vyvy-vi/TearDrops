@@ -10,6 +10,7 @@ from .utils.colo import COLOR
 
 buls = 1
 
+
 class Game(commands.Cog):
     def __init__(self, client):
         self.client = client

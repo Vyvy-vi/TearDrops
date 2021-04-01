@@ -7,3 +7,6 @@ __pycache__
 # Never check in tokens
 .env
 */.env
+
+# Don't track logs
+*.log
