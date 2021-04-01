@@ -19,6 +19,7 @@ jobs:
           github-token: ${{ secrets.CHANGELOG_RELEASE }}
           output-file: "false"
           skip-version-file: "true"
+          skip-commit: "true"
 
       - name: Create Release
         uses: actions/create-release@v1
