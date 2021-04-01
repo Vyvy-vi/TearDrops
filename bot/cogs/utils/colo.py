@@ -1,5 +1,6 @@
 import random
 
+
 class COLOR:
     DEFAULT = 0x8FDDE7
     ERROR = 0xFF3333
