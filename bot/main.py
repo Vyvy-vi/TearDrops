@@ -1,6 +1,7 @@
 # TODO - transfer, casino, etc commands
 from itertools import cycle
 
+import sys
 import logging
 import discord
 
@@ -20,9 +21,13 @@ intents = discord.Intents.default()
 client = commands.Bot(command_prefix='qq ',
                       case_insensitive=True, intents=intents)
 # Mongo connection string
-client.MONGO = get_environment_variable("MONGO_CONNECTION_STRING")
-client.TOKEN = get_environment_variable("DISCORD_BOT_TOKEN")
-
+try:
+    client.MONGO = get_environment_variable("MONGO_CONNECTION_STRING")
+    client.TOKEN = get_environment_variable("DISCORD_BOT_TOKEN")
+except Exception as e:
+    logger.error('Environment Variables Not Found...')
+    logger.error(e)
+    sys.exit()
 # discord.py has an inbuilt help command, which doesn't look good''
 client.remove_command('help')
 # status-change-cycle(The bot changes presence after a few mins.)
@@ -43,6 +48,7 @@ logger.add(
     format="{time} {level} {message}",
     level='DEBUG',
     rotation="5 MB")
+logger.info('Logging Process Started...')
 
 STATUS = cycle([
     "qq help | :(",
@@ -77,8 +83,6 @@ async def on_ready():
     That is, when the bot logs onto discord when the script is ran.
     '''
     change_status.start()  # Triggers status change task
-    logger.info('Logging Started...')
-    logger.info("Processing...")
     logger.info("|||||||||||||||")
     logger.info("Bot has Successfully logged onto Discord...")
     logger.info('Successfully logged in as {0.user}...'.format(client))
@@ -97,6 +101,7 @@ async def change_status():
 # cog-loader
 if __name__ == "__main__":
     COGS.append('jishaku')
+    logger.info('Loading Cogs...')
     for ext in COGS:
         client.load_extension(ext)
         logger.info(f'Loaded cog : {ext}')
@@ -104,4 +109,4 @@ if __name__ == "__main__":
     if client.TOKEN != 'foo' and (client.TOKEN is not None):
         client.run(str(client.TOKEN))
     else:
-        logger.info('No token Loaded')
+        logger.warning('No token Loaded')

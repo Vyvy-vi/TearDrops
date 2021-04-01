@@ -84,7 +84,7 @@ class Utils(commands.Cog):
             embed = Embed(title='Weather',
                           description='API Connection Refused',
                           color=Color.red())
-            embed.set_footer(text='Requested by {ctx.message.author.name}')
+            embed.set_footer(text=f'Requested by {ctx.message.author.name}')
             logger.error('Error with weather command')
         await ctx.send(embed=embed)
 
