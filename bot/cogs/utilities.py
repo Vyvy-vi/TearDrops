@@ -85,7 +85,7 @@ class Utils(commands.Cog):
         p = {"http": "http://111.233.225.166:1234"}
         key = "353ddfe27aa4b3537c47c975c70b58d9"  # dummy key(for now)
         api_r = requests.get(
-            f"http://api.openweathermap.org/data/2.5/weather?appid={key}&q={loc}, verify= False, proxies=p")
+            f"http://api.openweathermap.org/data/2.5/weather?appid={key}&q={loc}, verify= False, proxies={p}")
         q = api_r.json()
         if q["cod"] != 404:
             weather_data = {}
@@ -105,10 +105,7 @@ class Utils(commands.Cog):
                    '5': 0x68707c,
                    '3': 0xb1c4d8,
                    '2': 0x4d5665}
-            if w_id == '800':
-                col = 0xd8d1b4
-            else:
-                col = col.get(w_id[0], 0x000000)
+            col = 0xd8d1b4 if w_id == '800' else col.get(w_id[0], 0x000000)
             weather_data = [
                 f'**{field}**: {weather_data[field]}' for field in weather_data]
             embed = Embed(
