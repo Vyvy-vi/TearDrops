@@ -46,14 +46,13 @@ class Utils(commands.Cog):
     @commands.command(pass_context=True)
     async def weather(self, ctx: Context, *, loc):
         '''displays weather data'''
-        p = {"http": "http://111.233.225.166:1234"}
         key = "353ddfe27aa4b3537c47c975c70b58d9"  # dummy key(for now)
         async with aiohttp.ClientSession() as session:
             url = f"http://api.openweathermap.org/data/2.5/weather?appid={key}&q={loc}, verify= False"
             async with session.get(url) as res:
                 q = await res.json()
 
-        if q["cod"] != 404 and q["cod"] != 401:
+        if q["cod"] not in [404, 401]:
             weather_data = {}
             temp = q['main']['temp']
 

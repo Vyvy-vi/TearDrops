@@ -2,8 +2,9 @@ from discord import Embed
 from discord.ext import commands
 from discord.ext.commands import Context
 
-from .utils.colo import COLOR
 from loguru import logger
+from .utils.colo import COLOR
+
 
 class Errors(commands.Cog):
     def __init__(self, client):
