@@ -1,11 +1,10 @@
-from discord import Embed, Color
 from discord.ext import commands
 from discord.ext.commands import Context
+
 
 class Dictionary(commands.Cog):
     def __init__(self, client):
         self.client = client
-
 
     @commands.command(pass_context=True)
     async def urban(self, ctx: Context, *args):
@@ -20,6 +19,7 @@ class Dictionary(commands.Cog):
         baseurl = "https://www.merriam-webster.com/dictionary/"
         output = '%20'.join(args)
         await ctx.send(baseurl + output)
+
 
 def setup(client):
     client.add_cog(Dictionary(client))
