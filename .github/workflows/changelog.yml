@@ -1,5 +1,6 @@
 name: Changelog
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -18,7 +19,7 @@ jobs:
           github-token: ${{ secrets.CHANGELOG_RELEASE }}
           output-file: "false"
           skip-version-file: "true"
-          release-count: 0
+          release-count: 5
 
       - name: Create Release
         uses: actions/create-release@v1
