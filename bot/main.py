@@ -32,6 +32,8 @@ client.remove_command('help')
 # status-change-cycle(The bot changes presence after a few mins.)
 
 _close = client.close
+
+
 async def close():
     logger.info('Logging out...')
     await _close()
@@ -95,6 +97,7 @@ async def on_ready():
     logger.info('Starting aiohttp.ClientSession')
     client.HTTP_SESSION = ClientSession()
     # client.user gives the bots discord username tag
+
 
 # discord.py has an inbuilt help command, which doesn't look good''
 @tasks.loop(seconds=600)
