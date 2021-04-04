@@ -12,6 +12,7 @@ from discord.ext import commands, tasks
 # Standard modules
 # TOKEN, MONGO URI are env-vars
 from utils import get_environment_variable
+from aiohttp import ClientSession
 # intents (new discord feature to limit bots to certain bucket events)
 intents = discord.Intents.default()
 
@@ -24,9 +25,8 @@ client = commands.Bot(command_prefix='qq ',
 try:
     client.MONGO = get_environment_variable("MONGO_CONNECTION_STRING")
     client.TOKEN = get_environment_variable("DISCORD_BOT_TOKEN")
-except Exception as e:
-    logger.error('Environment Variables Not Found...')
-    logger.error(e)
+except ValueError as err:
+    logger.error(f'Environment Variables Not Found...\n{err}')
     sys.exit()
 # discord.py has an inbuilt help command, which doesn't look good''
 client.remove_command('help')
