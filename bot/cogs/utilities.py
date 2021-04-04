@@ -1,5 +1,4 @@
 import wikipedia
-import aiohttp
 
 from discord import Embed, Color
 from discord.ext import commands
@@ -48,10 +47,9 @@ class Utils(commands.Cog):
     async def weather(self, ctx: Context, *, loc):
         '''displays weather data'''
         key = "353ddfe27aa4b3537c47c975c70b58d9"  # dummy key(for now)
-        async with aiohttp.ClientSession() as session:
-            url = f"http://api.openweathermap.org/data/2.5/weather?appid={key}&q={loc}, verify= False"
-            async with session.get(url) as res:
-                q = await res.json()
+        url = f"http://api.openweathermap.org/data/2.5/weather?appid={key}&q={loc}, verify= False"
+        async with self.client.HTTP_SESSION.get(url) as res:
+            q = await res.json()
 
         if q["cod"] not in [404, 401]:
             embed = weather_embed(loc, q, ctx.message.author.name)
