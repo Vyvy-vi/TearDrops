@@ -1,8 +1,6 @@
 from random import randint
 from typing import Optional
 
-import aiohttp
-
 from discord import Embed
 from discord.ext.commands import Context
 from discord.ext import commands
@@ -21,17 +19,16 @@ class Comics(commands.Cog):
             base_url += f'{randint(1, 2390)}/'
         elif arg != 'latest':
             base_url += f'{arg}/'
-        async with aiohttp.ClientSession() as session:
-            url = base_url + 'info.0.json'
-            async with session.get(url) as json:
-                json = await json.json()
-            embed = Embed(title=json['title'],
-                          url=base_url,
-                          description=json['alt'],
-                          color=COLOR.XKCD)
-            embed.set_image(url=json['img'])
-            txt = f"xkcd comic #{json['num']} | Requested by {ctx.author.name}"
-            embed.set_footer(text=txt)
+        url = base_url + 'info.0.json'
+        async with self.client.HTTP_SESSION.get(url) as json:
+            json = await json.json()
+        embed = Embed(title=json['title'],
+                      url=base_url,
+                      description=json['alt'],
+                      color=COLOR.XKCD)
+        embed.set_image(url=json['img'])
+        txt = f"xkcd comic #{json['num']} | Requested by {ctx.author.name}"
+        embed.set_footer(text=txt)
         await ctx.send(embed=embed)
 
 

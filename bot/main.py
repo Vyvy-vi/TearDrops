@@ -86,6 +86,7 @@ async def on_ready():
     logger.info("|||||||||||||||")
     logger.info("Bot has Successfully logged onto Discord...")
     logger.info('Successfully logged in as {0.user}...'.format(client))
+    client.HTTP_SESSION = ClientSession()
     # client.user gives the bots discord username tag
 
 
