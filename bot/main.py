@@ -33,6 +33,7 @@ client.remove_command('help')
 
 _close = client.close
 async def close():
+    logger.info('Logging out...')
     await _close()
     if client.HTTP_SESSION:
         logger.info('Closing aiohttp.ClientSession')
