@@ -89,8 +89,7 @@ class Economy(commands.Cog):
     async def on_member_join(self, member: Union[User, Member]):
         '''
         Event triggered when a new member enters server
-        This prints the message out on Terminal.
-        Also, this awaits the update_data() function, to add member to the database.
+        Adds member to the database.
         '''
         logger.info(f'{member} has joined the server.....')
         await update_data(self.DB_CLIENT.users_db, member)
@@ -102,25 +101,19 @@ class Economy(commands.Cog):
         This is associated with a few if-else responses(you can add more by looking at the examples)
         And finally, this triggers client.process_commands() which registers bot commands.
         '''
-        if message.author == self.client.user:
-            # self-ignore, to prevent responses to self
-            return
-        elif message.author.bot:
-            # To ignore the messages of other bots
+        if message.author.bot:
+            # Ignre messages from bots
             return
         else:
-            # message_xp updation block
+            # update user's xp
             global timelast
             await update_data(self.DB_CLIENT.users_db, message.author)
             timlst = timelast
             if time.time() - timlst > 25:
                 await add_experience(self.DB_CLIENT.users_db, message, message.author, 10)
                 timelast = time.time()
-            # message if-else response examples(you can add more)
             if 'tears' in message.content:
-                await message.author.send('😭')  # dms
-
-        # prevents commands from not being processed
+                await message.author.send('😭')  #dms
 
     @commands.command(aliases=['daily'])
     async def cry(self, ctx: Context):
@@ -156,7 +149,7 @@ Wait for like {round((10800 - time.time()+stats['crytime'])//3600)} hours or som
 
     @commands.command(aliases=['vaultoftears', 'tearvault'])
     async def vault(self, ctx: Context, member: Member = None):
-        '''Gives the users economy balance'''
+        '''Gives the user's tear balance'''
         user = ctx.message.author if not member else member
         server = self.DB_CLIENT.users_db[str(user.guild.id)]
         stats = await server.find_one({'id': user.id})
@@ -172,7 +165,7 @@ Wait for like {round((10800 - time.time()+stats['crytime'])//3600)} hours or som
 
     @commands.command(aliases=['lvl', 'dep_level'])
     async def level(self, ctx: Context, member: Member = None):
-        '''Gives the users level'''
+        '''Gives the user's level'''
         user = ctx.message.author if not member else member
         server = self.DB_CLIENT.users_db[str(user.guild.id)]
         stats = await server.find_one({'id': user.id})
@@ -188,7 +181,7 @@ Wait for like {round((10800 - time.time()+stats['crytime'])//3600)} hours or som
 
     @commands.command(aliases=['absorb', 'cryon'])
     async def transfer(self, ctx: Context, amount: int, member: Member):
-        '''transfer command'''
+        '''Command to transfer currency'''
         user1 = ctx.message.author
         user2 = member
         server = self.DB_CLIENT.users_db[str(user1.guild.id)]

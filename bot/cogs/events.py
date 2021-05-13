@@ -17,8 +17,6 @@ class Events(commands.Cog):
     async def on_guild_join(self, guild):
         '''
         This sends a message in the main channel, when the bot joins a guild.
-        Joining a guild is synonymous to joining a server.
-        Basically, a hi message the bot sends on enterring the server.
         '''
         db = self.DB_CLIENT.users_db
         for channel in guild.text_channels:
@@ -33,24 +31,6 @@ class Events(commands.Cog):
                 await channel.send(embed=embed)
             break
         logger.info(f'Entered server:  {guild.name} - {guild.id}')
-    """
-    @commands.Cog.listener()
-    async def on_member_remove(self, guild, user):
-        '''
-        Event triggered when a member leaves the server
-        NOTE- This can also be displayed on the server
-        '''
-        logger.info(f'{user} has left the server {guild}......')
-    """
-    """
-    @commands.Cog.listener()
-    async def on_member_ban(self, guild, user):
-        '''Event Listener which is called when a user is banned from the guild
-        For more info:
-        http://discordpy.readthedocs.io/en/rewrite/api.html#discord.on_member_ban
-        '''
-        logger.info(f'{user} was banned from {guild.name}-{guild.id}')
-    """
 
 
 def setup(client):

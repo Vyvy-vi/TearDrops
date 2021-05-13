@@ -15,7 +15,7 @@ class Utils(commands.Cog):
 
     @commands.command(pass_context=True)
     async def wiki(self, ctx: Context, *, args):
-        '''Displays wikipedia info about given arguments'''
+        '''Display result from wikipedia'''
         searchResults = wikipedia.search(args)
         if not searchResults:
             embed = Embed(
@@ -45,7 +45,7 @@ class Utils(commands.Cog):
 
     @commands.command(pass_context=True)
     async def weather(self, ctx: Context, *, loc):
-        '''displays weather data'''
+        '''Displays weather data'''
         key = "353ddfe27aa4b3537c47c975c70b58d9"  # dummy key(for now)
         url = f"http://api.openweathermap.org/data/2.5/weather?appid={key}&q={loc}, verify= False"
         async with self.client.HTTP_SESSION.get(url) as res:

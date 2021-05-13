@@ -12,6 +12,7 @@ class Meme(commands.Cog):
 
     @commands.command(aliases=['meme'])
     async def memes(self, ctx: Context, param: str = None):
+        """Meme command for the bot"""
         sub = '/' if param is None else '/' + str(param)
         url = "https://meme-api.herokuapp.com/gimme" + sub
         async with self.client.HTTP_SESSION.get(url) as response:

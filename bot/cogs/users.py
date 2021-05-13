@@ -9,25 +9,26 @@ class Users(commands.Cog):
 
     @commands.command(pass_context=True)
     async def user(self, ctx: Context, *, user: Member = None):
-        '''gives user info'''
-        if user is None:
+        '''Gives info about a Server member'''
+        if not user:
             user = ctx.message.author
-        embed = Embed(
-            title="{}'s info".format(
-                user.name),
-            description="Here's what I could find.",
-            color=user.color)
-        embed.add_field(name="Name", value=user.name, inline=True)
-        embed.add_field(name="ID", value=user.id, inline=True)
-        embed.add_field(name="Highest role", value=user.top_role, inline=True)
-        embed.add_field(name="Joined", value=user.joined_at)
-        embed.add_field(name='Account Created on', value=user.created_at)
-        embed.set_thumbnail(url=user.avatar_url)
+        async with ctx.channel.typing():
+            embed = Embed(
+                title=f"{user.name}'s info",
+                description="Here's what I could find.",
+                color=user.color)
+            embed.add_field(name="Name", value=user.name, inline=True)
+            embed.add_field(name="ID", value=user.id, inline=True)
+            embed.add_field(name="Highest role", value=user.top_role, inline=True)
+            embed.add_field(name="Joined", value=user.joined_at)
+            embed.add_field(name='Account Created on', value=user.created_at)
+            embed.set_thumbnail(url=user.avatar_url)
         await ctx.send(embed=embed)
 
     @commands.command(pass_context=True)
     async def avatar(self, ctx: Context, *, user: Member = None):
-        if user is None:
+        '''Fetches a user's avatar'''
+        if not user:
             user = ctx.message.author
         async with ctx.channel.typing():
             embed = Embed(color=user.color)

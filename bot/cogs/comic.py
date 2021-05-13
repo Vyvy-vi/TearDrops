@@ -13,7 +13,7 @@ class Comics(commands.Cog):
 
     @commands.command()
     async def xkcd(self, ctx: Context, arg: Optional[str] = 'random'):
-        '''Provides a comic strip from xkcd blog'''
+        '''Comic strips from xkcd's blog'''
         base_url = 'https://xkcd.com/'
         if arg == 'random':
             base_url += f'{randint(1, 2390)}/'
