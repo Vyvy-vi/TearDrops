@@ -14,6 +14,7 @@ class Name(commands.Cog):
 
     @commands.command(aliases=['random-username', 'ru', 'random_username'])
     async def username(self, ctx: Context, lim: int = 30):
+        """Generates a random username from DigitalOcean's name-set"""
         op = generate(lim)
         if lim == 30:
             op = generate(random.randint(20, 50))
@@ -25,6 +26,7 @@ class Name(commands.Cog):
 
     @commands.command(aliases=['joe-username', 'ju'])
     async def joe_username(self, ctx: Context, lim: int = 4):
+        """Generates what Joe Nash would name you"""
         op = joe_generate(lim)
         if lim == 4:
             op = joe_generate(random.randint(3, 11))

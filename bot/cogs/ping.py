@@ -23,7 +23,7 @@ class Ping(commands.Cog):
 
     @commands.command()
     async def ping(self, ctx: Context):
-        """The bot's ping command"""
+        """Ping command (for testing)"""
         bot_lsm = round(self.client.latency * 1000)
         embed = ping_embed(
             '**pong...!**',
@@ -33,7 +33,7 @@ class Ping(commands.Cog):
 
     @commands.command()
     async def pong(self, ctx: Context):
-        """The bot's pong command"""
+        """Pong command (also for testing)"""
         bot_lsm = round(self.client.latency * 1000)
         embed = ping_embed(
             '**PING...!**',
@@ -43,7 +43,7 @@ class Ping(commands.Cog):
 
     @commands.command(pass_context=True)
     async def echo(self, ctx: Context, *args):
-        '''echos the words'''
+        '''echos the words into the abyss'''
         output = ''
         for word in args:
             output += word

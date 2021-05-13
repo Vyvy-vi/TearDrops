@@ -18,7 +18,7 @@ class Game(commands.Cog):
 
     @commands.command(aliases=['diceroll', 'roll'])
     async def dice(self, ctx: Context, num: int):
-        '''dice-guess game'''
+        '''Dice-guess game'''
         if num <= 6:
             user = ctx.message.author
             db = self.DB_CLIENT.users_db
@@ -48,7 +48,7 @@ Command Usage-> qq dice <num> (between 1 and 6)',
 
     @commands.command(aliases=['russian-roulette', 'gunshot', 'rr'])
     async def russian_roulette(self, ctx: Context):
-        '''starts fun russian roulette game'''
+        '''Starts a fun russian roulette game'''
         global buls
         if buls >= 6:
             buls = 1

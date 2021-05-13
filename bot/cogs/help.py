@@ -31,7 +31,7 @@ class Help(commands.Cog):
 
     @commands.command()
     async def help(self, ctx: Context, index: str = None):
-        '''Displays the help command'''
+        '''Displays the help text'''
         colo = COLOR.DEFAULT
         if index is None:
             title = '**Help command**'

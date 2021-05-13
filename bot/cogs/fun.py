@@ -16,7 +16,7 @@ class Fun(commands.Cog):
 
     @commands.command(aliases=["8ball"])
     async def magicball(self, ctx: Context, *, question: str):
-        """use an 8ball"""
+        """Use an 8ball"""
         res = await self.data.find_one({'type': '8ball'})
         embed = Embed(title="8Ball :8ball:",
                       colour=COLOR.DEFAULT)
@@ -55,7 +55,7 @@ class Fun(commands.Cog):
 
     @commands.command(aliases=['nerdystuff', 'smartystuff', 'bigbrains'])
     async def nerd(self, ctx: Context):
-        """returns some nerdy stuff"""
+        """Returns some nerdy stuff"""
         res = await self.data.find_one({'type': 'nerd'})
         embed = Embed(title='Nerdy Stuff', color=COLOR.JOY)
         embed.add_field(
@@ -65,7 +65,7 @@ class Fun(commands.Cog):
 
     @commands.command(aliases=['tehc', 'hackerman'])
     async def geek(self, ctx: Context):
-        """returns some geeky gibberish"""
+        """Returns some geeky gibberish"""
         res = await self.data.find_one({'type': 'tech'})
         embed = Embed(title='Geek', color=COLOR.JOY)
         embed.add_field(name="Ahh I am a hackerman",
@@ -74,7 +74,7 @@ class Fun(commands.Cog):
 
     @commands.command(aliases=['commend'])
     async def compliment(self, ctx: Context, *, member: Member = None):
-        """Wanna shoot some compliments"""
+        """Wanna shoot some compliments?"""
         user = ctx.message.author if not member else member
         res = await self.data.find_one({'type': 'compliments'})
         embed = Embed(title='Compliment', color=COLOR.JOY)
@@ -94,7 +94,7 @@ class Fun(commands.Cog):
 
     @commands.command(aliases=['goodread'])
     async def book(self, ctx: Context):
-        """returns you some epic book recomendation"""
+        """Returns you some epic book recomendation"""
         res = await self.data.find_one({'type': 'books'})
         embed = Embed(title='Book', color=COLOR.JOY)
         embed.add_field(name="Here's a book recomendation: ",
