@@ -14,7 +14,7 @@ python-dotenv = "==0.15.0"
 loguru = "*"
 
 [dev-packages]
-flake8 = "~=3.8.4"
+flake8 = "~=3.9.2"
 pylint_runner = "0.6.0"
 
 [requires]
