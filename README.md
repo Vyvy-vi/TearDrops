@@ -4,7 +4,7 @@
 <a href="https://discord.io/TearDropsSupport"><img src="https://discordapp.com/api/guilds/765880027467350047/widget.png?style=banner2" alt="Link to discord server"><br>
 <a href="https://www.python.org/"><img src="http://ForTheBadge.com/images/badges/made-with-python.svg" alt="made with Python"></a>
 <a href="https://github.com/Vyvy-vi/"><img src="http://ForTheBadge.com/images/badges/built-with-love.svg" alt="built with Love"></a><br>
-<a href="https://raw.githubusercontent.com/Vyvy-vi/TearDrops/main/LICENSE"><img src="https://img.shields.io/github/license/Vyvy-vi/TearDrops?style=flat-square" alt="MIT license"></a>
+<a href="https://raw.githubusercontent.com/Vyvy-vi/TearDrops/main/LICENSE"><img src="https://img.shields.io/github/license/Vyvy-vi/TearDrops?style=flat-square" alt="BSD license"></a>
 <a href="https://github.com/Rapptz/discord.py/releases/tag/v1.5.0"><img src="https://img.shields.io/badge/discord.py-v1.6.0-7289da.svg?style=flat-square" alt="discord.py version"></a>
 </p>
 
