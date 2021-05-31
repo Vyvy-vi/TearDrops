@@ -112,7 +112,7 @@ class Economy(commands.Cog):
             await add_experience(self.DB_CLIENT.users_db, message, message.author, 10)
             timelast = time.time()
         if 'tears' in message.content:
-            await message.author.send('😭')  #dms
+            await message.author.send('😭')  # dms
 
     @commands.command(aliases=['daily'])
     async def cry(self, ctx: Context):
