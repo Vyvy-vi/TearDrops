@@ -104,16 +104,15 @@ class Economy(commands.Cog):
         if message.author.bot:
             # Ignre messages from bots
             return
-        else:
-            # update user's xp
-            global timelast
-            await update_data(self.DB_CLIENT.users_db, message.author)
-            timlst = timelast
-            if time.time() - timlst > 25:
-                await add_experience(self.DB_CLIENT.users_db, message, message.author, 10)
-                timelast = time.time()
-            if 'tears' in message.content:
-                await message.author.send('😭')  #dms
+        # update user's xp
+        global timelast
+        await update_data(self.DB_CLIENT.users_db, message.author)
+        timlst = timelast
+        if time.time() - timlst > 25:
+            await add_experience(self.DB_CLIENT.users_db, message, message.author, 10)
+            timelast = time.time()
+        if 'tears' in message.content:
+            await message.author.send('😭')  #dms
 
     @commands.command(aliases=['daily'])
     async def cry(self, ctx: Context):
