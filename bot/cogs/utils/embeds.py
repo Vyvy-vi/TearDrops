@@ -44,7 +44,7 @@ def weather_embed(loc, q, author):
     weather_data['\nDescription'] = w_obj['description']
 
     col = weather_embed_color(str(w_obj['id']))
-    weather_data = [f'**{field}**: {weather_data[field]}' for field in weather_data]
+    weather_data = [f'**{field}**: {data}' for field, data in weather_data.items()]
     embed = Embed(title='Weather',
                   description=f'displaying weather of {loc}',
                   color=col)
