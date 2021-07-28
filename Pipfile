@@ -9,7 +9,7 @@ motor = "==2.4.0"
 wikipedia = "==1.4.0"
 aiohttp = "==3.7.4.post0"
 dnspython = "==2.1.0"
-jishaku = "==2.1.0"
+jishaku = "==2.2.0"
 python-dotenv = "==0.18.0"
 loguru = "*"
 
