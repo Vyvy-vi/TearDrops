@@ -1,5 +1,7 @@
 ![](.github/resources/title.svg)
 
+# **THIS PROJECT HAS BEEN ARCHIVED**
+
 <p align='center'>
 <a href="https://discord.io/TearDropsSupport"><img src="https://discordapp.com/api/guilds/765880027467350047/widget.png?style=banner2" alt="Link to discord server"><br>
 <a href="https://www.python.org/"><img src="http://ForTheBadge.com/images/badges/made-with-python.svg" alt="made with Python"></a>
@@ -38,8 +40,8 @@ To test the bot join the [Support Server](https://discord.gg/jTzGuYx)
   [*NOTE- Bot is not active 24x7 as it is hosted on heroku. To get a sample, join* [TearDropsSupport](https://discord.gg/jTzGuYx) *and ping* **@Tissue**]
 
 ## How to run the bot on your own server
-[Invite the bot to your server](https://discord.com/api/oauth2/authorize?client_id=627772985872220161&permissions=379968&scope=bot)
-[*NOTE- The bot is still in v0.2.0 and is being constantly updated and bug fixed. Inviting this, might have unintentional complications. If you really want the bot, open an issue so that we can provide a Beta Version to you that is stable and updated slowly*]
+~~[Invite the bot to your server]()~~
+~~[*NOTE- The bot is still in v0.2.0 and is being constantly updated and bug fixed. Inviting this, might have unintentional complications. If you really want the bot, open an issue so that we can provide a Beta Version to you that is stable and updated slowly*]~~
 
 ## Hosting the bot locally:
 
@@ -85,7 +87,7 @@ THE TRADITIONAL METHOD:\
 \- For downloading more libraries, use `pipenv install <package-name>`\
 \- If you're adding any development-dependencies, use-> `pipenv install <package-name> --dev`\
 
-
+<!--
 ### To contribute changes follow these steps:
 
 **Note**: Make sure you have been assigned the issue to which you are making a PR. If you make PR before being assigned, It will be labeled invalid and closed without merging.
@@ -119,7 +121,7 @@ Submit an issue on GitHub and add as much information as you can about the bug, 
 **Note**: Try to make issues that are not blank and are in their respective category.
 
 **Note**: For more detailed information about how to contribute, please refere to the [CONTRIBUTING.md](https://github.com/Vyvy-vi/TearDrops/blob/main/CONTRIBUTING.md) file.
-
+--->
 ## Requirements:
 - python 3
 - discord(rewrite branch)
