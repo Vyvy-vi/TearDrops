@@ -1,25 +1,27 @@
+from discord import app_commands, Interaction
 from discord.ext import commands
-from discord.ext.commands import Context
 
 
 class Dictionary(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.command(pass_context=True)
-    async def urban(self, ctx: Context, *args):
-        '''searches urban dictionary for words'''
+    @app_commands.command(name="urban", description="Searche urban disctionary")
+    async def urban(self, interaction: Interaction, args: str):
+        """searches urban dictionary for words"""
         baseurl = "https://www.urbandictionary.com/define.php?term="
-        output = ''.join(args)
-        await ctx.send(baseurl + output)
+        output = args
+        await interaction.response.send_message(baseurl + output)
 
-    @commands.command(pass_context=True)
-    async def define(self, ctx: Context, *args):
-        '''searches merriam-webster for meanings of words'''
+    @app_commands.command(
+        name="define", description="Search meaning of a word from merriam-webster"
+    )
+    async def define(self, interaction: Interaction, args: str):
+        """searches merriam-webster for meanings of words"""
         baseurl = "https://www.merriam-webster.com/dictionary/"
-        output = '%20'.join(args)
-        await ctx.send(baseurl + output)
+        output = args
+        await interaction.response.send_message(baseurl + output)
 
 
-def setup(client):
-    client.add_cog(Dictionary(client))
+async def setup(client):
+    await client.add_cog(Dictionary(client))

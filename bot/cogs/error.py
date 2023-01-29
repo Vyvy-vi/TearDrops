@@ -13,14 +13,13 @@ class Errors(commands.Cog):
     @commands.Cog.listener()
     async def on_command_error(self, ctx: Context, error):
         if isinstance(error, commands.CommandNotFound):
-            embed = Embed(title='Invalid command used...',
-                          colour=COLOR.ERROR)
+            embed = Embed(title="Invalid command used...", colour=COLOR.ERROR)
             await ctx.send(embed=embed)
-            logger.warning(f'Invalid command used:\n {ctx.message.content}\n')
+            logger.warning(f"Invalid command used:\n {ctx.message.content}\n")
         else:  # TODO - Error Handling
             await ctx.send(error)
             logger.error(error)
 
 
-def setup(client):
-    client.add_cog(Errors(client))
+async def setup(client):
+    await client.add_cog(Errors(client))

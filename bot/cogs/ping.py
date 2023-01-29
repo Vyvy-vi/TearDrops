@@ -8,10 +8,8 @@ from .utils.phrases import TEXT
 
 
 def ping_embed(title, desc, colo):
-    embed = Embed(title=title,
-                  description=desc,
-                  color=colo)
-    embed.set_footer(text='😭')
+    embed = Embed(title=title, description=desc, color=colo)
+    embed.set_footer(text="😭")
     return embed
 
 
@@ -26,9 +24,10 @@ class Ping(commands.Cog):
         """Ping command (for testing)"""
         bot_lsm = round(self.client.latency * 1000)
         embed = ping_embed(
-            '**pong...!**',
+            "**pong...!**",
             f"_{TEXT.ping}_ \n**~{bot_lsm} ms taken**......",
-            COLOR.SUCCESS)
+            COLOR.SUCCESS,
+        )
         await ctx.send(embed=embed)
 
     @commands.command()
@@ -36,34 +35,32 @@ class Ping(commands.Cog):
         """Pong command (also for testing)"""
         bot_lsm = round(self.client.latency * 1000)
         embed = ping_embed(
-            '**PING...!**',
+            "**PING...!**",
             f"_{TEXT.pong}_ \n**~{bot_lsm} ms taken**......",
-            COLOR.ERROR)
+            COLOR.ERROR,
+        )
         await ctx.send(embed=embed)
 
     @commands.command(pass_context=True)
     async def echo(self, ctx: Context, *args):
-        '''echos the words into the abyss'''
-        output = ''
+        """echos the words into the abyss"""
+        output = ""
         for word in args:
             output += word
-            output += ' '
+            output += " "
         await ctx.send(output)
 
     @commands.command(pass_context=True)
     async def say(self, ctx: Context, *args):
         """Gives the user's statement a nice richtext quote format"""
-        output = ''
+        output = ""
         for word in args:
             output += word
-            output += ' '
+            output += " "
         user = ctx.message.author
-        embed = Embed(
-            title=f'{output}',
-            description=f'~{user}',
-            colour=COLOR.RANDOM())
+        embed = Embed(title=f"{output}", description=f"~{user}", colour=COLOR.RANDOM())
         await ctx.send(embed=embed)
 
 
-def setup(client):
-    client.add_cog(Ping(client))
+async def setup(client):
+    await client.add_cog(Ping(client))
