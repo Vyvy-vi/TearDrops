@@ -46,9 +46,7 @@ class Help(commands.Cog):
                 title = f"**Help category: `{index}`**"
                 desc = "\n".join(f"**{c.name}** : {c.short_doc}" for c in cog_cmds)
             else:
-                cmd_match = list(
-                    filter(lambda cmd: cmd.name == index, self.client.commands)
-                )
+                cmd_match = list(filter(lambda cmd: cmd.name == index, self.client.commands))
                 if cmd_match:
                     title = f"**Help command: `{cmd_match[0]}`**"
                     desc = f"Description : {cmd_match[0].short_doc} \n {cmd_match[0].brief}"

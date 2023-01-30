@@ -1,8 +1,7 @@
 import wikipedia
 
-from discord import Embed, Color
+from discord import Embed, Color, app_commands, Interaction
 from discord.ext import commands
-from discord.ext.commands import Context
 from loguru import logger
 
 from .utils.colo import COLOR
@@ -13,8 +12,8 @@ class Utils(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.command(pass_context=True)
-    async def wiki(self, ctx: Context, *, args):
+    @app_commands.command(name="wiki", description="Search something on wikipedia")
+    async def wiki(self, interaction: Interaction, *, args):
         """Display result from wikipedia"""
         searchResults = wikipedia.search(args)
         if not searchResults:
@@ -46,10 +45,12 @@ class Utils(commands.Cog):
                 embed.add_field(name="Did you mean?:", value=s)
             embed.set_image(url=page.images[0])
 
-        await ctx.send(embed=embed)
+        await interaction.response.send_message(embed=embed)
 
-    @commands.command(pass_context=True)
-    async def weather(self, ctx: Context, *, loc):
+    @app_commands.command(
+        name="weather", description="Get weather information about a location"
+    )
+    async def weather(self, interaction: Interaction, loc: str):
         """Displays weather data"""
         key = "353ddfe27aa4b3537c47c975c70b58d9"  # dummy key(for now)
         url = f"http://api.openweathermap.org/data/2.5/weather?appid={key}&q={loc}, verify= False"
@@ -57,14 +58,14 @@ class Utils(commands.Cog):
             q = await res.json()
 
         if q["cod"] not in [404, 401]:
-            embed = weather_embed(loc, q, ctx.message.author.name)
+            embed = weather_embed(loc, q, interaction.user.name)
         else:
             embed = Embed(
                 title="Weather", description="API Connection Refused", color=Color.red()
             )
-            embed.set_footer(text=f"Requested by {ctx.message.author.name}")
+            embed.set_footer(text=f"Requested by {interaction.user.name}")
             logger.error("Error with weather command")
-        await ctx.send(embed=embed)
+        await interaction.response.send_message(embed=embed)
 
 
 async def setup(client):

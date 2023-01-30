@@ -1,7 +1,5 @@
-from discord import Embed
-
+from discord import Embed, Interaction, app_commands
 from discord.ext import commands
-from discord.ext.commands import Context
 
 from .utils.colo import COLOR
 from .utils.phrases import TEXT
@@ -19,8 +17,8 @@ class Ping(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.command()
-    async def ping(self, ctx: Context):
+    @app_commands.command(name="ping", description="Ping the bot")
+    async def ping(self, interaction: Interaction):
         """Ping command (for testing)"""
         bot_lsm = round(self.client.latency * 1000)
         embed = ping_embed(
@@ -28,10 +26,10 @@ class Ping(commands.Cog):
             f"_{TEXT.ping}_ \n**~{bot_lsm} ms taken**......",
             COLOR.SUCCESS,
         )
-        await ctx.send(embed=embed)
+        await interaction.response.send_message(embed=embed)
 
-    @commands.command()
-    async def pong(self, ctx: Context):
+    @app_commands.command(name="pong", description="Pong the bot??")
+    async def pong(self, interaction: Interaction):
         """Pong command (also for testing)"""
         bot_lsm = round(self.client.latency * 1000)
         embed = ping_embed(
@@ -39,27 +37,29 @@ class Ping(commands.Cog):
             f"_{TEXT.pong}_ \n**~{bot_lsm} ms taken**......",
             COLOR.ERROR,
         )
-        await ctx.send(embed=embed)
+        await interaction.response.send_message(embed=embed)
 
-    @commands.command(pass_context=True)
-    async def echo(self, ctx: Context, *args):
+    @app_commands.command(name="echo", description="echo your words into the abyss...")
+    async def echo(self, interaction: Interaction, args: str):
         """echos the words into the abyss"""
         output = ""
-        for word in args:
+        for word in args.split(" "):
             output += word
             output += " "
-        await ctx.send(output)
+        await interaction.response.send_message(output)
 
-    @commands.command(pass_context=True)
-    async def say(self, ctx: Context, *args):
+    @app_commands.command(
+        name="say", description="get the bot to make a fancy message for your text"
+    )
+    async def say(self, interaction: Interaction, args: str):
         """Gives the user's statement a nice richtext quote format"""
         output = ""
-        for word in args:
+        for word in args.split(" "):
             output += word
             output += " "
-        user = ctx.message.author
+        user = interaction.user
         embed = Embed(title=f"{output}", description=f"~{user}", colour=COLOR.RANDOM())
-        await ctx.send(embed=embed)
+        await interaction.response.send_message(embed=embed)
 
 
 async def setup(client):

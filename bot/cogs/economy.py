@@ -1,14 +1,13 @@
 import time
 import random
 
-from typing import Union
+from typing import Union, Optional
 from loguru import logger
 
 import motor.motor_asyncio as motor
 
-from discord import User, Member, Message, TextChannel, Embed
+from discord import User, Member, Message, TextChannel, Embed, Interaction, app_commands
 from discord.ext import commands
-from discord.ext.commands import Context
 
 from .utils.colo import COLOR
 
@@ -113,10 +112,12 @@ class Economy(commands.Cog):
         if "tears" in message.content:
             await message.author.send("😭")  # dms
 
-    @commands.command(aliases=["daily"])
-    async def cry(self, ctx: Context):
+    @app_commands.command(
+        name="cry", description="collect your daily credits by crying"
+    )
+    async def cry(self, interaction: Interaction):
         """credit gain command for crying"""
-        user = ctx.message.author
+        user = interaction.user
         server = self.DB_CLIENT.users_db[str(user.guild.id)]
         stats = await server.find_one({"id": user.id})
         colo = COLOR.DEFAULT
@@ -142,12 +143,12 @@ Wait for like {round((10800 - time.time()+stats['crytime'])//3600)} hours or som
             colo = COLOR.ERROR
         embed = Embed(title="**Tear Dispenser**", description=desc, color=colo)
         embed.set_footer(text="😭")
-        await ctx.send(embed=embed)
+        await interaction.respinse.send_message(embed=embed)
 
     @commands.command(aliases=["vaultoftears", "tearvault"])
-    async def vault(self, ctx: Context, member: Member = None):
+    async def vault(self, interaction: Interaction, member: Optional[Member] = None):
         """Gives the user's tear balance"""
-        user = ctx.message.author if not member else member
+        user = interaction.user if not member else member
         server = self.DB_CLIENT.users_db[str(user.guild.id)]
         stats = await server.find_one({"id": user.id})
         trp = stats["credits"]
@@ -158,12 +159,12 @@ Wait for like {round((10800 - time.time()+stats['crytime'])//3600)} hours or som
         )
         embed.set_footer(text="Cry, cry, let the emotions flow through you...😭")
         embed.add_field(name="Tears", value=trp)
-        await ctx.send(embed=embed)
+        await interaction.response.send_message(embed=embed)
 
     @commands.command(aliases=["lvl", "dep_level"])
-    async def level(self, ctx: Context, member: Member = None):
+    async def level(self, interaction: Interaction, member: Member = None):
         """Gives the user's level"""
-        user = ctx.message.author if not member else member
+        user = interaction.user if not member else member
         server = self.DB_CLIENT.users_db[str(user.guild.id)]
         stats = await server.find_one({"id": user.id})
         lvl = stats["level"]
@@ -174,12 +175,12 @@ Wait for like {round((10800 - time.time()+stats['crytime'])//3600)} hours or som
         )
         embed.set_footer(text="Cry, cry, let the emotions flow through you...😭")
         embed.add_field(name="Level", value=lvl)
-        await ctx.send(embed=embed)
+        await interaction.response.send_message(embed=embed)
 
     @commands.command(aliases=["absorb", "cryon"])
-    async def transfer(self, ctx: Context, amount: int, member: Member):
+    async def transfer(self, interaction: Interaction, amount: int, member: Member):
         """Command to transfer currency"""
-        user1 = ctx.message.author
+        user1 = interaction.user
         user2 = member
         server = self.DB_CLIENT.users_db[str(user1.guild.id)]
         stat1 = await server.find_one({"id": user1.id})
@@ -209,12 +210,12 @@ Wait for like {round((10800 - time.time()+stats['crytime'])//3600)} hours or som
                 name=f"Failed to share {amount} tears.\nYou have insufficient tears in TearVault",
                 value="._.",
             )
-        await ctx.send(embed=embed)
+        await interaction.response.send_message(embed=embed)
 
 
 """ The marketplace ---> TODO
 @commands.command(aliases=['market'])
-async def shop(self, ctx: Context):
+async def shop(self, interaction: Interaction):
     '''market command'''
     items= []
     embed=discord.Embed(title='**TearShops**',description = f'items',colour=discord.Color.red())"""

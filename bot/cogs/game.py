@@ -1,8 +1,7 @@
 import random
 
-from discord import Embed
+from discord import Embed, Interaction, app_commands
 from discord.ext import commands
-from discord.ext.commands import Context
 
 import motor.motor_asyncio as motor
 
@@ -16,11 +15,11 @@ class Game(commands.Cog):
         self.client = client
         self.DB_CLIENT = motor.AsyncIOMotorClient(client.MONGO)
 
-    @commands.command(aliases=["diceroll", "roll"])
-    async def dice(self, ctx: Context, num: int):
+    @app_commands.command(name="dice", description="play the guess-what-the-dice-rolls game")
+    async def dice(self, interaction: Interaction, num: int):
         """Dice-guess game"""
         if num <= 6:
-            user = ctx.message.author
+            user = interaction.user
             db = self.DB_CLIENT.users_db
             server = db[str(user.guild.id)]
             stats = await server.find_one({"id": user.id})
@@ -47,10 +46,10 @@ Command Usage-> qq dice <num> (between 1 and 6)",
                 color=COLOR.ERROR,
             )
 
-        await ctx.send(embed=embed)
+        await interaction.response.send_message(embed=embed)
 
-    @commands.command(aliases=["russian-roulette", "gunshot", "rr"])
-    async def russian_roulette(self, ctx: Context):
+    @app_commands.command(name="russian-roulette", description="Start a russian roulette game")
+    async def russian_roulette(self, interaction: Interaction):
         """Starts a fun russian roulette game"""
         global buls
         if buls >= 6:
@@ -67,7 +66,7 @@ Command Usage-> qq dice <num> (between 1 and 6)",
                 description="You live to fight another day",
                 color=COLOR.DEFAULT(),
             )
-        await ctx.send(embed=embed)
+        await interaction.response.send_message(embed=embed)
 
 
 async def setup(client):
