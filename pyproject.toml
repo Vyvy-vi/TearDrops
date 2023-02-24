@@ -14,7 +14,7 @@ aiohttp = "^3.8.3"
 wikipedia = "^1.4.0"
 dnspython = "^2.3.0"
 jishaku = "^2.5.1"
-python-dotenv = "^0.21.1"
+python-dotenv = "^1.0.0"
 loguru = "^0.6.0"
 
 [tool.poetry.group.dev.dependencies]
