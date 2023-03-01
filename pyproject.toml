@@ -20,7 +20,7 @@ loguru = "^0.6.0"
 [tool.poetry.group.dev.dependencies]
 flake8 = "^6.0.0"
 pylint-runner = "^0.6.0"
-black = "^22.12.0"
+black = "^23.1.0"
 
 [tool.poe.tasks]
 start = "python bot/main.py"
