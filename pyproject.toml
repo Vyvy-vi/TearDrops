@@ -15,7 +15,7 @@ wikipedia = "^1.4.0"
 dnspython = "^2.3.0"
 jishaku = "^2.5.1"
 python-dotenv = "^0.21.1"
-loguru = "^0.6.0"
+loguru = "^0.7.0"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^6.0.0"
